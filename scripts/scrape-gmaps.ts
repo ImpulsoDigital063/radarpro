@@ -1,73 +1,16 @@
 /**
  * radarPRO — Scraper Google Maps
- * Busca negócios por categoria em Palmas-TO e qualifica como prospect LP ou Shopify
+ * Extrai dados direto da lista de resultados (1 página só — rápido)
  *
  * Uso:
- *   npx tsx scripts/scrape-gmaps.ts --tipo lp
- *   npx tsx scripts/scrape-gmaps.ts --tipo shopify
- *   npx tsx scripts/scrape-gmaps.ts --tipo lp --query "nutricionista Palmas TO"
+ *   npx tsx scripts/scrape-gmaps.ts "--query=nutricionista Palmas TO" --tipo lp
  */
 
 import { chromium } from 'playwright'
-import {
-  inserirLead,
-  registrarBusca,
-  estatisticas,
-} from '../lib/db'
-import {
-  gerarMensagemLP,
-  gerarMensagemShopify,
-  gerarMensagemAgendaPRO,
-  QUERIES_GMAPS_LP,
-  QUERIES_GMAPS_SHOPIFY,
-  QUERIES_GMAPS_AGENDAPRO,
-} from '../lib/mensagens'
+import { inserirLead, registrarBusca, estatisticas } from '../lib/db'
+import { gerarMensagemLP, gerarMensagemShopify, gerarMensagemAgendaPRO } from '../lib/mensagens'
+import { calcularScore } from '../lib/score'
 
-// ── Qualificador de site ──────────────────────────────────────────────────────
-// Retorna true se o site parece uma LP/e-commerce real
-// Retorna false se for só Instagram/Facebook/WhatsApp ou não tiver site
-function temSiteReal(site: string | null): boolean {
-  if (!site) return false
-  const s = site.toLowerCase()
-  // Sites que NÃO qualificam como LP real
-  const descartados = [
-    'instagram.com',
-    'facebook.com',
-    'wa.me',
-    'whatsapp',
-    'linktr.ee',
-    'linktree',
-    'bio.link',
-    'beacons.ai',
-    'taplink',
-  ]
-  return !descartados.some(d => s.includes(d))
-}
-
-// Verifica se o site parece e-commerce (para qualificar Shopify)
-function temEcommerce(site: string | null): boolean {
-  if (!site) return false
-  const s = site.toLowerCase()
-  const ecommerces = [
-    'shopify',
-    'nuvemshop',
-    'loja',
-    'store',
-    'shop',
-    'mercadoshops',
-    'wix.com',
-    'lojaintegrada',
-  ]
-  return ecommerces.some(d => s.includes(d))
-}
-
-// ── Extrator de telefone da string ────────────────────────────────────────────
-function extrairTelefone(texto: string): string | null {
-  const match = texto.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
-  return match ? match[0].replace(/\s/g, '') : null
-}
-
-// ── Scraper principal ─────────────────────────────────────────────────────────
 async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendapro') {
   console.log(`\n🔍 Buscando: "${query}" [${tipo.toUpperCase()}]`)
 
@@ -82,162 +25,158 @@ async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendap
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
   await page.waitForTimeout(3000)
 
-  let total = 0
-  let novos  = 0
-  const resultados: Array<{
-    nome: string
-    telefone: string | null
-    site: string | null
-    endereco: string | null
-    nota: number | null
-    categoria: string
-  }> = []
-
   // Scroll para carregar mais resultados
-  const painel = page.locator('[role="feed"]')
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 8; i++) {
     try {
-      await painel.evaluate(el => el.scrollBy(0, 1500))
-      await page.waitForTimeout(1500)
+      await page.locator('[role="feed"]').evaluate(el => el.scrollBy(0, 1200))
+      await page.waitForTimeout(1000)
     } catch {}
   }
 
-  // Pega todos os cards de resultado
-  const cards = await page.locator('[role="feed"] > div').all()
-  console.log(`   → ${cards.length} resultados encontrados`)
+  // Extrai tudo de uma vez da página via evaluate (rápido, sem cliques)
+  const resultados = await page.evaluate(() => {
+    const items: any[] = []
 
-  for (const card of cards.slice(0, 30)) {
-    try {
-      const nomeEl = await card.locator('a[aria-label]').first()
-      const nome = await nomeEl.getAttribute('aria-label')
-      if (!nome) continue
+    // Cada card de resultado no feed
+    document.querySelectorAll('[role="feed"] > div').forEach(card => {
+      try {
+        // Nome — link principal com aria-label
+        const linkEl = card.querySelector('a[aria-label]')
+        const nome = linkEl?.getAttribute('aria-label')?.trim()
+        if (!nome) return
 
-      // Clica no card para abrir detalhes
-      await nomeEl.click()
-      await page.waitForTimeout(1500)
+        // URL do negócio
+        const href = (linkEl as HTMLAnchorElement)?.href ?? null
 
-      // Extrai dados do painel lateral
-      const telefoneText = await page.locator('[data-tooltip="Copiar número de telefone"]').textContent().catch(() => null)
-      const siteEl       = await page.locator('a[data-item-id="authority"]').getAttribute('href').catch(() => null)
-      const enderecoText = await page.locator('[data-item-id="address"] .fontBodyMedium').textContent().catch(() => null)
-      const notaText     = await page.locator('.MW4etd').first().textContent().catch(() => null)
+        // Texto completo do card para extrair outros dados
+        const texto = card.textContent ?? ''
 
-      const telefone = telefoneText ? extrairTelefone(telefoneText) : null
-      const nota     = notaText ? parseFloat(notaText.replace(',', '.')) : null
+        // Categoria — geralmente aparece após o nome na segunda linha
+        const spans = Array.from(card.querySelectorAll('span'))
+        const categoria = spans.find(s =>
+          s.textContent && s.textContent.length > 2 && s.textContent.length < 40 &&
+          !s.textContent.match(/^\d/) && s.getAttribute('aria-label') === null &&
+          !s.textContent.includes('R$') && !s.textContent.includes('·')
+        )?.textContent?.trim() ?? ''
 
-      // Categoria baseada na query
-      const categoria = query.split(' ')[0]
+        // Nota Google (formato: "4,5")
+        const notaMatch = texto.match(/(\d[,\.]\d)\s*\(/)
+        const nota = notaMatch ? parseFloat(notaMatch[1].replace(',', '.')) : null
 
-      resultados.push({ nome, telefone, site: siteEl, endereco: enderecoText, nota, categoria })
-      total++
+        // Número de avaliações (formato: "4,5(123)")
+        const avalMatch = texto.match(/\((\d[\d.,]+)\)/)
+        const numAval = avalMatch ? parseInt(avalMatch[1].replace(/\D/g, '')) : 0
 
-    } catch {
-      // Card sem dados suficientes — pula
-    }
-  }
+        // Telefone
+        const telMatch = texto.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
+        const telefone = telMatch ? telMatch[0].replace(/\s/g, '') : null
+
+        // Verifica se tem site (ícone de globo no card)
+        const temSiteCard = texto.includes('site') || texto.includes('www.') ||
+          !!card.querySelector('[aria-label*="site"]')
+
+        items.push({ nome, href, categoria, nota, numAval, telefone, temSiteCard, texto: texto.slice(0, 200) })
+      } catch {}
+    })
+
+    return items
+  })
 
   await browser.close()
 
-  // ── Qualificação e inserção ───────────────────────────────────────────────
-  for (const r of resultados) {
-    const siteReal    = temSiteReal(r.site)
-    const ecommerce   = temEcommerce(r.site)
+  console.log(`   → ${resultados.length} resultados extraídos`)
 
-    // LP: qualificado se NÃO tem site real
-    // Shopify: qualificado se NÃO tem e-commerce
-    // AgendaPRO: qualifica todos — qualquer um que agenda pelo WhatsApp/telefone é prospect
-    const qualificado = tipo === 'lp'
-      ? !siteReal
-      : tipo === 'shopify'
-        ? !ecommerce
-        : true // AgendaPRO: todos qualificam, o pitch é pra quem agenda pelo WhatsApp
+  let total = 0
+  let novos = 0
+  const categoria = query.split(' ')[0]
+
+  for (const r of resultados) {
+    if (!r.nome) continue
+
+    // Para LP: qualifica quem não tem site indicado no card
+    // Para Shopify: qualifica quem não tem e-commerce
+    // Para AgendaPRO: todos
+    const qualificado =
+      tipo === 'lp'       ? !r.temSiteCard :
+      tipo === 'shopify'  ? !r.temSiteCard :
+      true
 
     if (!qualificado) {
-      console.log(`   ⏭  ${r.nome} — já tem ${tipo === 'lp' ? 'site' : 'e-commerce'}`)
+      console.log(`   ⏭  ${r.nome} — tem site`)
       continue
     }
 
-    const mensagem = tipo === 'lp'
-      ? gerarMensagemLP(r.nome, r.categoria)
-      : tipo === 'shopify'
-        ? gerarMensagemShopify(r.nome, r.categoria)
-        : gerarMensagemAgendaPRO(r.nome, r.categoria)
+    const mensagem =
+      tipo === 'lp'      ? gerarMensagemLP(r.nome, r.categoria || categoria) :
+      tipo === 'shopify' ? gerarMensagemShopify(r.nome, r.categoria || categoria) :
+      gerarMensagemAgendaPRO(r.nome, r.categoria || categoria)
 
-    const id = inserirLead({
-      nome:      r.nome,
-      categoria: r.categoria,
+    const score = calcularScore({
+      telefone:      r.telefone,
+      nota:          r.nota,
+      num_avaliacoes: r.numAval,
+      tem_site:      r.temSiteCard,
       tipo,
-      telefone:  r.telefone ?? undefined,
-      site:      r.site ?? undefined,
-      endereco:  r.endereco ?? undefined,
-      nota:      r.nota ?? undefined,
-      tem_site:  siteReal,
-      fonte:     'google_maps',
-      mensagem,
     })
 
+    const id = inserirLead({
+      nome:          r.nome,
+      categoria:     r.categoria || categoria,
+      tipo,
+      telefone:      r.telefone ?? undefined,
+      site:          r.href ?? undefined,
+      nota:          r.nota ?? undefined,
+      num_avaliacoes: r.numAval || undefined,
+      tem_site:      r.temSiteCard,
+      fonte:         'google_maps',
+      mensagem,
+      score,
+    })
+
+    total++
     if (id) {
       novos++
-      console.log(`   ✅ ${r.nome} | ${r.telefone ?? 'sem tel'} | ${r.site ?? 'sem site'}`)
+      console.log(`   ✅ ${r.nome} | ${r.telefone ?? 'sem tel'} | nota ${r.nota ?? '-'} | score ${score}`)
     } else {
-      console.log(`   ↩  ${r.nome} — já existe no banco`)
+      console.log(`   ↩  ${r.nome} — já existe`)
     }
   }
 
   registrarBusca({ query, tipo, fonte: 'google_maps', total, novos })
-  console.log(`   📊 Total: ${total} | Novos qualificados: ${novos}`)
-
+  console.log(`\n   📊 Visitados: ${total} | Novos no banco: ${novos}`)
   return { total, novos }
 }
 
-// ── Execução ──────────────────────────────────────────────────────────────────
+// ── Main ──────────────────────────────────────────────────────────────────────
 async function main() {
   const args = process.argv.slice(2)
-  const tipoArg = args.find(a => a.startsWith('--tipo='))?.split('=')[1]
-               || (args[args.indexOf('--tipo') + 1])
-               || 'lp'
 
-  const queryArg = args.find(a => a.startsWith('--query='))?.split('=')[1]
-                || (args[args.indexOf('--query') + 1])
+  const tipoArg  = args.find(a => a.startsWith('--tipo='))?.split('=')[1]
+                || args[args.indexOf('--tipo') + 1]
+                || 'lp'
 
-  const tipo = (['shopify', 'agendapro'].includes(tipoArg)
-    ? tipoArg
-    : 'lp') as 'lp' | 'shopify' | 'agendapro'
+  const queryArg = args.find(a => a.startsWith('--query='))?.replace('--query=', '')
+                || args[args.indexOf('--query') + 1]
+                || null
 
-  const queries = queryArg
-    ? [queryArg]
-    : tipo === 'lp'
-      ? QUERIES_GMAPS_LP
-      : tipo === 'shopify'
-        ? QUERIES_GMAPS_SHOPIFY
-        : QUERIES_GMAPS_AGENDAPRO
+  const tipo = (['shopify','agendapro'].includes(tipoArg) ? tipoArg : 'lp') as 'lp'|'shopify'|'agendapro'
+  const queries = queryArg ? [queryArg] : [`negócios Palmas TO`]
 
   console.log(`\n🚀 radarPRO — Google Maps Scraper`)
-  console.log(`   Modo: ${tipo.toUpperCase()}`)
-  console.log(`   Queries: ${queries.length}`)
+  console.log(`   Modo: ${tipo.toUpperCase()} | Query: ${queries[0]}`)
   console.log('─'.repeat(50))
 
-  let totalGeral = 0
-  let novosGeral = 0
-
-  for (const query of queries) {
-    const { total, novos } = await scrapeGoogleMaps(query, tipo)
-    totalGeral += total
-    novosGeral += novos
-    // Pausa entre buscas para não ser bloqueado
-    await new Promise(r => setTimeout(r, 3000))
+  let tG = 0, nG = 0
+  for (const q of queries) {
+    const { total, novos } = await scrapeGoogleMaps(q, tipo)
+    tG += total; nG += novos
   }
 
   console.log('\n' + '─'.repeat(50))
-  console.log(`✅ Busca concluída`)
-  console.log(`   Encontrados: ${totalGeral}`)
-  console.log(`   Novos leads qualificados: ${novosGeral}`)
+  console.log(`✅ Concluído — ${nG} novos leads salvos de ${tG} encontrados`)
 
   const stats = estatisticas()
-  console.log(`\n📊 Base total:`)
-  console.log(`   LP:      ${stats.lp} leads`)
-  console.log(`   Shopify: ${stats.shopify} leads`)
-  console.log(`   Total:   ${stats.total} leads`)
+  console.log(`📊 Base: LP ${stats.lp} | Shopify ${stats.shopify} | AgendaPRO ${stats.agendapro} | Total ${stats.total}`)
 }
 
 main().catch(console.error)

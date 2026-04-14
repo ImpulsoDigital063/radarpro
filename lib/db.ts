@@ -58,6 +58,23 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_leads_fonte  ON leads(fonte);
 `)
 
+// ── Migrations — adiciona colunas novas sem quebrar banco antigo ──────────────
+const migrations = [
+  `ALTER TABLE leads ADD COLUMN instagram_url       TEXT`,
+  `ALTER TABLE leads ADD COLUMN instagram_bio       TEXT`,
+  `ALTER TABLE leads ADD COLUMN instagram_seguidores TEXT`,
+  `ALTER TABLE leads ADD COLUMN num_avaliacoes       INTEGER DEFAULT 0`,
+  `ALTER TABLE leads ADD COLUMN tem_ecommerce        INTEGER DEFAULT 0`,
+  `ALTER TABLE leads ADD COLUMN tem_agendamento      INTEGER DEFAULT 0`,
+  `ALTER TABLE leads ADD COLUMN score                INTEGER DEFAULT 0`,
+  `ALTER TABLE leads ADD COLUMN notas                TEXT`,
+  `ALTER TABLE leads ADD COLUMN atualizado_em        TEXT DEFAULT (datetime('now','localtime'))`,
+]
+
+for (const sql of migrations) {
+  try { db.exec(sql) } catch {} // ignora se coluna já existe
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 export function inserirLead(lead: {
