@@ -22,12 +22,12 @@ Agência especializada em 3 produtos:
 - Casos de sucesso: evsuplementosinjetaveis.com (loja de suplementos), criativosdoceu.com (doceria artesanal)
 - Público ideal: profissional liberal ou pequeno negócio SEM site profissional
 
-**2. Loja Shopify — R$800 a R$1.500**
+**2. Loja Shopify — a partir de R$599**
 - Loja online completa com produtos, carrinho, pagamento
 - Integração com meios de pagamento brasileiros
 - Público ideal: quem vende produto físico mas só pelo Instagram ou WhatsApp
 
-**3. AgendaPRO — R$800 setup + R$67/mês**
+**3. AgendaPRO — R$67/mês**
 - Sistema de agendamento online (cliente agenda sozinho, sem WhatsApp)
 - Reduz tempo perdido com confirmações
 - Ideal para: barbearia, salão, clínica estética, personal trainer, psicólogo, dentista, fisioterapeuta
@@ -104,8 +104,8 @@ export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
   const produto = lead.tipo === 'lp'
     ? 'Landing Page (R$499)'
     : lead.tipo === 'shopify'
-      ? 'Loja Shopify (R$800-1.500)'
-      : 'AgendaPRO (R$800 setup + R$67/mês)'
+      ? 'Loja Shopify (a partir de R$599)'
+      : 'AgendaPRO (R$67/mês)'
 
   const prompt = `Analise este lead e gere a abordagem ideal.
 
