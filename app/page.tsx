@@ -85,6 +85,12 @@ export default function RadarPRO() {
   const [msgEditada, setMsgEditada] = useState('')
   const [erroAnalise, setErroAnalise] = useState('')
 
+  // IA
+  const [gerandoIA, setGerandoIA]   = useState<number | null>(null)
+  const [iaResultado, setIaResultado] = useState<Record<number, { diagnostico: string; argumento: string; urgencia: string }>>({})
+  const [gerandoIAAnalise, setGerandoIAAnalise] = useState(false)
+  const [iaAnalise, setIaAnalise]   = useState<{ diagnostico: string; argumento: string; urgencia: string } | null>(null)
+
   const carregar = useCallback(async () => {
     const p = new URLSearchParams()
     if (tipoF !== 'todos')   p.set('tipo', tipoF)
@@ -144,6 +150,46 @@ export default function RadarPRO() {
     navigator.clipboard.writeText(texto)
     setCopiado(key)
     setTimeout(() => setCopiado(null), 2000)
+  }
+
+  async function gerarComIA(lead: Lead) {
+    setGerandoIA(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'abordagem', lead }),
+      })
+      const data = await r.json()
+      if (data.error) { alert('Erro IA: ' + data.error); return }
+      // Atualiza a mensagem localmente
+      setLeads(prev => prev.map(l => l.id === lead.id ? { ...l, mensagem: data.mensagem } : l))
+      setIaResultado(prev => ({ ...prev, [lead.id]: { diagnostico: data.diagnostico, argumento: data.argumento, urgencia: data.urgencia } }))
+    } finally {
+      setGerandoIA(null)
+    }
+  }
+
+  async function gerarComIAAnalise() {
+    if (!analise) return
+    setGerandoIAAnalise(true)
+    setIaAnalise(null)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'abordagem',
+          lead: { ...analise, tipo: tipoSalvar },
+        }),
+      })
+      const data = await r.json()
+      if (data.error) { alert('Erro IA: ' + data.error); return }
+      setMsgEditada(data.mensagem)
+      setIaAnalise({ diagnostico: data.diagnostico, argumento: data.argumento, urgencia: data.urgencia })
+    } finally {
+      setGerandoIAAnalise(false)
+    }
   }
 
   async function analisarLink() {
@@ -343,7 +389,16 @@ export default function RadarPRO() {
 
               {/* Mensagem editável */}
               <div style={{ background: card, border: `1px solid ${brd}`, borderRadius: '12px', padding: '20px' }}>
-                <p style={{ fontSize: '12px', fontWeight: 700, color: muted, margin: '0 0 10px', textTransform: 'uppercase' }}>Script de abordagem — edite se quiser</p>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                  <p style={{ fontSize: '12px', fontWeight: 700, color: muted, margin: 0, textTransform: 'uppercase' }}>Script de abordagem — edite se quiser</p>
+                  <button onClick={gerarComIAAnalise} disabled={gerandoIAAnalise} style={{
+                    padding: '6px 14px', background: gerandoIAAnalise ? '#374151' : '#7C3AED',
+                    border: 'none', borderRadius: '6px', color: '#fff', fontSize: '12px', fontWeight: 700,
+                    cursor: gerandoIAAnalise ? 'wait' : 'pointer',
+                  }}>
+                    {gerandoIAAnalise ? '⏳ Gerando...' : '✨ Gerar com IA'}
+                  </button>
+                </div>
                 <textarea
                   value={msgEditada}
                   onChange={e => setMsgEditada(e.target.value)}
@@ -354,6 +409,17 @@ export default function RadarPRO() {
                     resize: 'vertical', outline: 'none', boxSizing: 'border-box',
                   }}
                 />
+
+                {/* Diagnóstico IA */}
+                {iaAnalise && (
+                  <div style={{ marginTop: '12px', padding: '12px 14px', background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <p style={{ fontSize: '10px', color: '#A78BFA', fontWeight: 700, margin: 0, textTransform: 'uppercase' }}>✨ Análise da IA</p>
+                    <p style={{ fontSize: '12px', color: txt, margin: 0 }}><span style={{ color: muted }}>Diagnóstico:</span> {iaAnalise.diagnostico}</p>
+                    <p style={{ fontSize: '12px', color: txt, margin: 0 }}><span style={{ color: muted }}>Argumento:</span> {iaAnalise.argumento}</p>
+                    <p style={{ fontSize: '12px', color: '#FCD34D', margin: 0 }}><span style={{ color: muted }}>Urgência:</span> {iaAnalise.urgencia}</p>
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
                   <button onClick={() => copiar('analise-msg', msgEditada)} style={{
                     padding: '8px 16px', background: '#1F2937', border: `1px solid ${brd}`,
@@ -524,15 +590,36 @@ export default function RadarPRO() {
 
                           {/* Mensagem editável */}
                           <div>
-                            <p style={{ fontSize: '10px', color: muted, marginBottom: '6px', textTransform: 'uppercase', fontWeight: 700 }}>Script de abordagem</p>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                              <p style={{ fontSize: '10px', color: muted, textTransform: 'uppercase', fontWeight: 700, margin: 0 }}>Script de abordagem</p>
+                              <button onClick={() => gerarComIA(lead)} disabled={gerandoIA === lead.id} style={{
+                                padding: '4px 10px', background: gerandoIA === lead.id ? '#374151' : '#7C3AED',
+                                border: 'none', borderRadius: '5px', color: '#fff', fontSize: '10px', fontWeight: 700,
+                                cursor: gerandoIA === lead.id ? 'wait' : 'pointer',
+                              }}>
+                                {gerandoIA === lead.id ? '⏳ Gerando...' : '✨ Gerar com IA'}
+                              </button>
+                            </div>
                             <textarea
-                              defaultValue={lead.mensagem ?? ''}
+                              value={leads.find(l => l.id === lead.id)?.mensagem ?? ''}
+                              onChange={e => setLeads(prev => prev.map(l => l.id === lead.id ? { ...l, mensagem: e.target.value } : l))}
                               onBlur={e => salvarMensagem(lead.id, e.target.value)}
                               rows={5}
                               style={{ width: '100%', padding: '10px', background: '#0F1117', border: `1px solid ${brd}`, borderRadius: '7px', color: txt, fontSize: '12px', lineHeight: 1.6, resize: 'vertical', outline: 'none', boxSizing: 'border-box' }}
                             />
+
+                            {/* Resultado da IA */}
+                            {iaResultado[lead.id] && (
+                              <div style={{ marginTop: '8px', padding: '10px 12px', background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '7px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                <p style={{ fontSize: '9px', color: '#A78BFA', fontWeight: 700, margin: 0, textTransform: 'uppercase' }}>✨ Análise da IA</p>
+                                <p style={{ fontSize: '11px', color: txt, margin: 0 }}><span style={{ color: muted }}>Diagnóstico:</span> {iaResultado[lead.id].diagnostico}</p>
+                                <p style={{ fontSize: '11px', color: txt, margin: 0 }}><span style={{ color: muted }}>Argumento:</span> {iaResultado[lead.id].argumento}</p>
+                                <p style={{ fontSize: '11px', color: '#FCD34D', margin: 0 }}><span style={{ color: muted }}>Urgência:</span> {iaResultado[lead.id].urgencia}</p>
+                              </div>
+                            )}
+
                             <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
-                              <button onClick={() => copiar(`msg-${lead.id}`, lead.mensagem ?? '')}
+                              <button onClick={() => copiar(`msg-${lead.id}`, leads.find(l => l.id === lead.id)?.mensagem ?? '')}
                                 style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: muted, fontSize: '11px', cursor: 'pointer' }}>
                                 {copiado === `msg-${lead.id}` ? '✅ Copiado' : '📋 Copiar'}
                               </button>

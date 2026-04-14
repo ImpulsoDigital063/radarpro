@@ -7,14 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "radar:lp":          "tsx scripts/scrape-gmaps.ts --tipo lp",
-    "radar:shopify":     "tsx scripts/scrape-gmaps.ts --tipo shopify",
-    "radar:agendapro":   "tsx scripts/scrape-gmaps.ts --tipo agendapro",
-    "radar:ig:lp":       "tsx scripts/scrape-instagram.ts --tipo lp",
-    "radar:ig:shop":     "tsx scripts/scrape-instagram.ts --tipo shopify",
-    "radar:ig:agenda":   "tsx scripts/scrape-instagram.ts --tipo agendapro"
+    "radar:lp": "tsx scripts/scrape-gmaps.ts --tipo lp",
+    "radar:shopify": "tsx scripts/scrape-gmaps.ts --tipo shopify",
+    "radar:agendapro": "tsx scripts/scrape-gmaps.ts --tipo agendapro",
+    "radar:ig:lp": "tsx scripts/scrape-instagram.ts --tipo lp",
+    "radar:ig:shop": "tsx scripts/scrape-instagram.ts --tipo shopify",
+    "radar:ig:agenda": "tsx scripts/scrape-instagram.ts --tipo agendapro"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@types/better-sqlite3": "^7.6.13",
     "axios": "^1.15.0",
     "better-sqlite3": "^12.9.0",
