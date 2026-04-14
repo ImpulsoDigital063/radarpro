@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje } from '@/lib/gemini'
+import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio } from '@/lib/gemini'
 import { analisarSiteLead } from '@/lib/site-analyzer'
 import { analisarAvaliacoesGMaps } from '@/lib/reviews-analyzer'
 import { atualizarMensagem, getClient } from '@/lib/db'
@@ -101,6 +101,25 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(analise)
+    }
+
+    // Diagnóstico profundo do negócio
+    if (action === 'diagnostico') {
+      const { lead } = body
+      if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
+
+      const resultado = await diagnosticarNegocio(lead)
+
+      // Salva mensagem de impacto e notas no banco
+      if (lead.id) {
+        const notas = `[Diagnóstico — ${new Date().toLocaleDateString('pt-BR')}]\nDor: ${resultado.dor_central}\nCusto: ${resultado.custo_da_dor}\nProduto ideal: ${resultado.produto_ideal}`
+        await db.execute({
+          sql: `UPDATE leads SET mensagem = ?, notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+          args: [resultado.mensagem_impacto, notas, lead.id],
+        })
+      }
+
+      return NextResponse.json(resultado)
     }
 
     // Plano de prospecção para hoje

@@ -89,6 +89,16 @@ export type RespostaAgente = {
   urgencia: string       // por que esse lead é oportunidade agora
 }
 
+export type DiagnosticoNegocio = {
+  dor_central: string        // a dor número 1 desse negócio AGORA (específico, não genérico)
+  custo_da_dor: string       // o que essa dor está custando: tempo, dinheiro, clientes perdidos
+  produto_ideal: 'lp' | 'shopify' | 'agendapro'
+  por_que_esse_produto: string  // raciocínio direto: por que ESTE produto resolve esta dor
+  argumento_cirurgico: string   // a frase mais poderosa para usar no pitch — impacto máximo
+  gatilho: string               // medo de perder, desejo de ganhar ou prova social?
+  mensagem_impacto: string      // mensagem de abordagem reformulada com a dor no centro
+}
+
 // ── Funções principais ────────────────────────────────────────────────────────
 
 /**
@@ -107,30 +117,45 @@ export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
       ? 'Loja Shopify (a partir de R$599)'
       : 'AgendaPRO (R$67/mês)'
 
-  const prompt = `Analise este lead e gere a abordagem ideal.
+  const semSite   = !lead.tem_site
+  const semAgenda = !lead.tem_agendamento
+  const notaAlta  = (lead.nota ?? 0) >= 4.5
+  const muitasAval = (lead.num_avaliacoes ?? 0) >= 30
+  const temIG     = !!lead.instagram
+  const bioIG     = lead.instagram_bio ?? ''
 
-## Dados do lead
+  const prompt = `Você é um vendedor afiado da Impulso Digital. Precisa gerar uma abordagem CIRÚRGICA para este lead — nada genérico.
+
+## Lead em análise
 - Nome: ${lead.nome}
 - Categoria: ${lead.categoria}
-- Produto alvo: ${produto}
-- Telefone: ${lead.telefone ?? 'não encontrado'}
-- Instagram: ${lead.instagram ?? 'não encontrado'}
-- Bio Instagram: ${lead.instagram_bio ?? 'não disponível'}
-- Seguidores: ${lead.instagram_seguidores ?? 'desconhecido'}
-- Site: ${lead.site ?? 'não tem'}
-- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} avaliações)` : ''}
-- Tem site: ${lead.tem_site ? 'sim' : 'não'}
-- Tem e-commerce: ${lead.tem_ecommerce ? 'sim' : 'não'}
-- Tem sistema de agendamento: ${lead.tem_agendamento ? 'sim' : 'não'}
-- Endereço: ${lead.endereco ?? 'não disponível'}
-- Fonte: ${lead.fonte ?? 'desconhecida'}
+- Produto que vamos oferecer: ${produto}
+- Instagram: ${lead.instagram ?? 'não tem'} ${bioIG ? `| Bio: "${bioIG}"` : ''}
+- Seguidores: ${lead.instagram_seguidores ?? '?'}
+- Site: ${lead.site ?? 'NÃO TEM SITE'}
+- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} avaliações)` : '(sem avaliações)'}
+- Tem sistema de agendamento: ${lead.tem_agendamento ? 'sim' : 'NÃO TEM'}
+- Endereço: ${lead.endereco ?? 'Palmas-TO'}
 
-## Retorne EXATAMENTE neste formato JSON (sem markdown, sem explicações):
+## Contexto de oportunidade
+${semSite ? `→ NÃO TEM SITE: clientes que pesquisam no Google não encontram nada profissional` : ''}
+${semAgenda ? `→ SEM AGENDAMENTO ONLINE: provavelmente perde tempo confirmando horário no WhatsApp` : ''}
+${notaAlta ? `→ NOTA ${lead.nota} NO GOOGLE: negócio consolidado com boa reputação — merece presença digital à altura` : ''}
+${muitasAval ? `→ ${lead.num_avaliacoes} AVALIAÇÕES: negócio movimentado, mas sem estrutura digital para converter esse tráfego` : ''}
+${temIG ? `→ TEM INSTAGRAM ATIVO: já tem audiência, só falta converter para clientes reais` : ''}
+
+## O que a mensagem PRECISA fazer
+1. Mencionar algo REAL e ESPECÍFICO desse negócio (nota, categoria, algo da bio)
+2. A pergunta final deve fazer o prospect pensar "nossa, ele acertou na mosca"
+3. Não revelar produto, não listar benefícios — apenas despertar curiosidade
+4. Soar como mensagem de alguém que fez o dever de casa, não spam
+
+## Retorne EXATAMENTE neste JSON (sem markdown):
 {
-  "mensagem": "mensagem de WhatsApp pronta — máximo 4 linhas, termina com pergunta",
-  "diagnostico": "análise em 2-3 linhas: pontos fortes, fraquezas digitais, perfil geral",
-  "argumento": "principal argumento de venda para esse lead específico em 1 linha",
-  "urgencia": "por que esse lead é oportunidade agora em 1 linha"
+  "mensagem": "<mensagem WhatsApp — máx 4 linhas, específica, termina com pergunta que dói>",
+  "diagnostico": "<3 linhas: o que esse negócio tem de bom, onde está sangrando digitalmente, o perfil real do dono>",
+  "argumento": "<1 frase: o argumento mais forte para fechar — baseado na DOR específica desse negócio>",
+  "urgencia": "<1 frase concreta: por que agir AGORA — concorrência, sazonalidade, crescimento do segmento>"
 }`
 
   const result = await model.generateContent(prompt)
@@ -148,6 +173,74 @@ export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
       diagnostico: 'Análise não disponível',
       argumento:   'Verificar manualmente',
       urgencia:    'A definir',
+    }
+  }
+}
+
+/**
+ * Diagnóstico profundo do negócio — identifica dor real e triangula produto ideal
+ */
+export async function diagnosticarNegocio(lead: DadosLead): Promise<DiagnosticoNegocio> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.0-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const prompt = `Faça um diagnóstico CIRÚRGICO deste negócio local de Palmas-TO.
+
+## Dados disponíveis
+- Nome: ${lead.nome}
+- Categoria: ${lead.categoria}
+- Instagram: ${lead.instagram ?? 'não tem'} ${lead.instagram_bio ? `| Bio: "${lead.instagram_bio}"` : ''}
+- Seguidores: ${lead.instagram_seguidores ?? 'desconhecido'}
+- Site: ${lead.site ? 'tem site' : 'NÃO TEM SITE'}
+- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} avaliações)` : ''}
+- Tem e-commerce: ${lead.tem_ecommerce ? 'sim' : 'não'}
+- Tem agendamento online: ${lead.tem_agendamento ? 'sim' : 'não'}
+
+## Nossos 3 produtos
+1. **Landing Page R$499** — para quem não tem site ou tem site amador. Aparece no Google, converte visitante em cliente.
+2. **Loja Shopify a partir de R$599** — para quem vende produto físico só pelo Instagram/WhatsApp e quer uma loja real.
+3. **AgendaPRO R$67/mês** — para barbearia, salão, clínica, personal, psicólogo, dentista. Cliente agenda sozinho, sem WhatsApp.
+
+## Sua missão
+Identifique com precisão cirúrgica:
+- Qual é a DOR NÚMERO 1 desse negócio? (não genérico — específico para essa categoria e situação)
+- O que essa dor está custando CONCRETAMENTE? (clientes perdidos, horas gastas, dinheiro deixado na mesa)
+- Qual dos 3 produtos resolve melhor essa dor e POR QUÊ?
+- Qual seria a frase mais poderosa para usar no pitch de vendas?
+
+Retorne EXATAMENTE neste JSON (sem markdown):
+{
+  "dor_central": "<a dor número 1 desse negócio AGORA — específica, concreta, não genérica>",
+  "custo_da_dor": "<o que essa dor está custando — seja concreto: 'X horas por dia', 'clientes que não voltam', 'concorrente que aparece no Google'>",
+  "produto_ideal": "<lp | shopify | agendapro>",
+  "por_que_esse_produto": "<raciocínio direto: como ESTE produto elimina ESTA dor específica — 2 frases>",
+  "argumento_cirurgico": "<a frase mais poderosa para usar no pitch — deve fazer o prospect pensar 'é exatamente isso'>",
+  "gatilho": "<medo_de_perder | desejo_de_ganhar | prova_social — qual gatilho usar com esse tipo de negócio>",
+  "mensagem_impacto": "<mensagem de WhatsApp reformulada com a dor no centro — máx 4 linhas, termina com pergunta que dói>"
+}`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    const data = JSON.parse(texto)
+    // Normaliza o produto_ideal
+    const produtoValido = ['lp', 'shopify', 'agendapro'].includes(data.produto_ideal)
+      ? data.produto_ideal
+      : lead.tipo
+    return { ...data, produto_ideal: produtoValido }
+  } catch {
+    return {
+      dor_central:         'Negócio sem presença digital estruturada',
+      custo_da_dor:        'Clientes que procuram online não encontram o negócio',
+      produto_ideal:       lead.tipo,
+      por_que_esse_produto: 'Presença digital resolve o problema de visibilidade',
+      argumento_cirurgico: 'Enquanto você não aparece no Google, seu concorrente aparece',
+      gatilho:             'medo_de_perder',
+      mensagem_impacto:    `Oi ${lead.nome}, vi seu negócio no Google. Você recebe clientes novos pela internet ou só por indicação?`,
     }
   }
 }

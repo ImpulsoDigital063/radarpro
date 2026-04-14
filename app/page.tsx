@@ -86,6 +86,8 @@ export default function RadarPRO() {
   const [analisandoAvaliacoes, setAnalisandoAvaliacoes] = useState<number | null>(null)
   const [followupIA, setFollowupIA]                 = useState<Record<number, any>>({})
   const [gerandoFollowup, setGerandoFollowup]       = useState<number | null>(null)
+  const [diagnosticoIA, setDiagnosticoIA]           = useState<Record<number, any>>({})
+  const [fazendoDiagnostico, setFazendoDiagnostico] = useState<number | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar' | 'hoje'>('leads')
   const [planoHoje, setPlanoHoje]   = useState<{ lead: Lead; prioridade: number; motivo: string; acao: string }[] | null>(null)
   const [gerandoHoje, setGerandoHoje] = useState(false)
@@ -235,6 +237,24 @@ export default function RadarPRO() {
       else alert('Erro: ' + data.error)
     } finally {
       setAnalisandoSite(null)
+    }
+  }
+
+  async function fazerDiagnostico(lead: Lead) {
+    setFazendoDiagnostico(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'diagnostico', lead }),
+      })
+      const data = await r.json()
+      if (data.error) { alert('Erro IA: ' + data.error); return }
+      setDiagnosticoIA(prev => ({ ...prev, [lead.id]: data }))
+      // Atualiza a mensagem localmente
+      setLeads(prev => prev.map(l => l.id === lead.id ? { ...l, mensagem: data.mensagem_impacto } : l))
+    } finally {
+      setFazendoDiagnostico(null)
     }
   }
 
@@ -877,6 +897,63 @@ export default function RadarPRO() {
                                 💬 WhatsApp
                               </a>
                             )}
+                          </div>
+
+                          {/* ── Diagnóstico do negócio ── */}
+                          <div>
+                            <button onClick={() => fazerDiagnostico(lead)} disabled={fazendoDiagnostico === lead.id}
+                              style={{
+                                width: '100%', padding: '8px 14px',
+                                background: fazendoDiagnostico === lead.id ? '#1A1A2E' : 'linear-gradient(135deg, #1A1A2E 0%, #16213E 100%)',
+                                border: `1px solid ${fazendoDiagnostico === lead.id ? '#374151' : '#4F46E520'}`,
+                                borderRadius: '8px', color: fazendoDiagnostico === lead.id ? muted : '#818CF8',
+                                fontSize: '12px', fontWeight: 700, cursor: fazendoDiagnostico === lead.id ? 'wait' : 'pointer',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                              }}>
+                              {fazendoDiagnostico === lead.id ? '⏳ Analisando o negócio...' : '🩺 Diagnóstico completo do negócio'}
+                            </button>
+
+                            {diagnosticoIA[lead.id] && (() => {
+                              const d = diagnosticoIA[lead.id]
+                              const produtoCores: Record<string, string> = { lp: '#2563EB', shopify: '#10B981', agendapro: '#7C3AED' }
+                              const produtoLabels: Record<string, string> = { lp: '📄 Landing Page', shopify: '🛒 Shopify', agendapro: '📅 AgendaPRO' }
+                              const gatilhoCores: Record<string, string> = { medo_de_perder: '#EF4444', desejo_de_ganhar: '#10B981', prova_social: '#F59E0B' }
+                              const gatilhoLabels: Record<string, string> = { medo_de_perder: '⚠️ Medo de perder', desejo_de_ganhar: '🚀 Desejo de ganhar', prova_social: '👥 Prova social' }
+                              const pCor = produtoCores[d.produto_ideal] ?? '#6B7280'
+                              const gCor = gatilhoCores[d.gatilho] ?? '#6B7280'
+                              return (
+                                <div style={{ marginTop: '8px', borderRadius: '10px', overflow: 'hidden', border: '1px solid #1E1B4B' }}>
+                                  {/* Dor central */}
+                                  <div style={{ background: '#1A0A0A', borderBottom: '1px solid #2D1515', padding: '12px 14px' }}>
+                                    <p style={{ fontSize: '9px', color: '#EF444490', fontWeight: 700, margin: '0 0 5px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>🩸 DOR CENTRAL</p>
+                                    <p style={{ fontSize: '13px', color: '#FCA5A5', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.4 }}>{d.dor_central}</p>
+                                    <p style={{ fontSize: '11px', color: '#9CA3AF', margin: 0 }}>
+                                      <span style={{ color: '#F59E0B' }}>Custo:</span> {d.custo_da_dor}
+                                    </p>
+                                  </div>
+
+                                  {/* Produto ideal */}
+                                  <div style={{ background: '#0A1A0F', borderBottom: '1px solid #14291A', padding: '12px 14px' }}>
+                                    <p style={{ fontSize: '9px', color: '#10B98190', fontWeight: 700, margin: '0 0 5px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>🎯 PRODUTO IDEAL</p>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                                      <span style={{ padding: '3px 10px', background: pCor + '20', border: `1px solid ${pCor}40`, borderRadius: '5px', fontSize: '11px', fontWeight: 700, color: pCor }}>
+                                        {produtoLabels[d.produto_ideal]}
+                                      </span>
+                                      <span style={{ padding: '3px 10px', background: gCor + '15', borderRadius: '5px', fontSize: '10px', color: gCor }}>
+                                        {gatilhoLabels[d.gatilho] ?? d.gatilho}
+                                      </span>
+                                    </div>
+                                    <p style={{ fontSize: '11px', color: '#86EFAC', margin: 0, lineHeight: 1.4 }}>{d.por_que_esse_produto}</p>
+                                  </div>
+
+                                  {/* Argumento cirúrgico */}
+                                  <div style={{ background: '#1A1500', padding: '12px 14px' }}>
+                                    <p style={{ fontSize: '9px', color: '#FCD34D90', fontWeight: 700, margin: '0 0 5px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>⚡ ARGUMENTO CIRÚRGICO</p>
+                                    <p style={{ fontSize: '13px', color: '#FDE68A', fontWeight: 600, margin: 0, lineHeight: 1.5, fontStyle: 'italic' }}>"{d.argumento_cirurgico}"</p>
+                                  </div>
+                                </div>
+                              )
+                            })()}
                           </div>
 
                           {/* Score IA + Análise de site */}
