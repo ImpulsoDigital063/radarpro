@@ -15,28 +15,32 @@ db.pragma('journal_mode = WAL')
 // ── Schema ────────────────────────────────────────────────────────────────────
 db.exec(`
   CREATE TABLE IF NOT EXISTS leads (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome        TEXT NOT NULL,
-    categoria   TEXT,                        -- ex: "Nutricionista", "Loja de roupas"
-    tipo        TEXT NOT NULL DEFAULT 'lp',  -- 'lp' | 'shopify' | 'agendapro'
-    telefone    TEXT,
-    instagram   TEXT,
-    site        TEXT,
-    endereco    TEXT,
-    cidade      TEXT DEFAULT 'Palmas',
-    nota        REAL,                        -- nota Google Maps
-    tem_site    INTEGER DEFAULT 0,           -- 0 = não | 1 = sim (mas fraco)
-    qualificado INTEGER DEFAULT 1,           -- 0 = descartado | 1 = qualificado
-    fonte       TEXT,                        -- 'google_maps' | 'instagram'
-    mensagem    TEXT,                        -- mensagem personalizada gerada
-    status      TEXT DEFAULT 'novo',
-    -- status possíveis:
-    -- 'novo' | 'abordado' | 'respondeu' | 'consultoria_marcada'
-    -- | 'consultoria_feita' | 'proposta_enviada' | 'fechado' | 'sem_interesse'
-    observacao  TEXT,
-    proximo_followup TEXT,                   -- data ISO
-    criado_em   TEXT DEFAULT (datetime('now', 'localtime')),
-    atualizado_em TEXT DEFAULT (datetime('now', 'localtime'))
+    id               INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome             TEXT NOT NULL,
+    categoria        TEXT,
+    tipo             TEXT NOT NULL DEFAULT 'lp',  -- 'lp' | 'shopify' | 'agendapro'
+    telefone         TEXT,
+    instagram        TEXT,                        -- handle @usuario
+    instagram_url    TEXT,                        -- URL completa
+    instagram_bio    TEXT,                        -- bio do perfil
+    instagram_seguidores TEXT,
+    site             TEXT,
+    endereco         TEXT,
+    cidade           TEXT DEFAULT 'Palmas',
+    nota             REAL,
+    num_avaliacoes   INTEGER DEFAULT 0,
+    tem_site         INTEGER DEFAULT 0,
+    tem_ecommerce    INTEGER DEFAULT 0,
+    tem_agendamento  INTEGER DEFAULT 0,
+    qualificado      INTEGER DEFAULT 1,
+    fonte            TEXT,
+    mensagem         TEXT,
+    score            INTEGER DEFAULT 0,          -- 0–10 calculado automaticamente
+    status           TEXT DEFAULT 'novo',
+    notas            TEXT,                        -- anotações livres
+    proximo_followup TEXT,
+    criado_em        TEXT DEFAULT (datetime('now', 'localtime')),
+    atualizado_em    TEXT DEFAULT (datetime('now', 'localtime'))
   );
 
   CREATE TABLE IF NOT EXISTS buscas (
@@ -62,12 +66,19 @@ export function inserirLead(lead: {
   tipo: 'lp' | 'shopify' | 'agendapro'
   telefone?: string
   instagram?: string
+  instagram_url?: string
+  instagram_bio?: string
+  instagram_seguidores?: string
   site?: string
   endereco?: string
   nota?: number
+  num_avaliacoes?: number
   tem_site?: boolean
+  tem_ecommerce?: boolean
+  tem_agendamento?: boolean
   fonte: string
   mensagem?: string
+  score?: number
 }) {
   // Evita duplicata pelo telefone ou instagram
   const existe = db.prepare(`
@@ -77,22 +88,40 @@ export function inserirLead(lead: {
   if (existe) return null
 
   const stmt = db.prepare(`
-    INSERT INTO leads (nome, categoria, tipo, telefone, instagram, site, endereco, nota, tem_site, fonte, mensagem)
-    VALUES (@nome, @categoria, @tipo, @telefone, @instagram, @site, @endereco, @nota, @tem_site, @fonte, @mensagem)
+    INSERT INTO leads (
+      nome, categoria, tipo, telefone,
+      instagram, instagram_url, instagram_bio, instagram_seguidores,
+      site, endereco, nota, num_avaliacoes,
+      tem_site, tem_ecommerce, tem_agendamento,
+      fonte, mensagem, score
+    ) VALUES (
+      @nome, @categoria, @tipo, @telefone,
+      @instagram, @instagram_url, @instagram_bio, @instagram_seguidores,
+      @site, @endereco, @nota, @num_avaliacoes,
+      @tem_site, @tem_ecommerce, @tem_agendamento,
+      @fonte, @mensagem, @score
+    )
   `)
 
   const result = stmt.run({
-    nome:      lead.nome,
-    categoria: lead.categoria ?? null,
-    tipo:      lead.tipo,
-    telefone:  lead.telefone ?? null,
-    instagram: lead.instagram ?? null,
-    site:      lead.site ?? null,
-    endereco:  lead.endereco ?? null,
-    nota:      lead.nota ?? null,
-    tem_site:  lead.tem_site ? 1 : 0,
-    fonte:     lead.fonte,
-    mensagem:  lead.mensagem ?? null,
+    nome:                  lead.nome,
+    categoria:             lead.categoria ?? null,
+    tipo:                  lead.tipo,
+    telefone:              lead.telefone ?? null,
+    instagram:             lead.instagram ?? null,
+    instagram_url:         lead.instagram_url ?? null,
+    instagram_bio:         lead.instagram_bio ?? null,
+    instagram_seguidores:  lead.instagram_seguidores ?? null,
+    site:                  lead.site ?? null,
+    endereco:              lead.endereco ?? null,
+    nota:                  lead.nota ?? null,
+    num_avaliacoes:        lead.num_avaliacoes ?? 0,
+    tem_site:              lead.tem_site ? 1 : 0,
+    tem_ecommerce:         lead.tem_ecommerce ? 1 : 0,
+    tem_agendamento:       lead.tem_agendamento ? 1 : 0,
+    fonte:                 lead.fonte,
+    mensagem:              lead.mensagem ?? null,
+    score:                 lead.score ?? 0,
   })
 
   return result.lastInsertRowid
@@ -131,7 +160,15 @@ export function atualizarStatus(id: number, status: string, observacao?: string)
 }
 
 export function atualizarMensagem(id: number, mensagem: string) {
-  db.prepare(`UPDATE leads SET mensagem = ? WHERE id = ?`).run(mensagem, id)
+  db.prepare(`UPDATE leads SET mensagem = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(mensagem, id)
+}
+
+export function atualizarNotas(id: number, notas: string) {
+  db.prepare(`UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(notas, id)
+}
+
+export function atualizarFollowup(id: number, data: string) {
+  db.prepare(`UPDATE leads SET proximo_followup = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(data, id)
 }
 
 export function registrarBusca(busca: {
