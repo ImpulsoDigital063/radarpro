@@ -1,4 +1,10 @@
-import { chromium } from 'playwright'
+/**
+ * radarPRO — Analisador de links (axios + cheerio, sem Playwright)
+ * Funciona em Vercel serverless
+ */
+
+import axios from 'axios'
+import * as cheerio from 'cheerio'
 import { calcularScore } from './score'
 import { gerarMensagemLP, gerarMensagemShopify, gerarMensagemAgendaPRO } from './mensagens'
 
@@ -22,7 +28,7 @@ export type AnaliseResult = {
   score_lp: number
   score_shopify: number
   score_agendapro: number
-  diagnostico: string[]          // lista de observações
+  diagnostico: string[]
   mensagem_lp: string
   mensagem_shopify: string
   mensagem_agendapro: string
@@ -31,14 +37,9 @@ export type AnaliseResult = {
 
 // ── Detectores ────────────────────────────────────────────────────────────────
 
-function isInstagram(url: string) {
-  return url.includes('instagram.com')
-}
+function isInstagram(url: string) { return url.includes('instagram.com') }
 function isGoogleMaps(url: string) {
   return url.includes('google.com/maps') || url.includes('maps.google') || url.includes('goo.gl/maps')
-}
-function isWhatsApp(url: string) {
-  return url.includes('wa.me') || url.includes('whatsapp.com')
 }
 
 function temEcommerce(texto: string): boolean {
@@ -51,169 +52,145 @@ function temSistemaAgendamento(texto: string): boolean {
   return kw.some(k => texto.toLowerCase().includes(k))
 }
 
-// ── Scraper Instagram ─────────────────────────────────────────────────────────
+async function fetchHtml(url: string): Promise<string> {
+  const { data } = await axios.get(url, {
+    timeout: 12000,
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
+      'Accept-Language': 'pt-BR,pt;q=0.9',
+    },
+    maxRedirects: 5,
+  })
+  return typeof data === 'string' ? data : JSON.stringify(data)
+}
 
-async function scrapeInstagram(url: string, page: any): Promise<Partial<AnaliseResult>> {
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 })
-  await page.waitForTimeout(2000)
+// ── Scraper Instagram (meta tags) ─────────────────────────────────────────────
 
-  const nome = await page.title().then((t: string) => t.split('•')[0].trim().replace('@', '').split('(')[0].trim())
-  const bio  = await page.locator('meta[name="description"]').getAttribute('content').catch(() => '')
-  const handle = url.split('instagram.com/')[1]?.replace('/', '') ?? ''
+async function scrapeInstagram(url: string): Promise<Partial<AnaliseResult>> {
+  const html = await fetchHtml(url)
+  const $    = cheerio.load(html)
 
-  // Tenta pegar telefone da bio
-  const telMatch = bio?.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
-  const telefone = telMatch ? telMatch[0].replace(/\s/g, '') : null
+  const bio    = $('meta[name="description"]').attr('content') ?? ''
+  const titulo = $('title').text()
+  const handle = url.split('instagram.com/')[1]?.replace(/\/$/, '') ?? ''
+  const nome   = titulo.split('•')[0].trim().replace('@', '').split('(')[0].trim() || handle
 
-  // Tenta pegar seguidores do meta
-  const segMatch = bio?.match(/(\d[\d,.]+)\s*(seguidores|followers)/i)
+  const telMatch  = bio.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
+  const telefone  = telMatch ? telMatch[0].replace(/\s/g, '') : null
+  const segMatch  = bio.match(/(\d[\d,.]+)\s*(seguidores|followers)/i)
   const seguidores = segMatch ? segMatch[1] : null
 
-  // Verifica se tem link externo na bio
-  const linkNaBio = await page.locator('a[href*="http"]').first().getAttribute('href').catch(() => null)
-  const temSite = !!(linkNaBio && !linkNaBio.includes('instagram.com') && !linkNaBio.includes('linktree') && !linkNaBio.includes('linktr.ee'))
-
   return {
-    nome: nome || handle,
-    instagram: `@${handle}`,
-    instagram_url: url,
-    instagram_bio: bio ?? null,
+    nome,
+    instagram:            `@${handle}`,
+    instagram_url:        url,
+    instagram_bio:        bio || null,
     instagram_seguidores: seguidores,
     telefone,
-    tem_site: temSite,
-    fonte: 'instagram',
+    tem_site:             false,
+    fonte:                'instagram',
   }
 }
 
-// ── Scraper Google Maps ───────────────────────────────────────────────────────
+// ── Scraper Google Maps (extrai do HTML estático) ─────────────────────────────
 
-async function scrapeGoogleMaps(url: string, page: any): Promise<Partial<AnaliseResult>> {
-  await page.goto(url, { waitUntil: 'networkidle', timeout: 20000 })
-  await page.waitForTimeout(2000)
+async function scrapeGoogleMaps(url: string): Promise<Partial<AnaliseResult>> {
+  // Google Maps precisa de JS — extrai o que dá do HTML estático
+  const html = await fetchHtml(url).catch(() => '')
+  const $    = cheerio.load(html)
 
-  const nome     = await page.locator('h1').first().textContent().catch(() => '')
-  const telefone = await page.locator('[data-tooltip="Copiar número de telefone"]').textContent().catch(() => null)
-  const siteUrl  = await page.locator('a[data-item-id="authority"]').getAttribute('href').catch(() => null)
-  const endereco = await page.locator('[data-item-id="address"] .fontBodyMedium').textContent().catch(() => null)
-  const notaText = await page.locator('.MW4etd').first().textContent().catch(() => null)
-  const avalText = await page.locator('.UY7F9').first().textContent().catch(() => null)
+  const titulo = $('title').text()
+  const nome   = titulo.split('-')[0].trim() || titulo.split('·')[0].trim()
 
-  const nota = notaText ? parseFloat(notaText.replace(',', '.')) : null
-  const numAval = avalText ? parseInt(avalText.replace(/\D/g, '')) : 0
-
-  // Tenta achar Instagram no painel
-  const igLink = await page.locator('a[href*="instagram.com"]').first().getAttribute('href').catch(() => null)
-  const igHandle = igLink ? '@' + igLink.split('instagram.com/')[1]?.replace('/', '') : null
-
-  // Categoria
-  const categoria = await page.locator('.DkEaL').first().textContent().catch(() => '')
-
-  const temSite = !!(siteUrl && !siteUrl.includes('instagram.com') && !siteUrl.includes('facebook.com'))
-
-  return {
-    nome: nome?.trim() ?? '',
-    categoria: categoria?.trim() ?? '',
-    telefone: telefone?.replace(/\s/g, '') ?? null,
-    site: siteUrl,
-    endereco,
-    nota,
-    num_avaliacoes: numAval,
-    instagram: igHandle,
-    instagram_url: igLink,
-    tem_site: temSite,
-    fonte: 'google_maps',
-  }
-}
-
-// ── Scraper genérico ──────────────────────────────────────────────────────────
-
-async function scrapeGenerico(url: string, page: any): Promise<Partial<AnaliseResult>> {
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 })
-  await page.waitForTimeout(1500)
-
-  const titulo   = await page.title()
-  const desc     = await page.locator('meta[name="description"]').getAttribute('content').catch(() => '')
-  const conteudo = await page.locator('body').textContent().catch(() => '')
-
-  // Tenta achar telefone na página
-  const telMatch = conteudo?.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
+  // Tenta extrair telefone do HTML bruto
+  const telMatch = html.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
   const telefone = telMatch ? telMatch[0].replace(/\s/g, '') : null
 
-  // Tenta achar Instagram
-  const igLink = await page.locator('a[href*="instagram.com"]').first().getAttribute('href').catch(() => null)
-  const igHandle = igLink ? '@' + igLink.split('instagram.com/')[1]?.replace('/', '') : null
-
-  const ecommerce   = temEcommerce(conteudo ?? '')
-  const agendamento = temSistemaAgendamento(conteudo ?? '')
+  // Tenta nota
+  const notaMatch = html.match(/"aggregateRating"[^}]*"ratingValue":"?(\d+\.?\d*)"?/i)
+  const nota = notaMatch ? parseFloat(notaMatch[1]) : null
 
   return {
-    nome: titulo?.split('|')[0]?.split('-')[0]?.trim() ?? '',
-    site: url,
+    nome:      nome || 'Negócio no Google Maps',
     telefone,
-    instagram: igHandle,
-    instagram_url: igLink,
-    tem_site: true,
-    tem_ecommerce: ecommerce,
-    tem_agendamento: agendamento,
-    fonte: 'link_manual',
+    nota,
+    site:      url,
+    tem_site:  false,
+    fonte:     'google_maps',
   }
 }
 
-// ── Gerador de diagnóstico ────────────────────────────────────────────────────
+// ── Scraper genérico (sites, landing pages) ───────────────────────────────────
+
+async function scrapeGenerico(url: string): Promise<Partial<AnaliseResult>> {
+  const html = await fetchHtml(url)
+  const $    = cheerio.load(html)
+
+  const titulo   = $('title').text()
+  const descMeta = $('meta[name="description"]').attr('content') ?? ''
+  const ogTitle  = $('meta[property="og:title"]').attr('content') ?? ''
+  const conteudo = $('body').text().replace(/\s+/g, ' ')
+
+  const telMatch = conteudo.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
+  const telefone = telMatch ? telMatch[0].replace(/\s/g, '') : null
+
+  // Instagram links
+  const igLink = $('a[href*="instagram.com"]').first().attr('href') ?? null
+  const igHandle = igLink ? '@' + igLink.split('instagram.com/')[1]?.replace(/\/$/, '') : null
+
+  const ecommerce   = temEcommerce(conteudo)
+  const agendamento = temSistemaAgendamento(conteudo)
+
+  return {
+    nome:          (ogTitle || titulo).split('|')[0].split('-')[0].trim(),
+    site:          url,
+    telefone,
+    instagram:     igHandle,
+    instagram_url: igLink,
+    tem_site:      true,
+    tem_ecommerce: ecommerce,
+    tem_agendamento: agendamento,
+    fonte:         'link_manual',
+  }
+}
+
+// ── Diagnóstico ───────────────────────────────────────────────────────────────
 
 function gerarDiagnostico(dados: Partial<AnaliseResult>): string[] {
   const obs: string[] = []
-
-  if (!dados.telefone)         obs.push('⚠️ Sem telefone encontrado — tente buscar no Instagram ou Google')
-  if (!dados.instagram)        obs.push('❌ Sem Instagram identificado')
-  if (dados.instagram)         obs.push('✅ Tem Instagram ativo')
-  if (!dados.tem_site)         obs.push('🎯 Não tem site profissional — prospect quente para LP')
-  if (dados.tem_site && !dados.tem_ecommerce) obs.push('🎯 Tem site mas sem loja online — prospect para Shopify')
-  if (!dados.tem_agendamento)  obs.push('🎯 Sem sistema de agendamento — prospect para AgendaPRO')
+  if (!dados.telefone)        obs.push('⚠️ Sem telefone encontrado — busque no Instagram ou Google')
+  if (!dados.instagram)       obs.push('❌ Sem Instagram identificado')
+  else                        obs.push('✅ Tem Instagram ativo')
+  if (!dados.tem_site)        obs.push('🎯 Sem site profissional — prospect quente para LP')
+  if (dados.tem_site && !dados.tem_ecommerce) obs.push('🎯 Tem site mas sem loja — prospect para Shopify')
+  if (!dados.tem_agendamento) obs.push('🎯 Sem sistema de agendamento — prospect para AgendaPRO')
   if (dados.nota && dados.nota >= 4.0) obs.push(`⭐ Nota ${dados.nota} no Google — negócio consolidado`)
   if (dados.num_avaliacoes && dados.num_avaliacoes >= 20) obs.push(`💬 ${dados.num_avaliacoes} avaliações — negócio ativo`)
   if (dados.instagram_seguidores) obs.push(`👥 ${dados.instagram_seguidores} seguidores no Instagram`)
-
   return obs
 }
 
 // ── Função principal ──────────────────────────────────────────────────────────
 
 export async function analisarLink(url: string): Promise<AnaliseResult> {
-  const browser = await chromium.launch({ headless: true })
-  const context = await browser.newContext({
-    locale: 'pt-BR',
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
-  })
-  const page = await context.newPage()
-
   let dados: Partial<AnaliseResult> = {}
 
-  try {
-    if (isInstagram(url))   dados = await scrapeInstagram(url, page)
-    else if (isGoogleMaps(url)) dados = await scrapeGoogleMaps(url, page)
-    else                    dados = await scrapeGenerico(url, page)
-  } finally {
-    await browser.close()
-  }
+  if (isInstagram(url))       dados = await scrapeInstagram(url)
+  else if (isGoogleMaps(url)) dados = await scrapeGoogleMaps(url)
+  else                        dados = await scrapeGenerico(url)
 
   const nome      = dados.nome || 'Lead sem nome'
   const categoria = dados.categoria || 'Não identificado'
-
-  // Calcula score para os 3 tipos
-  const base = { ...dados, nota: dados.nota ?? null, num_avaliacoes: dados.num_avaliacoes ?? null }
+  const base      = { ...dados, nota: dados.nota ?? null, num_avaliacoes: dados.num_avaliacoes ?? null }
 
   const score_lp        = calcularScore({ ...base, tipo: 'lp' })
   const score_shopify   = calcularScore({ ...base, tipo: 'shopify' })
   const score_agendapro = calcularScore({ ...base, tipo: 'agendapro' })
 
-  // Detecta tipo mais provável
   const maxScore = Math.max(score_lp, score_shopify, score_agendapro)
   const tipo_detectado: 'lp' | 'shopify' | 'agendapro' =
     maxScore === score_agendapro ? 'agendapro' :
     maxScore === score_shopify   ? 'shopify'   : 'lp'
-
-  const diagnostico = gerarDiagnostico(dados)
 
   return {
     nome,
@@ -235,10 +212,10 @@ export async function analisarLink(url: string): Promise<AnaliseResult> {
     score_lp,
     score_shopify,
     score_agendapro,
-    diagnostico,
-    mensagem_lp:        gerarMensagemLP(nome, categoria),
-    mensagem_shopify:   gerarMensagemShopify(nome, categoria),
-    mensagem_agendapro: gerarMensagemAgendaPRO(nome, categoria),
-    raw_url: url,
+    diagnostico:          gerarDiagnostico(dados),
+    mensagem_lp:          gerarMensagemLP(nome, categoria),
+    mensagem_shopify:     gerarMensagemShopify(nome, categoria),
+    mensagem_agendapro:   gerarMensagemAgendaPRO(nome, categoria),
+    raw_url:              url,
   }
 }

@@ -1,9 +1,11 @@
 /**
  * radarPRO — Leitor de avaliações do Google Maps
- * Raspa as avaliações do negócio e identifica padrões de dor
+ * Usa axios + cheerio (sem Playwright) — funciona na Vercel
+ * Extrai avaliações do HTML estático do Maps
  */
 
-import { chromium } from 'playwright'
+import axios from 'axios'
+import * as cheerio from 'cheerio'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
 function getGemini() {
@@ -13,77 +15,55 @@ function getGemini() {
 }
 
 export type AnaliseAvaliacoes = {
-  total:          number
-  media:          number
-  dor_principal:  string   // maior reclamação recorrente
-  elogio_principal: string // o que mais elogiam
-  oportunidade:   string   // argumento de venda baseado nas avaliações
-  avaliacoes:     string[] // textos das avaliações coletadas
+  total:            number
+  media:            number
+  dor_principal:    string
+  elogio_principal: string
+  oportunidade:     string
+  avaliacoes:       string[]
 }
 
 export async function analisarAvaliacoesGMaps(mapsUrl: string, nome: string): Promise<AnaliseAvaliacoes> {
-  const browser = await chromium.launch({ headless: true })
-  const context = await browser.newContext({
-    locale: 'pt-BR',
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
-  })
-  const page = await context.newPage()
-
-  let avaliacoes: string[] = []
   let media = 0
   let total = 0
+  let avaliacoes: string[] = []
 
   try {
-    await page.goto(mapsUrl, { waitUntil: 'domcontentloaded', timeout: 25000 })
-    await page.waitForTimeout(3000)
-
-    // Pega nota e total de avaliações
-    const notaText = await page.locator('span[aria-hidden="true"]')
-      .filter({ hasText: /^\d[,\.]\d$/ }).first().textContent().catch(() => null)
-    const avalText = await page.locator('span[aria-label*="avaliações"]')
-      .first().getAttribute('aria-label').catch(() => null)
-
-    media = notaText ? parseFloat(notaText.replace(',', '.')) : 0
-    total = avalText ? parseInt(avalText.replace(/\D/g, '')) : 0
-
-    // Clica na aba de avaliações
-    const botaoAval = page.locator('button[aria-label*="valiaç"]').first()
-    if (await botaoAval.count() > 0) {
-      await botaoAval.click()
-      await page.waitForTimeout(2000)
-    }
-
-    // Expande avaliações longas clicando em "mais"
-    const botoesMore = await page.locator('button[aria-label="Ver mais"]').all()
-    for (const btn of botoesMore.slice(0, 5)) {
-      await btn.click().catch(() => {})
-      await page.waitForTimeout(300)
-    }
-
-    // Scroll para carregar mais avaliações
-    for (let i = 0; i < 3; i++) {
-      await page.evaluate(() => window.scrollBy(0, 1000))
-      await page.waitForTimeout(1000)
-    }
-
-    // Coleta textos das avaliações
-    const textos = await page.evaluate(() => {
-      const els = Array.from(document.querySelectorAll('[data-review-id] span.wiI7pd'))
-      return els.map(el => el.textContent?.trim()).filter(Boolean).slice(0, 20) as string[]
+    const { data: html } = await axios.get(mapsUrl, {
+      timeout: 12000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'pt-BR,pt;q=0.9',
+      },
     })
 
-    avaliacoes = textos
+    const $ = cheerio.load(html)
 
-  } finally {
-    await browser.close()
+    // Tenta extrair nota e total do HTML
+    const texto = $('body').text()
+    const notaMatch = texto.match(/(\d[,\.]\d)\s*\(/)
+    const avalMatch = texto.match(/\((\d[\d.,]+)\s*avalia/)
+    media = notaMatch ? parseFloat(notaMatch[1].replace(',', '.')) : 0
+    total = avalMatch ? parseInt(avalMatch[1].replace(/\D/g, '')) : 0
+
+    // Tenta extrair avaliações de spans/divs comuns no Maps
+    $('span, div').each((_, el) => {
+      const t = $(el).text().trim()
+      if (t.length > 40 && t.length < 500 && !t.includes('©') && !t.includes('Termos')) {
+        avaliacoes.push(t)
+      }
+    })
+    avaliacoes = [...new Set(avaliacoes)].slice(0, 15)
+  } catch {
+    // fallback silencioso
   }
 
   if (avaliacoes.length === 0) {
     return {
       total, media,
-      dor_principal:    'Não foi possível coletar avaliações',
-      elogio_principal: 'Verificar manualmente',
-      oportunidade:     'Visitar o perfil do Google e ler as avaliações',
+      dor_principal:    'Não foi possível coletar avaliações via web',
+      elogio_principal: 'Verificar manualmente no Google Maps',
+      oportunidade:     `Visitar o perfil do Google de "${nome}" e ler as avaliações`,
       avaliacoes:       [],
     }
   }
@@ -96,13 +76,13 @@ export async function analisarAvaliacoesGMaps(mapsUrl: string, nome: string): Pr
 
 Nota média: ${media} (${total} avaliações)
 
-Avaliações dos clientes:
-${avaliacoes.map((a, i) => `${i + 1}. "${a}"`).join('\n')}
+Trechos coletados da página:
+${avaliacoes.slice(0, 10).map((a, i) => `${i + 1}. "${a.slice(0, 200)}"`).join('\n')}
 
 Com base nisso, identifique:
-1. Qual é a maior DOR ou reclamação recorrente? (ex: "difícil de agendar", "não respondem no WhatsApp")
-2. O que mais elogiam? (ex: "atendimento excelente", "resultado incrível")
-3. Qual oportunidade de venda isso gera para nós? (ex: "um sistema de agendamento online resolveria a reclamação de espera")
+1. Qual é a maior DOR ou reclamação recorrente?
+2. O que mais elogiam?
+3. Qual oportunidade de venda isso gera para nós?
 
 Responda EXATAMENTE neste JSON (sem markdown):
 {
@@ -118,10 +98,11 @@ Responda EXATAMENTE neste JSON (sem markdown):
     const data = JSON.parse(texto)
     return { total, media, avaliacoes, ...data }
   } catch {
-    return { total, media, avaliacoes,
+    return {
+      total, media, avaliacoes,
       dor_principal:    'Análise não disponível',
       elogio_principal: 'Verificar manualmente',
-      oportunidade:     avaliacoes[0] ?? 'Sem avaliações',
+      oportunidade:     avaliacoes[0]?.slice(0, 100) ?? 'Sem avaliações coletadas',
     }
   }
 }
