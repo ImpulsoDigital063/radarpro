@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { gerarAbordagem, calcularScoreIA, chat } from '@/lib/gemini'
+import { analisarSiteLead } from '@/lib/site-analyzer'
 import { atualizarMensagem } from '@/lib/db'
 import db from '@/lib/db'
 
@@ -25,6 +26,22 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(resposta)
+    }
+
+    // Análise automática do site do lead
+    if (action === 'analisar-site') {
+      const { siteUrl, nome, leadId } = body
+      if (!siteUrl || !nome) return NextResponse.json({ error: 'siteUrl e nome obrigatórios' }, { status: 400 })
+
+      const analise = await analisarSiteLead(siteUrl, nome)
+
+      // Salva a análise nas notas do lead
+      if (leadId) {
+        const notas = `[Análise do site — ${new Date().toLocaleDateString('pt-BR')}]\nNota: ${analise.nota}/10\n${analise.pontos_fracos}\nArgumento: ${analise.argumento}`
+        db.prepare(`UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(notas, leadId)
+      }
+
+      return NextResponse.json(analise)
     }
 
     // Score inteligente via IA

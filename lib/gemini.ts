@@ -97,7 +97,7 @@ export type RespostaAgente = {
 export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
   const genAI  = getClient()
   const model  = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.0-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -155,26 +155,61 @@ export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
 /**
  * Analisa o conteúdo de um site/LP e dá um parecer estratégico
  */
-export async function analisarConteudoSite(url: string, conteudo: string, nome: string): Promise<string> {
+export type AnaliseSite = {
+  converte: string      // O site converte bem ou não?
+  pontos_fracos: string // Os 2 maiores problemas
+  argumento: string     // Argumento de venda direto
+  urgencia: number      // 1-5
+  urgencia_motivo: string
+  nota: number          // 0-10
+}
+
+export async function analisarConteudoSite(url: string, conteudo: string, nome: string): Promise<AnaliseSite> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.0-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
-  const prompt = `Analise este site/LP do lead "${nome}" (${url}) e dê um parecer estratégico.
+  const prompt = `Você está analisando o site atual de um prospect chamado "${nome}" (${url}).
+Nosso objetivo é vender uma Landing Page profissional por R$499 para substituir ou melhorar esse site.
 
 ## Conteúdo extraído da página:
-${conteudo.slice(0, 3000)}
+${conteudo.slice(0, 4000)}
 
-## Responda em 4-5 linhas diretas:
-1. O site converte bem ou não? Por quê?
-2. Quais são os 2 maiores pontos fracos?
-3. Qual seria o argumento para convencê-lo a refazer/melhorar?
-4. Nível de urgência (1-5) e justificativa`
+## Indicadores para avaliar:
+- Tem CTA claro (botão de contato, WhatsApp, agendamento)?
+- Carrega rápido (site leve ou cheio de imagens pesadas)?
+- Aparece no Google (tem título/descrição otimizados)?
+- Tem prova social (depoimentos, cases, fotos reais)?
+- Design profissional ou amador?
+- Mobile friendly?
+
+Retorne EXATAMENTE este JSON (sem markdown):
+{
+  "converte": "<1 frase: sim/não e por quê>",
+  "pontos_fracos": "<2 pontos fracos principais separados por ';'>",
+  "argumento": "<1 frase direta para usar no pitch de vendas>",
+  "urgencia": <número 1 a 5>,
+  "urgencia_motivo": "<por que é urgente ou não em 1 frase>",
+  "nota": <nota geral do site de 0 a 10>
+}`
 
   const result = await model.generateContent(prompt)
-  return result.response.text()
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    return JSON.parse(texto) as AnaliseSite
+  } catch {
+    return {
+      converte: 'Análise não disponível',
+      pontos_fracos: 'Verificar manualmente',
+      argumento: 'Visitar o site e analisar',
+      urgencia: 3,
+      urgencia_motivo: 'A definir',
+      nota: 5,
+    }
+  }
 }
 
 /**
@@ -183,7 +218,7 @@ ${conteudo.slice(0, 3000)}
 export async function calcularScoreIA(lead: DadosLead): Promise<{ score: number; justificativa: string }> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.0-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -223,7 +258,7 @@ Responda EXATAMENTE neste JSON (sem markdown):
 export async function chat(historico: { role: 'user' | 'model'; text: string }[], pergunta: string): Promise<string> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.0-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 

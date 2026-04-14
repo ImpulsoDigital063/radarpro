@@ -80,6 +80,8 @@ export default function RadarPRO() {
   const [enriquecendo, setEnriquecendo]   = useState<number | null>(null)
   const [scoreIA, setScoreIA]             = useState<Record<number, { score: number; justificativa: string }>>({})
   const [calculandoScore, setCalculandoScore] = useState<number | null>(null)
+  const [analiseSite, setAnaliseSite]     = useState<Record<number, any>>({})
+  const [analisandoSite, setAnalisandoSite] = useState<number | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar'>('leads')
 
   // Analisador
@@ -210,6 +212,23 @@ export default function RadarPRO() {
       }
     } finally {
       setCalculandoScore(null)
+    }
+  }
+
+  async function analisarSite(lead: Lead) {
+    if (!lead.site) return
+    setAnalisandoSite(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'analisar-site', siteUrl: lead.site, nome: lead.nome, leadId: lead.id }),
+      })
+      const data = await r.json()
+      if (!data.error) setAnaliseSite(prev => ({ ...prev, [lead.id]: data }))
+      else alert('Erro: ' + data.error)
+    } finally {
+      setAnalisandoSite(null)
     }
   }
 
@@ -666,19 +685,47 @@ export default function RadarPRO() {
                             )}
                           </div>
 
-                          {/* Score IA */}
-                          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                            <button onClick={() => avaliarScoreIA(lead)} disabled={calculandoScore === lead.id}
-                              style={{ padding: '5px 12px', background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '6px', color: calculandoScore === lead.id ? muted : '#A78BFA', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                              {calculandoScore === lead.id ? '⏳ Avaliando...' : '🧠 Score IA'}
-                            </button>
-                            {scoreIA[lead.id] && (
-                              <div style={{ background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '6px', padding: '6px 10px', flex: 1 }}>
-                                <span style={{ color: scoreInfo(scoreIA[lead.id].score).cor, fontWeight: 800, fontSize: '13px' }}>{scoreIA[lead.id].score}/10</span>
-                                <span style={{ color: muted, fontSize: '11px' }}> — {scoreIA[lead.id].justificativa}</span>
-                              </div>
+                          {/* Score IA + Análise de site */}
+                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+
+                            {/* Score IA */}
+                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flex: 1 }}>
+                              <button onClick={() => avaliarScoreIA(lead)} disabled={calculandoScore === lead.id}
+                                style={{ padding: '5px 12px', background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '6px', color: calculandoScore === lead.id ? muted : '#A78BFA', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                                {calculandoScore === lead.id ? '⏳...' : '🧠 Score IA'}
+                              </button>
+                              {scoreIA[lead.id] && (
+                                <div style={{ background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '6px', padding: '6px 10px', flex: 1 }}>
+                                  <span style={{ color: scoreInfo(scoreIA[lead.id].score).cor, fontWeight: 800, fontSize: '13px' }}>{scoreIA[lead.id].score}/10</span>
+                                  <span style={{ color: muted, fontSize: '11px' }}> — {scoreIA[lead.id].justificativa}</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Analisar site */}
+                            {lead.site && !lead.site.includes('google.com/maps') && (
+                              <button onClick={() => analisarSite(lead)} disabled={analisandoSite === lead.id}
+                                style={{ padding: '5px 12px', background: '#0A1A2E', border: '1px solid #2563EB40', borderRadius: '6px', color: analisandoSite === lead.id ? muted : '#60A5FA', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                                {analisandoSite === lead.id ? '⏳ Analisando...' : '🔍 Analisar site'}
+                              </button>
                             )}
                           </div>
+
+                          {/* Resultado análise do site */}
+                          {analiseSite[lead.id] && (
+                            <div style={{ background: '#0A1A2E', border: '1px solid #2563EB30', borderRadius: '8px', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <p style={{ fontSize: '10px', color: '#60A5FA', fontWeight: 700, margin: 0, textTransform: 'uppercase' }}>🔍 Análise do site atual</p>
+                                <span style={{ fontSize: '13px', fontWeight: 800, color: analiseSite[lead.id].nota >= 7 ? '#16A34A' : analiseSite[lead.id].nota >= 5 ? '#F59E0B' : '#EF4444' }}>
+                                  {analiseSite[lead.id].nota}/10
+                                </span>
+                              </div>
+                              <p style={{ fontSize: '11px', color: txt, margin: 0 }}><span style={{ color: muted }}>Converte:</span> {analiseSite[lead.id].converte}</p>
+                              <p style={{ fontSize: '11px', color: txt, margin: 0 }}><span style={{ color: muted }}>Problemas:</span> {analiseSite[lead.id].pontos_fracos}</p>
+                              <p style={{ fontSize: '11px', color: '#FCD34D', margin: 0, fontWeight: 600 }}>💬 "{analiseSite[lead.id].argumento}"</p>
+                              <p style={{ fontSize: '11px', color: muted, margin: 0 }}>Urgência {analiseSite[lead.id].urgencia}/5 — {analiseSite[lead.id].urgencia_motivo}</p>
+                            </div>
+                          )}
 
                           {/* Mensagem editável */}
                           <div>
