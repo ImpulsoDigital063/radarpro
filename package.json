@@ -6,10 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "radar:lp":          "tsx scripts/scrape-gmaps.ts --tipo lp",
+    "radar:shopify":     "tsx scripts/scrape-gmaps.ts --tipo shopify",
+    "radar:agendapro":   "tsx scripts/scrape-gmaps.ts --tipo agendapro",
+    "radar:ig:lp":       "tsx scripts/scrape-instagram.ts --tipo lp",
+    "radar:ig:shop":     "tsx scripts/scrape-instagram.ts --tipo shopify",
+    "radar:ig:agenda":   "tsx scripts/scrape-instagram.ts --tipo agendapro"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "axios": "^1.15.0",
+    "better-sqlite3": "^12.9.0",
+    "cheerio": "^1.2.0",
     "next": "16.2.3",
+    "playwright": "^1.59.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -21,6 +32,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
