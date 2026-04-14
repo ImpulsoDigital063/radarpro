@@ -7,9 +7,9 @@ export async function GET(req: NextRequest) {
   const status = searchParams.get('status') as any
   const stats  = searchParams.get('stats')
 
-  if (stats) return NextResponse.json(estatisticas())
+  if (stats) return NextResponse.json(await estatisticas())
 
-  const leads = listarLeads({
+  const leads = await listarLeads({
     ...(tipo   && { tipo }),
     ...(status && { status }),
   })
@@ -23,13 +23,12 @@ export async function PATCH(req: NextRequest) {
 
   if (!id) return NextResponse.json({ error: 'id obrigatório' }, { status: 400 })
 
-  if (action === 'status')   atualizarStatus(id, body.status, body.observacao)
-  if (action === 'notas')    atualizarNotas(id, body.notas)
-  if (action === 'followup') atualizarFollowup(id, body.data)
-  if (action === 'mensagem') atualizarMensagem(id, body.mensagem)
+  if (action === 'status')   await atualizarStatus(id, body.status, body.observacao)
+  if (action === 'notas')    await atualizarNotas(id, body.notas)
+  if (action === 'followup') await atualizarFollowup(id, body.data)
+  if (action === 'mensagem') await atualizarMensagem(id, body.mensagem)
 
-  // Compatibilidade com chamadas antigas
-  if (!action && body.status) atualizarStatus(id, body.status, body.observacao)
+  if (!action && body.status) await atualizarStatus(id, body.status, body.observacao)
 
   return NextResponse.json({ ok: true })
 }

@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
   try {
     const analise = await analisarLink(url)
 
-    // Se pediu pra salvar, insere no banco
     if (salvar && analise.nome) {
       const tipoFinal = tipo || analise.tipo_detectado
       const score = calcularScore({ ...analise, tipo: tipoFinal })
@@ -19,7 +18,7 @@ export async function POST(req: NextRequest) {
         : tipoFinal === 'shopify' ? analise.mensagem_shopify
         : analise.mensagem_agendapro
 
-      inserirLead({
+      await inserirLead({
         nome:                 analise.nome,
         categoria:            analise.categoria,
         tipo:                 tipoFinal,

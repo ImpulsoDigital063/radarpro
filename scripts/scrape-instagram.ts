@@ -9,6 +9,10 @@
  *   npx tsx scripts/scrape-instagram.ts --tipo lp --hashtag nutricionistapalmas
  */
 
+import { config } from 'dotenv'
+import { resolve } from 'path'
+config({ path: resolve(process.cwd(), '.env.local') })
+
 import { chromium } from 'playwright'
 import {
   inserirLead,
@@ -138,7 +142,7 @@ async function scrapeHashtag(
         tipo,
       })
 
-      const id = inserirLead({
+      const id = await inserirLead({
         nome,
         categoria,
         tipo,
@@ -169,7 +173,7 @@ async function scrapeHashtag(
     }
   }
 
-  registrarBusca({ query: `#${hashtag}`, tipo, fonte: 'instagram', total, novos })
+  await registrarBusca({ query: `#${hashtag}`, tipo, fonte: 'instagram', total, novos })
   console.log(`   📊 Total: ${total} | Novos qualificados: ${novos}`)
 
   return { total, novos }
@@ -237,7 +241,7 @@ async function main() {
   console.log(`   Encontrados: ${totalGeral}`)
   console.log(`   Novos leads qualificados: ${novosGeral}`)
 
-  const stats = estatisticas()
+  const stats = await estatisticas()
   console.log(`\n📊 Base total:`)
   console.log(`   LP:        ${stats.lp} leads`)
   console.log(`   Shopify:   ${stats.shopify} leads`)

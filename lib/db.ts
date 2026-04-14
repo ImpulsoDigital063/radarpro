@@ -1,83 +1,77 @@
-import Database from 'better-sqlite3'
-import path from 'path'
-import fs from 'fs'
+import { createClient, type Client } from '@libsql/client'
 
-const DATA_DIR = path.join(process.cwd(), 'data')
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
+// ── Conexão ───────────────────────────────────────────────────────────────────
 
-const DB_PATH = path.join(DATA_DIR, 'radar.db')
+let _client: Client | null = null
 
-const db = new Database(DB_PATH)
-
-// Habilita WAL para melhor performance
-db.pragma('journal_mode = WAL')
+export function getClient(): Client {
+  if (!_client) {
+    const url = process.env.TURSO_URL
+    const authToken = process.env.TURSO_TOKEN
+    if (!url) throw new Error('TURSO_URL não configurada no .env.local')
+    _client = createClient({ url, authToken })
+  }
+  return _client
+}
 
 // ── Schema ────────────────────────────────────────────────────────────────────
-db.exec(`
-  CREATE TABLE IF NOT EXISTS leads (
-    id               INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome             TEXT NOT NULL,
-    categoria        TEXT,
-    tipo             TEXT NOT NULL DEFAULT 'lp',  -- 'lp' | 'shopify' | 'agendapro'
-    telefone         TEXT,
-    instagram        TEXT,                        -- handle @usuario
-    instagram_url    TEXT,                        -- URL completa
-    instagram_bio    TEXT,                        -- bio do perfil
-    instagram_seguidores TEXT,
-    site             TEXT,
-    endereco         TEXT,
-    cidade           TEXT DEFAULT 'Palmas',
-    nota             REAL,
-    num_avaliacoes   INTEGER DEFAULT 0,
-    tem_site         INTEGER DEFAULT 0,
-    tem_ecommerce    INTEGER DEFAULT 0,
-    tem_agendamento  INTEGER DEFAULT 0,
-    qualificado      INTEGER DEFAULT 1,
-    fonte            TEXT,
-    mensagem         TEXT,
-    score            INTEGER DEFAULT 0,          -- 0–10 calculado automaticamente
-    status           TEXT DEFAULT 'novo',
-    notas            TEXT,                        -- anotações livres
-    proximo_followup TEXT,
-    criado_em        TEXT DEFAULT (datetime('now', 'localtime')),
-    atualizado_em    TEXT DEFAULT (datetime('now', 'localtime'))
-  );
 
-  CREATE TABLE IF NOT EXISTS buscas (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    query       TEXT NOT NULL,
-    tipo        TEXT NOT NULL,               -- 'lp' | 'shopify'
-    fonte       TEXT NOT NULL,               -- 'google_maps' | 'instagram'
-    total       INTEGER DEFAULT 0,
-    novos       INTEGER DEFAULT 0,
-    rodou_em    TEXT DEFAULT (datetime('now', 'localtime'))
-  );
+export async function initDb() {
+  const db = getClient()
+  await db.batch([
+    `CREATE TABLE IF NOT EXISTS leads (
+      id               INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome             TEXT NOT NULL,
+      categoria        TEXT,
+      tipo             TEXT NOT NULL DEFAULT 'lp',
+      telefone         TEXT,
+      instagram        TEXT,
+      instagram_url    TEXT,
+      instagram_bio    TEXT,
+      instagram_seguidores TEXT,
+      site             TEXT,
+      endereco         TEXT,
+      cidade           TEXT DEFAULT 'Palmas',
+      nota             REAL,
+      num_avaliacoes   INTEGER DEFAULT 0,
+      tem_site         INTEGER DEFAULT 0,
+      tem_ecommerce    INTEGER DEFAULT 0,
+      tem_agendamento  INTEGER DEFAULT 0,
+      qualificado      INTEGER DEFAULT 1,
+      fonte            TEXT,
+      mensagem         TEXT,
+      score            INTEGER DEFAULT 0,
+      status           TEXT DEFAULT 'novo',
+      notas            TEXT,
+      proximo_followup TEXT,
+      criado_em        TEXT DEFAULT (datetime('now', 'localtime')),
+      atualizado_em    TEXT DEFAULT (datetime('now', 'localtime'))
+    )`,
+    `CREATE TABLE IF NOT EXISTS buscas (
+      id        INTEGER PRIMARY KEY AUTOINCREMENT,
+      query     TEXT NOT NULL,
+      tipo      TEXT NOT NULL,
+      fonte     TEXT NOT NULL,
+      total     INTEGER DEFAULT 0,
+      novos     INTEGER DEFAULT 0,
+      rodou_em  TEXT DEFAULT (datetime('now', 'localtime'))
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status)`,
+    `CREATE INDEX IF NOT EXISTS idx_leads_tipo   ON leads(tipo)`,
+    `CREATE INDEX IF NOT EXISTS idx_leads_fonte  ON leads(fonte)`,
+  ], 'write')
+}
 
-  CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
-  CREATE INDEX IF NOT EXISTS idx_leads_tipo   ON leads(tipo);
-  CREATE INDEX IF NOT EXISTS idx_leads_fonte  ON leads(fonte);
-`)
-
-// ── Migrations — adiciona colunas novas sem quebrar banco antigo ──────────────
-const migrations = [
-  `ALTER TABLE leads ADD COLUMN instagram_url       TEXT`,
-  `ALTER TABLE leads ADD COLUMN instagram_bio       TEXT`,
-  `ALTER TABLE leads ADD COLUMN instagram_seguidores TEXT`,
-  `ALTER TABLE leads ADD COLUMN num_avaliacoes       INTEGER DEFAULT 0`,
-  `ALTER TABLE leads ADD COLUMN tem_ecommerce        INTEGER DEFAULT 0`,
-  `ALTER TABLE leads ADD COLUMN tem_agendamento      INTEGER DEFAULT 0`,
-  `ALTER TABLE leads ADD COLUMN score                INTEGER DEFAULT 0`,
-  `ALTER TABLE leads ADD COLUMN notas                TEXT`,
-  `ALTER TABLE leads ADD COLUMN atualizado_em        TEXT DEFAULT (datetime('now','localtime'))`,
-]
-
-for (const sql of migrations) {
-  try { db.exec(sql) } catch {} // ignora se coluna já existe
+// Garante schema criado uma vez por processo
+let _ready: Promise<void> | null = null
+async function ready() {
+  if (!_ready) _ready = initDb()
+  await _ready
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-export function inserirLead(lead: {
+export async function inserirLead(lead: {
   nome: string
   categoria?: string
   tipo: 'lp' | 'shopify' | 'agendapro'
@@ -96,122 +90,138 @@ export function inserirLead(lead: {
   fonte: string
   mensagem?: string
   score?: number
-}) {
-  // Evita duplicata pelo telefone ou instagram
-  const existe = db.prepare(`
-    SELECT id FROM leads WHERE telefone = ? OR instagram = ?
-  `).get(lead.telefone ?? '', lead.instagram ?? '')
+}): Promise<bigint | null> {
+  await ready()
+  const db = getClient()
 
-  if (existe) return null
+  const existe = await db.execute({
+    sql: `SELECT id FROM leads WHERE (telefone = ? AND telefone IS NOT NULL AND telefone != '')
+          OR (instagram = ? AND instagram IS NOT NULL AND instagram != '')`,
+    args: [lead.telefone ?? '', lead.instagram ?? ''],
+  })
+  if (existe.rows.length > 0) return null
 
-  const stmt = db.prepare(`
-    INSERT INTO leads (
+  const result = await db.execute({
+    sql: `INSERT INTO leads (
       nome, categoria, tipo, telefone,
       instagram, instagram_url, instagram_bio, instagram_seguidores,
       site, endereco, nota, num_avaliacoes,
       tem_site, tem_ecommerce, tem_agendamento,
       fonte, mensagem, score
-    ) VALUES (
-      @nome, @categoria, @tipo, @telefone,
-      @instagram, @instagram_url, @instagram_bio, @instagram_seguidores,
-      @site, @endereco, @nota, @num_avaliacoes,
-      @tem_site, @tem_ecommerce, @tem_agendamento,
-      @fonte, @mensagem, @score
-    )
-  `)
-
-  const result = stmt.run({
-    nome:                  lead.nome,
-    categoria:             lead.categoria ?? null,
-    tipo:                  lead.tipo,
-    telefone:              lead.telefone ?? null,
-    instagram:             lead.instagram ?? null,
-    instagram_url:         lead.instagram_url ?? null,
-    instagram_bio:         lead.instagram_bio ?? null,
-    instagram_seguidores:  lead.instagram_seguidores ?? null,
-    site:                  lead.site ?? null,
-    endereco:              lead.endereco ?? null,
-    nota:                  lead.nota ?? null,
-    num_avaliacoes:        lead.num_avaliacoes ?? 0,
-    tem_site:              lead.tem_site ? 1 : 0,
-    tem_ecommerce:         lead.tem_ecommerce ? 1 : 0,
-    tem_agendamento:       lead.tem_agendamento ? 1 : 0,
-    fonte:                 lead.fonte,
-    mensagem:              lead.mensagem ?? null,
-    score:                 lead.score ?? 0,
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    args: [
+      lead.nome,
+      lead.categoria ?? null,
+      lead.tipo,
+      lead.telefone ?? null,
+      lead.instagram ?? null,
+      lead.instagram_url ?? null,
+      lead.instagram_bio ?? null,
+      lead.instagram_seguidores ?? null,
+      lead.site ?? null,
+      lead.endereco ?? null,
+      lead.nota ?? null,
+      lead.num_avaliacoes ?? 0,
+      lead.tem_site ? 1 : 0,
+      lead.tem_ecommerce ? 1 : 0,
+      lead.tem_agendamento ? 1 : 0,
+      lead.fonte,
+      lead.mensagem ?? null,
+      lead.score ?? 0,
+    ],
   })
 
-  return result.lastInsertRowid
+  return result.lastInsertRowid ?? null
 }
 
-export function listarLeads(filtros?: {
-  tipo?: 'lp' | 'shopify' | 'agendapro'
+export async function listarLeads(filtros?: {
+  tipo?: string
   status?: string
-  qualificado?: boolean
+}): Promise<any[]> {
+  await ready()
+  const db = getClient()
+  let sql = 'SELECT * FROM leads WHERE 1=1'
+  const args: any[] = []
+
+  if (filtros?.tipo)   { sql += ' AND tipo = ?';   args.push(filtros.tipo) }
+  if (filtros?.status) { sql += ' AND status = ?'; args.push(filtros.status) }
+  sql += ' ORDER BY criado_em DESC'
+
+  const result = await db.execute({ sql, args })
+  return result.rows as any[]
+}
+
+export async function atualizarStatus(id: number, status: string, observacao?: string) {
+  await ready()
+  const db = getClient()
+  await db.execute({
+    sql: `UPDATE leads SET status = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+    args: [status, id],
+  })
+}
+
+export async function atualizarMensagem(id: number, mensagem: string) {
+  await ready()
+  const db = getClient()
+  await db.execute({
+    sql: `UPDATE leads SET mensagem = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+    args: [mensagem, id],
+  })
+}
+
+export async function atualizarNotas(id: number, notas: string) {
+  await ready()
+  const db = getClient()
+  await db.execute({
+    sql: `UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+    args: [notas, id],
+  })
+}
+
+export async function atualizarFollowup(id: number, data: string) {
+  await ready()
+  const db = getClient()
+  await db.execute({
+    sql: `UPDATE leads SET proximo_followup = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+    args: [data, id],
+  })
+}
+
+export async function registrarBusca(busca: {
+  query: string; tipo: string; fonte: string; total: number; novos: number
 }) {
-  let query = 'SELECT * FROM leads WHERE 1=1'
-  const params: Record<string, unknown> = {}
-
-  if (filtros?.tipo) {
-    query += ' AND tipo = @tipo'
-    params.tipo = filtros.tipo
-  }
-  if (filtros?.status) {
-    query += ' AND status = @status'
-    params.status = filtros.status
-  }
-  if (filtros?.qualificado !== undefined) {
-    query += ' AND qualificado = @qualificado'
-    params.qualificado = filtros.qualificado ? 1 : 0
-  }
-
-  query += ' ORDER BY criado_em DESC'
-  return db.prepare(query).all(params)
+  await ready()
+  const db = getClient()
+  await db.execute({
+    sql: `INSERT INTO buscas (query, tipo, fonte, total, novos) VALUES (?, ?, ?, ?, ?)`,
+    args: [busca.query, busca.tipo, busca.fonte, busca.total, busca.novos],
+  })
 }
 
-export function atualizarStatus(id: number, status: string, observacao?: string) {
-  db.prepare(`
-    UPDATE leads SET status = ?, observacao = ?, atualizado_em = datetime('now', 'localtime')
-    WHERE id = ?
-  `).run(status, observacao ?? null, id)
-}
+export async function estatisticas() {
+  await ready()
+  const db = getClient()
+  const r = await db.batch([
+    `SELECT COUNT(*) as n FROM leads`,
+    `SELECT COUNT(*) as n FROM leads WHERE tipo='lp'`,
+    `SELECT COUNT(*) as n FROM leads WHERE tipo='shopify'`,
+    `SELECT COUNT(*) as n FROM leads WHERE tipo='agendapro'`,
+    `SELECT COUNT(*) as n FROM leads WHERE status='novo'`,
+    `SELECT COUNT(*) as n FROM leads WHERE status='abordado'`,
+    `SELECT COUNT(*) as n FROM leads WHERE status='consultoria_marcada'`,
+    `SELECT COUNT(*) as n FROM leads WHERE status='fechado'`,
+  ], 'read')
 
-export function atualizarMensagem(id: number, mensagem: string) {
-  db.prepare(`UPDATE leads SET mensagem = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(mensagem, id)
-}
-
-export function atualizarNotas(id: number, notas: string) {
-  db.prepare(`UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(notas, id)
-}
-
-export function atualizarFollowup(id: number, data: string) {
-  db.prepare(`UPDATE leads SET proximo_followup = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(data, id)
-}
-
-export function registrarBusca(busca: {
-  query: string
-  tipo: string
-  fonte: string
-  total: number
-  novos: number
-}) {
-  db.prepare(`
-    INSERT INTO buscas (query, tipo, fonte, total, novos)
-    VALUES (@query, @tipo, @fonte, @total, @novos)
-  `).run(busca)
-}
-
-export function estatisticas() {
   return {
-    total:              (db.prepare(`SELECT COUNT(*) as n FROM leads`).get() as any).n,
-    lp:                 (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE tipo='lp'`).get() as any).n,
-    shopify:            (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE tipo='shopify'`).get() as any).n,
-    agendapro:          (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE tipo='agendapro'`).get() as any).n,
-    novos:              (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE status='novo'`).get() as any).n,
-    abordados:          (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE status='abordado'`).get() as any).n,
-    consultorias:       (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE status='consultoria_marcada'`).get() as any).n,
-    fechados:           (db.prepare(`SELECT COUNT(*) as n FROM leads WHERE status='fechado'`).get() as any).n,
+    total:        Number(r[0].rows[0].n),
+    lp:           Number(r[1].rows[0].n),
+    shopify:      Number(r[2].rows[0].n),
+    agendapro:    Number(r[3].rows[0].n),
+    novos:        Number(r[4].rows[0].n),
+    abordados:    Number(r[5].rows[0].n),
+    consultorias: Number(r[6].rows[0].n),
+    fechados:     Number(r[7].rows[0].n),
   }
 }
 
-export default db
+export default getClient

@@ -6,6 +6,10 @@
  *   npx tsx scripts/scrape-gmaps.ts "--query=nutricionista Palmas TO" --tipo lp
  */
 
+import { config } from 'dotenv'
+import { resolve } from 'path'
+config({ path: resolve(process.cwd(), '.env.local') })
+
 import { chromium } from 'playwright'
 import { inserirLead, registrarBusca, estatisticas } from '../lib/db'
 import { gerarMensagemLP, gerarMensagemShopify, gerarMensagemAgendaPRO } from '../lib/mensagens'
@@ -119,7 +123,7 @@ async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendap
       tipo,
     })
 
-    const id = inserirLead({
+    const id = await inserirLead({
       nome:          r.nome,
       categoria:     r.categoria || categoria,
       tipo,
@@ -142,7 +146,7 @@ async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendap
     }
   }
 
-  registrarBusca({ query, tipo, fonte: 'google_maps', total, novos })
+  await registrarBusca({ query, tipo, fonte: 'google_maps', total, novos })
   console.log(`\n   📊 Visitados: ${total} | Novos no banco: ${novos}`)
   return { total, novos }
 }
@@ -175,7 +179,7 @@ async function main() {
   console.log('\n' + '─'.repeat(50))
   console.log(`✅ Concluído — ${nG} novos leads salvos de ${tG} encontrados`)
 
-  const stats = estatisticas()
+  const stats = await estatisticas()
   console.log(`📊 Base: LP ${stats.lp} | Shopify ${stats.shopify} | AgendaPRO ${stats.agendapro} | Total ${stats.total}`)
 }
 

@@ -4,7 +4,7 @@
  */
 
 import { chromium } from 'playwright'
-import db from './db'
+import { getClient } from './db'
 
 type EnrichResult = {
   instagram:            string | null
@@ -14,14 +14,13 @@ type EnrichResult = {
   telefone:             string | null
 }
 
-// ── Busca Instagram via Google ────────────────────────────────────────────────
+// ── Busca Instagram via Google Maps ──────────────────────────────────────────
 
 async function buscarInstagramNoMaps(mapsUrl: string, page: any): Promise<string | null> {
   try {
     await page.goto(mapsUrl, { waitUntil: 'domcontentloaded', timeout: 20000 })
     await page.waitForTimeout(3000)
 
-    // Extrai link do Instagram do painel do Maps
     const igUrl = await page.evaluate(() => {
       const allLinks = Array.from(document.querySelectorAll('a')).map((a: any) => a.href as string)
       for (const href of allLinks) {
@@ -47,7 +46,6 @@ async function buscarInstagramNoMaps(mapsUrl: string, page: any): Promise<string
 
 async function buscarInstagramDireto(nome: string, page: any): Promise<string | null> {
   try {
-    // Limpa o nome para usar como query
     const query = nome.replace(/[-|–—]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0, 3).join(' ')
     await page.goto(
       `https://www.instagram.com/web/search/topsearch/?query=${encodeURIComponent(query)}`,
@@ -61,7 +59,6 @@ async function buscarInstagramDireto(nome: string, page: any): Promise<string | 
 
     if (!json?.users?.length) return null
 
-    // Pega o primeiro resultado que parece brasileiro (nome parecido)
     const user = json.users[0]?.user
     if (!user?.username) return null
 
@@ -81,13 +78,10 @@ async function extrairDadosInstagram(url: string, page: any): Promise<Partial<En
   const bio    = await page.locator('meta[name="description"]').getAttribute('content').catch(() => '')
 
   const handle = url.split('instagram.com/')[1]?.replace(/\/$/, '') ?? ''
-  const nome   = titulo?.split('•')[0]?.trim() ?? handle
 
-  // Telefone na bio
   const telMatch = bio?.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
   const telefone = telMatch ? telMatch[0].replace(/\s/g, '') : null
 
-  // Seguidores na meta description
   const segMatch = bio?.match(/(\d[\d.,]+)\s*(seguidores|followers)/i)
   const seguidores = segMatch ? segMatch[1] : null
 
@@ -103,10 +97,11 @@ async function extrairDadosInstagram(url: string, page: any): Promise<Partial<En
 // ── Enriquece um lead pelo id ─────────────────────────────────────────────────
 
 export async function enriquecerLead(leadId: number): Promise<EnrichResult | null> {
-  const lead = db.prepare('SELECT * FROM leads WHERE id = ?').get(leadId) as any
+  const db = getClient()
+  const result = await db.execute({ sql: 'SELECT * FROM leads WHERE id = ?', args: [leadId] })
+  const lead = result.rows[0] as any
   if (!lead) return null
 
-  // Já tem Instagram — não precisa enriquecer
   if (lead.instagram) return null
 
   console.log(`\n🔍 Enriquecendo: ${lead.nome}`)
@@ -119,13 +114,11 @@ export async function enriquecerLead(leadId: number): Promise<EnrichResult | nul
   const page = await context.newPage()
 
   try {
-    // 1. Tenta no Google Maps
     let igUrl: string | null = null
     if (lead.site) {
       igUrl = await buscarInstagramNoMaps(lead.site, page)
     }
 
-    // 2. Se não achou, busca no próprio Instagram
     if (!igUrl) {
       igUrl = await buscarInstagramDireto(lead.nome, page)
     }
@@ -135,30 +128,28 @@ export async function enriquecerLead(leadId: number): Promise<EnrichResult | nul
       return null
     }
 
-    // 2. Extrai dados do perfil
     const dados = await extrairDadosInstagram(igUrl, page)
 
-    // 3. Atualiza o banco
-    db.prepare(`
-      UPDATE leads SET
-        instagram            = @instagram,
-        instagram_url        = @instagram_url,
-        instagram_bio        = @instagram_bio,
-        instagram_seguidores = @instagram_seguidores,
-        telefone             = COALESCE(telefone, @telefone),
+    await db.execute({
+      sql: `UPDATE leads SET
+        instagram            = ?,
+        instagram_url        = ?,
+        instagram_bio        = ?,
+        instagram_seguidores = ?,
+        telefone             = COALESCE(telefone, ?),
         atualizado_em        = datetime('now','localtime')
-      WHERE id = @id
-    `).run({
-      id:                   leadId,
-      instagram:            dados.instagram ?? null,
-      instagram_url:        dados.instagram_url ?? null,
-      instagram_bio:        dados.instagram_bio ?? null,
-      instagram_seguidores: dados.instagram_seguidores ?? null,
-      telefone:             dados.telefone ?? null,
+      WHERE id = ?`,
+      args: [
+        dados.instagram ?? null,
+        dados.instagram_url ?? null,
+        dados.instagram_bio ?? null,
+        dados.instagram_seguidores ?? null,
+        dados.telefone ?? null,
+        leadId,
+      ],
     })
 
-    console.log(`   ✅ ${dados.instagram} | ${dados.instagram_seguidores ?? '?'} seguidores | ${dados.telefone ?? 'sem tel'}`)
-
+    console.log(`   ✅ ${dados.instagram} | ${dados.instagram_seguidores ?? '?'} seguidores`)
     return dados as EnrichResult
 
   } catch (err: any) {
@@ -172,20 +163,20 @@ export async function enriquecerLead(leadId: number): Promise<EnrichResult | nul
 // ── Enriquece todos os leads sem Instagram ────────────────────────────────────
 
 export async function enriquecerTodos(tipo?: string) {
+  const db = getClient()
   const where = tipo ? `WHERE instagram IS NULL AND tipo = '${tipo}'` : `WHERE instagram IS NULL`
-  const leads = db.prepare(`SELECT id, nome FROM leads ${where} ORDER BY score DESC`).all() as any[]
+  const result = await db.execute({ sql: `SELECT id, nome FROM leads ${where} ORDER BY score DESC`, args: [] })
+  const leads = result.rows as any[]
 
   console.log(`\n🚀 Enriquecimento em massa — ${leads.length} leads sem Instagram`)
   console.log('─'.repeat(50))
 
   let enriquecidos = 0
-
   for (const lead of leads) {
-    const result = await enriquecerLead(lead.id)
-    if (result?.instagram) enriquecidos++
-    // Pausa entre buscas
+    const res = await enriquecerLead(lead.id)
+    if (res?.instagram) enriquecidos++
     await new Promise(r => setTimeout(r, 2000))
   }
 
-  console.log(`\n✅ ${enriquecidos} de ${leads.length} leads enriquecidos com Instagram`)
+  console.log(`\n✅ ${enriquecidos} de ${leads.length} leads enriquecidos`)
 }

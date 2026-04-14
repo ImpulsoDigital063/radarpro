@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje } from '@/lib/gemini'
 import { analisarSiteLead } from '@/lib/site-analyzer'
 import { analisarAvaliacoesGMaps } from '@/lib/reviews-analyzer'
-import { atualizarMensagem } from '@/lib/db'
-import db from '@/lib/db'
+import { atualizarMensagem, getClient } from '@/lib/db'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -14,6 +13,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const db = getClient()
+
     // Gera abordagem personalizada para um lead
     if (action === 'abordagem') {
       const { lead } = body
@@ -21,9 +22,8 @@ export async function POST(req: NextRequest) {
 
       const resposta = await gerarAbordagem(lead)
 
-      // Salva a mensagem gerada no banco automaticamente
       if (lead.id && resposta.mensagem) {
-        atualizarMensagem(lead.id, resposta.mensagem)
+        await atualizarMensagem(lead.id, resposta.mensagem)
       }
 
       return NextResponse.json(resposta)
@@ -36,10 +36,12 @@ export async function POST(req: NextRequest) {
 
       const analise = await analisarSiteLead(siteUrl, nome)
 
-      // Salva a análise nas notas do lead
       if (leadId) {
         const notas = `[Análise do site — ${new Date().toLocaleDateString('pt-BR')}]\nNota: ${analise.nota}/10\n${analise.pontos_fracos}\nArgumento: ${analise.argumento}`
-        db.prepare(`UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(notas, leadId)
+        await db.execute({
+          sql: `UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+          args: [notas, leadId],
+        })
       }
 
       return NextResponse.json(analise)
@@ -52,10 +54,11 @@ export async function POST(req: NextRequest) {
 
       const resultado = await calcularScoreIA(lead)
 
-      // Atualiza o score no banco
       if (lead.id) {
-        db.prepare(`UPDATE leads SET score = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`)
-          .run(resultado.score, lead.id)
+        await db.execute({
+          sql: `UPDATE leads SET score = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+          args: [resultado.score, lead.id],
+        })
       }
 
       return NextResponse.json(resultado)
@@ -68,17 +71,15 @@ export async function POST(req: NextRequest) {
 
       const resultado = await gerarFollowup(lead)
 
-      // Salva a nova mensagem e a data de follow-up no banco
       if (lead.id) {
         const hoje = new Date()
         hoje.setDate(hoje.getDate() + resultado.dias)
         const dataFollowup = hoje.toISOString().split('T')[0]
 
-        db.prepare(`
-          UPDATE leads
-          SET mensagem = ?, proximo_followup = ?, atualizado_em = datetime('now','localtime')
-          WHERE id = ?
-        `).run(resultado.mensagem, dataFollowup, lead.id)
+        await db.execute({
+          sql: `UPDATE leads SET mensagem = ?, proximo_followup = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+          args: [resultado.mensagem, dataFollowup, lead.id],
+        })
       }
 
       return NextResponse.json(resultado)
@@ -91,10 +92,12 @@ export async function POST(req: NextRequest) {
 
       const analise = await analisarAvaliacoesGMaps(mapsUrl, nome)
 
-      // Salva oportunidade nas notas do lead
       if (leadId && analise.oportunidade && analise.oportunidade !== 'Visitar o perfil do Google e ler as avaliações') {
         const nota = `[Avaliações Google — ${new Date().toLocaleDateString('pt-BR')}]\nDor: ${analise.dor_principal}\nElogio: ${analise.elogio_principal}\nOportunidade: ${analise.oportunidade}`
-        db.prepare(`UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(nota, leadId)
+        await db.execute({
+          sql: `UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+          args: [nota, leadId],
+        })
       }
 
       return NextResponse.json(analise)
