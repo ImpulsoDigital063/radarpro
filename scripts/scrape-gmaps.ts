@@ -79,8 +79,8 @@ async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendap
   const page = await context.newPage()
 
   const url = `https://www.google.com/maps/search/${encodeURIComponent(query)}`
-  await page.goto(url, { waitUntil: 'networkidle' })
-  await page.waitForTimeout(2000)
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
+  await page.waitForTimeout(3000)
 
   let total = 0
   let novos  = 0

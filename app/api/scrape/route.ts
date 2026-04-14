@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   const scriptPath = path.join(process.cwd(), script)
 
   const args = ['tsx', scriptPath, '--tipo', tipo]
-  if (query) args.push('--query', `${query} Palmas TO`)
+  if (query) args.push(`--query=${query} Palmas TO`)
 
   // shell: true resolve o problema do npx não ser encontrado no Windows
   const child = spawn('npx', args, {
