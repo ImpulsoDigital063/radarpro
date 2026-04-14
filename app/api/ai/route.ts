@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { gerarAbordagem, calcularScoreIA, chat } from '@/lib/gemini'
+import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup } from '@/lib/gemini'
 import { analisarSiteLead } from '@/lib/site-analyzer'
+import { analisarAvaliacoesGMaps } from '@/lib/reviews-analyzer'
 import { atualizarMensagem } from '@/lib/db'
 import db from '@/lib/db'
 
@@ -58,6 +59,45 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(resultado)
+    }
+
+    // Gera follow-up personalizado
+    if (action === 'followup') {
+      const { lead } = body
+      if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
+
+      const resultado = await gerarFollowup(lead)
+
+      // Salva a nova mensagem e a data de follow-up no banco
+      if (lead.id) {
+        const hoje = new Date()
+        hoje.setDate(hoje.getDate() + resultado.dias)
+        const dataFollowup = hoje.toISOString().split('T')[0]
+
+        db.prepare(`
+          UPDATE leads
+          SET mensagem = ?, proximo_followup = ?, atualizado_em = datetime('now','localtime')
+          WHERE id = ?
+        `).run(resultado.mensagem, dataFollowup, lead.id)
+      }
+
+      return NextResponse.json(resultado)
+    }
+
+    // Análise de avaliações do Google Maps
+    if (action === 'avaliar-reviews') {
+      const { mapsUrl, nome, leadId } = body
+      if (!mapsUrl || !nome) return NextResponse.json({ error: 'mapsUrl e nome obrigatórios' }, { status: 400 })
+
+      const analise = await analisarAvaliacoesGMaps(mapsUrl, nome)
+
+      // Salva oportunidade nas notas do lead
+      if (leadId && analise.oportunidade && analise.oportunidade !== 'Visitar o perfil do Google e ler as avaliações') {
+        const nota = `[Avaliações Google — ${new Date().toLocaleDateString('pt-BR')}]\nDor: ${analise.dor_principal}\nElogio: ${analise.elogio_principal}\nOportunidade: ${analise.oportunidade}`
+        db.prepare(`UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`).run(nota, leadId)
+      }
+
+      return NextResponse.json(analise)
     }
 
     // Chat livre com o agente

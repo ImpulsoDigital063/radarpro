@@ -80,8 +80,12 @@ export default function RadarPRO() {
   const [enriquecendo, setEnriquecendo]   = useState<number | null>(null)
   const [scoreIA, setScoreIA]             = useState<Record<number, { score: number; justificativa: string }>>({})
   const [calculandoScore, setCalculandoScore] = useState<number | null>(null)
-  const [analiseSite, setAnaliseSite]     = useState<Record<number, any>>({})
-  const [analisandoSite, setAnalisandoSite] = useState<number | null>(null)
+  const [analiseSite, setAnaliseSite]         = useState<Record<number, any>>({})
+  const [analisandoSite, setAnalisandoSite]   = useState<number | null>(null)
+  const [avaliacoesIA, setAvaliacoesIA]             = useState<Record<number, any>>({})
+  const [analisandoAvaliacoes, setAnalisandoAvaliacoes] = useState<number | null>(null)
+  const [followupIA, setFollowupIA]                 = useState<Record<number, any>>({})
+  const [gerandoFollowup, setGerandoFollowup]       = useState<number | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar'>('leads')
 
   // Analisador
@@ -229,6 +233,52 @@ export default function RadarPRO() {
       else alert('Erro: ' + data.error)
     } finally {
       setAnalisandoSite(null)
+    }
+  }
+
+  async function analisarAvaliacoes(lead: Lead) {
+    if (!lead.site) return
+    setAnalisandoAvaliacoes(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'avaliar-reviews', mapsUrl: lead.site, nome: lead.nome, leadId: lead.id }),
+      })
+      const data = await r.json()
+      if (!data.error) setAvaliacoesIA(prev => ({ ...prev, [lead.id]: data }))
+      else alert('Erro: ' + data.error)
+    } finally {
+      setAnalisandoAvaliacoes(null)
+    }
+  }
+
+  async function gerarFollowupLead(lead: Lead) {
+    setGerandoFollowup(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'followup',
+          lead: {
+            ...lead,
+            mensagem_enviada: lead.mensagem,
+            notas: lead.notas,
+          },
+        }),
+      })
+      const data = await r.json()
+      if (data.error) { alert('Erro IA: ' + data.error); return }
+      setFollowupIA(prev => ({ ...prev, [lead.id]: data }))
+      // Atualiza a mensagem na lista local também
+      setLeads(prev => prev.map(l => l.id === lead.id
+        ? { ...l, mensagem: data.mensagem, proximo_followup: data.dataFollowup ?? l.proximo_followup }
+        : l
+      ))
+      await carregar()  // recarrega para pegar data atualizada do banco
+    } finally {
+      setGerandoFollowup(null)
     }
   }
 
@@ -702,11 +752,19 @@ export default function RadarPRO() {
                               )}
                             </div>
 
-                            {/* Analisar site */}
+                            {/* Analisar site (só para sites reais, não Maps) */}
                             {lead.site && !lead.site.includes('google.com/maps') && (
                               <button onClick={() => analisarSite(lead)} disabled={analisandoSite === lead.id}
                                 style={{ padding: '5px 12px', background: '#0A1A2E', border: '1px solid #2563EB40', borderRadius: '6px', color: analisandoSite === lead.id ? muted : '#60A5FA', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
                                 {analisandoSite === lead.id ? '⏳ Analisando...' : '🔍 Analisar site'}
+                              </button>
+                            )}
+
+                            {/* Ver avaliações Google (só para leads do Maps) */}
+                            {lead.nota && lead.site?.includes('google.com/maps') && (
+                              <button onClick={() => analisarAvaliacoes(lead)} disabled={analisandoAvaliacoes === lead.id}
+                                style={{ padding: '5px 12px', background: '#0A1A0A', border: '1px solid #16A34A40', borderRadius: '6px', color: analisandoAvaliacoes === lead.id ? muted : '#4ADE80', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                                {analisandoAvaliacoes === lead.id ? '⏳ Lendo avaliações...' : `📊 Ver avaliações (${lead.num_avaliacoes ?? lead.nota}★)`}
                               </button>
                             )}
                           </div>
@@ -727,17 +785,67 @@ export default function RadarPRO() {
                             </div>
                           )}
 
+                          {/* Resultado análise de avaliações */}
+                          {avaliacoesIA[lead.id] && (
+                            <div style={{ background: '#0A1A0A', border: '1px solid #16A34A30', borderRadius: '8px', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <p style={{ fontSize: '10px', color: '#4ADE80', fontWeight: 700, margin: 0, textTransform: 'uppercase' }}>📊 Avaliações Google</p>
+                                <span style={{ fontSize: '11px', color: muted }}>
+                                  ⭐ {avaliacoesIA[lead.id].media} · {avaliacoesIA[lead.id].total} aval.
+                                </span>
+                              </div>
+                              <p style={{ fontSize: '11px', color: '#FCA5A5', margin: 0 }}>
+                                <span style={{ color: muted }}>Dor principal:</span> {avaliacoesIA[lead.id].dor_principal}
+                              </p>
+                              <p style={{ fontSize: '11px', color: '#86EFAC', margin: 0 }}>
+                                <span style={{ color: muted }}>Mais elogiam:</span> {avaliacoesIA[lead.id].elogio_principal}
+                              </p>
+                              <p style={{ fontSize: '11px', color: '#FCD34D', margin: 0, fontWeight: 600 }}>
+                                💡 {avaliacoesIA[lead.id].oportunidade}
+                              </p>
+                              {avaliacoesIA[lead.id].avaliacoes?.length > 0 && (
+                                <details style={{ marginTop: '4px' }}>
+                                  <summary style={{ fontSize: '10px', color: muted, cursor: 'pointer' }}>
+                                    Ver {avaliacoesIA[lead.id].avaliacoes.length} avaliações coletadas
+                                  </summary>
+                                  <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                    {avaliacoesIA[lead.id].avaliacoes.slice(0, 5).map((av: string, i: number) => (
+                                      <p key={i} style={{ fontSize: '11px', color: muted, margin: 0, paddingLeft: '8px', borderLeft: '2px solid #374151' }}>
+                                        "{av.slice(0, 120)}{av.length > 120 ? '...' : ''}"
+                                      </p>
+                                    ))}
+                                  </div>
+                                </details>
+                              )}
+                            </div>
+                          )}
+
                           {/* Mensagem editável */}
                           <div>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-                              <p style={{ fontSize: '10px', color: muted, textTransform: 'uppercase', fontWeight: 700, margin: 0 }}>Script de abordagem</p>
-                              <button onClick={() => gerarComIA(lead)} disabled={gerandoIA === lead.id} style={{
-                                padding: '4px 10px', background: gerandoIA === lead.id ? '#374151' : '#7C3AED',
-                                border: 'none', borderRadius: '5px', color: '#fff', fontSize: '10px', fontWeight: 700,
-                                cursor: gerandoIA === lead.id ? 'wait' : 'pointer',
-                              }}>
-                                {gerandoIA === lead.id ? '⏳ Gerando...' : '✨ Gerar com IA'}
-                              </button>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px', gap: '6px', flexWrap: 'wrap' }}>
+                              <p style={{ fontSize: '10px', color: muted, textTransform: 'uppercase', fontWeight: 700, margin: 0 }}>
+                                {lead.status !== 'novo' ? 'Mensagem de follow-up' : 'Script de abordagem'}
+                              </p>
+                              <div style={{ display: 'flex', gap: '6px' }}>
+                                {lead.status === 'novo' && (
+                                  <button onClick={() => gerarComIA(lead)} disabled={gerandoIA === lead.id} style={{
+                                    padding: '4px 10px', background: gerandoIA === lead.id ? '#374151' : '#7C3AED',
+                                    border: 'none', borderRadius: '5px', color: '#fff', fontSize: '10px', fontWeight: 700,
+                                    cursor: gerandoIA === lead.id ? 'wait' : 'pointer',
+                                  }}>
+                                    {gerandoIA === lead.id ? '⏳ Gerando...' : '✨ Gerar com IA'}
+                                  </button>
+                                )}
+                                {lead.status !== 'novo' && lead.status !== 'fechado' && lead.status !== 'sem_interesse' && (
+                                  <button onClick={() => gerarFollowupLead(lead)} disabled={gerandoFollowup === lead.id} style={{
+                                    padding: '4px 10px', background: gerandoFollowup === lead.id ? '#374151' : '#D97706',
+                                    border: 'none', borderRadius: '5px', color: '#fff', fontSize: '10px', fontWeight: 700,
+                                    cursor: gerandoFollowup === lead.id ? 'wait' : 'pointer',
+                                  }}>
+                                    {gerandoFollowup === lead.id ? '⏳ Gerando...' : '🔄 Gerar follow-up'}
+                                  </button>
+                                )}
+                              </div>
                             </div>
                             <textarea
                               value={leads.find(l => l.id === lead.id)?.mensagem ?? ''}
@@ -747,13 +855,26 @@ export default function RadarPRO() {
                               style={{ width: '100%', padding: '10px', background: '#0F1117', border: `1px solid ${brd}`, borderRadius: '7px', color: txt, fontSize: '12px', lineHeight: 1.6, resize: 'vertical', outline: 'none', boxSizing: 'border-box' }}
                             />
 
-                            {/* Resultado da IA */}
+                            {/* Resultado da IA — abordagem inicial */}
                             {iaResultado[lead.id] && (
                               <div style={{ marginTop: '8px', padding: '10px 12px', background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '7px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                                 <p style={{ fontSize: '9px', color: '#A78BFA', fontWeight: 700, margin: 0, textTransform: 'uppercase' }}>✨ Análise da IA</p>
                                 <p style={{ fontSize: '11px', color: txt, margin: 0 }}><span style={{ color: muted }}>Diagnóstico:</span> {iaResultado[lead.id].diagnostico}</p>
                                 <p style={{ fontSize: '11px', color: txt, margin: 0 }}><span style={{ color: muted }}>Argumento:</span> {iaResultado[lead.id].argumento}</p>
                                 <p style={{ fontSize: '11px', color: '#FCD34D', margin: 0 }}><span style={{ color: muted }}>Urgência:</span> {iaResultado[lead.id].urgencia}</p>
+                              </div>
+                            )}
+
+                            {/* Resultado do follow-up */}
+                            {followupIA[lead.id] && (
+                              <div style={{ marginTop: '8px', padding: '10px 12px', background: '#1A1000', border: '1px solid #D9770640', borderRadius: '7px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                  <p style={{ fontSize: '9px', color: '#FCD34D', fontWeight: 700, margin: 0, textTransform: 'uppercase' }}>🔄 Follow-up gerado</p>
+                                  <span style={{ fontSize: '10px', color: '#F59E0B', background: '#F59E0B15', padding: '1px 7px', borderRadius: '4px', fontWeight: 600 }}>
+                                    📅 {followupIA[lead.id].quando}
+                                  </span>
+                                </div>
+                                <p style={{ fontSize: '11px', color: muted, margin: 0 }}><span style={{ color: '#9CA3AF' }}>Ângulo:</span> {followupIA[lead.id].angulo}</p>
                               </div>
                             )}
 

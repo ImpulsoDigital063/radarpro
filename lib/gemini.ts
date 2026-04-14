@@ -253,6 +253,96 @@ Responda EXATAMENTE neste JSON (sem markdown):
 }
 
 /**
+ * Gera mensagem de follow-up personalizada com base no histórico do lead
+ */
+export type RespostaFollowup = {
+  mensagem: string        // próxima mensagem para enviar no WhatsApp
+  quando: string          // quando enviar (ex: "Amanhã às 10h", "Em 3 dias")
+  dias: number            // dias a partir de hoje para o próximo contato
+  angulo: string          // ângulo/abordagem desta etapa
+}
+
+export async function gerarFollowup(lead: DadosLead & {
+  status: string
+  mensagem_enviada?: string | null
+  notas?: string | null
+}): Promise<RespostaFollowup> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.0-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const statusLabel: Record<string, string> = {
+    novo:                'ainda não foi abordado',
+    abordado:            'já recebeu a primeira mensagem mas não respondeu',
+    respondeu:           'respondeu, está em contato',
+    consultoria_marcada: 'consultoria marcada',
+    consultoria_feita:   'consultoria já foi feita',
+    proposta_enviada:    'proposta enviada, aguardando decisão',
+    fechado:             'fechou negócio',
+    sem_interesse:       'disse que não tem interesse',
+  }
+
+  const produto = lead.tipo === 'lp'
+    ? 'Landing Page (R$499)'
+    : lead.tipo === 'shopify'
+      ? 'Loja Shopify (a partir de R$599)'
+      : 'AgendaPRO (R$67/mês)'
+
+  const prompt = `Você precisa gerar a próxima mensagem de follow-up para este lead.
+
+## Dados do lead
+- Nome: ${lead.nome}
+- Categoria: ${lead.categoria}
+- Produto alvo: ${produto}
+- Status atual: ${statusLabel[lead.status] ?? lead.status}
+- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} avaliações)` : ''}
+- Seguidores Instagram: ${lead.instagram_seguidores ?? 'desconhecido'}
+
+## Histórico
+- Primeira mensagem enviada: ${lead.mensagem_enviada ? `"${lead.mensagem_enviada}"` : 'não enviada ainda'}
+- Anotações: ${lead.notas ?? 'nenhuma'}
+
+## Regras para o follow-up
+- Não repetir o mesmo ângulo da primeira mensagem
+- Trazer algo novo: uma dor diferente, um resultado de cliente, uma pergunta direta
+- Máximo 3 linhas, termina com pergunta curta
+- Não revelar preço ainda (exceto se status for proposta_enviada)
+- Se o lead disse que vai pensar: follow-up em 3 dias com prova social
+- Se o lead não respondeu: follow-up em 2 dias com ângulo diferente
+- Se a consultoria foi feita: follow-up com proposta clara em 1 dia
+
+Responda EXATAMENTE neste JSON (sem markdown):
+{
+  "mensagem": "<próxima mensagem de WhatsApp — máximo 3 linhas, termina com pergunta>",
+  "quando": "<quando enviar, ex: 'Amanhã de manhã', 'Em 2 dias', 'Esta semana'>",
+  "dias": <número de dias a partir de hoje para enviar>,
+  "angulo": "<qual ângulo/abordagem está usando neste follow-up em 1 frase>"
+}`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    const data = JSON.parse(texto)
+    return {
+      mensagem: data.mensagem,
+      quando:   data.quando ?? 'Em 2 dias',
+      dias:     Math.max(1, Math.min(30, Number(data.dias) || 2)),
+      angulo:   data.angulo ?? 'Follow-up padrão',
+    }
+  } catch {
+    return {
+      mensagem: 'Oi, tudo bem? Queria saber se teve chance de pensar no que conversamos.',
+      quando:   'Em 2 dias',
+      dias:     2,
+      angulo:   'Retomada simples',
+    }
+  }
+}
+
+/**
  * Responde perguntas livres sobre prospecção/vendas no contexto da Impulso Digital
  */
 export async function chat(historico: { role: 'user' | 'model'; text: string }[], pergunta: string): Promise<string> {
