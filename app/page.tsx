@@ -77,7 +77,9 @@ export default function RadarPRO() {
   const [tipoBusca, setTipoBusca]   = useState<'lp' | 'shopify' | 'agendapro'>('lp')
   const [expandido, setExpandido]     = useState<number | null>(null)
   const [copiado, setCopiado]         = useState<string | null>(null)
-  const [enriquecendo, setEnriquecendo] = useState<number | null>(null)
+  const [enriquecendo, setEnriquecendo]   = useState<number | null>(null)
+  const [scoreIA, setScoreIA]             = useState<Record<number, { score: number; justificativa: string }>>({})
+  const [calculandoScore, setCalculandoScore] = useState<number | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar'>('leads')
 
   // Analisador
@@ -190,6 +192,24 @@ export default function RadarPRO() {
       setIaAnalise({ diagnostico: data.diagnostico, argumento: data.argumento, urgencia: data.urgencia })
     } finally {
       setGerandoIAAnalise(false)
+    }
+  }
+
+  async function avaliarScoreIA(lead: Lead) {
+    setCalculandoScore(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'score', lead }),
+      })
+      const data = await r.json()
+      if (!data.error) {
+        setScoreIA(prev => ({ ...prev, [lead.id]: data }))
+        setLeads(prev => prev.map(l => l.id === lead.id ? { ...l, score: data.score } : l))
+      }
+    } finally {
+      setCalculandoScore(null)
     }
   }
 
@@ -643,6 +663,20 @@ export default function RadarPRO() {
                                 style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#4ADE80', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}>
                                 💬 WhatsApp
                               </a>
+                            )}
+                          </div>
+
+                          {/* Score IA */}
+                          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                            <button onClick={() => avaliarScoreIA(lead)} disabled={calculandoScore === lead.id}
+                              style={{ padding: '5px 12px', background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '6px', color: calculandoScore === lead.id ? muted : '#A78BFA', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                              {calculandoScore === lead.id ? '⏳ Avaliando...' : '🧠 Score IA'}
+                            </button>
+                            {scoreIA[lead.id] && (
+                              <div style={{ background: '#1A0A2E', border: '1px solid #7C3AED40', borderRadius: '6px', padding: '6px 10px', flex: 1 }}>
+                                <span style={{ color: scoreInfo(scoreIA[lead.id].score).cor, fontWeight: 800, fontSize: '13px' }}>{scoreIA[lead.id].score}/10</span>
+                                <span style={{ color: muted, fontSize: '11px' }}> — {scoreIA[lead.id].justificativa}</span>
+                              </div>
                             )}
                           </div>
 

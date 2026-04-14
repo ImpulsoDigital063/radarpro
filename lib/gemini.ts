@@ -178,6 +178,46 @@ ${conteudo.slice(0, 3000)}
 }
 
 /**
+ * Calcula score inteligente 0-10 com justificativa via IA
+ */
+export async function calcularScoreIA(lead: DadosLead): Promise<{ score: number; justificativa: string }> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-1.5-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const prompt = `Avalie o potencial de venda deste lead para o produto ${lead.tipo === 'lp' ? 'Landing Page (R$499)' : lead.tipo === 'shopify' ? 'Shopify (a partir de R$599)' : 'AgendaPRO (R$67/mês)'}.
+
+Dados do lead:
+- Nome: ${lead.nome}
+- Categoria: ${lead.categoria}
+- Telefone: ${lead.telefone ?? 'não encontrado'}
+- Instagram: ${lead.instagram ?? 'não tem'} (${lead.instagram_seguidores ?? '?'} seguidores)
+- Bio Instagram: ${lead.instagram_bio ?? 'não disponível'}
+- Tem site: ${lead.tem_site ? 'sim' : 'não'}
+- Tem e-commerce: ${lead.tem_ecommerce ? 'sim' : 'não'}
+- Tem agendamento online: ${lead.tem_agendamento ? 'sim' : 'não'}
+- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} avaliações)` : ''}
+
+Responda EXATAMENTE neste JSON (sem markdown):
+{
+  "score": <número de 0 a 10>,
+  "justificativa": "<2 linhas explicando o score — o que torna esse lead quente ou frio para esse produto específico>"
+}`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    const data = JSON.parse(texto)
+    return { score: Math.min(10, Math.max(0, Number(data.score))), justificativa: data.justificativa }
+  } catch {
+    return { score: 5, justificativa: 'Análise não disponível' }
+  }
+}
+
+/**
  * Responde perguntas livres sobre prospecção/vendas no contexto da Impulso Digital
  */
 export async function chat(historico: { role: 'user' | 'model'; text: string }[], pergunta: string): Promise<string> {

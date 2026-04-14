@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { gerarAbordagem, chat } from '@/lib/gemini'
+import { gerarAbordagem, calcularScoreIA, chat } from '@/lib/gemini'
 import { atualizarMensagem } from '@/lib/db'
+import db from '@/lib/db'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -24,6 +25,22 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(resposta)
+    }
+
+    // Score inteligente via IA
+    if (action === 'score') {
+      const { lead } = body
+      if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
+
+      const resultado = await calcularScoreIA(lead)
+
+      // Atualiza o score no banco
+      if (lead.id) {
+        db.prepare(`UPDATE leads SET score = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`)
+          .run(resultado.score, lead.id)
+      }
+
+      return NextResponse.json(resultado)
     }
 
     // Chat livre com o agente
