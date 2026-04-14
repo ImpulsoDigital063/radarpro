@@ -73,6 +73,8 @@ export default function RadarPRO() {
   const [tipoF, setTipoF]         = useState('todos')
   const [statusF, setStatusF]     = useState('todos')
   const [buscando, setBuscando]   = useState<string | null>(null)
+  const [queryBusca, setQueryBusca] = useState('')
+  const [tipoBusca, setTipoBusca]   = useState<'lp' | 'shopify' | 'agendapro'>('lp')
   const [expandido, setExpandido] = useState<number | null>(null)
   const [copiado, setCopiado]     = useState<string | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar'>('leads')
@@ -112,24 +114,22 @@ export default function RadarPRO() {
       await carregar()
       // Verifica se a busca ainda está rodando
       const status = await fetch('/api/scrape').then(r => r.json()).catch(() => ({ emAndamento: {} }))
-      if (!status.emAndamento[buscando]) {
+      if (buscando && !status.emAndamento[buscando]) {
         setBuscando(null)
       }
     }, 10000)
     return () => clearInterval(intervalo)
   }, [buscando, carregar])
 
-  async function buscar(tipo: string) {
-    if (buscando) return
+  async function buscar() {
+    if (buscando || !queryBusca.trim()) return
     const r = await fetch('/api/scrape', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tipo }),
+      body: JSON.stringify({ tipo: tipoBusca, query: queryBusca.trim() }),
     })
     const data = await r.json()
-    if (data.ok) {
-      setBuscando(tipo) // polling assume daqui
-    }
+    if (data.ok) setBuscando(data.chave)
   }
 
   async function setStatus(id: number, status: string) {
@@ -239,22 +239,55 @@ export default function RadarPRO() {
     <div style={{ minHeight: '100vh', background: bg, color: txt, fontFamily: 'system-ui, sans-serif' }}>
 
       {/* ── Header ── */}
-      <div style={{ borderBottom: `1px solid ${brd}`, padding: '18px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div>
+      <div style={{ borderBottom: `1px solid ${brd}`, padding: '16px 32px', display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+        <div style={{ marginRight: '8px' }}>
           <h1 style={{ fontSize: '20px', fontWeight: 800, margin: 0 }}>radar<span style={{ color: '#2563EB' }}>PRO</span></h1>
-          <p style={{ fontSize: '11px', color: muted, margin: '2px 0 0' }}>Prospecção automática — Impulso Digital</p>
+          <p style={{ fontSize: '10px', color: muted, margin: '2px 0 0' }}>Impulso Digital</p>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
+
+        {/* Seletor de tipo */}
+        <div style={{ display: 'flex', gap: '4px' }}>
           {(['lp', 'shopify', 'agendapro'] as const).map(t => (
-            <button key={t} onClick={() => buscar(t)} disabled={!!buscando} style={{
-              padding: '7px 14px', background: buscando === t ? '#374151' : TIPO[t].cor,
-              color: '#fff', border: 'none', borderRadius: '7px', fontSize: '12px', fontWeight: 600,
-              cursor: buscando ? 'wait' : 'pointer', opacity: buscando && buscando !== t ? 0.4 : 1,
+            <button key={t} onClick={() => setTipoBusca(t)} style={{
+              padding: '6px 12px', borderRadius: '6px', fontSize: '11px', fontWeight: 700,
+              border: `2px solid ${tipoBusca === t ? TIPO[t].cor : 'transparent'}`,
+              background: tipoBusca === t ? TIPO[t].cor + '20' : '#1F2937',
+              color: tipoBusca === t ? TIPO[t].cor : muted, cursor: 'pointer',
             }}>
-              {buscando === t ? '⏳ Buscando...' : `${TIPO[t].emoji} ${TIPO[t].label}`}
+              {TIPO[t].emoji} {TIPO[t].label}
             </button>
           ))}
         </div>
+
+        {/* Campo de busca */}
+        <div style={{ display: 'flex', gap: '6px', flex: 1, maxWidth: '500px' }}>
+          <input
+            value={queryBusca}
+            onChange={e => setQueryBusca(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && buscar()}
+            placeholder='Ex: "nutricionista", "barbearia", "clínica estética"...'
+            style={{
+              flex: 1, padding: '8px 14px', background: '#1F2937',
+              border: `1px solid ${brd}`, borderRadius: '7px',
+              color: txt, fontSize: '12px', outline: 'none',
+            }}
+          />
+          <button onClick={buscar} disabled={!!buscando || !queryBusca.trim()} style={{
+            padding: '8px 18px', background: buscando ? '#374151' : TIPO[tipoBusca].cor,
+            color: '#fff', border: 'none', borderRadius: '7px',
+            fontSize: '12px', fontWeight: 700,
+            cursor: buscando ? 'wait' : !queryBusca.trim() ? 'not-allowed' : 'pointer',
+            opacity: !queryBusca.trim() ? 0.5 : 1, whiteSpace: 'nowrap',
+          }}>
+            {buscando ? '⏳ Buscando...' : '🔍 Buscar'}
+          </button>
+        </div>
+
+        {buscando && (
+          <p style={{ fontSize: '11px', color: '#F59E0B', margin: 0 }}>
+            Buscando no Google Maps... os leads aparecerão em instantes
+          </p>
+        )}
       </div>
 
       {/* ── Stats ── */}
