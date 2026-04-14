@@ -12,7 +12,11 @@
     "radar:agendapro": "tsx scripts/scrape-gmaps.ts --tipo agendapro",
     "radar:ig:lp": "tsx scripts/scrape-instagram.ts --tipo lp",
     "radar:ig:shop": "tsx scripts/scrape-instagram.ts --tipo shopify",
-    "radar:ig:agenda": "tsx scripts/scrape-instagram.ts --tipo agendapro"
+    "radar:ig:agenda": "tsx scripts/scrape-instagram.ts --tipo agendapro",
+    "enriquecer": "tsx scripts/enriquecer.ts",
+    "enriquecer:lp": "tsx scripts/enriquecer.ts --tipo lp",
+    "enriquecer:shopify": "tsx scripts/enriquecer.ts --tipo shopify",
+    "enriquecer:agenda": "tsx scripts/enriquecer.ts --tipo agendapro"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

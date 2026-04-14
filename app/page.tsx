@@ -75,8 +75,9 @@ export default function RadarPRO() {
   const [buscando, setBuscando]   = useState<string | null>(null)
   const [queryBusca, setQueryBusca] = useState('')
   const [tipoBusca, setTipoBusca]   = useState<'lp' | 'shopify' | 'agendapro'>('lp')
-  const [expandido, setExpandido] = useState<number | null>(null)
-  const [copiado, setCopiado]     = useState<string | null>(null)
+  const [expandido, setExpandido]     = useState<number | null>(null)
+  const [copiado, setCopiado]         = useState<string | null>(null)
+  const [enriquecendo, setEnriquecendo] = useState<number | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar'>('leads')
 
   // Analisador
@@ -189,6 +190,23 @@ export default function RadarPRO() {
       setIaAnalise({ diagnostico: data.diagnostico, argumento: data.argumento, urgencia: data.urgencia })
     } finally {
       setGerandoIAAnalise(false)
+    }
+  }
+
+  async function enriquecerLead(leadId: number) {
+    setEnriquecendo(leadId)
+    try {
+      const r = await fetch('/api/enrich', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: leadId }),
+      })
+      const data = await r.json()
+      if (data.resultado?.instagram) {
+        await carregar()
+      }
+    } finally {
+      setEnriquecendo(null)
     }
   }
 
@@ -600,12 +618,19 @@ export default function RadarPRO() {
                         <div style={{ borderTop: `1px solid ${brd}`, padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
                           {/* Links rápidos */}
-                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
                             {lead.instagram_url && (
                               <a href={lead.instagram_url} target="_blank" rel="noopener noreferrer"
                                 style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#E1306C', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}>
-                                📸 Instagram
+                                📸 {lead.instagram ?? 'Instagram'}
+                                {lead.instagram_seguidores && <span style={{ color: muted, fontWeight: 400 }}> · {lead.instagram_seguidores} seg.</span>}
                               </a>
+                            )}
+                            {!lead.instagram_url && (
+                              <button onClick={() => enriquecerLead(lead.id)} disabled={enriquecendo === lead.id}
+                                style={{ padding: '5px 12px', background: '#1F2937', border: `1px dashed #374151`, borderRadius: '6px', color: enriquecendo === lead.id ? muted : '#E1306C', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}>
+                                {enriquecendo === lead.id ? '⏳ Buscando IG...' : '🔎 Buscar Instagram'}
+                              </button>
                             )}
                             {lead.site && (
                               <a href={lead.site} target="_blank" rel="noopener noreferrer"
