@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup } from '@/lib/gemini'
+import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje } from '@/lib/gemini'
 import { analisarSiteLead } from '@/lib/site-analyzer'
 import { analisarAvaliacoesGMaps } from '@/lib/reviews-analyzer'
 import { atualizarMensagem } from '@/lib/db'
@@ -98,6 +98,16 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(analise)
+    }
+
+    // Plano de prospecção para hoje
+    if (action === 'prospectar-hoje') {
+      const { leads: leadsParam } = body
+      if (!leadsParam || !Array.isArray(leadsParam)) {
+        return NextResponse.json({ error: 'leads obrigatório (array)' }, { status: 400 })
+      }
+      const plano = await gerarPlanoHoje(leadsParam)
+      return NextResponse.json({ plano })
     }
 
     // Chat livre com o agente

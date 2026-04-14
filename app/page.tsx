@@ -86,7 +86,9 @@ export default function RadarPRO() {
   const [analisandoAvaliacoes, setAnalisandoAvaliacoes] = useState<number | null>(null)
   const [followupIA, setFollowupIA]                 = useState<Record<number, any>>({})
   const [gerandoFollowup, setGerandoFollowup]       = useState<number | null>(null)
-  const [aba, setAba]             = useState<'leads' | 'analisar'>('leads')
+  const [aba, setAba]             = useState<'leads' | 'analisar' | 'hoje'>('leads')
+  const [planoHoje, setPlanoHoje]   = useState<{ lead: Lead; prioridade: number; motivo: string; acao: string }[] | null>(null)
+  const [gerandoHoje, setGerandoHoje] = useState(false)
 
   // Analisador
   const [linkInput, setLinkInput]   = useState('')
@@ -299,6 +301,34 @@ export default function RadarPRO() {
     }
   }
 
+  async function gerarProspectarHoje() {
+    setGerandoHoje(true)
+    setPlanoHoje(null)
+    try {
+      // Pega todos os leads (sem filtro) para a IA decidir
+      const todosLeads = await fetch('/api/leads').then(r => r.json())
+      const ativos = todosLeads.filter((l: Lead) => l.status !== 'fechado' && l.status !== 'sem_interesse')
+
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'prospectar-hoje', leads: ativos }),
+      })
+      const data = await r.json()
+      if (data.error) { alert('Erro IA: ' + data.error); return }
+
+      // Mapeia os IDs para os leads completos
+      const mapa = new Map(todosLeads.map((l: Lead) => [l.id, l]))
+      const comLead = (data.plano as any[])
+        .map(p => ({ ...p, lead: mapa.get(p.lead_id) }))
+        .filter(p => p.lead)
+
+      setPlanoHoje(comLead)
+    } finally {
+      setGerandoHoje(false)
+    }
+  }
+
   async function analisarLink() {
     if (!linkInput.trim()) return
     setAnalisando(true)
@@ -420,7 +450,7 @@ export default function RadarPRO() {
 
       {/* ── Abas ── */}
       <div style={{ display: 'flex', gap: '0', borderBottom: `1px solid ${brd}` }}>
-        {[{ id: 'leads', label: '📋 Leads' }, { id: 'analisar', label: '🔍 Analisar link' }].map(a => (
+        {[{ id: 'leads', label: '📋 Leads' }, { id: 'hoje', label: '🎯 Prospectar hoje' }, { id: 'analisar', label: '🔍 Analisar link' }].map(a => (
           <button key={a.id} onClick={() => setAba(a.id as any)} style={{
             padding: '12px 24px', background: 'transparent', border: 'none',
             borderBottom: aba === a.id ? '2px solid #2563EB' : '2px solid transparent',
@@ -428,6 +458,120 @@ export default function RadarPRO() {
           }}>{a.label}</button>
         ))}
       </div>
+
+      {/* ══════════════════════════════════════════════════════════
+          ABA PROSPECTAR HOJE
+      ══════════════════════════════════════════════════════════ */}
+      {aba === 'hoje' && (
+        <div style={{ padding: '32px', maxWidth: '800px' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '24px', gap: '16px' }}>
+            <div>
+              <h2 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 6px' }}>🎯 Quem abordar hoje?</h2>
+              <p style={{ color: muted, fontSize: '13px', margin: 0 }}>
+                A IA analisa toda a base e decide os 5 leads mais prioritários para hoje — com motivo específico e ação recomendada.
+              </p>
+            </div>
+            <button onClick={gerarProspectarHoje} disabled={gerandoHoje} style={{
+              padding: '10px 20px', background: gerandoHoje ? '#374151' : '#2563EB',
+              border: 'none', borderRadius: '8px', color: '#fff', fontSize: '13px', fontWeight: 700,
+              cursor: gerandoHoje ? 'wait' : 'pointer', whiteSpace: 'nowrap',
+            }}>
+              {gerandoHoje ? '⏳ Analisando...' : '🎯 Gerar plano'}
+            </button>
+          </div>
+
+          {!planoHoje && !gerandoHoje && (
+            <div style={{ textAlign: 'center', padding: '60px 0', color: '#4B5563' }}>
+              <p style={{ fontSize: '40px', margin: '0 0 12px' }}>🎯</p>
+              <p style={{ fontSize: '14px', color: muted }}>Clique em "Gerar plano" para a IA decidir quem abordar hoje</p>
+            </div>
+          )}
+
+          {gerandoHoje && (
+            <div style={{ textAlign: 'center', padding: '60px 0', color: muted }}>
+              <p style={{ fontSize: '13px' }}>Analisando {leads.length > 0 ? leads.length : 'todos os'} leads...</p>
+            </div>
+          )}
+
+          {planoHoje && planoHoje.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {planoHoje.map((item, idx) => {
+                const lead = item.lead as Lead
+                const si = scoreInfo(lead.score ?? 0)
+                const ti = TIPO[lead.tipo]
+                const wLink = lead.telefone && lead.mensagem ? whatsappLink(lead.telefone, lead.mensagem) : null
+                const prioColors = ['#EF4444', '#F59E0B', '#3B82F6', '#6B7280', '#6B7280']
+                const prioColor = prioColors[idx] ?? '#6B7280'
+
+                return (
+                  <div key={lead.id} style={{ background: card, border: `1px solid ${brd}`, borderRadius: '12px', overflow: 'hidden' }}>
+                    <div style={{ padding: '16px', display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: '14px', alignItems: 'start' }}>
+
+                      {/* Número de prioridade */}
+                      <div style={{ textAlign: 'center', minWidth: '36px' }}>
+                        <div style={{
+                          width: '32px', height: '32px', borderRadius: '50%',
+                          background: prioColor + '20', border: `2px solid ${prioColor}`,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          fontSize: '14px', fontWeight: 800, color: prioColor,
+                        }}>
+                          {item.prioridade}
+                        </div>
+                      </div>
+
+                      {/* Info */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                          <span style={{ padding: '2px 7px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: ti.cor + '25', color: ti.cor }}>
+                            {ti.emoji} {ti.label}
+                          </span>
+                          <span style={{ fontSize: '14px', fontWeight: 700 }}>{lead.nome}</span>
+                          <span style={{ fontSize: '11px', color: si.cor }}>{si.emoji} {lead.score}/10</span>
+                        </div>
+                        <p style={{ fontSize: '12px', color: muted, margin: 0 }}>
+                          {lead.categoria}
+                          {lead.telefone && ` · 📱 ${lead.telefone}`}
+                          {lead.nota && ` · ⭐ ${lead.nota}`}
+                        </p>
+
+                        {/* Motivo + ação */}
+                        <div style={{ background: prioColor + '10', border: `1px solid ${prioColor}20`, borderRadius: '6px', padding: '8px 10px' }}>
+                          <p style={{ fontSize: '12px', color: txt, margin: '0 0 3px' }}>
+                            <span style={{ color: prioColor, fontWeight: 700 }}>Por que hoje:</span> {item.motivo}
+                          </p>
+                          <p style={{ fontSize: '11px', color: muted, margin: 0 }}>
+                            Ação: <span style={{ color: '#FCD34D', fontWeight: 600 }}>{item.acao}</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Botões */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-end' }}>
+                        {wLink && (
+                          <a href={wLink} target="_blank" rel="noopener noreferrer"
+                            onClick={() => setStatus(lead.id, 'abordado')}
+                            style={{ padding: '6px 14px', background: '#16A34A', borderRadius: '6px', color: '#fff', fontSize: '11px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                            💬 Enviar WA
+                          </a>
+                        )}
+                        {lead.status !== 'novo' && lead.status !== 'fechado' && (
+                          <button onClick={() => { setAba('leads'); setExpandido(lead.id) }} style={{
+                            padding: '6px 14px', background: '#1F2937', border: `1px solid ${brd}`,
+                            borderRadius: '6px', color: muted, fontSize: '11px', cursor: 'pointer', whiteSpace: 'nowrap',
+                          }}>
+                            🔄 Follow-up
+                          </button>
+                        )}
+                      </div>
+
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ══════════════════════════════════════════════════════════
           ABA ANALISAR LINK

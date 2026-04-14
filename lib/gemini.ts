@@ -343,6 +343,95 @@ Responda EXATAMENTE neste JSON (sem markdown):
 }
 
 /**
+ * Ranqueia os leads e decide quais prospectar hoje
+ */
+export type PrioridadeHoje = {
+  lead_id: number
+  prioridade: number   // 1 = mais urgente
+  motivo: string       // por que esse lead hoje especificamente
+  acao: string         // o que fazer: "Primeira abordagem", "Follow-up", "Fechar proposta"
+}
+
+export async function gerarPlanoHoje(leads: (DadosLead & {
+  id: number
+  status: string
+  score: number
+  proximo_followup?: string | null
+  mensagem?: string | null
+})[]): Promise<PrioridadeHoje[]> {
+  if (leads.length === 0) return []
+
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.0-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const hoje = new Date().toISOString().split('T')[0]
+
+  const resumo = leads.slice(0, 30).map(l => ({
+    id: l.id,
+    nome: l.nome,
+    categoria: l.categoria,
+    tipo: l.tipo,
+    status: l.status,
+    score: l.score,
+    nota: l.nota,
+    telefone: !!l.telefone,
+    instagram: !!l.instagram,
+    followup: l.proximo_followup,
+    vencido: l.proximo_followup ? l.proximo_followup < hoje : false,
+  }))
+
+  const prompt = `Hoje é ${hoje}. Analise estes leads e decida quais 5 devemos contatar HOJE, em ordem de prioridade.
+
+## Lista de leads disponíveis:
+${JSON.stringify(resumo, null, 2)}
+
+## Critérios de priorização:
+1. Follow-up vencido (data já passou) → ação imediata
+2. Score alto (≥7) com telefone disponível → oportunidade quente
+3. Leads em "respondeu" ou "consultoria_feita" → prontos para avançar no funil
+4. Leads novos com nota Google alta (≥4.5) e telefone → primeira abordagem vale a pena
+5. AgendaPRO para barbearias/salões/clínicas → recorrente, vale priorizar
+
+Retorne EXATAMENTE este JSON (sem markdown) com os 5 leads mais prioritários:
+[
+  {
+    "lead_id": <id do lead>,
+    "prioridade": <1 a 5, 1 é mais urgente>,
+    "motivo": "<por que esse lead HOJE — 1 frase específica>",
+    "acao": "<o que fazer: 'Primeira abordagem', 'Follow-up', 'Fechar proposta', 'Enviar contrato'>"
+  }
+]`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    return JSON.parse(texto) as PrioridadeHoje[]
+  } catch {
+    // Fallback: ranqueia localmente pelos dados mais óbvios
+    return leads
+      .filter(l => l.status !== 'fechado' && l.status !== 'sem_interesse')
+      .sort((a, b) => {
+        const aVencido = a.proximo_followup && a.proximo_followup < hoje ? 1 : 0
+        const bVencido = b.proximo_followup && b.proximo_followup < hoje ? 1 : 0
+        return (bVencido - aVencido) || ((b.score ?? 0) - (a.score ?? 0))
+      })
+      .slice(0, 5)
+      .map((l, i) => ({
+        lead_id:    l.id,
+        prioridade: i + 1,
+        motivo:     l.proximo_followup && l.proximo_followup < hoje
+          ? 'Follow-up vencido — não deixar esfriar'
+          : `Score ${l.score}/10 — lead qualificado`,
+        acao: l.status === 'novo' ? 'Primeira abordagem' : 'Follow-up',
+      }))
+  }
+}
+
+/**
  * Responde perguntas livres sobre prospecção/vendas no contexto da Impulso Digital
  */
 export async function chat(historico: { role: 'user' | 'model'; text: string }[], pergunta: string): Promise<string> {
