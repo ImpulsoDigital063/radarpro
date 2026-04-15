@@ -580,6 +580,197 @@ Retorne EXATAMENTE este JSON (sem markdown) com os 5 leads mais prioritários:
   }
 }
 
+// ── Script completo de vendas (playbook do card) ─────────────────────────────
+
+export type ScriptCompleto = {
+  abordagem:         string   // Msg 1 — abertura WhatsApp curta e específica
+  diagnostico_msg:   string   // Msg 2 — pergunta que puxa a dor
+  apresentacao: {
+    se_so_instagram:  string  // pitch A
+    se_tem_site:      string  // pitch B
+    se_tem_sistema:   string  // pitch C (se aplicável, senão cópia de A)
+  }
+  dor: {
+    titulo:           string  // headline da dor nº1 desse negócio
+    detalhes:         string  // 2-3 linhas explicando a dor com dados reais do lead
+  }
+  resolucao:          string  // como o produto resolve ESSA dor específica, 2-3 linhas
+  arma_de_vendas: {
+    titulo:           string  // ex: "Entrega no mesmo dia via motoboy"
+    argumento:        string  // por que ESTE gancho vira arma letal pra este lead
+  }
+  ancoragem_preco: {
+    concorrencia:     string  // ex: "Agência R$3-5k · freela Fiverr R$1-2k"
+    nosso_preco:      string  // ex: "R$499 com hospedagem vitalícia"
+    frase_pronta:     string  // frase pra jogar antes de revelar preço
+  }
+  prova_social: {
+    case_sugerido:    string  // 'ev_suplementos' | 'criativos_do_ceu'
+    frase_intro:      string  // como introduzir o case na conversa
+  }
+  objecoes: {
+    ja_tenho_instagram: string
+    quanto_custa:       string
+    vou_pensar:         string
+    sem_dinheiro:       string
+  }
+  fechamento:         string  // Msg 4 — 3 horários concretos
+  followup_timeline: Array<{ dia: number; mensagem: string }>
+}
+
+export async function gerarScriptCompleto(lead: DadosLead): Promise<ScriptCompleto> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const produto = lead.tipo === 'lp'
+    ? 'Landing Page (R$499)'
+    : lead.tipo === 'shopify'
+      ? 'Loja Shopify (a partir de R$599)'
+      : 'AgendaPRO (R$67/mês)'
+
+  const prompt = `Monte um PLAYBOOK COMPLETO DE VENDAS pra este lead. Tudo personalizado — nada genérico.
+
+## Lead em análise
+- Nome: ${lead.nome}
+- Categoria: ${lead.categoria}
+- Produto alvo: ${produto}
+- Instagram: ${lead.instagram ?? 'não tem'} ${lead.instagram_bio ? `| Bio: "${lead.instagram_bio}"` : ''}
+- Seguidores: ${lead.instagram_seguidores ?? '?'}
+- Site: ${lead.site ?? 'NÃO TEM SITE'}
+- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} avaliações)` : ''}
+- Tem e-commerce: ${lead.tem_ecommerce ? 'sim' : 'não'}
+- Tem agendamento online: ${lead.tem_agendamento ? 'sim' : 'não'}
+
+## Regras não-negociáveis
+- Cite dados REAIS do lead (nota, seguidores, categoria, bio)
+- Resoluções e argumentos devem usar os GANCHOS específicos do produto (revise o SYSTEM_PROMPT)
+- Arma de vendas: pegar o gancho MAIS LETAL pro segmento do lead (ex: confeitaria → motoboy entrega hoje; nutri → blog SEO; barbearia → lista de espera + badge Google)
+- Ancoragem: referências reais de mercado — agência R$3-5k, freela Fiverr R$1-2k, manutenção de site R$100-300/mês
+- Prova social: escolha 'ev_suplementos' para saúde/estética/nutri; 'criativos_do_ceu' para serviço/digital/comércio variado
+- Objeções: use o script oficial exato do SYSTEM_PROMPT
+- Fechamento: SEMPRE 3 horários concretos (Quinta/Sexta/Segunda com horário)
+- Follow-up timeline: dias 3, 5, 7 e 30 com mensagem pronta pra cada dia
+
+## Retorne EXATAMENTE neste JSON (sem markdown, sem comentários):
+{
+  "abordagem": "<Msg 1: oi + menção específica ao lead + uma pergunta — máx 4 linhas>",
+  "diagnostico_msg": "<Msg 2: pergunta de diagnóstico — máx 3 linhas>",
+  "apresentacao": {
+    "se_so_instagram": "<pitch se ele disser 'só Instagram/indicação' — 4-5 linhas com ganchos do produto>",
+    "se_tem_site": "<pitch se ele disser 'tenho site' — começa pedindo o link, depois ataca fraqueza provável>",
+    "se_tem_sistema": "<pitch se ele disser 'já tenho sistema' — foca em diferencial nosso>"
+  },
+  "dor": {
+    "titulo": "<headline da dor nº1 — ex: 'Você perde 40% das vendas respondendo frete pelo WhatsApp'>",
+    "detalhes": "<2-3 linhas com dados do lead>"
+  },
+  "resolucao": "<2-3 linhas: como NOSSO produto elimina essa dor, usando ganchos concretos>",
+  "arma_de_vendas": {
+    "titulo": "<nome do gancho letal — ex: 'Selo entrega hoje via motoboy'>",
+    "argumento": "<2-3 linhas: por que este gancho vira arma pra ESTE lead específico — cite exemplo concreto do dia a dia do negócio dele>"
+  },
+  "ancoragem_preco": {
+    "concorrencia": "<ex: 'Agência local Palmas: R$3-5k · Freela Fiverr: R$1-2k · Manutenção anual site comum: R$1,2k/ano'>",
+    "nosso_preco": "<ex: 'R$499 com hospedagem vitalícia inclusa — zero mensalidade'>",
+    "frase_pronta": "<frase exata pra jogar ANTES de revelar preço — monta a âncora>"
+  },
+  "prova_social": {
+    "case_sugerido": "<ev_suplementos | criativos_do_ceu>",
+    "frase_intro": "<frase pronta pra introduzir o case na conversa — sem mandar link>"
+  },
+  "objecoes": {
+    "ja_tenho_instagram": "<resposta exata>",
+    "quanto_custa": "<resposta exata>",
+    "vou_pensar": "<resposta exata com escassez real>",
+    "sem_dinheiro": "<resposta exata — nunca insistir>"
+  },
+  "fechamento": "<Msg 4: 3 horários concretos com dia e hora>",
+  "followup_timeline": [
+    { "dia": 3,  "mensagem": "<mensagem pro dia 3 — pergunta sobre dúvidas>" },
+    { "dia": 5,  "mensagem": "<mensagem pro dia 5 — escassez>" },
+    { "dia": 7,  "mensagem": "<mensagem pro dia 7 — última do mês>" },
+    { "dia": 30, "mensagem": "<reabordagem — ângulo novo>" }
+  ]
+}`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    return JSON.parse(texto) as ScriptCompleto
+  } catch {
+    throw new Error('Gemini retornou JSON inválido')
+  }
+}
+
+// ── Termômetro do lead ────────────────────────────────────────────────────────
+
+export type Termometro = {
+  nivel: 'quente' | 'morno' | 'frio'
+  emoji: string
+  motivo: string           // 1 linha explicando a classificação
+  acao_sugerida: string    // próxima ação concreta
+}
+
+export async function classificarTermometro(lead: DadosLead & {
+  status?: string
+  mensagem?: string | null
+  notas?: string | null
+  proximo_followup?: string | null
+  atualizado_em?: string | null
+}): Promise<Termometro> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const prompt = `Classifique a temperatura deste lead baseado no histórico e decida a próxima ação.
+
+## Lead
+- Nome: ${lead.nome}
+- Status atual: ${lead.status ?? 'novo'}
+- Score: ${(lead as any).score ?? '?'}
+- Nota Google: ${lead.nota ?? 'sem nota'} ${lead.num_avaliacoes ? `(${lead.num_avaliacoes} aval)` : ''}
+- Tem Instagram: ${lead.instagram ? 'sim' : 'não'}
+- Tem site: ${lead.tem_site ? 'sim' : 'não'}
+- Última mensagem enviada: ${lead.mensagem ? `"${lead.mensagem.slice(0, 200)}"` : 'nenhuma'}
+- Anotações (respostas/notas do vendedor): ${lead.notas ?? 'nenhuma'}
+- Próximo follow-up agendado: ${lead.proximo_followup ?? 'nenhum'}
+
+## Critérios
+- QUENTE 🔥: perguntou preço, pediu exemplo, aceitou horário, mandou áudio, tá fazendo perguntas específicas, status 'consultoria_marcada' ou 'consultoria_feita' ou 'respondeu' engajado. Ação: MANDAR PROPOSTA HOJE / FECHAR.
+- MORNO 🟡: respondeu curto, engajou mas não avançou, status 'respondeu' sem progresso, follow-up já feito 1x. Ação: MUDAR ÂNGULO + escassez em 2 dias.
+- FRIO ❄️: não respondeu 2+ dias, disse 'vou pensar' sem avançar, 'sem dinheiro', status 'sem_interesse', score baixo sem engajamento. Ação: MUTE 30 DIAS ou última tentativa.
+- NOVO (sem interação): se status = 'novo' e nenhuma mensagem enviada → considere MORNO com ação "primeira abordagem hoje".
+
+Retorne EXATAMENTE este JSON (sem markdown):
+{
+  "nivel": "<quente | morno | frio>",
+  "emoji": "<🔥 | 🟡 | ❄️>",
+  "motivo": "<1 frase explicando por que essa classificação — cite sinal concreto>",
+  "acao_sugerida": "<ação concreta: 'Mandar proposta agora', 'Follow-up com case em 2 dias', 'Mute 30d', 'Primeira abordagem hoje'>"
+}`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    const data = JSON.parse(texto) as Termometro
+    return data
+  } catch {
+    return {
+      nivel:         'morno',
+      emoji:         '🟡',
+      motivo:        'Classificação automática indisponível',
+      acao_sugerida: 'Revisar manualmente',
+    }
+  }
+}
+
 /**
  * Responde perguntas livres sobre prospecção/vendas no contexto da Impulso Digital
  */

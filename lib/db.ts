@@ -60,6 +60,17 @@ export async function initDb() {
     `CREATE INDEX IF NOT EXISTS idx_leads_tipo   ON leads(tipo)`,
     `CREATE INDEX IF NOT EXISTS idx_leads_fonte  ON leads(fonte)`,
   ], 'write')
+
+  // Migration idempotente — colunas novas (script playbook + termômetro)
+  for (const col of [
+    `ALTER TABLE leads ADD COLUMN script_json TEXT`,
+    `ALTER TABLE leads ADD COLUMN script_gerado_em TEXT`,
+    `ALTER TABLE leads ADD COLUMN termometro TEXT`,              // 'quente' | 'morno' | 'frio'
+    `ALTER TABLE leads ADD COLUMN termometro_acao TEXT`,
+    `ALTER TABLE leads ADD COLUMN termometro_atualizado_em TEXT`,
+  ]) {
+    try { await db.execute(col) } catch { /* coluna já existe */ }
+  }
 }
 
 // Garante schema criado uma vez por processo

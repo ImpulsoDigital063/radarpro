@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio } from '@/lib/gemini'
+import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio, gerarScriptCompleto, classificarTermometro } from '@/lib/gemini'
+import { melhorHorarioPara } from '@/lib/horarios'
 import { analisarSiteLead } from '@/lib/site-analyzer'
 import { analisarAvaliacoesGMaps } from '@/lib/reviews-analyzer'
 import { atualizarMensagem, getClient } from '@/lib/db'
@@ -130,6 +131,54 @@ export async function POST(req: NextRequest) {
       }
       const plano = await gerarPlanoHoje(leadsParam)
       return NextResponse.json({ plano })
+    }
+
+    // Script completo de vendas — playbook por lead (cacheado no banco)
+    if (action === 'script_completo') {
+      const { lead, force } = body
+      if (!lead?.id) return NextResponse.json({ error: 'lead (com id) obrigatório' }, { status: 400 })
+
+      // Se não for refresh forçado, tenta carregar do cache
+      if (!force) {
+        const cached = await db.execute({
+          sql: `SELECT script_json FROM leads WHERE id = ?`,
+          args: [lead.id],
+        })
+        const raw = cached.rows[0]?.script_json as string | undefined
+        if (raw) {
+          try { return NextResponse.json({ script: JSON.parse(raw), cached: true }) }
+          catch { /* fallthrough para regerar */ }
+        }
+      }
+
+      const script = await gerarScriptCompleto(lead)
+      await db.execute({
+        sql: `UPDATE leads SET script_json = ?, script_gerado_em = datetime('now','localtime'), atualizado_em = datetime('now','localtime') WHERE id = ?`,
+        args: [JSON.stringify(script), lead.id],
+      })
+
+      return NextResponse.json({ script, cached: false })
+    }
+
+    // Termômetro do lead — classifica quente/morno/frio + próxima ação
+    if (action === 'termometro') {
+      const { lead } = body
+      if (!lead?.id) return NextResponse.json({ error: 'lead (com id) obrigatório' }, { status: 400 })
+
+      const termo = await classificarTermometro(lead)
+      await db.execute({
+        sql: `UPDATE leads SET termometro = ?, termometro_acao = ?, termometro_atualizado_em = datetime('now','localtime') WHERE id = ?`,
+        args: [termo.nivel, termo.acao_sugerida, lead.id],
+      })
+
+      return NextResponse.json(termo)
+    }
+
+    // Melhor horário de contato baseado na categoria (heurística local, sem IA)
+    if (action === 'melhor_horario') {
+      const { categoria, tipo } = body
+      if (!categoria) return NextResponse.json({ error: 'categoria obrigatória' }, { status: 400 })
+      return NextResponse.json(melhorHorarioPara(categoria, tipo))
     }
 
     // Chat livre com o agente

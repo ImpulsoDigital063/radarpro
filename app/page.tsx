@@ -88,6 +88,12 @@ export default function RadarPRO() {
   const [gerandoFollowup, setGerandoFollowup]       = useState<number | null>(null)
   const [diagnosticoIA, setDiagnosticoIA]           = useState<Record<number, any>>({})
   const [fazendoDiagnostico, setFazendoDiagnostico] = useState<number | null>(null)
+  const [scriptIA, setScriptIA]                     = useState<Record<number, any>>({})
+  const [gerandoScript, setGerandoScript]           = useState<number | null>(null)
+  const [termometroIA, setTermometroIA]             = useState<Record<number, any>>({})
+  const [gerandoTermometro, setGerandoTermometro]   = useState<number | null>(null)
+  const [horarioLead, setHorarioLead]               = useState<Record<number, any>>({})
+  const [secaoAberta, setSecaoAberta]               = useState<Record<string, boolean>>({})
   const [aba, setAba]             = useState<'leads' | 'analisar' | 'hoje'>('leads')
   const [planoHoje, setPlanoHoje]   = useState<{ lead: Lead; prioridade: number; motivo: string; acao: string }[] | null>(null)
   const [gerandoHoje, setGerandoHoje] = useState(false)
@@ -255,6 +261,44 @@ export default function RadarPRO() {
       setLeads(prev => prev.map(l => l.id === lead.id ? { ...l, mensagem: data.mensagem_impacto } : l))
     } finally {
       setFazendoDiagnostico(null)
+    }
+  }
+
+  async function gerarPlaybook(lead: Lead, force = false) {
+    setGerandoScript(lead.id)
+    try {
+      const r = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'script_completo', lead, force }),
+      })
+      const data = await r.json()
+      if (data.error) { alert('Erro IA: ' + data.error); return }
+      setScriptIA(prev => ({ ...prev, [lead.id]: data.script }))
+    } finally {
+      setGerandoScript(null)
+    }
+  }
+
+  async function analisarTermometro(lead: Lead) {
+    setGerandoTermometro(lead.id)
+    try {
+      const [termoRes, horarioRes] = await Promise.all([
+        fetch('/api/ai', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'termometro', lead }),
+        }).then(r => r.json()),
+        fetch('/api/ai', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'melhor_horario', categoria: lead.categoria, tipo: lead.tipo }),
+        }).then(r => r.json()),
+      ])
+      if (!termoRes.error)   setTermometroIA(prev => ({ ...prev, [lead.id]: termoRes }))
+      if (!horarioRes.error) setHorarioLead(prev => ({ ...prev, [lead.id]: horarioRes }))
+    } finally {
+      setGerandoTermometro(null)
     }
   }
 
@@ -899,6 +943,142 @@ export default function RadarPRO() {
                                 💬 WhatsApp
                               </a>
                             )}
+                          </div>
+
+                          {/* ── Termômetro + Melhor horário (pill duo) ── */}
+                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                            <button onClick={() => analisarTermometro(lead)} disabled={gerandoTermometro === lead.id}
+                              style={{ padding: '6px 14px', background: '#0F1117', border: `1px solid ${brd}`, borderRadius: '999px', color: muted, fontSize: '11px', fontWeight: 700, cursor: 'pointer' }}>
+                              {gerandoTermometro === lead.id ? '⏳ Lendo...' : '🌡 Termômetro + horário'}
+                            </button>
+                            {termometroIA[lead.id] && (() => {
+                              const t = termometroIA[lead.id]
+                              const cor = t.nivel === 'quente' ? '#EF4444' : t.nivel === 'morno' ? '#F59E0B' : '#3B82F6'
+                              return (
+                                <span style={{ padding: '6px 12px', background: cor + '18', border: `1px solid ${cor}50`, borderRadius: '999px', fontSize: '11px', fontWeight: 700, color: cor }}>
+                                  {t.emoji} {t.nivel.toUpperCase()} — {t.acao_sugerida}
+                                </span>
+                              )
+                            })()}
+                            {horarioLead[lead.id] && (
+                              <span style={{ padding: '6px 12px', background: '#1A1500', border: '1px solid #D97706', borderRadius: '999px', fontSize: '11px', fontWeight: 700, color: '#FCD34D' }}>
+                                ⏰ {horarioLead[lead.id].dias} · {horarioLead[lead.id].janela}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* ── Playbook completo de vendas ── */}
+                          <div>
+                            <button onClick={() => gerarPlaybook(lead)} disabled={gerandoScript === lead.id}
+                              style={{
+                                width: '100%', padding: '12px 14px',
+                                background: gerandoScript === lead.id ? '#1A1A2E' : 'linear-gradient(135deg, #7C3AED 0%, #C026D3 100%)',
+                                border: 'none', borderRadius: '10px', color: '#fff', fontSize: '13px', fontWeight: 800,
+                                cursor: gerandoScript === lead.id ? 'wait' : 'pointer',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                                letterSpacing: '0.02em',
+                              }}>
+                              {gerandoScript === lead.id ? '⏳ Montando o playbook de vendas...' : (scriptIA[lead.id] ? '🎯 Playbook pronto — clique em qualquer seção' : '🎯 Gerar playbook completo de vendas')}
+                            </button>
+
+                            {scriptIA[lead.id] && (() => {
+                              const s = scriptIA[lead.id]
+                              const id = lead.id
+                              const Secao = ({ keyId, titulo, cor, children }: any) => {
+                                const aberta = secaoAberta[`${id}:${keyId}`] !== false
+                                return (
+                                  <div style={{ marginTop: '8px', border: `1px solid ${cor}40`, borderRadius: '10px', overflow: 'hidden', background: '#0F1117' }}>
+                                    <button onClick={() => setSecaoAberta(p => ({ ...p, [`${id}:${keyId}`]: !aberta }))}
+                                      style={{ width: '100%', padding: '10px 14px', background: cor + '15', border: 'none', color: cor, fontSize: '12px', fontWeight: 800, textAlign: 'left', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                      <span>{titulo}</span><span style={{ fontSize: '10px' }}>{aberta ? '▼' : '▶'}</span>
+                                    </button>
+                                    {aberta && <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>{children}</div>}
+                                  </div>
+                                )
+                              }
+                              const Msg = ({ keyId, texto, cor = '#9CA3AF' }: any) => (
+                                <div style={{ padding: '10px 12px', background: '#000', border: `1px solid ${brd}`, borderRadius: '7px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                  <p style={{ fontSize: '12px', color: '#E5E7EB', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{texto}</p>
+                                  <button onClick={() => copiar(`${id}-${keyId}`, texto)}
+                                    style={{ alignSelf: 'flex-start', padding: '3px 10px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '5px', color: cor, fontSize: '10px', cursor: 'pointer', fontWeight: 700 }}>
+                                    {copiado === `${id}-${keyId}` ? '✅ Copiado' : '📋 Copiar'}
+                                  </button>
+                                </div>
+                              )
+                              const caseUrl = s.prova_social?.case_sugerido === 'ev_suplementos' ? 'evsuplementosinjetaveis.com' : 'criativosdoceu.com'
+                              return (
+                                <div style={{ marginTop: '10px' }}>
+                                  <Secao keyId="abordagem" titulo="📍 1. Abordagem (Msg 1)" cor="#60A5FA">
+                                    <Msg keyId="abordagem" texto={s.abordagem} cor="#60A5FA" />
+                                  </Secao>
+                                  <Secao keyId="diag" titulo="💬 2. Diagnóstico (Msg 2, após resposta)" cor="#818CF8">
+                                    <Msg keyId="diag" texto={s.diagnostico_msg} cor="#818CF8" />
+                                  </Secao>
+                                  <Secao keyId="apres" titulo="🎯 3. Apresentação (árvore 3-vias)" cor="#A78BFA">
+                                    <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "só Instagram/indicação":</p>
+                                    <Msg keyId="a1" texto={s.apresentacao.se_so_instagram} cor="#A78BFA" />
+                                    <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "tenho site":</p>
+                                    <Msg keyId="a2" texto={s.apresentacao.se_tem_site} cor="#A78BFA" />
+                                    <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "já tenho sistema":</p>
+                                    <Msg keyId="a3" texto={s.apresentacao.se_tem_sistema} cor="#A78BFA" />
+                                  </Secao>
+                                  <Secao keyId="dor" titulo="💥 4. Dor específica desse negócio" cor="#EF4444">
+                                    <div style={{ padding: '10px 12px', background: '#1A0A0A', border: '1px solid #2D1515', borderRadius: '7px' }}>
+                                      <p style={{ fontSize: '13px', color: '#FCA5A5', margin: '0 0 6px', fontWeight: 700, lineHeight: 1.4 }}>{s.dor.titulo}</p>
+                                      <p style={{ fontSize: '11px', color: '#D1D5DB', margin: 0, lineHeight: 1.5 }}>{s.dor.detalhes}</p>
+                                    </div>
+                                  </Secao>
+                                  <Secao keyId="res" titulo="🔨 5. Resolução (como nosso produto mata a dor)" cor="#10B981">
+                                    <Msg keyId="res" texto={s.resolucao} cor="#10B981" />
+                                  </Secao>
+                                  <Secao keyId="arma" titulo="⚡ 6. Arma de vendas — diferencial letal" cor="#F59E0B">
+                                    <div style={{ padding: '10px 12px', background: '#1A1500', border: '1px solid #D9770640', borderRadius: '7px' }}>
+                                      <p style={{ fontSize: '13px', color: '#FDE68A', margin: '0 0 6px', fontWeight: 800 }}>⚡ {s.arma_de_vendas.titulo}</p>
+                                      <p style={{ fontSize: '11px', color: '#FCD34D', margin: 0, lineHeight: 1.5 }}>{s.arma_de_vendas.argumento}</p>
+                                    </div>
+                                  </Secao>
+                                  <Secao keyId="anc" titulo="💰 7. Ancoragem de preço (ANTES de revelar)" cor="#22D3EE">
+                                    <div style={{ padding: '10px 12px', background: '#0A1A1F', border: '1px solid #0891B240', borderRadius: '7px' }}>
+                                      <p style={{ fontSize: '11px', color: '#9CA3AF', margin: '0 0 4px' }}><span style={{ color: '#22D3EE', fontWeight: 700 }}>Concorrência:</span> {s.ancoragem_preco.concorrencia}</p>
+                                      <p style={{ fontSize: '11px', color: '#22D3EE', margin: '0 0 8px', fontWeight: 700 }}><span style={{ color: '#9CA3AF', fontWeight: 400 }}>Nosso preço:</span> {s.ancoragem_preco.nosso_preco}</p>
+                                    </div>
+                                    <Msg keyId="anc-frase" texto={s.ancoragem_preco.frase_pronta} cor="#22D3EE" />
+                                  </Secao>
+                                  <Secao keyId="prova" titulo="🎬 8. Prova social — case segmentado" cor="#EC4899">
+                                    <div style={{ padding: '10px 12px', background: '#1A0A14', border: '1px solid #EC489940', borderRadius: '7px' }}>
+                                      <p style={{ fontSize: '10px', color: '#F9A8D4', margin: '0 0 4px', fontWeight: 700 }}>CASE SUGERIDO: {caseUrl}</p>
+                                      <p style={{ fontSize: '10px', color: muted, margin: 0 }}>⚠ Nunca mandar link no 1º contato. Só na consultoria ou quando pedirem.</p>
+                                    </div>
+                                    <Msg keyId="prova-intro" texto={s.prova_social.frase_intro} cor="#EC4899" />
+                                  </Secao>
+                                  <Secao keyId="obj" titulo="🛡 9. Quebra de 4 objeções" cor="#DC2626">
+                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Já tenho Instagram":</p>
+                                    <Msg keyId="obj1" texto={s.objecoes.ja_tenho_instagram} cor="#DC2626" />
+                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Quanto custa?":</p>
+                                    <Msg keyId="obj2" texto={s.objecoes.quanto_custa} cor="#DC2626" />
+                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Vou pensar":</p>
+                                    <Msg keyId="obj3" texto={s.objecoes.vou_pensar} cor="#DC2626" />
+                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Sem dinheiro agora":</p>
+                                    <Msg keyId="obj4" texto={s.objecoes.sem_dinheiro} cor="#DC2626" />
+                                  </Secao>
+                                  <Secao keyId="fech" titulo="🎣 10. Fechamento (3 horários concretos)" cor="#16A34A">
+                                    <Msg keyId="fech" texto={s.fechamento} cor="#16A34A" />
+                                  </Secao>
+                                  <Secao keyId="fup" titulo="🔁 11. Follow-up pós-consultoria" cor="#D97706">
+                                    {(s.followup_timeline ?? []).map((f: any, i: number) => (
+                                      <div key={i}>
+                                        <p style={{ fontSize: '10px', color: '#FCD34D', margin: '0 0 4px', fontWeight: 700 }}>📅 Dia {f.dia}:</p>
+                                        <Msg keyId={`fup-${i}`} texto={f.mensagem} cor="#D97706" />
+                                      </div>
+                                    ))}
+                                  </Secao>
+                                  <button onClick={() => gerarPlaybook(lead, true)}
+                                    style={{ marginTop: '10px', width: '100%', padding: '6px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '7px', color: muted, fontSize: '11px', cursor: 'pointer' }}>
+                                    🔄 Regerar playbook (custo Gemini ~$0.0005)
+                                  </button>
+                                </div>
+                              )
+                            })()}
                           </div>
 
                           {/* ── Diagnóstico do negócio ── */}
