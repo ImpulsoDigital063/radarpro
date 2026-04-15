@@ -1,9 +1,10 @@
 /**
- * radarPRO — Enriquecedor automático de leads
- * Busca Instagram do negócio via Google e extrai dados do perfil
+ * radarPRO — Enriquecedor de leads (serverless / Vercel)
+ * Busca Instagram via DuckDuckGo HTML + parse do perfil via og:description
  */
 
-import { chromium } from 'playwright'
+import axios from 'axios'
+import * as cheerio from 'cheerio'
 import { getClient } from './db'
 
 type EnrichResult = {
@@ -14,169 +15,149 @@ type EnrichResult = {
   telefone:             string | null
 }
 
-// ── Busca Instagram via Google Maps ──────────────────────────────────────────
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 
-async function buscarInstagramNoMaps(mapsUrl: string, page: any): Promise<string | null> {
-  try {
-    await page.goto(mapsUrl, { waitUntil: 'domcontentloaded', timeout: 20000 })
-    await page.waitForTimeout(3000)
+// Lista de paths inválidos (não são perfis reais)
+const RESERVADOS = new Set([
+  'p', 'explore', 'reel', 'reels', 'stories', 'accounts', 'about',
+  'developer', 'legal', 'directory', 'web', 'instagram',
+])
 
-    const igUrl = await page.evaluate(() => {
-      const allLinks = Array.from(document.querySelectorAll('a')).map((a: any) => a.href as string)
-      for (const href of allLinks) {
-        if (!href) continue
-        if (href.includes('instagram.com/') &&
-            !href.includes('/p/') && !href.includes('/explore/') &&
-            !href.includes('/reel/') && !href.includes('/stories/') &&
-            !href.includes('instagram.com/instagram') &&
-            !href.includes('instagram.com/accounts') &&
-            href.match(/instagram\.com\/[a-zA-Z0-9_.]{2,30}\/?/)) {
-          return href.split('?')[0].replace(/\/$/, '')
-        }
-      }
-      return null
-    })
-    return igUrl
-  } catch {
-    return null
-  }
+function extrairHandleDeUrl(raw: string): string | null {
+  const m = raw.match(/instagram\.com\/([a-zA-Z0-9_.]{2,30})(?:\/|\?|$)/)
+  if (!m) return null
+  const handle = m[1]
+  if (RESERVADOS.has(handle.toLowerCase())) return null
+  return handle
 }
 
-// ── Busca direto na pesquisa do Instagram ────────────────────────────────────
-
-async function buscarInstagramDireto(nome: string, page: any): Promise<string | null> {
+async function buscarInstagramViaDDG(nome: string): Promise<string | null> {
   try {
-    const query = nome.replace(/[-|–—]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0, 3).join(' ')
-    await page.goto(
-      `https://www.instagram.com/web/search/topsearch/?query=${encodeURIComponent(query)}`,
-      { waitUntil: 'domcontentloaded', timeout: 15000 }
+    const q = `${nome.split(/[-|–—]/)[0].trim()} instagram palmas`
+    const { data } = await axios.post(
+      'https://html.duckduckgo.com/html/',
+      new URLSearchParams({ q }).toString(),
+      {
+        timeout: 10000,
+        headers: {
+          'User-Agent': UA,
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept-Language': 'pt-BR,pt;q=0.9',
+        },
+      },
     )
-    await page.waitForTimeout(1500)
 
-    const json = await page.evaluate(() => {
-      try { return JSON.parse(document.body.innerText) } catch { return null }
+    const $ = cheerio.load(data)
+    const candidatos: string[] = []
+
+    $('a').each((_, el) => {
+      const href = $(el).attr('href') ?? ''
+      if (href.includes('instagram.com/')) candidatos.push(href)
     })
 
-    if (!json?.users?.length) return null
+    for (const raw of candidatos) {
+      // DDG envolve em /l/?uddg=<url-encoded>
+      let url = raw
+      const m = raw.match(/uddg=([^&]+)/)
+      if (m) url = decodeURIComponent(m[1])
 
-    const user = json.users[0]?.user
-    if (!user?.username) return null
+      const handle = extrairHandleDeUrl(url)
+      if (handle) return `https://www.instagram.com/${handle}`
+    }
 
-    return `https://www.instagram.com/${user.username}`
+    return null
   } catch {
     return null
   }
 }
 
-// ── Extrai dados do perfil Instagram ─────────────────────────────────────────
+async function extrairDadosInstagram(url: string): Promise<Partial<EnrichResult>> {
+  const handle = url.split('instagram.com/')[1]?.replace(/\/$/, '').split('?')[0] ?? ''
 
-async function extrairDadosInstagram(url: string, page: any): Promise<Partial<EnrichResult>> {
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 })
-  await page.waitForTimeout(2000)
+  try {
+    const { data: html } = await axios.get(url, {
+      timeout: 10000,
+      headers: { 'User-Agent': UA, 'Accept-Language': 'pt-BR,pt;q=0.9' },
+    })
 
-  const titulo = await page.title()
-  const bio    = await page.locator('meta[name="description"]').getAttribute('content').catch(() => '')
+    const $ = cheerio.load(html)
+    const ogDesc =
+      $('meta[property="og:description"]').attr('content') ??
+      $('meta[name="description"]').attr('content') ??
+      ''
 
-  const handle = url.split('instagram.com/')[1]?.replace(/\/$/, '') ?? ''
+    // Formato típico: "123K Followers, 45 Following, 678 Posts - <bio>"
+    // ou em PT: "123 seguidores, 45 seguindo, 678 publicações - ..."
+    const segMatch = ogDesc.match(/([\d.,]+\s*[KMkm]?)\s*(Followers|seguidores)/i)
+    const telMatch = ogDesc.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
 
-  const telMatch = bio?.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
-  const telefone = telMatch ? telMatch[0].replace(/\s/g, '') : null
-
-  const segMatch = bio?.match(/(\d[\d.,]+)\s*(seguidores|followers)/i)
-  const seguidores = segMatch ? segMatch[1] : null
-
-  return {
-    instagram:            `@${handle}`,
-    instagram_url:        url,
-    instagram_bio:        bio ?? null,
-    instagram_seguidores: seguidores,
-    telefone,
+    return {
+      instagram:            `@${handle}`,
+      instagram_url:        url,
+      instagram_bio:        ogDesc || null,
+      instagram_seguidores: segMatch ? segMatch[1].trim() : null,
+      telefone:             telMatch ? telMatch[0].replace(/\s/g, '') : null,
+    }
+  } catch {
+    // Profile exists mas Instagram bloqueou o fetch — salva só a URL mesmo
+    return {
+      instagram:     `@${handle}`,
+      instagram_url: url,
+      instagram_bio: null,
+      instagram_seguidores: null,
+      telefone:      null,
+    }
   }
 }
-
-// ── Enriquece um lead pelo id ─────────────────────────────────────────────────
 
 export async function enriquecerLead(leadId: number): Promise<EnrichResult | null> {
   const db = getClient()
   const result = await db.execute({ sql: 'SELECT * FROM leads WHERE id = ?', args: [leadId] })
   const lead = result.rows[0] as any
   if (!lead) return null
-
   if (lead.instagram) return null
 
-  console.log(`\n🔍 Enriquecendo: ${lead.nome}`)
+  const igUrl = await buscarInstagramViaDDG(lead.nome)
+  if (!igUrl) return null
 
-  const browser = await chromium.launch({ headless: true })
-  const context = await browser.newContext({
-    locale: 'pt-BR',
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
+  const dados = await extrairDadosInstagram(igUrl)
+
+  await db.execute({
+    sql: `UPDATE leads SET
+      instagram            = ?,
+      instagram_url        = ?,
+      instagram_bio        = ?,
+      instagram_seguidores = ?,
+      telefone             = COALESCE(telefone, ?),
+      atualizado_em        = datetime('now','localtime')
+    WHERE id = ?`,
+    args: [
+      dados.instagram ?? null,
+      dados.instagram_url ?? null,
+      dados.instagram_bio ?? null,
+      dados.instagram_seguidores ?? null,
+      dados.telefone ?? null,
+      leadId,
+    ],
   })
-  const page = await context.newPage()
 
-  try {
-    let igUrl: string | null = null
-    if (lead.site) {
-      igUrl = await buscarInstagramNoMaps(lead.site, page)
-    }
-
-    if (!igUrl) {
-      igUrl = await buscarInstagramDireto(lead.nome, page)
-    }
-
-    if (!igUrl) {
-      console.log(`   ❌ Instagram não encontrado`)
-      return null
-    }
-
-    const dados = await extrairDadosInstagram(igUrl, page)
-
-    await db.execute({
-      sql: `UPDATE leads SET
-        instagram            = ?,
-        instagram_url        = ?,
-        instagram_bio        = ?,
-        instagram_seguidores = ?,
-        telefone             = COALESCE(telefone, ?),
-        atualizado_em        = datetime('now','localtime')
-      WHERE id = ?`,
-      args: [
-        dados.instagram ?? null,
-        dados.instagram_url ?? null,
-        dados.instagram_bio ?? null,
-        dados.instagram_seguidores ?? null,
-        dados.telefone ?? null,
-        leadId,
-      ],
-    })
-
-    console.log(`   ✅ ${dados.instagram} | ${dados.instagram_seguidores ?? '?'} seguidores`)
-    return dados as EnrichResult
-
-  } catch (err: any) {
-    console.log(`   ❌ Erro: ${err.message?.slice(0, 80)}`)
-    return null
-  } finally {
-    await browser.close()
-  }
+  return dados as EnrichResult
 }
-
-// ── Enriquece todos os leads sem Instagram ────────────────────────────────────
 
 export async function enriquecerTodos(tipo?: string) {
   const db = getClient()
-  const where = tipo ? `WHERE instagram IS NULL AND tipo = '${tipo}'` : `WHERE instagram IS NULL`
-  const result = await db.execute({ sql: `SELECT id, nome FROM leads ${where} ORDER BY score DESC`, args: [] })
+  const where = tipo ? `WHERE instagram IS NULL AND tipo = ?` : `WHERE instagram IS NULL`
+  const result = await db.execute({
+    sql: `SELECT id, nome FROM leads ${where} ORDER BY score DESC`,
+    args: tipo ? [tipo] : [],
+  })
   const leads = result.rows as any[]
-
-  console.log(`\n🚀 Enriquecimento em massa — ${leads.length} leads sem Instagram`)
-  console.log('─'.repeat(50))
 
   let enriquecidos = 0
   for (const lead of leads) {
-    const res = await enriquecerLead(lead.id)
+    const res = await enriquecerLead(lead.id as number)
     if (res?.instagram) enriquecidos++
-    await new Promise(r => setTimeout(r, 2000))
+    await new Promise(r => setTimeout(r, 1500))
   }
-
-  console.log(`\n✅ ${enriquecidos} de ${leads.length} leads enriquecidos`)
+  return { total: leads.length, enriquecidos }
 }

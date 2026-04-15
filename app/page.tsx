@@ -315,6 +315,8 @@ export default function RadarPRO() {
       const data = await r.json()
       if (data.resultado?.instagram) {
         await carregar()
+      } else {
+        alert('Instagram não encontrado pra esse lead. Tenta buscar manualmente no Google com o nome + cidade.')
       }
     } finally {
       setEnriquecendo(null)
