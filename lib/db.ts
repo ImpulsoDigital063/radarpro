@@ -6,8 +6,8 @@ let _client: Client | null = null
 
 export function getClient(): Client {
   if (!_client) {
-    const url = process.env.TURSO_URL
-    const authToken = process.env.TURSO_TOKEN
+    const url = process.env.TURSO_URL?.replace(/\s/g, '')
+    const authToken = process.env.TURSO_TOKEN?.replace(/\s/g, '')
     if (!url) throw new Error('TURSO_URL não configurada no .env.local')
     _client = createClient({ url, authToken })
   }
