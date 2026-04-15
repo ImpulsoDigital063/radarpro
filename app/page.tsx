@@ -94,6 +94,8 @@ export default function RadarPRO() {
   const [gerandoTermometro, setGerandoTermometro]   = useState<number | null>(null)
   const [horarioLead, setHorarioLead]               = useState<Record<number, any>>({})
   const [secaoAberta, setSecaoAberta]               = useState<Record<string, boolean>>({})
+  const [waStatus, setWaStatus]                     = useState<'desconectado' | 'conectando' | 'aguardando_qr' | 'conectado'>('desconectado')
+  const [enviandoDireto, setEnviandoDireto]         = useState<number | null>(null)
   const [aba, setAba]             = useState<'leads' | 'analisar' | 'hoje'>('leads')
   const [planoHoje, setPlanoHoje]   = useState<{ lead: Lead; prioridade: number; motivo: string; acao: string }[] | null>(null)
   const [gerandoHoje, setGerandoHoje] = useState(false)
@@ -125,6 +127,44 @@ export default function RadarPRO() {
   }, [tipoF, statusF])
 
   useEffect(() => { carregar() }, [carregar])
+
+  // Polling do status da conexão WhatsApp (a cada 10s)
+  useEffect(() => {
+    let ativo = true
+    const checar = async () => {
+      try {
+        const r = await fetch('/api/whatsapp/qr', { cache: 'no-store' })
+        const d = await r.json()
+        if (ativo && d.status) setWaStatus(d.status)
+      } catch { /* offline — sem problema */ }
+    }
+    checar()
+    const i = setInterval(checar, 10000)
+    return () => { ativo = false; clearInterval(i) }
+  }, [])
+
+  async function enviarDireto(lead: Lead) {
+    if (!lead.telefone || !lead.mensagem) return
+    setEnviandoDireto(lead.id)
+    try {
+      const r = await fetch('/api/whatsapp/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ telefone: lead.telefone, mensagem: lead.mensagem }),
+      })
+      const data = await r.json()
+      if (!r.ok) throw new Error(data.error || 'falha ao enviar')
+      await setStatus(lead.id, 'abordado')
+      alert(`✅ Mensagem enviada para ${lead.nome}`)
+    } catch (err: any) {
+      alert(`❌ ${err.message}\n\nTentando abrir no WhatsApp Web...`)
+      if (lead.telefone && lead.mensagem) {
+        window.open(whatsappLink(lead.telefone, lead.mensagem), '_blank')
+      }
+    } finally {
+      setEnviandoDireto(null)
+    }
+  }
 
   // Polling automático enquanto há busca em andamento
   useEffect(() => {
@@ -447,6 +487,24 @@ export default function RadarPRO() {
           <h1 style={{ fontSize: '20px', fontWeight: 800, margin: 0 }}>radar<span style={{ color: '#2563EB' }}>PRO</span></h1>
           <p style={{ fontSize: '10px', color: muted, margin: '2px 0 0' }}>Impulso Digital</p>
         </div>
+
+        {/* Badge de status do WhatsApp */}
+        <a href="/integracao/whatsapp"
+          title={waStatus === 'conectado' ? 'WhatsApp conectado — enviando direto' : 'Configurar integração WhatsApp'}
+          style={{
+            display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '5px 10px', borderRadius: '999px',
+            background: waStatus === 'conectado' ? '#064E3B' : '#1F2937',
+            border: `1px solid ${waStatus === 'conectado' ? '#10B981' : brd}`,
+            color: waStatus === 'conectado' ? '#6EE7B7' : muted,
+            fontSize: '11px', fontWeight: 700, textDecoration: 'none',
+          }}>
+          <span style={{
+            width: '7px', height: '7px', borderRadius: '50%',
+            background: waStatus === 'conectado' ? '#10B981' : waStatus === 'aguardando_qr' ? '#3B82F6' : '#6B7280',
+          }} />
+          WhatsApp {waStatus === 'conectado' ? 'online' : waStatus === 'aguardando_qr' ? 'QR' : 'offline'}
+        </a>
 
         {/* Seletor de tipo */}
         <div style={{ display: 'flex', gap: '4px' }}>
@@ -1286,7 +1344,14 @@ export default function RadarPRO() {
                                 style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: muted, fontSize: '11px', cursor: 'pointer' }}>
                                 {copiado === `msg-${lead.id}` ? '✅ Copiado' : '📋 Copiar'}
                               </button>
-                              {wLink && (
+                              {wLink && waStatus === 'conectado' ? (
+                                <button
+                                  onClick={() => enviarDireto(lead)}
+                                  disabled={enviandoDireto === lead.id}
+                                  style={{ padding: '5px 12px', background: '#16A34A', border: 'none', borderRadius: '6px', color: '#fff', fontSize: '11px', fontWeight: 700, cursor: enviandoDireto === lead.id ? 'wait' : 'pointer', opacity: enviandoDireto === lead.id ? 0.6 : 1 }}>
+                                  {enviandoDireto === lead.id ? '⏳ Enviando...' : '📤 Enviar direto'}
+                                </button>
+                              ) : wLink && (
                                 <a href={wLink} target="_blank" rel="noopener noreferrer"
                                   onClick={() => setStatus(lead.id, 'abordado')}
                                   style={{ padding: '5px 12px', background: '#16A34A', borderRadius: '6px', color: '#fff', fontSize: '11px', fontWeight: 700, textDecoration: 'none' }}>
