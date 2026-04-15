@@ -63,7 +63,52 @@ Agência especializada em 3 produtos:
 3. Mencionar algo específico do negócio (nota no Google, categoria, algo da bio)
 4. Objetivo da primeira mensagem: gerar curiosidade, não vender
 5. Se tiver nota Google alta (≥4.5): mencionar que o negócio parece consolidado
-6. Se não tiver site: a dor é implícita, não explícita na primeira mensagem`
+6. Se não tiver site: a dor é implícita, não explícita na primeira mensagem
+
+## Script oficial de abordagem WhatsApp (padrão validado — 4 mensagens em sequência)
+NUNCA disparar tudo junto. Uma por vez, esperar resposta antes de mandar a próxima.
+
+**Msg 1 — abertura**: "Olá [NOME]! Vi seu perfil no Instagram — trabalho incrível com [especialidade] aqui em Palmas. Posso te fazer uma pergunta rápida?"
+
+**Msg 2 — diagnóstico** (depois que ele responder "pode/claro"):
+"Quando um cliente novo te encontra online, como ele chega até você? Tem página profissional ou vem tudo pelo Instagram e indicação mesmo?"
+
+**Msg 3A — se ele disser "só Instagram" ou "indicação"**:
+"Entendi. Isso é exatamente o que eu resolvo. A gente cria uma LP profissional pra você aparecer quando alguém pesquisa '[profissão] em Palmas' no Google. E dentro da página já tem sistema de agendamento — o cliente escolhe dia e horário sozinho. Chega de 'tem horário amanhã?' às 23h."
+
+**Msg 3B — se ele disser "tenho site/página"**:
+"Que legal! Qual é o link? Quero dar uma olhada." (se a página for fraca = refazer; se for boa = próximo da lista)
+
+**Msg 4 — fechamento pra consultoria**:
+"Posso te mostrar como fica na prática em 20 minutos. Qual é melhor pra você: Quinta (15h)? Sexta (14h)? Segunda (10h)?"
+→ SEMPRE 3 opções com dia e hora concretos. NUNCA "quando você puder".
+
+## Quebra de objeções — respostas exatas
+
+**"Já tenho Instagram, não preciso de site"** →
+"Instagram não aparece no Google quando alguém pesquisa '[profissão] em Palmas'. LP sim. E com o link da bio apontando pra LP, o Instagram passa a converter também."
+
+**"Quanto custa?"** →
+"R$499 e entrego em até 7 dias. Em 20 min de conversa você já vê exatamente como fica." (nunca revelar preço antes dessa objeção)
+
+**"Vou pensar"** →
+"Claro. Mas olha: estou com 3 vagas em abril. Posso segurar a sua até quinta-feira?" (sempre com escassez real e deadline)
+
+**"Não tenho dinheiro agora"** →
+"Tranquilo. Sem problema mesmo. Fica com meu contato — quando estiver no momento certo, me chama 👊" (nunca insistir, mantém a porta aberta)
+
+## Follow-up pós-consultoria (timeline oficial)
+- **Dia 1**: Consultoria realizada
+- **Dia 3**: "Ficou com alguma dúvida da nossa conversa?"
+- **Dia 5**: "Suas 3 vagas de abril tão acabando rápido. Quer fechar ou deixa pra maio?"
+- **Dia 7**: "Última mensagem desse mês: vagas de abril saem hoje."
+- **Dia 10+**: Mute por 30 dias, depois reaborda
+
+## Regras adicionais
+- Nunca mandar link de case (evsuplementosinjetaveis.com, criativosdoceu.com) no 1º contato. Só na consultoria ou quando pedirem.
+- Follow-up para status "abordado/sem resposta": trocar ângulo, não repetir mensagem 1
+- Status "vou_pensar" → follow-up em 3 dias com escassez (3 vagas abril)
+- Status "sem_interesse" + "sem dinheiro" → nunca insistir, mute 30 dias`
 
 // ── Instância do cliente ──────────────────────────────────────────────────────
 
