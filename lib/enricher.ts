@@ -31,82 +31,52 @@ function extrairHandleDeUrl(raw: string): string | null {
   return handle
 }
 
-async function buscarInstagramViaDDG(nome: string): Promise<string | null> {
+async function buscarEmMecanismo(url: string): Promise<string | null> {
   try {
-    const q = `${nome.split(/[-|–—]/)[0].trim()} instagram palmas`
-    const { data } = await axios.post(
-      'https://html.duckduckgo.com/html/',
-      new URLSearchParams({ q }).toString(),
-      {
-        timeout: 10000,
-        headers: {
-          'User-Agent': UA,
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept-Language': 'pt-BR,pt;q=0.9',
-        },
+    const { data: html } = await axios.get(url, {
+      timeout: 12000,
+      headers: {
+        'User-Agent': UA,
+        'Accept-Language': 'pt-BR,pt;q=0.9',
+        'Accept': 'text/html,application/xhtml+xml',
       },
-    )
-
-    const $ = cheerio.load(data)
-    const candidatos: string[] = []
-
-    $('a').each((_, el) => {
-      const href = $(el).attr('href') ?? ''
-      if (href.includes('instagram.com/')) candidatos.push(href)
+      maxRedirects: 5,
     })
 
-    for (const raw of candidatos) {
-      // DDG envolve em /l/?uddg=<url-encoded>
-      let url = raw
-      const m = raw.match(/uddg=([^&]+)/)
-      if (m) url = decodeURIComponent(m[1])
-
-      const handle = extrairHandleDeUrl(url)
+    // Busca por todos os handles do Instagram no HTML via regex
+    const matches = String(html).match(/instagram\.com\/([a-zA-Z0-9_.]{2,30})(?:\/|")/g) ?? []
+    for (const raw of matches) {
+      const handle = extrairHandleDeUrl(raw)
       if (handle) return `https://www.instagram.com/${handle}`
     }
-
     return null
   } catch {
     return null
   }
 }
 
-async function extrairDadosInstagram(url: string): Promise<Partial<EnrichResult>> {
+async function buscarInstagram(nome: string): Promise<string | null> {
+  const q = encodeURIComponent(`${nome.split(/[-|–—]/)[0].trim()} instagram palmas`)
+
+  // Brave Search é o mais tolerante com scraping e tem boa qualidade
+  const brave = await buscarEmMecanismo(`https://search.brave.com/search?q=${q}`)
+  if (brave) return brave
+
+  // Startpage como fallback
+  const sp = await buscarEmMecanismo(`https://www.startpage.com/do/search?q=${q}`)
+  if (sp) return sp
+
+  return null
+}
+
+function dadosBasicos(url: string): Partial<EnrichResult> {
   const handle = url.split('instagram.com/')[1]?.replace(/\/$/, '').split('?')[0] ?? ''
-
-  try {
-    const { data: html } = await axios.get(url, {
-      timeout: 10000,
-      headers: { 'User-Agent': UA, 'Accept-Language': 'pt-BR,pt;q=0.9' },
-    })
-
-    const $ = cheerio.load(html)
-    const ogDesc =
-      $('meta[property="og:description"]').attr('content') ??
-      $('meta[name="description"]').attr('content') ??
-      ''
-
-    // Formato típico: "123K Followers, 45 Following, 678 Posts - <bio>"
-    // ou em PT: "123 seguidores, 45 seguindo, 678 publicações - ..."
-    const segMatch = ogDesc.match(/([\d.,]+\s*[KMkm]?)\s*(Followers|seguidores)/i)
-    const telMatch = ogDesc.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
-
-    return {
-      instagram:            `@${handle}`,
-      instagram_url:        url,
-      instagram_bio:        ogDesc || null,
-      instagram_seguidores: segMatch ? segMatch[1].trim() : null,
-      telefone:             telMatch ? telMatch[0].replace(/\s/g, '') : null,
-    }
-  } catch {
-    // Profile exists mas Instagram bloqueou o fetch — salva só a URL mesmo
-    return {
-      instagram:     `@${handle}`,
-      instagram_url: url,
-      instagram_bio: null,
-      instagram_seguidores: null,
-      telefone:      null,
-    }
+  return {
+    instagram:            `@${handle}`,
+    instagram_url:        url,
+    instagram_bio:        null,
+    instagram_seguidores: null,
+    telefone:             null,
   }
 }
 
@@ -117,10 +87,10 @@ export async function enriquecerLead(leadId: number): Promise<EnrichResult | nul
   if (!lead) return null
   if (lead.instagram) return null
 
-  const igUrl = await buscarInstagramViaDDG(lead.nome)
+  const igUrl = await buscarInstagram(lead.nome)
   if (!igUrl) return null
 
-  const dados = await extrairDadosInstagram(igUrl)
+  const dados = dadosBasicos(igUrl)
 
   await db.execute({
     sql: `UPDATE leads SET
