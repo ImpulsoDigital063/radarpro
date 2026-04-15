@@ -70,7 +70,7 @@ export async function analisarAvaliacoesGMaps(mapsUrl: string, nome: string): Pr
 
   // Manda para Gemini analisar
   const genAI = getGemini()
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
   const prompt = `Analise as avaliações do Google do negócio "${nome}" e identifique padrões.
 

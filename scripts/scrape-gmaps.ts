@@ -57,11 +57,18 @@ async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendap
 
         // Categoria — geralmente aparece após o nome na segunda linha
         const spans = Array.from(card.querySelectorAll('span'))
-        const categoria = spans.find(s =>
-          s.textContent && s.textContent.length > 2 && s.textContent.length < 40 &&
-          !s.textContent.match(/^\d/) && s.getAttribute('aria-label') === null &&
-          !s.textContent.includes('R$') && !s.textContent.includes('·')
-        )?.textContent?.trim() ?? ''
+        const categoria = spans.find(s => {
+          const t = s.textContent?.trim() ?? ''
+          if (t.length < 3 || t.length > 40) return false
+          if (/^\d/.test(t)) return false              // começa com número
+          if (/^\(\d+\)$/.test(t)) return false        // "(16)" = nº avaliações
+          if (t.startsWith('(')) return false          // qualquer parêntese
+          if (/^\d[,\.]\d/.test(t)) return false       // nota "4,5"
+          if (t === 'Nenhuma avaliação') return false
+          if (t.includes('R$') || t.includes('·')) return false
+          if (s.getAttribute('aria-label') !== null) return false
+          return true
+        })?.textContent?.trim() ?? ''
 
         // Nota Google (formato: "4,5")
         const notaMatch = texto.match(/(\d[,\.]\d)\s*\(/)
@@ -152,19 +159,49 @@ async function scrapeGoogleMaps(query: string, tipo: 'lp' | 'shopify' | 'agendap
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
+const QUERIES_PADRAO: Record<'lp'|'shopify'|'agendapro', string[]> = {
+  lp: [
+    'nutricionista Palmas TO',
+    'advogado Palmas TO',
+    'dentista Palmas TO',
+    'arquiteto Palmas TO',
+    'psicólogo Palmas TO',
+    'fisioterapeuta Palmas TO',
+  ],
+  shopify: [
+    'loja de roupas Palmas TO',
+    'loja cosméticos Palmas TO',
+    'perfumaria Palmas TO',
+    'pet shop Palmas TO',
+    'joalheria Palmas TO',
+    'papelaria Palmas TO',
+  ],
+  agendapro: [
+    'barbearia Palmas TO',
+    'salão de beleza Palmas TO',
+    'clínica estética Palmas TO',
+    'manicure pedicure Palmas TO',
+    'estúdio tatuagem Palmas TO',
+    'massoterapia Palmas TO',
+  ],
+}
+
+function readFlag(args: string[], name: string): string | null {
+  const eq = args.find(a => a.startsWith(`--${name}=`))
+  if (eq) return eq.slice(name.length + 3)
+  const idx = args.indexOf(`--${name}`)
+  if (idx !== -1 && idx + 1 < args.length) return args[idx + 1]
+  return null
+}
+
 async function main() {
   const args = process.argv.slice(2)
 
-  const tipoArg  = args.find(a => a.startsWith('--tipo='))?.split('=')[1]
-                || args[args.indexOf('--tipo') + 1]
-                || 'lp'
-
-  const queryArg = args.find(a => a.startsWith('--query='))?.replace('--query=', '')
-                || args[args.indexOf('--query') + 1]
-                || null
+  const tipoArg  = readFlag(args, 'tipo') || 'lp'
+  const queryArg = readFlag(args, 'query')
 
   const tipo = (['shopify','agendapro'].includes(tipoArg) ? tipoArg : 'lp') as 'lp'|'shopify'|'agendapro'
-  const queries = queryArg ? [queryArg] : [`negócios Palmas TO`]
+  const queries = queryArg ? [queryArg] : QUERIES_PADRAO[tipo]
 
   console.log(`\n🚀 radarPRO — Google Maps Scraper`)
   console.log(`   Modo: ${tipo.toUpperCase()} | Query: ${queries[0]}`)

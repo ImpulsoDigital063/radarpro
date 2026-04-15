@@ -10,6 +10,7 @@
     "radar:lp": "tsx scripts/scrape-gmaps.ts --tipo lp",
     "radar:shopify": "tsx scripts/scrape-gmaps.ts --tipo shopify",
     "radar:agendapro": "tsx scripts/scrape-gmaps.ts --tipo agendapro",
+    "ig:login": "tsx scripts/ig-login.ts",
     "radar:ig:lp": "tsx scripts/scrape-instagram.ts --tipo lp",
     "radar:ig:shop": "tsx scripts/scrape-instagram.ts --tipo shopify",
     "radar:ig:agenda": "tsx scripts/scrape-instagram.ts --tipo agendapro",

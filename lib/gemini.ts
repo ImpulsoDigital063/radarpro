@@ -12,25 +12,36 @@ Você pensa como um consultor de vendas experiente. Analisa negócios locais e i
 Agência especializada em 3 produtos:
 
 **1. Landing Page — R$499**
-- Página de alta conversão com foco no produto/serviço do cliente
-- Hospedagem vitalícia inclusa
-- 3 artigos de blog com foco em SEO (aparece no Google)
-- Design baseado nas referências do cliente
-- Prazo: até 5 dias após briefing
-- 3 rodadas de ajuste inclusas
+- Página de alta conversão sob medida (não é template engessado)
+- **Hospedagem vitalícia inclusa** — cliente paga uma vez e não volta a pagar host
+- **3 artigos de blog com foco em SEO dentro da própria LP** — cliente faz pesquisa no Google sobre o tema → artigo do lead aparece → tráfego orgânico de graça todo mês
+- Seções estratégicas pensadas pra prender atenção (hero, prova, oferta, CTA)
+- Cliente pode enviar site/LP de inspiração — usamos como referência visual
+- **Suporte de 30 dias após entrega**
+- Prazo: até 5 dias após briefing · 3 rodadas de ajuste inclusas
 - Pagamento: Pix ou cartão pelo Mercado Pago
-- Casos de sucesso: evsuplementosinjetaveis.com (loja de suplementos), criativosdoceu.com (doceria artesanal)
-- Público ideal: profissional liberal ou pequeno negócio SEM site profissional
+- Casos de sucesso: evsuplementosinjetaveis.com, criativosdoceu.com
+- Público ideal: profissional liberal ou pequeno negócio SEM site profissional · quem quer aparecer no Google sem pagar agência de SEO · quem já faz tráfego pago e precisa de página de alta conversão
 
 **2. Loja Shopify — a partir de R$599**
-- Loja online completa com produtos, carrinho, pagamento
-- Integração com meios de pagamento brasileiros
-- Público ideal: quem vende produto físico mas só pelo Instagram ou WhatsApp
+- Loja online completa, tema moderno mobile-first focado em CONVERSÃO (não só "bonito")
+- **Gancho de custo inicial: $1/mês nos primeiros 3 meses** (plano promocional Shopify) — cliente testa sem quase custo, depois decide manter
+- **Entrega expressa via motoboy na região do cliente** — selo "entrega hoje" no site dispara compra por impulso
+- **Frete nacional via Melhor Envio** — fretes até 80% mais baratos que correios padrão
+- **Checkout transparente Yampi** — sem mensalidade, 2,5% sobre a venda · PIX, cartão em 12x, boleto
+- **Gateway Mercado Pago** como opção segura de peso
+- Argumento-chave: vendendo só por Instagram/WhatsApp, dono fica refém da negociação manual de frete e pix a cada pedido — cliente esfria e desiste no impulso
+- Público ideal: quem vende produto físico só pelo Instagram/WhatsApp, com demanda local + potencial de vender pra fora de Palmas
 
-**3. AgendaPRO — R$67/mês**
-- Sistema de agendamento online (cliente agenda sozinho, sem WhatsApp)
-- Reduz tempo perdido com confirmações
-- Ideal para: barbearia, salão, clínica estética, personal trainer, psicólogo, dentista, fisioterapeuta
+**3. AgendaPRO — R$67/mês (14 dias grátis)**
+- **Telas personalizadas por segmento**: Barbearia · Salão de Beleza · Nail Designer · Clínica Estética (layouts prontos pro nicho, não é sistema genérico)
+- **Programa de fidelidade com pontuação** + **link de indicação**: cliente indica cliente e ambos ganham pontos quando o indicado agenda → máquina de indicação automática
+- **Lista de espera automática**: cancelou → próximo da fila recebe e-mail na hora e preenche a vaga (zero vaga desperdiçada)
+- **Badge Google Reviews**: nota do Google aparece direto na página de agendamento · cliente que avalia ganha pontos → ajuda a rankear no Google
+- **Sistema de comissão + dashboard financeiro**: dono acompanha seus ganhos e os ganhos de cada profissional comissionado (resolve a dor clássica "não sei quanto cada cadeira rende")
+- **Experiência zero atrito**: cliente não baixa app, só clica no link · cadastro uma vez · dono ganha lista de clientes com telefone e e-mail pra campanhas
+- **Lembretes automáticos D-1 e 1 hora antes** → reduz no-show (a dor nº1 de quem trabalha com hora marcada)
+- Público ideal: barbearia, salão, nail designer, clínica estética · profissional com hora marcada perdendo tempo no WhatsApp · dono com comissionados sem clareza financeira
 
 ## Tom de voz obrigatório
 - Direto, como mensagem de amigo
@@ -107,7 +118,7 @@ export type DiagnosticoNegocio = {
 export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
   const genAI  = getClient()
   const model  = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -183,7 +194,7 @@ ${temIG ? `→ TEM INSTAGRAM ATIVO: já tem audiência, só falta converter para
 export async function diagnosticarNegocio(lead: DadosLead): Promise<DiagnosticoNegocio> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -260,7 +271,7 @@ export type AnaliseSite = {
 export async function analisarConteudoSite(url: string, conteudo: string, nome: string): Promise<AnaliseSite> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -311,7 +322,7 @@ Retorne EXATAMENTE este JSON (sem markdown):
 export async function calcularScoreIA(lead: DadosLead): Promise<{ score: number; justificativa: string }> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -362,7 +373,7 @@ export async function gerarFollowup(lead: DadosLead & {
 }): Promise<RespostaFollowup> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -456,7 +467,7 @@ export async function gerarPlanoHoje(leads: (DadosLead & {
 
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 
@@ -530,7 +541,7 @@ Retorne EXATAMENTE este JSON (sem markdown) com os 5 leads mais prioritários:
 export async function chat(historico: { role: 'user' | 'model'; text: string }[], pergunta: string): Promise<string> {
   const genAI = getClient()
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: SYSTEM_PROMPT,
   })
 

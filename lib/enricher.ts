@@ -123,11 +123,21 @@ export async function enriquecerTodos(tipo?: string) {
   })
   const leads = result.rows as any[]
 
+  console.log(`🔎 Enriquecendo ${leads.length} leads${tipo ? ` (tipo=${tipo})` : ''}...`)
+
   let enriquecidos = 0
+  let i = 0
   for (const lead of leads) {
+    i++
     const res = await enriquecerLead(lead.id as number)
-    if (res?.instagram) enriquecidos++
+    if (res?.instagram) {
+      enriquecidos++
+      console.log(`   ✅ [${i}/${leads.length}] #${lead.id} ${lead.nome} → ${res.instagram}`)
+    } else {
+      console.log(`   ⏭  [${i}/${leads.length}] #${lead.id} ${lead.nome} — sem resultado`)
+    }
     await new Promise(r => setTimeout(r, 1500))
   }
+  console.log(`\n📊 Total: ${enriquecidos}/${leads.length} enriquecidos`)
   return { total: leads.length, enriquecidos }
 }

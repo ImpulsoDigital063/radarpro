@@ -72,8 +72,11 @@ async function scrapeInstagram(url: string): Promise<Partial<AnaliseResult>> {
 
   const bio    = $('meta[name="description"]').attr('content') ?? ''
   const titulo = $('title').text()
-  const handle = url.split('instagram.com/')[1]?.replace(/\/$/, '') ?? ''
-  const nome   = titulo.split('•')[0].trim().replace('@', '').split('(')[0].trim() || handle
+  const handle = (url.split('instagram.com/')[1]?.replace(/\/$/, '').split('?')[0] ?? '').replace(/\/.*$/, '')
+  const nomeDoTitulo = titulo.split('•')[0].trim().replace('@', '').split('(')[0].trim()
+  // og:title genérico do IG vem literalmente como "Instagram" → cair no handle
+  const GENERICOS = new Set(['Instagram', 'Instagram Login', 'Login • Instagram', ''])
+  const nome   = (GENERICOS.has(nomeDoTitulo) ? handle : nomeDoTitulo) || handle || 'Perfil Instagram'
 
   const telMatch  = bio.match(/(\(?\d{2}\)?\s?\d{4,5}[-\s]?\d{4})/)
   const telefone  = telMatch ? telMatch[0].replace(/\s/g, '') : null

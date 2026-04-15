@@ -11,9 +11,12 @@
 
 import { config } from 'dotenv'
 import { resolve } from 'path'
+import { existsSync } from 'fs'
 config({ path: resolve(process.cwd(), '.env.local') })
 
 import { chromium } from 'playwright'
+
+const SESSION_PATH = resolve(process.cwd(), '.ig-session.json')
 import {
   inserirLead,
   registrarBusca,
@@ -168,8 +171,8 @@ async function scrapeHashtag(
       // Pausa entre perfis para não ser bloqueado
       await page.waitForTimeout(2000)
 
-    } catch {
-      // Post/perfil sem dados suficientes — pula
+    } catch (err: any) {
+      console.log(`   💥 erro em ${postPath}: ${err.message?.slice(0, 120) ?? err}`)
     }
   }
 
@@ -181,14 +184,21 @@ async function scrapeHashtag(
 
 // ── Execução ──────────────────────────────────────────────────────────────────
 
+function readFlag(args: string[], name: string): string | null {
+  const eq = args.find(a => a.startsWith(`--${name}=`))
+  if (eq) return eq.slice(name.length + 3)
+  const idx = args.indexOf(`--${name}`)
+  if (idx !== -1 && idx + 1 < args.length) {
+    const next = args[idx + 1]
+    if (!next.startsWith('--')) return next
+  }
+  return null
+}
+
 async function main() {
   const args = process.argv.slice(2)
-  const tipoArg = args.find(a => a.startsWith('--tipo='))?.split('=')[1]
-               || (args[args.indexOf('--tipo') + 1])
-               || 'lp'
-
-  const hashtagArg = args.find(a => a.startsWith('--hashtag='))?.split('=')[1]
-                  || (args[args.indexOf('--hashtag') + 1])
+  const tipoArg    = readFlag(args, 'tipo') ?? 'lp'
+  const hashtagArg = readFlag(args, 'hashtag')
 
   const tipo = (['shopify', 'agendapro'].includes(tipoArg)
     ? tipoArg
@@ -206,13 +216,20 @@ async function main() {
   console.log(`   Modo: ${tipo.toUpperCase()}`)
   console.log(`   Hashtags: ${hashtags.length}`)
   console.log('─'.repeat(50))
-  console.log('   ⚠️  Instagram pode pedir login — se travar, use conta logada')
+  const temSessao = existsSync(SESSION_PATH)
+  if (!temSessao) {
+    console.log('   ⚠️  Nenhuma sessão salva. Rode `npm run ig:login` primeiro.')
+    console.log('   Sem login, Instagram bloqueia após 2-3 requests.\n')
+  } else {
+    console.log('   ✅ Usando sessão salva em .ig-session.json')
+  }
 
-  const browser = await chromium.launch({ headless: false }) // headless: false para Instagram (anti-bot)
+  const browser = await chromium.launch({ headless: false })
   const context = await browser.newContext({
     locale: 'pt-BR',
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
     viewport: { width: 1280, height: 800 },
+    ...(temSessao ? { storageState: SESSION_PATH } : {}),
   })
   const page = await context.newPage()
 
