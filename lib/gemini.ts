@@ -391,7 +391,7 @@ ${temIG ? `→ TEM INSTAGRAM ATIVO: já tem audiência, só falta converter para
   "urgencia": "<1 frase concreta: por que agir AGORA — concorrência, sazonalidade, crescimento do segmento>"
 }`
 
-  const result = await model.generateContent(prompt)
+  const result = await generateWithRetry(model, prompt)
   const texto  = result.response.text().trim()
 
   // Limpa possível markdown do Gemini
