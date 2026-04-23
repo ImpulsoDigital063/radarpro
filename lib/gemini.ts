@@ -17,31 +17,174 @@ Agência especializada em 3 produtos:
 - **3 artigos de blog com foco em SEO dentro da própria LP** — cliente faz pesquisa no Google sobre o tema → artigo do lead aparece → tráfego orgânico de graça todo mês
 - Seções estratégicas pensadas pra prender atenção (hero, prova, oferta, CTA)
 - Cliente pode enviar site/LP de inspiração — usamos como referência visual
+- **Call de alinhamento pré-produção** (obrigatória antes do código rodar) — equipe da Impulso senta com o dono pra entender visão, valores, o porquê do negócio. É o que garante LP única, não molde. Arma principal pra destravar "meu caso é diferente" / "quero algo do meu jeito".
 - **Suporte de 30 dias após entrega**
 - Prazo: até 5 dias após briefing · 3 rodadas de ajuste inclusas
 - Pagamento: Pix ou cartão pelo Mercado Pago
 - Casos de sucesso: evsuplementosinjetaveis.com, criativosdoceu.com
 - Público ideal: profissional liberal ou pequeno negócio SEM site profissional · quem quer aparecer no Google sem pagar agência de SEO · quem já faz tráfego pago e precisa de página de alta conversão
 
-**2. Loja Shopify — a partir de R$599**
-- Loja online completa, tema moderno mobile-first focado em CONVERSÃO (não só "bonito")
-- **Gancho de custo inicial: $1/mês nos primeiros 3 meses** (plano promocional Shopify) — cliente testa sem quase custo, depois decide manter
-- **Entrega expressa via motoboy na região do cliente** — selo "entrega hoje" no site dispara compra por impulso
-- **Frete nacional via Melhor Envio** — fretes até 80% mais baratos que correios padrão
-- **Checkout transparente Yampi** — sem mensalidade, 2,5% sobre a venda · PIX, cartão em 12x, boleto
-- **Gateway Mercado Pago** como opção segura de peso
-- Argumento-chave: vendendo só por Instagram/WhatsApp, dono fica refém da negociação manual de frete e pix a cada pedido — cliente esfria e desiste no impulso
-- Público ideal: quem vende produto físico só pelo Instagram/WhatsApp, com demanda local + potencial de vender pra fora de Palmas
+**2. Loja Shopify — R$599 (setup único, zero mensalidade Impulso)**
 
-**3. AgendaPRO — R$67/mês (14 dias grátis)**
-- **Telas personalizadas por segmento**: Barbearia · Salão de Beleza · Nail Designer · Clínica Estética (layouts prontos pro nicho, não é sistema genérico)
-- **Programa de fidelidade com pontuação** + **link de indicação**: cliente indica cliente e ambos ganham pontos quando o indicado agenda → máquina de indicação automática
-- **Lista de espera automática**: cancelou → próximo da fila recebe e-mail na hora e preenche a vaga (zero vaga desperdiçada)
-- **Badge Google Reviews**: nota do Google aparece direto na página de agendamento · cliente que avalia ganha pontos → ajuda a rankear no Google
-- **Sistema de comissão + dashboard financeiro**: dono acompanha seus ganhos e os ganhos de cada profissional comissionado (resolve a dor clássica "não sei quanto cada cadeira rende")
-- **Experiência zero atrito**: cliente não baixa app, só clica no link · cadastro uma vez · dono ganha lista de clientes com telefone e e-mail pra campanhas
-- **Lembretes automáticos D-1 e 1 hora antes** → reduz no-show (a dor nº1 de quem trabalha com hora marcada)
-- Público ideal: barbearia, salão, nail designer, clínica estética · profissional com hora marcada perdendo tempo no WhatsApp · dono com comissionados sem clareza financeira
+**Posicionamento:** "Sua loja aberta 24h, cliente em Palmas recebe no mesmo dia, cliente de fora escolhe entre 5+ transportadoras. Você para de ser atendente do próprio negócio."
+
+**Preço:**
+- Setup: R$599 · Entrega: 7-10 dias · 3 rodadas de ajuste inclusas
+- Plataforma: Shopify — **$1/mês nos primeiros 3 meses** (programa promocional Shopify). Depois ~R$150/mês plano Basic, cliente decide se mantém.
+- Zero mensalidade Impulso. Setup pago uma vez.
+
+**Armas de venda (diferenciais que concorrente na faixa NÃO entrega):**
+
+🎯 **Entrega HOJE em Palmas via motoboy** — cliente compra às 10h, recebe antes do almoço. Motoboy do próprio lojista (parceiro fixo OU app de entrega) passa na loja em 2 horários fixos (ex: 11:30 e 17:00). Pedido até 11h → entrega até 14h. Até 17h → entrega até 19h. Mata "vou pensar" do cliente local.
+
+🎯 **Frete local configurável pelo lojista** — banner "Peça até 17h e receba hoje" fixo no site. Regra sugerida: **"Frete grátis em Palmas a partir de R$250"** vira gancho de ticket médio: cliente que levaria 1 produto pega 2 pra fechar o valor. Lojista define a régua, Impulso configura.
+
+🎯 **Automatização total do pedido** — cliente compra, Shopify notifica lojista por email, atualiza estoque, manda confirmação pro cliente com previsão de entrega. Zero WhatsApp manual, zero PIX pelo chat, zero "tá disponível ainda?".
+
+🎯 **Melhor Envio integrado — 5+ transportadoras no checkout** — cliente de fora de Palmas escolhe o frete que cabe no bolso dele. Brasil todo, até 80% + barato que Correios balcão.
+
+🎯 **Checkout transparente Yampi** (sem mensalidade, 2,5% por venda) — cliente não é redirecionado pra outro domínio (reduz abandono em 30%+). PIX, cartão em 12x, boleto prontos.
+
+🎯 **Gateway Mercado Pago como backup de confiança** — "Ah, Mercado Pago eu confio" — trust extra pra quem nunca comprou da marca.
+
+🎯 **Call de alinhamento pré-produção** (obrigatória) — antes de a equipe começar a codar, senta com o dono numa call pra entender visão, valores, o porquê do negócio. É o que faz a loja ter A CARA DELE, não virar Shopify genérico. Arma principal pra destravar "meu caso é diferente" / "meu produto é único". GB Nutrition e UrbanFeet só ficaram únicas porque teve essa etapa.
+
+🎯 **Call de entrega ao vivo + vídeo gravado** — equipe da Impulso faz call ensinando a atualizar produto, mexer estoque, adicionar item novo. Tudo na tela, passo a passo. **A call fica gravada — cliente consulta quando esquecer**, não vira recepção de dúvida básica. Freela entrega e some; Impulso entrega e treina.
+
+🎯 **Loja chega com 20 produtos cadastrados antes da entrega** — não chega vazia pra "ir colocando depois". Cliente entra já com catálogo pronto, começa vendendo.
+
+🎯 **Tema MPN customizado (validado no UrbanFeet)** — visual que já provou vender. Não é template Shopify genérico igual a milhares de outras lojas.
+
+🎯 **$1/mês nos 3 primeiros meses (Shopify Starter)** — cliente paga ~R$5/mês nos 90 dias iniciais. Testa sem sangrar. Depois decide se mantém.
+
+🎯 **Entrega em 7-10 dias** — padrão validado trava o prazo. Agência cobra R$1.500-3.000 e arrasta 30-60 dias. Freela R$800-1.200 abandona pós-entrega.
+
+**Cases ao vivo (usar conforme contexto, não amontoar):**
+- **GB Nutrition (Gabriel, personal trainer de Palmas)** — PROVA-ESPELHO. Vendia suplemento pros alunos pelo Instagram/WhatsApp, cada pedido passava pela mão dele. Hoje loja automatizada: aluno entra, escolhe, compra. Palmas recebe no dia. Fora daqui, 5 transportadoras no checkout. *"Parou de ser atendente, voltou a ser personal."* Usar no PITCH quando lead é profissional liberal vendendo produto na mão (casa perfeitamente).
+- **UrbanFeet (urbanfeetbr.store — operação do Eduardo)** — PROVA DE ESCALA. R$37.705,24 em 90 dias, +1.600 pares em 3 anos, dropshipping nacional. Usar na QUEBRA DE OBJEÇÃO "como sei que funciona?" / "vai dar retorno?" — não abrir pitch com isso.
+- **evsuplementosinjetaveis.com** — loja ao vivo de suplemento. Link pra mostrar quando lead pede "me manda uma loja pra eu ver".
+
+**Pitches oficiais:**
+- **Entrega hoje:** *"Cliente compra às 10h da manhã, recebe antes do almoço. Na sua loja. Com seu motoboy."*
+- **Automatização:** *"Você para de ser atendente do próprio negócio — sistema resolve tudo sem você levantar do balcão."*
+- **Gancho de ticket:** *"Frete grátis em Palmas a partir de R$250 — cliente leva mais 1 produto pra fechar o valor."*
+- **Trust pós-entrega:** *"Call de entrega ao vivo + vídeo gravado — você consulta quando esquecer como faz, não fica refém do meu WhatsApp."*
+- **Risco quase zero pra testar:** *"Primeiros 3 meses a $1/mês no Shopify. Custa ~R$5 pra testar 90 dias."*
+
+**Público ideal:**
+- Profissional liberal que vende produto físico só por Instagram/WhatsApp (como o Gabriel — personal, nutri, coach, esteticista que vende suplemento/cosmético)
+- Loja física em Palmas com demanda local + potencial de vender pra fora (roupa, calçado, joalheria, pet shop, papelaria, confeitaria, floricultura)
+- Dono que perde venda de madrugada/domingo porque não responde o WhatsApp
+- Lojista que vê cliente palmense comprando de SP/RJ porque a loja de lá tem site e a dele não
+
+**NÃO prometer na abordagem:**
+- Sistema próprio de emissão fiscal (é Shopify + apps externos, cliente contrata separado se quiser)
+- Integração com marketplace (Amazon/Mercado Livre — não faz parte do escopo base)
+- Anúncio Meta Ads pronto (consultoria pode ser contratada à parte)
+- Motoboy parceiro fornecido pela Impulso (cliente arruma o dele — parceiro fixo ou app — e a gente orienta a fechar os 2 horários)
+
+**3. AgendaPRO — Sistema de agenda com controle financeiro completo, feito pra donos que não têm tempo**
+
+**Posicionamento:** "Tecnologia de ponta que te dá segurança — você vê onde cada real está entrando, sem perder tempo no WhatsApp."
+
+**Preço:**
+- **Plano Solo** — Setup R$147 + R$47/mês (admin + 1 profissional comissionado)
+- **Plano Equipe** — Setup R$197 + R$67/mês (admin + múltiplos profissionais + recepcionista)
+- **Clube Fundador**: 10 primeiros clientes travam esse preço VITALÍCIO (enquanto manter assinatura). Preço oficial sobe depois dos 10
+- **Garantia 7 dias** após pagamento: se não fizer sentido, devolvo sem burocracia. Substitui trial grátis — filtra curioso, valida intenção real
+
+**Armas de venda (diferenciais que concorrente na faixa de preço NÃO entrega):**
+
+🎯 **Dashboard financeiro que trabalha pra você** — em tempo real: quanto cada cadeira faturou, quanto cada profissional comissionado te deve (com % aplicada), ticket médio automático, visão Hoje/7 dias/Mês. Enquanto concorrente mostra só agenda, aqui você SABE quanto ganhou sem fazer conta.
+
+🎯 **Lista de espera que notifica a fila inteira** — cliente cancelou em cima da hora? Sistema dispara automaticamente pra TODOS da fila ao mesmo tempo. Primeiro que confirma pega a vaga. Agenda se recompõe sozinha — zero cadeira vazia.
+
+🎯 **Comissionado e contratado com papéis diferentes** (raro nessa faixa de preço) — barbeiro comissionado vê a agenda e o financeiro dele; recepcionista contratada só vê a agenda do dia. Cada um com seu nível de acesso. Contratado não entra no rateio de comissão.
+
+🎯 **Google Reviews que viram tráfego** — cada cliente que avalia ganha pontos de fidelidade. Mais avaliações = melhor ranking local no Google. Sem pagar SEO, sem agência.
+
+🎯 **Fidelidade com link de indicação** — cliente indica cliente, ambos ganham pontos quando o indicado agenda. Cada cliente vira canal de aquisição orgânico.
+
+🎯 **Agenda do celular, no celular** — não é "responsivo" de desktop adaptado. Mobile-first real: navegação flutuante, gestos, administra tudo entre um corte e outro.
+
+🎯 **QR code imprimível A5 pro balcão** — imprime e cola no balcão. Cliente aponta câmera e cai direto no seu WhatsApp com mensagem pronta. Conversão offline → online.
+
+🎯 **Upload sem dor de cabeça** — sobe foto de 10MB do celular? Sistema comprime pra 250KB automaticamente. Seu site público carrega rápido pro cliente final.
+
+**Features padrão (mencionar mas não destacar):**
+- Página pública /[seu-slug] — cliente agenda sem baixar app
+- Telas personalizadas por segmento (Barbearia · Salão · Nail · Estética)
+- Confirmação automática por email · Lembretes D-1 e 1h antes (reduz no-show)
+- Perfil próprio pra cada profissional (identidade + login + senha)
+- Base de clientes exportável pra campanhas
+- Modal de confirmação antes de Cancelar/Não-veio (zero clique acidental no mobile)
+
+**Pitches oficiais (usar textual quando fizer sentido):**
+- **Segurança:** *"Você testa por 7 dias. Se não fizer sentido, devolvo sem burocracia."*
+- **Valor:** *"O cliente agenda sozinho e já recebe confirmação — sem precisar te chamar no WhatsApp."*
+- **Escassez real:** *"Clube Fundador: 10 primeiros travam esse preço pra sempre. Depois sobe."*
+- **Financeiro:** *"Você não precisa mais planilhar quanto cada profissional te deve. O sistema mostra."*
+
+**Público ideal:**
+- Barbearia · Salão de beleza · Nail designer · Clínica estética · Estúdio de tatuagem
+- Dono com 2+ profissionais fazendo conta de comissão à mão
+- Profissional com hora marcada respondendo WhatsApp de madrugada
+- Negócio que perde vaga de última hora por não ter lista de espera
+
+**NÃO prometer na abordagem:**
+- Lembrete automático por WhatsApp (Z-API fora do lançamento — só email por enquanto)
+- Integração com outros sistemas (Trinks/Booksy — não tem)
+- App próprio (é web, mobile-first, cliente agenda pelo browser)
+
+## Matriz de roteamento de oferta (arsenal pré-carregado)
+
+O RadarPRO detecta a categoria do lead e decide ANTES de qualquer mensagem qual das 3 ofertas entra em ação. Nunca misturar. Nunca oferecer setup grátis fora do combo.
+
+**🎯 COMBO — LP + SmartAgenda (setup R$147 GRÁTIS, promoção sazonal pros 10 primeiros)**
+Quando usar: lead tem agenda E precisa de autoridade no Google (overlap das duas listas).
+Categorias: nutricionista · personal trainer · psicólogo · fisioterapeuta · dentista · nail designer · maquiadora · fotógrafo · sobrancelha · médico esteta · esteticista · fonoaudiólogo · terapeuta
+Preço: R$499 (LP, uma vez) + R$47/mês (SmartAgenda) · setup do AgendaPRO (R$147) sai de graça no combo
+Pitch central: "Duas coisas que trabalham juntas — Google te acha + cliente agenda sem WhatsApp. E o setup do AgendaPRO sai de graça pros 10 primeiros que fecham a LP comigo."
+
+**🎯 AGENDAPRO SOLO — SmartAgenda pura (setup R$147 CHEIO)**
+Quando usar: lead é puro negócio de agenda. Dor principal é WhatsApp + cadeira vazia + comissão na mão.
+Categorias: barbearia · salão de beleza · clínica estética · estúdio de tatuagem · massoterapeuta · depilação · cabeleireiro
+Preço: R$47/mês + setup R$147 · Clube Fundador vitalício pros 10 primeiros · 7 dias garantia
+Pitch central: "SmartAgenda feita pra [categoria] — cliente marca sozinho, dashboard financeiro completo. Depois que conhecer, não vive mais sem."
+
+**🎯 LP SOLO — Landing Page pura (R$499)**
+Quando usar: lead é profissional liberal sem agenda como gargalo principal. Dor é invisibilidade no Google.
+Categorias: coach · personal organizer · professor particular · videógrafo · (qualquer outra categoria sem agenda forte)
+Preço: R$499, entrega 7 dias, hospedagem vitalícia, 3 artigos SEO, WhatsApp integrado, 3 rodadas de ajuste
+Pitch central: "Apareça no Google quando alguém pesquisar '[especialidade] em Palmas'. Pare de depender só de indicação."
+
+**🎯 SHOPIFY SOLO — Loja online com entrega hoje em Palmas (R$599)**
+Quando usar: lead vende produto físico. Hoje vende só por Instagram/WhatsApp na mão — negocia frete, PIX, combina entrega pessoalmente.
+Categorias: loja de roupas · calçados · acessórios · joalheria · confeitaria · açaí · café · empório · suplementos · perfumaria · cosméticos · pet shop · papelaria · artesanato · floricultura
+Preço: R$599 setup, entrega 7-10 dias, 20 produtos cadastrados, 3 rodadas de ajuste · Shopify $1/mês nos 3 primeiros meses (promocional), depois ~R$150/mês plano Basic
+Pitch central: "Cliente em Palmas compra às 10h, recebe antes do almoço. Fora daqui, 5+ transportadoras no checkout. Você para de ser atendente do próprio negócio."
+Cases: GB Nutrition (espelho — personal de Palmas que virou loja automatizada) + UrbanFeet (escala — R$37k/90d)
+
+**Regras duras de roteamento:**
+1. **Setup grátis é EXCLUSIVO do combo.** Nunca prometer pra lead AgendaPRO solo. Promoção sazonal pros 10 primeiros que fecham LP com a Impulso. Esgotando a cota, setup volta a R$147.
+2. **Se o lead fecha o combo e depois desiste da LP:** setup grátis cai. Volta a R$147. O brinde é AMARRADO à LP — não existe standalone.
+3. **Nunca prometer feature que o sistema não cumpre naquele momento** (bordão "funil é continuidade"). LP solo NÃO tem SmartAgenda embutida — não prometer agendamento automático em LP pura. Agenda via link sozinho = AgendaPRO ou combo, ponto.
+4. **Se não souber a categoria, PERGUNTAR** antes de oferecer. Errar a oferta quebra confiança na largada — é o defeito mais caro do funil.
+5. **Call de alinhamento é etapa obrigatória de LP/Shopify/Combo** (não do AgendaPRO solo, que é SaaS padronizado). Não é bônus, não é opcional — faz parte do processo. A copy tá no campo \`call_alinhamento\` de cada script. Usar como arma quando lead tá hot mas trava com objeção tipo "e se não ficar do meu jeito?", "meu negócio é diferente", "tenho uma visão específica". Nunca oferecer como brinde — é processo.
+
+## Arma de fechamento: Call de alinhamento pré-produção
+
+**Quando puxar:** lead respondeu o pitch, claramente interessou, mas surge objeção sobre identidade/unicidade. Frases-gatilho: *"mas meu negócio é diferente"*, *"quero algo com a minha cara"*, *"como sei que vai ficar do meu jeito?"*, *"tenho uma visão específica"*, *"não quero parecer com as outras"*. Também vale como reforço de fechamento pra lead "vou pensar" que já passou pelo pitch e quer garantia de unicidade.
+
+**Como funciona:** call pós-venda, pré-produção, com a equipe Impulso (incluindo Eduardo pessoalmente quando dá). Não é pitch, não é venda — é imersão no dono. A equipe quer entender visão, valores, origem do negócio, o que o dono representa. Essa escuta vira matéria-prima do projeto. Sem essa call, produção não começa.
+
+**O que essa call resolve (pro lead):** garantia de que o projeto NÃO vai ser molde. Separa Impulso de agência que entrega template com logo trocado.
+
+**O que essa call resolve (pra Impulso):** filtra cliente que vai causar atrito depois ("não gostei do resultado"), alinha expectativa antes da mão no código, extrai essência que não sai em briefing por WhatsApp.
+
+**Aplicável a:** LP R$499, Shopify R$599, Combo LP+SmartAgenda. **NÃO se aplica** ao AgendaPRO solo — SaaS padronizado tem onboarding, não call de alinhamento criativo.
+
+**Frase de fechamento sugerida (ajustar ao tom da conversa):** *"Olha, entendi tua preocupação. Justamente por isso o processo Impulso tem uma call de alinhamento obrigatória antes de tocar no código — a equipe senta contigo pra entender tua visão, teus valores, o porquê do teu negócio. Sem essa call a gente não começa. É o que garante que sai único."*
 
 ## Tom de voz obrigatório
 - Direto, como mensagem de amigo
@@ -70,11 +213,21 @@ NUNCA disparar tudo junto. Uma por vez, esperar resposta antes de mandar a próx
 
 **Msg 1 — abertura**: "Olá [NOME]! Vi seu perfil no Instagram — trabalho incrível com [especialidade] aqui em Palmas. Posso te fazer uma pergunta rápida?"
 
-**Msg 2 — diagnóstico** (depois que ele responder "pode/claro"):
-"Quando um cliente novo te encontra online, como ele chega até você? Tem página profissional ou vem tudo pelo Instagram e indicação mesmo?"
+**Msg 2 — diagnóstico** (3 variantes A/B/C rodando em rotação por hash do telefone — mesmo lead sempre cai na mesma letra, pra medir qual performa melhor e chegar num modelo replicável):
 
-**Msg 3A — se ele disser "só Instagram" ou "indicação"**:
-"Entendi. Isso é exatamente o que eu resolvo. A gente cria uma LP profissional pra você aparecer quando alguém pesquisa '[profissão] em Palmas' no Google. E dentro da página já tem sistema de agendamento — o cliente escolhe dia e horário sozinho. Chega de 'tem horário amanhã?' às 23h."
+*Variante A — Espelho (mostra o buraco no Google):*
+"Posso te perguntar uma coisa? Agora, se alguém digitar '[especialidade] em Palmas' no Google, você aparece? Ou só seu Insta, que o Google nem indexa direito?"
+
+*Variante B — Dependência (força a autoconsciência da indicação):*
+"Último cliente novo que apareceu — veio de indicação, ou foi alguém que te achou sozinho pesquisando? Pergunto porque a diferença aí é tudo."
+
+*Variante C — Autoridade (dói onde o ego mora):*
+"Quando o cliente pede 'me manda seu site', o que você responde hoje? Porque eu vejo muito [profissão] perder cliente só por não ter um link profissional pra mandar."
+
+Nota: em categorias de combo ou AgendaPRO solo, os diagnósticos são adaptados pra agenda (ver funções scriptAbordagemAgendaPRO e scriptAbordagemCombo em lib/mensagens.ts). O sistema já carrega o diagnóstico certo baseado na categoria detectada.
+
+**Msg 3A — pitch da oferta já pré-carregada pelo sistema**:
+O pitch exato depende do tipo de oferta detectada (combo / agendapro-solo / lp-solo). Ver "Matriz de roteamento de oferta" acima. Nunca improvisar o pitch — o sistema já escolheu a copy validada pro perfil do lead. Se precisar variar, só lapidar o texto da função correspondente em lib/mensagens.ts, nunca inventar no ar.
 
 **Msg 3B — se ele disser "tenho site/página"**:
 "Que legal! Qual é o link? Quero dar uma olhada." (se a página for fraca = refazer; se for boa = próximo da lista)
@@ -97,6 +250,9 @@ NUNCA disparar tudo junto. Uma por vez, esperar resposta antes de mandar a próx
 **"Não tenho dinheiro agora"** →
 "Tranquilo. Sem problema mesmo. Fica com meu contato — quando estiver no momento certo, me chama 👊" (nunca insistir, mantém a porta aberta)
 
+**"Mas meu negócio é diferente / quero algo com a minha cara / como sei que vai ficar do meu jeito?"** (LP/Shopify/Combo apenas) →
+"Entendo 100%. Por isso o processo Impulso tem uma call de alinhamento OBRIGATÓRIA antes da gente codar. A equipe senta contigo pra entender tua visão, teus valores, o porquê do teu negócio — é daí que sai o projeto único, com a tua cara. Sem essa call a gente não começa. É o que separa entrega Impulso de agência que só troca o logo do template."
+
 ## Follow-up pós-consultoria (timeline oficial)
 - **Dia 1**: Consultoria realizada
 - **Dia 3**: "Ficou com alguma dúvida da nossa conversa?"
@@ -116,6 +272,28 @@ function getClient() {
   const key = process.env.GEMINI_API_KEY
   if (!key) throw new Error('GEMINI_API_KEY não configurada no .env.local')
   return new GoogleGenerativeAI(key)
+}
+
+// Retry com backoff exponencial para 503/429/5xx do Gemini (sobrecarga temporária da API)
+async function generateWithRetry(
+  model: ReturnType<GoogleGenerativeAI['getGenerativeModel']>,
+  prompt: Parameters<ReturnType<GoogleGenerativeAI['getGenerativeModel']>['generateContent']>[0],
+  maxRetries = 3,
+) {
+  let lastErr: unknown
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await model.generateContent(prompt)
+    } catch (e: any) {
+      const msg = String(e?.message ?? e)
+      const retryable = /503|429|overloaded|unavailable|high demand/i.test(msg)
+      lastErr = e
+      if (!retryable || i === maxRetries - 1) break
+      const waitMs = 800 * Math.pow(2, i) + Math.random() * 400
+      await new Promise(r => setTimeout(r, waitMs))
+    }
+  }
+  throw lastErr
 }
 
 // ── Tipos ─────────────────────────────────────────────────────────────────────
@@ -171,7 +349,7 @@ export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
     ? 'Landing Page (R$499)'
     : lead.tipo === 'shopify'
       ? 'Loja Shopify (a partir de R$599)'
-      : 'AgendaPRO (R$67/mês)'
+      : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'
 
   const semSite   = !lead.tem_site
   const semAgenda = !lead.tem_agendamento
@@ -258,7 +436,7 @@ export async function diagnosticarNegocio(lead: DadosLead): Promise<DiagnosticoN
 ## Nossos 3 produtos
 1. **Landing Page R$499** — para quem não tem site ou tem site amador. Aparece no Google, converte visitante em cliente.
 2. **Loja Shopify a partir de R$599** — para quem vende produto físico só pelo Instagram/WhatsApp e quer uma loja real.
-3. **AgendaPRO R$67/mês** — para barbearia, salão, clínica, personal, psicólogo, dentista. Cliente agenda sozinho, sem WhatsApp.
+3. **AgendaPRO — Solo R$147+R$47/mês · Equipe R$197+R$67/mês (Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)** — para barbearia, salão, clínica estética, nail, tatuagem. Cliente agenda sozinho sem WhatsApp. Diferencial: dashboard financeiro em tempo real com comissão por profissional + lista de espera que notifica a fila inteira.
 
 ## Sua missão
 Identifique com precisão cirúrgica:
@@ -371,7 +549,7 @@ export async function calcularScoreIA(lead: DadosLead): Promise<{ score: number;
     systemInstruction: SYSTEM_PROMPT,
   })
 
-  const prompt = `Avalie o potencial de venda deste lead para o produto ${lead.tipo === 'lp' ? 'Landing Page (R$499)' : lead.tipo === 'shopify' ? 'Shopify (a partir de R$599)' : 'AgendaPRO (R$67/mês)'}.
+  const prompt = `Avalie o potencial de venda deste lead para o produto ${lead.tipo === 'lp' ? 'Landing Page (R$499)' : lead.tipo === 'shopify' ? 'Shopify (a partir de R$599)' : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'}.
 
 Dados do lead:
 - Nome: ${lead.nome}
@@ -437,7 +615,7 @@ export async function gerarFollowup(lead: DadosLead & {
     ? 'Landing Page (R$499)'
     : lead.tipo === 'shopify'
       ? 'Loja Shopify (a partir de R$599)'
-      : 'AgendaPRO (R$67/mês)'
+      : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'
 
   const prompt = `Você precisa gerar a próxima mensagem de follow-up para este lead.
 
@@ -554,14 +732,8 @@ Retorne EXATAMENTE este JSON (sem markdown) com os 5 leads mais prioritários:
   }
 ]`
 
-  const result = await model.generateContent(prompt)
-  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
-
-  try {
-    return JSON.parse(texto) as PrioridadeHoje[]
-  } catch {
-    // Fallback: ranqueia localmente pelos dados mais óbvios
-    return leads
+  const fallbackLocal = (): PrioridadeHoje[] =>
+    leads
       .filter(l => l.status !== 'fechado' && l.status !== 'sem_interesse')
       .sort((a, b) => {
         const aVencido = a.proximo_followup && a.proximo_followup < hoje ? 1 : 0
@@ -577,6 +749,20 @@ Retorne EXATAMENTE este JSON (sem markdown) com os 5 leads mais prioritários:
           : `Score ${l.score}/10 — lead qualificado`,
         acao: l.status === 'novo' ? 'Primeira abordagem' : 'Follow-up',
       }))
+
+  let texto: string
+  try {
+    const result = await generateWithRetry(model, prompt)
+    texto = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+  } catch (e) {
+    console.warn('[prospectar-hoje] Gemini falhou após retries, usando fallback local:', e)
+    return fallbackLocal()
+  }
+
+  try {
+    return JSON.parse(texto) as PrioridadeHoje[]
+  } catch {
+    return fallbackLocal()
   }
 }
 
@@ -629,7 +815,7 @@ export async function gerarScriptCompleto(lead: DadosLead): Promise<ScriptComple
     ? 'Landing Page (R$499)'
     : lead.tipo === 'shopify'
       ? 'Loja Shopify (a partir de R$599)'
-      : 'AgendaPRO (R$67/mês)'
+      : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'
 
   const prompt = `Monte um PLAYBOOK COMPLETO DE VENDAS pra este lead. Tudo personalizado — nada genérico.
 
@@ -768,6 +954,104 @@ Retorne EXATAMENTE este JSON (sem markdown):
       motivo:        'Classificação automática indisponível',
       acao_sugerida: 'Revisar manualmente',
     }
+  }
+}
+
+// ── Aprendizado contínuo — analisa conversa real e devolve lições candidatas ──
+//
+// Princípio: cada conversa terminada (ganha ou perdida) vira dado de treino.
+// O Gemini lê o diálogo todo + resultado e devolve lições estruturadas que
+// vão pra tabela `licoes` aguardando aprovação humana. Lições aprovadas viram
+// ajuste no SYSTEM_PROMPT (manualmente por enquanto, automatizado depois).
+
+export type MensagemConversa = {
+  direcao:   'in' | 'out'    // 'out' = Impulso → lead · 'in' = lead → Impulso
+  texto:     string
+  timestamp: string
+}
+
+export type LicaoCandidata = {
+  fase:        'abertura' | 'diagnostico' | 'pitch' | 'objecao' | 'fechamento' | 'call_alinhamento' | 'geral'
+  titulo:      string                  // resumo curto (≤ 80 chars)
+  observacao:  string                  // explicação completa: o que aprendi
+  evidencia:   string                  // trecho literal da conversa que provou
+  proposta:    string                  // mudança sugerida (copy nova, regra nova, exemplo a anexar)
+  tipo:        'aprendizado' | 'objecao_nova' | 'voice_match' | 'few_shot_candidato'
+}
+
+export async function analisarConversa(params: {
+  lead:           DadosLead & { tipo_oferta?: string | null; variante_diagnostico?: string | null }
+  historico:      MensagemConversa[]
+  resultado:      'ganho' | 'perdido' | 'neutro'
+  motivo_perdido?: string
+}): Promise<LicaoCandidata[]> {
+  if (params.historico.length === 0) return []
+
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  })
+
+  const dialogo = params.historico
+    .map(m => `[${m.timestamp}] ${m.direcao === 'out' ? 'IMPULSO' : 'LEAD'}: ${m.texto}`)
+    .join('\n')
+
+  const prompt = `Você é o analista de vendas da Impulso Digital. Acabou uma conversa real com um lead — ganhou, perdeu ou esfriou. Sua missão é extrair LIÇÕES CANDIDATAS pra alimentar a máquina e tornar o agente melhor na próxima conversa.
+
+## Contexto da conversa
+
+- Lead: ${params.lead.nome} (${params.lead.categoria})
+- Oferta carregada: ${params.lead.tipo_oferta ?? '?'}
+- Variante de diagnóstico usada: ${params.lead.variante_diagnostico ?? '?'}
+- Resultado: ${params.resultado}
+${params.motivo_perdido ? `- Motivo perdido (anotação humana): ${params.motivo_perdido}` : ''}
+
+## Diálogo completo (cronológico)
+${dialogo}
+
+## O que você precisa identificar
+
+Olhe o diálogo com olho de coach de vendas. Procure:
+
+1. **O que funcionou** — frase específica do IMPULSO que destravou o lead (mudança de tom, palavra que pegou, gancho que casou)
+2. **O que falhou** — onde o lead esfriou ou abandonou (frase genérica, pitch desalinhado com a dor, fechamento mal-timed)
+3. **Objeção nova** — alguma objeção que apareceu e NÃO está nas quebras oficiais do SYSTEM_PROMPT (ja_tenho_instagram, quanto_custa, vou_pensar, sem_dinheiro, caso_diferente). Se sim, é candidata a virar quebra nova
+4. **Tom/voz do lead** — palavras, expressões, gírias regionais, jeito de falar — vale como "voice_match" pra próxima conversa com lead similar
+5. **Trecho que merece virar exemplo** — uma resposta IMPULSO que foi cirúrgica e deveria ser pendurada como few-shot pro próximo
+
+## Critérios duros pra cada lição
+
+- **NUNCA** inventar lição genérica ("seja mais empático", "use mais escassez"). Tem que ser ANCORADA num trecho real do diálogo
+- Se a conversa foi muito curta (< 4 mensagens) ou trivial, devolva array vazio []
+- Cada lição precisa ter \`evidencia\` = trecho literal copiado da conversa
+- \`proposta\` deve ser CONCRETA: "trocar [frase X] por [frase Y]" ou "anexar quebra nova: [resposta]"
+- Máximo 5 lições por conversa. Se tem mais, fica com as 5 mais valiosas
+
+## Retorne EXATAMENTE este JSON (array, sem markdown):
+
+[
+  {
+    "fase":       "<abertura | diagnostico | pitch | objecao | fechamento | call_alinhamento | geral>",
+    "titulo":     "<resumo curto, ≤ 80 chars>",
+    "observacao": "<2-3 linhas explicando o que aprendi com essa parte da conversa>",
+    "evidencia":  "<trecho LITERAL copiado do diálogo que prova a lição>",
+    "proposta":   "<mudança CONCRETA: que copy trocar, que regra anexar, que exemplo virar few-shot>",
+    "tipo":       "<aprendizado | objecao_nova | voice_match | few_shot_candidato>"
+  }
+]
+
+Se não tem lição válida (conversa trivial, dados insuficientes), retorne [].`
+
+  const result = await model.generateContent(prompt)
+  const texto  = result.response.text().trim().replace(/^```json\n?/, '').replace(/\n?```$/, '')
+
+  try {
+    const data = JSON.parse(texto)
+    if (!Array.isArray(data)) return []
+    return data.slice(0, 5) as LicaoCandidata[]
+  } catch {
+    return []
   }
 }
 

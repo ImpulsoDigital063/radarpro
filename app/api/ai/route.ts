@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio, gerarScriptCompleto, classificarTermometro } from '@/lib/gemini'
+import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio, gerarScriptCompleto, classificarTermometro, analisarConversa, type MensagemConversa } from '@/lib/gemini'
 import { melhorHorarioPara } from '@/lib/horarios'
 import { analisarSiteLead } from '@/lib/site-analyzer'
 import { analisarAvaliacoesGMaps } from '@/lib/reviews-analyzer'
 import { atualizarMensagem, getClient } from '@/lib/db'
+import { escolherScriptAbordagem, pickDiagnostico } from '@/lib/mensagens'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -179,6 +180,156 @@ export async function POST(req: NextRequest) {
       const { categoria, tipo } = body
       if (!categoria) return NextResponse.json({ error: 'categoria obrigatória' }, { status: 400 })
       return NextResponse.json(melhorHorarioPara(categoria, tipo))
+    }
+
+    // Gera abordagem usando arsenal pré-carregado (router por categoria + diagnóstico A/B/C determinístico)
+    // POST { action: 'gerar_abordagem_arsenal', leadId }
+    if (action === 'gerar_abordagem_arsenal') {
+      const { leadId } = body
+      if (!leadId) return NextResponse.json({ error: 'leadId obrigatório' }, { status: 400 })
+
+      const r = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [leadId] })
+      const lead = r.rows[0] as any
+      if (!lead) return NextResponse.json({ error: 'lead não encontrado' }, { status: 404 })
+
+      // Roteia oferta + escolhe variante de diagnóstico — tudo determinístico, sem LLM
+      const { tipo, script } = escolherScriptAbordagem({
+        nome:      lead.nome as string,
+        categoria: (lead.categoria as string) ?? '',
+      })
+      const diag = pickDiagnostico(script, (lead.telefone as string) ?? lead.id.toString())
+
+      // Persiste roteamento no lead — primeira vez fixa, próximas chamadas mantém
+      // (assim as métricas de conversão por variante ficam estáveis pro mesmo lead)
+      await db.execute({
+        sql: `UPDATE leads
+              SET tipo_oferta = COALESCE(tipo_oferta, ?),
+                  variante_diagnostico = COALESCE(variante_diagnostico, ?),
+                  atualizado_em = datetime('now','localtime')
+              WHERE id = ?`,
+        args: [tipo, diag.variante, leadId],
+      })
+
+      return NextResponse.json({
+        tipo_oferta:  tipo,
+        variante:     diag.variante,
+        sequencia: {
+          msg1_abertura:        script.abertura,
+          msg2_diagnostico:     diag.texto,
+          msg3a_pitch_so_ig:    script.pitch_se_so_ig,
+          msg3b_pitch_tem_site: script.pitch_se_tem_site,
+          msg4_fechamento:      script.fechamento,
+          arma_call_alinhamento: script.call_alinhamento ?? null,
+        },
+      })
+    }
+
+    // Marca o disparo da abordagem (chamado quando o vendedor confirma envio da msg1)
+    // POST { action: 'marcar_disparo', leadId }
+    if (action === 'marcar_disparo') {
+      const { leadId } = body
+      if (!leadId) return NextResponse.json({ error: 'leadId obrigatório' }, { status: 400 })
+
+      await db.execute({
+        sql: `UPDATE leads
+              SET disparado_em = COALESCE(disparado_em, datetime('now','localtime')),
+                  status = CASE WHEN status = 'novo' THEN 'abordado' ELSE status END,
+                  atualizado_em = datetime('now','localtime')
+              WHERE id = ?`,
+        args: [leadId],
+      })
+      return NextResponse.json({ ok: true })
+    }
+
+    // Aprovar ou rejeitar uma lição candidata
+    // POST { action: 'decidir_licao', licaoId, decisao: 'aprovada'|'rejeitada' }
+    if (action === 'decidir_licao') {
+      const { licaoId, decisao } = body
+      if (!licaoId)  return NextResponse.json({ error: 'licaoId obrigatório' }, { status: 400 })
+      if (decisao !== 'aprovada' && decisao !== 'rejeitada') {
+        return NextResponse.json({ error: 'decisao deve ser aprovada|rejeitada' }, { status: 400 })
+      }
+
+      await db.execute({
+        sql: `UPDATE licoes
+              SET status = ?, decidida_em = datetime('now','localtime'), decidida_por = 'eduardo'
+              WHERE id = ?`,
+        args: [decisao, licaoId],
+      })
+      return NextResponse.json({ ok: true })
+    }
+
+    // Analisa conversa terminada e extrai lições candidatas pra alimentar a máquina
+    // POST { action: 'analisar_conversa', leadId, resultado: 'ganho'|'perdido'|'neutro', motivo_perdido? }
+    if (action === 'analisar_conversa') {
+      const { leadId, resultado, motivo_perdido } = body
+      if (!leadId)    return NextResponse.json({ error: 'leadId obrigatório' }, { status: 400 })
+      if (!resultado) return NextResponse.json({ error: 'resultado obrigatório (ganho|perdido|neutro)' }, { status: 400 })
+
+      // Carrega lead + histórico de mensagens em paralelo
+      const [leadRow, msgsRow] = await Promise.all([
+        db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [leadId] }),
+        db.execute({
+          sql:  `SELECT direcao, texto, timestamp FROM mensagens_whatsapp
+                 WHERE lead_id = ? ORDER BY timestamp ASC`,
+          args: [leadId],
+        }),
+      ])
+
+      const lead = leadRow.rows[0] as any
+      if (!lead) return NextResponse.json({ error: 'lead não encontrado' }, { status: 404 })
+
+      const historico: MensagemConversa[] = msgsRow.rows.map((r: any) => ({
+        direcao:   r.direcao as 'in' | 'out',
+        texto:     r.texto as string,
+        timestamp: r.timestamp as string,
+      }))
+
+      if (historico.length === 0) {
+        return NextResponse.json({ licoes: [], aviso: 'sem mensagens registradas para esse lead' })
+      }
+
+      const licoes = await analisarConversa({
+        lead: {
+          nome:                  lead.nome,
+          categoria:             lead.categoria ?? '',
+          tipo:                  lead.tipo,
+          tipo_oferta:           lead.tipo_oferta,
+          variante_diagnostico:  lead.variante_diagnostico,
+        },
+        historico,
+        resultado,
+        motivo_perdido,
+      })
+
+      // Persiste lições candidatas — todas começam com status='pendente' aguardando aprovação
+      for (const l of licoes) {
+        await db.execute({
+          sql: `INSERT INTO licoes (lead_id, tipo_oferta, fase, titulo, observacao, evidencia, proposta, tipo, resultado)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          args: [
+            leadId,
+            lead.tipo_oferta ?? null,
+            l.fase,
+            l.titulo,
+            l.observacao,
+            l.evidencia,
+            l.proposta,
+            l.tipo,
+            resultado,
+          ],
+        })
+      }
+
+      // Atualiza lead com o resultado consolidado
+      await db.execute({
+        sql: `UPDATE leads
+              SET fechou = ?, motivo_perdido = ?, atualizado_em = datetime('now','localtime')
+              WHERE id = ?`,
+        args: [resultado === 'ganho' ? 1 : 0, motivo_perdido ?? null, leadId],
+      })
+
+      return NextResponse.json({ licoes, total: licoes.length })
     }
 
     // Chat livre com o agente

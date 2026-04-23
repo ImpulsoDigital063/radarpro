@@ -61,16 +61,49 @@ export async function initDb() {
     `CREATE INDEX IF NOT EXISTS idx_leads_fonte  ON leads(fonte)`,
   ], 'write')
 
-  // Migration idempotente — colunas novas (script playbook + termômetro)
+  // Migration idempotente — colunas novas (script playbook + termômetro + arsenal pré-carregado)
   for (const col of [
     `ALTER TABLE leads ADD COLUMN script_json TEXT`,
     `ALTER TABLE leads ADD COLUMN script_gerado_em TEXT`,
     `ALTER TABLE leads ADD COLUMN termometro TEXT`,              // 'quente' | 'morno' | 'frio'
     `ALTER TABLE leads ADD COLUMN termometro_acao TEXT`,
     `ALTER TABLE leads ADD COLUMN termometro_atualizado_em TEXT`,
+    `ALTER TABLE leads ADD COLUMN tipo_oferta TEXT`,             // 'lp-solo' | 'shopify-solo' | 'agendapro-solo' | 'combo'
+    `ALTER TABLE leads ADD COLUMN variante_diagnostico TEXT`,    // 'A' | 'B' | 'C' (rotação por hash do telefone)
+    `ALTER TABLE leads ADD COLUMN disparado_em TEXT`,            // timestamp do primeiro envio via arsenal
+    `ALTER TABLE leads ADD COLUMN respondeu_em TEXT`,            // timestamp da primeira resposta
+    `ALTER TABLE leads ADD COLUMN tempo_resposta_horas REAL`,    // derivado: respondeu_em - disparado_em
+    `ALTER TABLE leads ADD COLUMN fase_travou TEXT`,             // onde a conversa morreu
+    `ALTER TABLE leads ADD COLUMN objecao_tipo TEXT`,            // categoria de objeção
+    `ALTER TABLE leads ADD COLUMN converteu_call INTEGER DEFAULT 0`,  // aceitou os 3 horários?
+    `ALTER TABLE leads ADD COLUMN fechou INTEGER DEFAULT 0`,
+    `ALTER TABLE leads ADD COLUMN motivo_perdido TEXT`,
   ]) {
     try { await db.execute(col) } catch { /* coluna já existe */ }
   }
+
+  // Tabela de lições aprendidas — alimenta a máquina conforme conversas acontecem
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS licoes (
+      id           INTEGER PRIMARY KEY AUTOINCREMENT,
+      lead_id      INTEGER,
+      tipo_oferta  TEXT,                              -- 'lp-solo' | 'shopify-solo' | etc
+      fase         TEXT,                              -- 'abertura' | 'diagnostico' | 'pitch' | 'objecao' | 'fechamento' | 'call_alinhamento'
+      titulo       TEXT NOT NULL,                     -- resumo curto da lição
+      observacao   TEXT NOT NULL,                     -- explicação completa
+      evidencia    TEXT,                              -- trecho da conversa que provou
+      proposta     TEXT,                              -- mudança sugerida (copy nova, regra nova, exemplo a anexar)
+      tipo         TEXT DEFAULT 'aprendizado',        -- 'aprendizado' | 'objecao_nova' | 'voice_match' | 'few_shot_candidato'
+      resultado    TEXT,                              -- 'ganho' | 'perdido' | 'neutro' (resultado da conversa que gerou)
+      status       TEXT DEFAULT 'pendente',           -- 'pendente' | 'aprovada' | 'rejeitada' | 'aplicada'
+      criado_em    TEXT DEFAULT (datetime('now','localtime')),
+      decidida_em  TEXT,
+      decidida_por TEXT                               -- 'eduardo' | 'auto' (futuro: aprovação automática se score alto)
+    )
+  `)
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_licoes_status ON licoes(status)`)
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_licoes_lead   ON licoes(lead_id)`)
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_licoes_oferta ON licoes(tipo_oferta)`)
 }
 
 // Garante schema criado uma vez por processo
