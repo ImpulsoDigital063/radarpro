@@ -345,11 +345,10 @@ export async function gerarAbordagem(lead: DadosLead): Promise<RespostaAgente> {
     systemInstruction: SYSTEM_PROMPT,
   })
 
-  const produto = lead.tipo === 'lp'
-    ? 'Landing Page (R$499)'
-    : lead.tipo === 'shopify'
-      ? 'Loja Shopify (a partir de R$599)'
-      : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'
+  // AgendaPRO fora do foco atual — cai em LP por default
+  const produto = lead.tipo === 'shopify'
+    ? 'Loja Shopify (R$599 setup · 20 produtos · entrega 7-10 dias · valor de mercado R$3.200)'
+    : 'Landing Page (R$499 · hospedagem vitalícia + 3 artigos SEO · entrega 7 dias · valor de mercado R$2.500)'
 
   const semSite   = !lead.tem_site
   const semAgenda = !lead.tem_agendamento
@@ -433,10 +432,9 @@ export async function diagnosticarNegocio(lead: DadosLead): Promise<DiagnosticoN
 - Tem e-commerce: ${lead.tem_ecommerce ? 'sim' : 'não'}
 - Tem agendamento online: ${lead.tem_agendamento ? 'sim' : 'não'}
 
-## Nossos 3 produtos
-1. **Landing Page R$499** — para quem não tem site ou tem site amador. Aparece no Google, converte visitante em cliente.
-2. **Loja Shopify a partir de R$599** — para quem vende produto físico só pelo Instagram/WhatsApp e quer uma loja real.
-3. **AgendaPRO — Solo R$147+R$47/mês · Equipe R$197+R$67/mês (Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)** — para barbearia, salão, clínica estética, nail, tatuagem. Cliente agenda sozinho sem WhatsApp. Diferencial: dashboard financeiro em tempo real com comissão por profissional + lista de espera que notifica a fila inteira.
+## Nossos 2 produtos (foco atual de prospecção — 23/04)
+1. **Landing Page R$499** — para profissional liberal (personal, nutri, psicólogo, estética, fotógrafo, etc) que não tem site ou tem site amador. Aparece no Google, converte visitante em cliente. Valor de mercado R$2.500 (setup R$1.500 + SEO R$500 + mobile R$300 + WhatsApp R$200). Grátis: hospedagem vitalícia + 3 artigos SEO.
+2. **Loja Shopify R$599** — para quem vende produto físico pelo Instagram/WhatsApp e quer loja real. Valor de mercado R$3.200 (setup R$1.500 + tema MPN R$1.000 + integrações R$400 + 20 produtos R$300). Grátis: Shopify $1/mês nos primeiros 3 meses + lista de fornecedores + scripts prospecção + call de entrega gravada.
 
 ## Sua missão
 Identifique com precisão cirúrgica:
@@ -449,7 +447,7 @@ Retorne EXATAMENTE neste JSON (sem markdown):
 {
   "dor_central": "<a dor número 1 desse negócio AGORA — específica, concreta, não genérica>",
   "custo_da_dor": "<o que essa dor está custando — seja concreto: 'X horas por dia', 'clientes que não voltam', 'concorrente que aparece no Google'>",
-  "produto_ideal": "<lp | shopify | agendapro>",
+  "produto_ideal": "<lp | shopify>",
   "por_que_esse_produto": "<raciocínio direto: como ESTE produto elimina ESTA dor específica — 2 frases>",
   "argumento_cirurgico": "<a frase mais poderosa para usar no pitch — deve fazer o prospect pensar 'é exatamente isso'>",
   "gatilho": "<medo_de_perder | desejo_de_ganhar | prova_social — qual gatilho usar com esse tipo de negócio>",
@@ -462,9 +460,10 @@ Retorne EXATAMENTE neste JSON (sem markdown):
   try {
     const data = JSON.parse(texto)
     // Normaliza o produto_ideal
-    const produtoValido = ['lp', 'shopify', 'agendapro'].includes(data.produto_ideal)
+    // AgendaPRO fora do foco atual — qualquer saída 'agendapro' ou inválida cai em LP
+    const produtoValido = ['lp', 'shopify'].includes(data.produto_ideal)
       ? data.produto_ideal
-      : lead.tipo
+      : 'lp'
     return { ...data, produto_ideal: produtoValido }
   } catch {
     return {
@@ -549,7 +548,13 @@ export async function calcularScoreIA(lead: DadosLead): Promise<{ score: number;
     systemInstruction: SYSTEM_PROMPT,
   })
 
-  const prompt = `Avalie o potencial de venda deste lead para o produto ${lead.tipo === 'lp' ? 'Landing Page (R$499)' : lead.tipo === 'shopify' ? 'Shopify (a partir de R$599)' : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'}.
+  // AgendaPRO fora do foco de prospecção atual (23/04) — leads legado com
+  // tipo='agendapro' são tratados como LP (nosso foco é LP + Shopify).
+  const produtoScore = lead.tipo === 'shopify'
+    ? 'Loja Shopify (R$599 setup, 20 produtos cadastrados, entrega 7-10 dias, valor de mercado R$3.200)'
+    : 'Landing Page (R$499 setup, hospedagem vitalícia + 3 artigos SEO, entrega 7 dias, valor de mercado R$2.500)'
+
+  const prompt = `Avalie o potencial de venda deste lead para o produto ${produtoScore}.
 
 Dados do lead:
 - Nome: ${lead.nome}
@@ -611,11 +616,10 @@ export async function gerarFollowup(lead: DadosLead & {
     sem_interesse:       'disse que não tem interesse',
   }
 
-  const produto = lead.tipo === 'lp'
-    ? 'Landing Page (R$499)'
-    : lead.tipo === 'shopify'
-      ? 'Loja Shopify (a partir de R$599)'
-      : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'
+  // AgendaPRO fora do foco atual — cai em LP por default
+  const produto = lead.tipo === 'shopify'
+    ? 'Loja Shopify (R$599 setup · 20 produtos · entrega 7-10 dias · valor de mercado R$3.200)'
+    : 'Landing Page (R$499 · hospedagem vitalícia + 3 artigos SEO · entrega 7 dias · valor de mercado R$2.500)'
 
   const prompt = `Você precisa gerar a próxima mensagem de follow-up para este lead.
 
@@ -811,11 +815,10 @@ export async function gerarScriptCompleto(lead: DadosLead): Promise<ScriptComple
     systemInstruction: SYSTEM_PROMPT,
   })
 
-  const produto = lead.tipo === 'lp'
-    ? 'Landing Page (R$499)'
-    : lead.tipo === 'shopify'
-      ? 'Loja Shopify (a partir de R$599)'
-      : 'AgendaPRO (Setup R$147 + R$47/mês Solo · R$197 + R$67/mês Equipe — Clube Fundador: 10 primeiros travam vitalício · Garantia 7 dias)'
+  // AgendaPRO fora do foco atual — cai em LP por default
+  const produto = lead.tipo === 'shopify'
+    ? 'Loja Shopify (R$599 setup · 20 produtos · entrega 7-10 dias · valor de mercado R$3.200)'
+    : 'Landing Page (R$499 · hospedagem vitalícia + 3 artigos SEO · entrega 7 dias · valor de mercado R$2.500)'
 
   const prompt = `Monte um PLAYBOOK COMPLETO DE VENDAS pra este lead. Tudo personalizado — nada genérico.
 

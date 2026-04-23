@@ -40,6 +40,7 @@ export type ScriptAbordagem = {
 }
 
 export function scriptAbordagemLP(nome: string, especialidade: string): ScriptAbordagem {
+  const esp = especialidade.toLowerCase()
   return {
     abertura: gerarMensagemLP(nome, especialidade),
     diagnosticos: [
@@ -48,12 +49,12 @@ export function scriptAbordagemLP(nome: string, especialidade: string): ScriptAb
       // B — Dependência: força a autoconsciência da indicação
       `Último cliente novo que apareceu — veio de indicação, ou foi alguém que te achou sozinho pesquisando?\n\nPergunto porque a diferença aí é tudo.`,
       // C — Autoridade: dói onde o ego mora
-      `Quando o cliente pede "me manda seu site", o que você responde hoje?\n\nPorque eu vejo muito ${especialidade.toLowerCase()} perder cliente só por não ter um link profissional pra mandar.`,
+      `Quando o cliente pede "me manda seu site", o que você responde hoje?\n\nPorque eu vejo muito ${esp} perder cliente só por não ter um link profissional pra mandar.`,
     ],
-    pitch_se_so_ig: `Entendi. Isso é exatamente o que eu resolvo.\n\nA gente cria uma LP profissional pra você aparecer quando alguém pesquisa "${especialidade} em Palmas" no Google.\n\nLink próprio pra passar no Insta, WhatsApp, cartão. Cliente te acha, abre, vê serviços, preços, depoimentos — e já fala com você direto pelo WhatsApp integrado.\n\nHospedagem vitalícia inclusa. 3 artigos SEO no blog pra puxar tráfego orgânico. Entrega em 7 dias.\n\nR$499 e você para de depender de indicação.`,
-    pitch_se_tem_site: `Que legal! Qual é o link? Quero dar uma olhada.`,
+    pitch_se_so_ig: `Entendi. É exatamente onde eu resolvo.\n\nAntes de falar preço, deixa eu te mostrar o que você leva:\n\n→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso\n→ SEO local configurado — você aparece quando alguém pesquisa "${especialidade} em Palmas" no Google (R$500)\n→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)\n→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)\n\n*Valor de mercado: R$2.500.*\n\nE GRÁTIS empilhado:\n✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)\n✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads\n\nPra referência de mercado:\n• Agência local Palmas: R$1.500-3.000 + mensalidade\n• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem\n\n*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.`,
+    pitch_se_tem_site: `Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando de fazer por você.`,
     fechamento: `Posso te mostrar como fica na prática em 20 minutos.\n\nQual é melhor pra você:\n- Quinta (15h)?\n- Sexta (14h)?\n- Segunda (10h)?`,
-    call_alinhamento: `Olha, antes da gente fechar, tem uma coisa importante do nosso processo: *call de alinhamento* com a equipe da Impulso.\n\nNão é pitch, não é venda — é pra eu te conhecer. Sua visão, seus valores, o que te fez começar com ${especialidade.toLowerCase()}. Quero pegar a sua essência pra LP ter a SUA cara, não ser molde genérico.\n\nÉ o que separa uma LP que vende de uma LP que só existe. Sem essa call eu não começo a produção.`,
+    call_alinhamento: `Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min) com a equipe Impulso.\n\nNão é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com ${esp}.\n\nVocê sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.\n\nEssa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.`,
   }
 }
 
@@ -68,10 +69,10 @@ export function scriptAbordagemShopify(nome: string, categoria: string): ScriptA
       // C — madrugada / domingo
       `Sábado de noite, domingo de manhã — cliente vê seu produto e quer comprar. Você tá lá pra responder, ou o pedido some até segunda?`,
     ],
-    pitch_se_so_ig: `Deixa eu te mostrar o que faz essa loja diferente de qualquer Shopify/Wix que você já viu.\n\n*Cliente em Palmas* entra na sua loja às 10h, paga com PIX ou cartão 12x — recebe em casa antes do almoço. Como?\n\n• Cliente compra → sistema te avisa automaticamente\n• Motoboy passa na sua loja em 2 horários fixos (ex: 11:30 e 17:00) — pode ser parceiro fixo OU app de entrega, você define\n• Pedido até 11h chega até 14h · até 17h chega até 19h\n• Zero WhatsApp, zero negociação de frete, zero PIX manual\n\nE aqui entra o *gancho de ticket médio*: você pode configurar "frete grátis em Palmas a partir de R$250" — cliente que ia levar 1 produto pega 2 pra fechar o valor. Ou "peça até 17h e receba hoje" em banner fixo. Você decide a regra, a gente configura.\n\n*Cliente de fora de Palmas?* Checkout com 5+ transportadoras via Melhor Envio — cliente escolhe o frete que cabe no bolso dele. Brasil todo, até 80% + barato que Correios.\n\nExemplo real: o *Gabriel* — personal trainer aqui em Palmas — vendia suplemento pros alunos pelo Instagram e WhatsApp. Cada pedido passava pela mão dele: PIX, confirmar, combinar entrega. Era o gargalo da própria venda.\n\nHoje a loja do Gabriel tá automatizada. Aluno abre, escolhe, compra. Palmas recebe no dia. Fora daqui, 5 transportadoras no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*\n\nE pra você não ficar perdido depois da entrega: a equipe da Impulso faz uma *call de entrega ao vivo* — te mostro como atualizar produto, mexer estoque, adicionar item novo, tudo na tela. *A call fica gravada, o vídeo é seu*. Esqueceu algo daqui a meses? Abre, revê, resolve.\n\n*Primeiros 3 meses no Shopify: $1/mês* (programa promocional). Quase grátis pra testar.\n\n*R$599 de setup, entrega em 7-10 dias, loja chega com 20 produtos cadastrados.*`,
+    pitch_se_so_ig: `Entendi. Deixa eu te mostrar o que você leva antes de falar preço.\n\n→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)\n→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)\n→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)\n→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)\n\n*Valor de mercado: R$3.200.*\n\nE GRÁTIS empilhado:\n✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar\n✓ Lista de fornecedores do nicho que a Impulso mapeou\n✓ Scripts de prospecção pra puxar os primeiros 10 clientes\n✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê\n\nPra referência de mercado:\n• Agência local Palmas: R$1.500-4.000 + mensalidade\n• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call\n\n*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.\n\nPalmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.\n\nGancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.\n\nCase real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*`,
     pitch_se_tem_site: `Que legal! Qual é o link? Quero dar uma olhada.`,
     fechamento: scriptAbordagemLP(nome, categoria).fechamento,
-    call_alinhamento: `Antes da gente fechar, tem uma etapa importante do processo: *call de alinhamento* da equipe Impulso contigo.\n\nA ideia é simples — quero te conhecer, entender a visão do seu negócio, seus valores, por que você começou. É daí que a loja ganha a SUA cara, não vira Shopify genérico igual a mil por aí.\n\nA GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. Essa call faz parte do processo — não tem como pular.`,
+    call_alinhamento: `Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhamento* (30 min) com a equipe Impulso.\n\nNão é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.\n\nVocê sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*`,
   }
 }
 
@@ -134,9 +135,10 @@ const CATEGORIAS_SHOPIFY_MATCH = [
 
 export function detectarTipoOferta(categoria: string): TipoOferta {
   const cat = categoria.toLowerCase()
-  if (CATEGORIAS_SHOPIFY_MATCH.some(c => cat.includes(c)))  return 'shopify-solo'
-  if (CATEGORIAS_PURO_AGENDA.some(c => cat.includes(c)))    return 'agendapro-solo'
-  if (CATEGORIAS_COMBO.some(c => cat.includes(c)))          return 'combo'
+  if (CATEGORIAS_SHOPIFY_MATCH.some(c => cat.includes(c))) return 'shopify-solo'
+  // AgendaPRO fora do foco de prospecção atual (23/04): tudo que não é
+  // loja/produto físico vira LP. CATEGORIAS_PURO_AGENDA e CATEGORIAS_COMBO
+  // seguem exportadas pra uso em outras telas, mas não roteiam mais.
   return 'lp-solo'
 }
 
@@ -168,14 +170,13 @@ export function escolherScriptAbordagem(params: {
 }): { tipo: TipoOferta; script: ScriptAbordagem } {
   const tipo = detectarTipoOferta(params.categoria)
   switch (tipo) {
-    case 'combo':
-      return { tipo, script: scriptAbordagemCombo(params.nome, params.categoria) }
-    case 'agendapro-solo':
-      return { tipo, script: scriptAbordagemAgendaPRO(params.nome, params.categoria) }
     case 'shopify-solo':
       return { tipo, script: scriptAbordagemShopify(params.nome, params.categoria) }
+    case 'combo':
+    case 'agendapro-solo':
     case 'lp-solo':
-      return { tipo, script: scriptAbordagemLP(params.nome, params.categoria) }
+    default:
+      return { tipo: 'lp-solo', script: scriptAbordagemLP(params.nome, params.categoria) }
   }
 }
 
