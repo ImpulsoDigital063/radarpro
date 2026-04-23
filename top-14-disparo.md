@@ -1,7 +1,7 @@
-# Playbook de ataque — 14 leads (v2, 2026-04-23 noite)
+# Playbook de ataque — 14 leads (2026-04-23)
 
 **Meta:** fechar no mínimo 2 dos 14 esta semana.
-**Fonte:** análise cirúrgica feita no Claude (plano MAX Eduardo) sobre `top-14-raw.json`.
+**Fonte:** análise cirúrgica hardcoded em `scripts/top-14-disparo.ts` (feita no Claude, plano MAX).
 **Importante:** scraping IG ainda pendente — leads NÃO têm bio nem seguidores. Análise baseada em categoria, nota Google, volume de avaliações e nicho.
 
 ## Ranking realista (ordem de ataque)
@@ -22,13 +22,13 @@
 5. Nutricionista - TATIANE SOUZA — `lp-solo` · 5 (63 aval). *Nutri, bom ticket, mas ambiguidade de branding pode indicar lead confuso/em transição.*
 6. Cheiro de Amor Cosméticos — `shopify-solo` · 5 (63 aval). *Ticket OK, mas precisa qualificar se é multimarcas ou revendedora (afeta se o Shopify faz sentido legal).*
 
-**TIER C (2) — red flag, só se tiver tempo:**
+**TIER C (2) — red flag, qualificar antes:**
 1. Doxsen - Moda Praia, Fitness e Casual — `shopify-solo` · 4.8 (161 aval). *Volume de avaliações alto mas Insta suspeito = dado sujo.*
 2. Racco Cosméticos — `shopify-solo` · 5 (63 aval). *Qualificação duvidosa (revendedora vs.*
 
 ---
 
-## Oferta consolidada — cola aqui se precisar lapidar
+## Oferta consolidada
 
 ### LP (R$499)
 - Valor de mercado empilhado: **R$2.500** (setup R$1.500 + SEO R$500 + mobile R$300 + WhatsApp R$200)
