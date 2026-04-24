@@ -30,6 +30,10 @@ type Lead = {
   faixa_investimento: string | null
   pagamento_50_em: string | null
   pagamento_final_em: string | null
+  plano_negocio_md: string | null
+  plano_gerado_em: string | null
+  plano_modelo_ia: string | null
+  plano_revisado_em: string | null
   criado_em: string
   atualizado_em: string
 }
@@ -119,6 +123,7 @@ export default function TallyDashboard() {
   const [tab, setTab] = useState<Tab>('novo')
   const [loading, setLoading] = useState(true)
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
+  const [planoLead, setPlanoLead] = useState<Lead | null>(null)
 
   async function fetchLeads() {
     setLoading(true)
@@ -235,6 +240,7 @@ export default function TallyDashboard() {
                 lead={lead}
                 tab={tab}
                 onViewDetails={() => setSelectedLead(lead)}
+                onOpenPlano={() => setPlanoLead(lead)}
                 onRefresh={fetchLeads}
               />
             ))}
@@ -244,6 +250,14 @@ export default function TallyDashboard() {
 
       {selectedLead && (
         <DetailsModal lead={selectedLead} onClose={() => setSelectedLead(null)} />
+      )}
+
+      {planoLead && (
+        <PlanoModal
+          lead={planoLead}
+          onClose={() => setPlanoLead(null)}
+          onSaved={fetchLeads}
+        />
       )}
     </div>
   )
@@ -285,9 +299,9 @@ function TabButton({ active, onClick, color, children }: {
 }
 
 function LeadCard({
-  lead, tab, onViewDetails, onRefresh,
+  lead, tab, onViewDetails, onOpenPlano, onRefresh,
 }: {
-  lead: Lead; tab: Tab; onViewDetails: () => void; onRefresh: () => void
+  lead: Lead; tab: Tab; onViewDetails: () => void; onOpenPlano: () => void; onRefresh: () => void
 }) {
   const [copying, setCopying] = useState<string | null>(null)
 
@@ -409,21 +423,31 @@ function LeadCard({
           )}
 
           {tab === 'briefing-respondido' && (
-            <span style={{
-              padding: '6px 10px', fontSize: '11px', fontWeight: 700,
-              color: ACCENT_VIOLET,
-            }}>
-              ⏳ Aguardando pagamento
-            </span>
+            <>
+              <ActionButton onClick={onOpenPlano} bg={ACCENT_VIOLET} color="#fff">
+                🤖 {lead.plano_negocio_md ? 'Ver plano IA' : 'Gerar plano IA'}
+              </ActionButton>
+              <span style={{
+                padding: '6px 10px', fontSize: '11px', fontWeight: 700,
+                color: ACCENT_VIOLET,
+              }}>
+                ⏳ Aguardando pagamento
+              </span>
+            </>
           )}
 
           {tab === 'em-projeto' && (
-            <span style={{
-              padding: '6px 10px', fontSize: '11px', fontWeight: 700,
-              color: ACCENT_GREEN,
-            }}>
-              ✅ Em construção
-            </span>
+            <>
+              <ActionButton onClick={onOpenPlano} bg={ACCENT_VIOLET} color="#fff">
+                🤖 {lead.plano_negocio_md ? 'Ver plano IA' : 'Gerar plano IA'}
+              </ActionButton>
+              <span style={{
+                padding: '6px 10px', fontSize: '11px', fontWeight: 700,
+                color: ACCENT_GREEN,
+              }}>
+                ✅ Em construção
+              </span>
+            </>
           )}
         </div>
       </div>
@@ -534,4 +558,260 @@ function DetailsModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
       </div>
     </div>
   )
+}
+
+// ══════════════════════════════════════════════════════════════
+// PlanoModal — gerar / visualizar / editar plano com IA
+// ══════════════════════════════════════════════════════════════
+
+function PlanoModal({ lead, onClose, onSaved }: {
+  lead: Lead; onClose: () => void; onSaved: () => void
+}) {
+  const [markdown, setMarkdown] = useState<string>(lead.plano_negocio_md || '')
+  const [gerando, setGerando] = useState(false)
+  const [salvando, setSalvando] = useState(false)
+  const [erro, setErro] = useState<string | null>(null)
+  const [status, setStatus] = useState<string | null>(null)
+
+  async function gerar(regenerate = false) {
+    setGerando(true); setErro(null); setStatus(null)
+    try {
+      const r = await fetch('/api/tally/gerar-plano', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: lead.id, regenerate }),
+      })
+      const data = await r.json()
+      if (!r.ok) throw new Error(data.error || 'Falha')
+      setMarkdown(data.markdown)
+      setStatus(data.cached ? 'Carregado do cache.' : `Gerado com ${data.modelo}.`)
+      onSaved()
+    } catch (e: any) {
+      setErro(String(e?.message || e))
+    } finally {
+      setGerando(false)
+    }
+  }
+
+  async function salvarEdicao() {
+    setSalvando(true); setErro(null)
+    try {
+      const r = await fetch('/api/tally/gerar-plano', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: lead.id, markdown }),
+      })
+      if (!r.ok) throw new Error('Falha ao salvar')
+      setStatus('Revisão salva.')
+      onSaved()
+    } catch (e: any) {
+      setErro(String(e?.message || e))
+    } finally {
+      setSalvando(false)
+    }
+  }
+
+  function abrirImpressao() {
+    const html = renderizarHtml(markdown, lead.nome)
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank')
+  }
+
+  function copiarMarkdown() {
+    navigator.clipboard.writeText(markdown)
+    setStatus('Markdown copiado pra área de transferência.')
+    setTimeout(() => setStatus(null), 2000)
+  }
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '16px', zIndex: 60,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: CARD, border: `1px solid ${BRD}`, borderRadius: '12px',
+          maxWidth: '1200px', width: '100%', maxHeight: '90vh',
+          display: 'flex', flexDirection: 'column',
+        }}
+      >
+        {/* Header */}
+        <div style={{
+          padding: '16px 20px', borderBottom: `1px solid ${BRD}`,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          gap: '12px', flexWrap: 'wrap',
+        }}>
+          <div>
+            <h2 style={{ fontSize: '16px', fontWeight: 800, color: TXT, margin: 0 }}>
+              🤖 Plano de Negócio & Marketing — {lead.nome}
+            </h2>
+            {lead.plano_gerado_em && (
+              <p style={{ fontSize: '11px', color: MUTED, margin: '4px 0 0' }}>
+                Gerado em {lead.plano_gerado_em} · Modelo: {lead.plano_modelo_ia}
+                {lead.plano_revisado_em ? ` · Revisado em ${lead.plano_revisado_em}` : ''}
+              </p>
+            )}
+          </div>
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', color: MUTED, fontSize: '24px', cursor: 'pointer' }}
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Barra de ações */}
+        <div style={{
+          padding: '12px 20px', borderBottom: `1px solid ${BRD}`,
+          display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center',
+        }}>
+          {!markdown && (
+            <ActionButton onClick={() => gerar(false)} bg={ACCENT_VIOLET} color="#fff">
+              {gerando ? '⏳ Gerando plano (30-60s)...' : '🤖 Gerar plano agora'}
+            </ActionButton>
+          )}
+          {markdown && (
+            <>
+              <ActionButton onClick={() => gerar(true)} bg={ACCENT_AMBER} color="#000">
+                {gerando ? '⏳ Regerando...' : '🔄 Gerar de novo'}
+              </ActionButton>
+              <ActionButton onClick={salvarEdicao} bg={ACCENT_GREEN} color="#fff">
+                {salvando ? 'Salvando...' : '💾 Salvar revisão'}
+              </ActionButton>
+              <ActionButton onClick={copiarMarkdown} bg="#374151" color={TXT}>
+                📋 Copiar MD
+              </ActionButton>
+              <ActionButton onClick={abrirImpressao} bg={ACCENT_BLUE} color="#fff">
+                🖨️ Imprimir / PDF
+              </ActionButton>
+            </>
+          )}
+          {status && (
+            <span style={{ fontSize: '11px', color: ACCENT_GREEN, marginLeft: 'auto' }}>{status}</span>
+          )}
+          {erro && (
+            <span style={{ fontSize: '11px', color: ACCENT_RED, marginLeft: 'auto' }}>{erro}</span>
+          )}
+        </div>
+
+        {/* Corpo */}
+        {!markdown ? (
+          <div style={{ padding: '48px 32px', textAlign: 'center' }}>
+            <div style={{ fontSize: '48px', marginBottom: '12px' }}>🤖</div>
+            <h3 style={{ fontSize: '16px', fontWeight: 700, color: TXT, margin: '0 0 8px' }}>
+              Gerar o plano agora?
+            </h3>
+            <p style={{ fontSize: '13px', color: MUTED, maxWidth: '500px', margin: '0 auto 16px' }}>
+              A IA vai analisar todas as respostas do briefing + diagnóstico e gerar um plano completo de
+              14 seções em Markdown. Leva uns 30-60 segundos. Depois você edita o que quiser antes de
+              imprimir o PDF.
+            </p>
+            <ActionButton onClick={() => gerar(false)} bg={ACCENT_VIOLET} color="#fff">
+              {gerando ? '⏳ Gerando...' : '🤖 Gerar plano agora'}
+            </ActionButton>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+            {/* Editor */}
+            <textarea
+              value={markdown}
+              onChange={(e) => setMarkdown(e.target.value)}
+              style={{
+                width: '50%',
+                background: BG, color: TXT, border: 'none',
+                borderRight: `1px solid ${BRD}`,
+                padding: '16px', fontSize: '12px',
+                fontFamily: 'Consolas, Monaco, monospace',
+                lineHeight: 1.6, resize: 'none', outline: 'none',
+              }}
+            />
+            {/* Preview */}
+            <div style={{
+              width: '50%',
+              padding: '20px 24px', overflowY: 'auto',
+              background: '#fff', color: '#111',
+            }}>
+              <div
+                dangerouslySetInnerHTML={{ __html: renderizarPreview(markdown) }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ── Renderização markdown → HTML simples (sem libs extras) ──────────────────
+// Converte um subset suficiente: headings, bold, listas, tabelas, blockquotes
+
+function renderizarPreview(md: string): string {
+  let html = md
+
+  // tabelas — hack simples
+  html = html.replace(/(\|.+\|\n\|[\s|:-]+\|\n(?:\|.+\|\n?)+)/g, (tbl) => {
+    const linhas = tbl.trim().split('\n')
+    const head = linhas[0].split('|').slice(1, -1).map(s => s.trim())
+    const body = linhas.slice(2).map(l => l.split('|').slice(1, -1).map(s => s.trim()))
+    let out = '<table style="border-collapse:collapse;width:100%;margin:12px 0;font-size:12px"><thead><tr>'
+    head.forEach(h => out += `<th style="border:1px solid #ddd;padding:6px 8px;background:#f3f4f6;text-align:left">${h}</th>`)
+    out += '</tr></thead><tbody>'
+    body.forEach(row => {
+      out += '<tr>'
+      row.forEach(c => out += `<td style="border:1px solid #ddd;padding:6px 8px">${c}</td>`)
+      out += '</tr>'
+    })
+    out += '</tbody></table>'
+    return out
+  })
+
+  html = html
+    .replace(/^### (.+)$/gm, '<h3 style="font-size:15px;font-weight:700;margin:16px 0 6px;color:#111">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2 style="font-size:18px;font-weight:800;margin:20px 0 8px;color:#0F1117;border-bottom:2px solid #2563EB;padding-bottom:4px">$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1 style="font-size:24px;font-weight:900;margin:0 0 12px;color:#0F1117">$1</h1>')
+    .replace(/^> (.+)$/gm, '<blockquote style="border-left:3px solid #2563EB;padding:8px 12px;margin:10px 0;background:#f0f9ff;font-style:italic;color:#1e3a8a">$1</blockquote>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^- (.+)$/gm, '<li style="margin:4px 0">$1</li>')
+    .replace(/(<li.*<\/li>\n?)+/g, (m) => `<ul style="margin:8px 0;padding-left:20px">${m}</ul>`)
+    .replace(/\n\n/g, '</p><p style="margin:8px 0;line-height:1.5">')
+
+  return `<div style="font-family:system-ui,sans-serif;line-height:1.5"><p>${html}</p></div>`
+}
+
+function renderizarHtml(md: string, titulo: string): string {
+  const preview = renderizarPreview(md)
+  return `<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<title>${titulo} — Plano de Negócio & Marketing — Impulso Digital</title>
+<style>
+  body { max-width: 800px; margin: 40px auto; padding: 0 40px; font-family: system-ui, -apple-system, sans-serif; color: #111; line-height: 1.6; }
+  @media print {
+    body { margin: 0; padding: 20px; }
+    h2 { page-break-after: avoid; }
+    table, blockquote { page-break-inside: avoid; }
+  }
+  .header { border-bottom: 2px solid #0F1117; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; font-size: 10px; color: #666; }
+  .footer { border-top: 1px solid #ddd; padding-top: 12px; margin-top: 40px; font-size: 10px; color: #666; text-align: center; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div><strong>Impulso Digital</strong> — Plano de Negócio & Marketing</div>
+    <div>${titulo}</div>
+  </div>
+  ${preview}
+  <div class="footer">
+    Documento preparado pela Impulso Digital — impulsodigital063.com · WhatsApp (63) 99292-0080<br>
+    Use Ctrl+P (Cmd+P no Mac) pra salvar como PDF
+  </div>
+  <script>setTimeout(() => window.print(), 500);</script>
+</body></html>`
 }

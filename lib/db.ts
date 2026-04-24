@@ -89,6 +89,12 @@ export async function initDb() {
     `ALTER TABLE leads ADD COLUMN faixa_investimento TEXT`,          // 'ate-500' | '500-1000' | '1000-2000' | 'acima-2000'
     `ALTER TABLE leads ADD COLUMN pagamento_50_em TEXT`,             // timestamp entrada paga (Mercado Pago)
     `ALTER TABLE leads ADD COLUMN pagamento_final_em TEXT`,          // timestamp entrega paga
+
+    // Plano de Negócio & Marketing gerado pela IA (Nivel 2)
+    `ALTER TABLE leads ADD COLUMN plano_negocio_md TEXT`,            // markdown completo do plano (14 secoes)
+    `ALTER TABLE leads ADD COLUMN plano_gerado_em TEXT`,             // timestamp da geracao
+    `ALTER TABLE leads ADD COLUMN plano_modelo_ia TEXT`,             // qual modelo gerou (gemini-2.5-flash etc)
+    `ALTER TABLE leads ADD COLUMN plano_revisado_em TEXT`,           // quando Eduardo editou/aprovou
   ]) {
     try { await db.execute(col) } catch { /* coluna já existe */ }
   }

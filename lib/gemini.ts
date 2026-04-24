@@ -1078,3 +1078,131 @@ export async function chat(historico: { role: 'user' | 'model'; text: string }[]
   const result = await chatSession.sendMessage(pergunta)
   return result.response.text()
 }
+
+// ══════════════════════════════════════════════════════════════
+// Plano de Negócio & Marketing — gerado pós-briefing (Nível 2)
+// ══════════════════════════════════════════════════════════════
+
+const SYSTEM_PLANO_NEGOCIO = `Você é o consultor estratégico da Impulso Digital, responsável por gerar Planos de Negócio & Marketing personalizados pra cada cliente que fecha projeto com a agência.
+
+Seu output é um Markdown estruturado em 14 seções. A qualidade-referência é o plano da GB Nutrition (personal trainer em Palmas, loja online de suplementos com entrega expressa no mesmo dia) — aceito pelo cliente como trabalho profissional de consultoria.
+
+## Princípios de escrita
+
+- **Tom direto, sem frescura** — conversa como amigo, não corporativês. Evite "democratizar", "exatamente", "no fim do dia"
+- **Números reais quando o cliente forneceu**; estimativas conservadoras quando não (marque com "estimativa")
+- **Tabelas** pra comparações (diferenciais, público, cronograma, ferramentas)
+- **Bullets** pra listas de ação ou diagnóstico
+- **Blockquote (> )** pra destaques estratégicos (slogan, oportunidade única, regra de ouro, KPI principal)
+- **Negrito** pra decisões-chave dentro de parágrafos
+- **Cada seção tem função no funil** — não é enfeite
+
+## Regras duras
+
+- Se o briefing deixou campo crítico em branco, marque como **[CONFIRMAR COM O CLIENTE]** e continue
+- NÃO invente números específicos (faturamento, clientes) que o cliente não forneceu
+- Use o nome do cliente e do fundador como aparece no briefing
+- Slogan em blockquote de destaque, 1 linha forte
+- Linguagem estratégica mas acessível (cliente não precisa saber o que é "CTR" ou "ROAS")
+
+## Estrutura obrigatória (14 seções)
+
+1. Visão Geral do Negócio — parágrafo + tabela de dados operacionais
+2. Diagnóstico — Situação Atual (O que existe / O que ativar / Custos e plataformas + Oportunidade única)
+3. O Problema que Estamos Resolvendo (dor do cliente final + dor do dono + solução)
+4. Proposta de Valor e Diferenciais (slogan em destaque + tabela 5-7 diferenciais)
+5. Público-Alvo (tabela 4-6 perfis × quem é × como chegar + prioridade absoluta)
+6. Análise de Mercado Local (oportunidade + tabela concorrência + posicionamento)
+7. Estrutura Operacional (se aplicável — só se tem logística física)
+8. Plano de Marketing (posicionamento + canais IG negócio + IG pessoal se tiver + WhatsApp + estratégia lançamento 3 fases)
+9. Cronograma de Lançamento (tabela período × fase × ações × meta + regra de ouro)
+10. Catálogo e Projeções (se tiver produtos) OU Oferta e Projeções (se serviço) — ticket médio + cenários conservador/realista/otimista
+11. Sugestões de Promoções (5-8 cards: nome, duração, oferta, por que funciona)
+12. Ferramentas e Custos (tabela ferramenta × função × custo + resumo do custo fixo real)
+13. Metas e KPIs (tabela indicador × meta + KPI principal em destaque)
+14. Checklist de Ação (5 grupos A/B/C/D/E com passos numerados)
+
+## Output esperado
+
+Apenas o Markdown do plano completo. SEM code fence externo (\`\`\`), SEM explicação antes ou depois. Comece direto pelo título "# [NOME_NEGÓCIO] — Plano de Negócio & Marketing" e termine com o checklist de ação.`
+
+type DadosParaPlano = {
+  nome: string
+  categoria?: string | null
+  cidade?: string | null
+  instagram?: string | null
+  site?: string | null
+  telefone?: string | null
+  mensagem?: string | null           // dor principal do diagnóstico
+  servicoRecomendado?: string | null // lp / shopify / nextjs / agendapro / consultoria
+  faixaInvestimento?: string | null
+}
+
+export async function gerarPlanoNegocio(params: {
+  dadosLead: DadosParaPlano
+  briefingRespostas: Record<string, string | null>
+  diagnosticoRespostas?: Record<string, string | null>
+}): Promise<{ markdown: string; modelo: string }> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    systemInstruction: SYSTEM_PLANO_NEGOCIO,
+    generationConfig: {
+      temperature: 0.7,
+      maxOutputTokens: 8192,
+    },
+  })
+
+  const { dadosLead, briefingRespostas, diagnosticoRespostas } = params
+
+  const diagFmt = diagnosticoRespostas
+    ? Object.entries(diagnosticoRespostas)
+        .map(([k, v]) => `- **${k}:** ${v || '—'}`)
+        .join('\n')
+    : 'Cliente não passou pelo Diagnóstico público — fechou direto.'
+
+  const briefFmt = Object.entries(briefingRespostas)
+    .map(([k, v]) => `- **${k}:** ${v || '[CONFIRMAR COM O CLIENTE]'}`)
+    .join('\n')
+
+  const prompt = `Gere o Plano de Negócio & Marketing COMPLETO pro cliente abaixo em Markdown.
+
+## Dados operacionais do cliente
+- Nome/Negócio: ${dadosLead.nome}
+- Categoria: ${dadosLead.categoria || '[inferir do briefing]'}
+- Cidade: ${dadosLead.cidade || '[inferir do briefing]'}
+- Instagram: ${dadosLead.instagram || '[CONFIRMAR COM O CLIENTE]'}
+- Site atual: ${dadosLead.site || 'Não tem'}
+- WhatsApp: ${dadosLead.telefone || '[CONFIRMAR]'}
+- Serviço contratado: ${dadosLead.servicoRecomendado || '[inferir do briefing]'}
+- Faixa de investimento: ${dadosLead.faixaInvestimento || '—'}
+
+## Respostas do Diagnóstico (pré-venda, 8 perguntas)
+
+${diagFmt}
+
+## Respostas do Briefing (pós-venda, 19 perguntas)
+
+${briefFmt}
+
+## Instruções finais
+
+1. Gere as 14 seções completas seguindo a estrutura definida na system instruction
+2. O plano é pra orientar a produção do projeto que a Impulso Digital vai entregar pro cliente — deve ser ACIONÁVEL, não teórico
+3. Se o serviço contratado é LP, foque em plano pra transformar visitante em lead/cliente pelo site
+4. Se for Shopify, foque em operação de loja + marketing pra atrair compra
+5. Se for AgendaPRO, foque em conversão de agendamento + retenção
+6. Se for Consultoria, foque em roteiro de sessões + entregáveis
+7. Use TABELAS sempre que possível (melhor que prosa corrida)
+8. Slogan recomendado no início da seção 4, em blockquote grande
+
+Comece agora. Output apenas o Markdown, sem code fence externo.`
+
+  const result = await generateWithRetry(model, prompt)
+  const markdown = result.response.text()
+    .trim()
+    .replace(/^```(?:markdown|md)?\n?/i, '')
+    .replace(/\n?```$/, '')
+
+  return { markdown, modelo: 'gemini-2.5-flash' }
+}

@@ -25,6 +25,7 @@
     "@whiskeysockets/baileys": "^7.0.0-rc.9",
     "axios": "^1.15.0",
     "cheerio": "^1.2.0",
+    "marked": "^18.0.2",
     "next": "16.2.3",
     "pino": "^10.3.1",
     "playwright": "^1.59.1",
