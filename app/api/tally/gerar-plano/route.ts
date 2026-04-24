@@ -1,25 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getClient, initDb } from '@/lib/db'
-import { gerarPlanoNegocio } from '@/lib/claude'
+import { gerarPlanoNegocio as gerarComClaude } from '@/lib/claude'
+import { gerarPlanoNegocio as gerarComGemini } from '@/lib/gemini'
+import { gerarPlanoNegocio as gerarComOpenAI } from '@/lib/openai'
 
-export const maxDuration = 120 // Claude Sonnet 4.6 streaming pode levar 60-90s
+export const maxDuration = 120
+
+// Modelos disponíveis (só aparecem os que têm API key configurada)
+type ModeloIA = 'claude' | 'gemini' | 'openai'
+
+function modelosDisponiveis(): ModeloIA[] {
+  const disponiveis: ModeloIA[] = []
+  if (process.env.ANTHROPIC_API_KEY) disponiveis.push('claude')
+  if (process.env.GEMINI_API_KEY) disponiveis.push('gemini')
+  if (process.env.OPENAI_API_KEY) disponiveis.push('openai')
+  return disponiveis
+}
+
+// GET — lista modelos disponíveis pra UI saber quais oferecer
+export async function GET() {
+  return NextResponse.json({
+    disponiveis: modelosDisponiveis(),
+    recomendado: process.env.ANTHROPIC_API_KEY ? 'claude' : 'gemini',
+  })
+}
 
 // POST /api/tally/gerar-plano
-// body: { id: number, regenerate?: boolean }
-
+// body: { id: number, modelo?: 'claude' | 'gemini' | 'openai', regenerate?: boolean }
 export async function POST(req: NextRequest) {
   await initDb()
 
   const body = await req.json()
-  const { id, regenerate = false } = body
+  const { id, modelo, regenerate = false } = body
 
   if (!id) {
     return NextResponse.json({ error: 'id obrigatório' }, { status: 400 })
   }
 
+  // Modelo default: claude se tiver key, senão gemini
+  const disponiveis = modelosDisponiveis()
+  const modeloEscolhido: ModeloIA =
+    modelo && disponiveis.includes(modelo as ModeloIA)
+      ? (modelo as ModeloIA)
+      : (disponiveis[0] || 'claude')
+
+  if (!disponiveis.includes(modeloEscolhido)) {
+    return NextResponse.json({
+      error: `Modelo ${modeloEscolhido} não está configurado (falta API key)`,
+      disponiveis,
+    }, { status: 400 })
+  }
+
   const db = getClient()
 
-  // Busca o lead completo
   const r = await db.execute({
     sql: `SELECT * FROM leads WHERE id = ? LIMIT 1`,
     args: [id],
@@ -31,14 +64,13 @@ export async function POST(req: NextRequest) {
 
   const lead = r.rows[0] as any
 
-  // Verifica que tem briefing respondido
   if (!lead.briefing_respondido_em || !lead.briefing_respostas) {
     return NextResponse.json({
-      error: 'Lead ainda não preencheu o Briefing. Plano precisa do briefing pra ser gerado.',
+      error: 'Lead ainda não preencheu o Briefing.',
     }, { status: 400 })
   }
 
-  // Se já tem plano e não pediu regenerate, retorna o existente
+  // Cache hit se já tem plano e não pediu regenerate
   if (lead.plano_negocio_md && !regenerate) {
     return NextResponse.json({
       ok: true,
@@ -49,7 +81,6 @@ export async function POST(req: NextRequest) {
     })
   }
 
-  // Parse das respostas
   let briefing: Record<string, string | null> = {}
   let diagnostico: Record<string, string | null> | undefined
 
@@ -67,20 +98,27 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Gera o plano via Gemini
+  const dadosLead = {
+    nome: lead.nome,
+    categoria: lead.categoria,
+    cidade: lead.cidade,
+    instagram: lead.instagram,
+    site: lead.site,
+    telefone: lead.telefone,
+    mensagem: lead.mensagem,
+    servicoRecomendado: lead.servico_recomendado,
+    faixaInvestimento: lead.faixa_investimento,
+  }
+
   try {
-    const { markdown, modelo } = await gerarPlanoNegocio({
-      dadosLead: {
-        nome: lead.nome,
-        categoria: lead.categoria,
-        cidade: lead.cidade,
-        instagram: lead.instagram,
-        site: lead.site,
-        telefone: lead.telefone,
-        mensagem: lead.mensagem,
-        servicoRecomendado: lead.servico_recomendado,
-        faixaInvestimento: lead.faixa_investimento,
-      },
+    const gerador = {
+      claude: gerarComClaude,
+      gemini: gerarComGemini,
+      openai: gerarComOpenAI,
+    }[modeloEscolhido]
+
+    const { markdown, modelo: modeloUsado } = await gerador({
+      dadosLead,
       briefingRespostas: briefing,
       diagnosticoRespostas: diagnostico,
     })
@@ -94,7 +132,7 @@ export async function POST(req: NextRequest) {
         plano_modelo_ia  = ?,
         atualizado_em    = ?
         WHERE id = ?`,
-      args: [markdown, now, modelo, now, id],
+      args: [markdown, now, modeloUsado, now, id],
     })
 
     return NextResponse.json({
@@ -102,18 +140,18 @@ export async function POST(req: NextRequest) {
       cached: false,
       markdown,
       gerado_em: now,
-      modelo,
+      modelo: modeloUsado,
     })
   } catch (e: any) {
-    console.error('[gerar-plano] falhou:', e)
+    console.error(`[gerar-plano] falhou no modelo ${modeloEscolhido}:`, e)
     return NextResponse.json({
-      error: 'Falha ao gerar plano',
+      error: `Falha ao gerar plano com ${modeloEscolhido}`,
       detalhes: String(e?.message ?? e),
     }, { status: 500 })
   }
 }
 
-// PATCH — salva revisão manual do Eduardo no markdown
+// PATCH — salva revisão manual do Eduardo
 export async function PATCH(req: NextRequest) {
   await initDb()
 

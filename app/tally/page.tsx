@@ -572,6 +572,19 @@ function PlanoModal({ lead, onClose, onSaved }: {
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
   const [status, setStatus] = useState<string | null>(null)
+  const [modelosDisponiveis, setModelosDisponiveis] = useState<string[]>([])
+  const [modeloEscolhido, setModeloEscolhido] = useState<string>('claude')
+
+  // Busca modelos disponíveis ao abrir o modal
+  useEffect(() => {
+    fetch('/api/tally/gerar-plano')
+      .then((r) => r.json())
+      .then((d) => {
+        setModelosDisponiveis(d.disponiveis || [])
+        setModeloEscolhido(d.recomendado || d.disponiveis?.[0] || 'claude')
+      })
+      .catch(() => {})
+  }, [])
 
   async function gerar(regenerate = false) {
     setGerando(true); setErro(null); setStatus(null)
@@ -579,7 +592,7 @@ function PlanoModal({ lead, onClose, onSaved }: {
       const r = await fetch('/api/tally/gerar-plano', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: lead.id, regenerate }),
+        body: JSON.stringify({ id: lead.id, regenerate, modelo: modeloEscolhido }),
       })
       const data = await r.json()
       if (!r.ok) throw new Error(data.error || 'Falha')
@@ -671,6 +684,36 @@ function PlanoModal({ lead, onClose, onSaved }: {
           padding: '12px 20px', borderBottom: `1px solid ${BRD}`,
           display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center',
         }}>
+          {/* Seletor de modelo */}
+          {modelosDisponiveis.length > 0 && (
+            <label style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              fontSize: '11px', color: MUTED, fontWeight: 600,
+            }}>
+              Modelo:
+              <select
+                value={modeloEscolhido}
+                onChange={(e) => setModeloEscolhido(e.target.value)}
+                disabled={gerando}
+                style={{
+                  background: BG, color: TXT, border: `1px solid ${BRD}`,
+                  borderRadius: '6px', padding: '4px 8px', fontSize: '11px',
+                  fontWeight: 600, cursor: 'pointer',
+                }}
+              >
+                {modelosDisponiveis.includes('claude') && (
+                  <option value="claude">Claude Sonnet 4.6 (melhor qualidade)</option>
+                )}
+                {modelosDisponiveis.includes('gemini') && (
+                  <option value="gemini">Gemini Flash (grátis)</option>
+                )}
+                {modelosDisponiveis.includes('openai') && (
+                  <option value="openai">GPT-4o-mini</option>
+                )}
+              </select>
+            </label>
+          )}
+
           {!markdown && (
             <ActionButton onClick={() => gerar(false)} bg={ACCENT_VIOLET} color="#fff">
               {gerando ? '⏳ Gerando plano completo (60-120s)...' : '🤖 Gerar plano agora'}
