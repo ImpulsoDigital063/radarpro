@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getClient, initDb } from '@/lib/db'
-import { gerarPlanoNegocio } from '@/lib/gemini'
+import { gerarPlanoNegocio } from '@/lib/claude'
 
-export const maxDuration = 120 // Gemini em 2 chamadas (chunking seções 1-7 + 8-14)
+export const maxDuration = 120 // Claude Sonnet 4.6 streaming pode levar 60-90s
 
 // POST /api/tally/gerar-plano
 // body: { id: number, regenerate?: boolean }

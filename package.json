@@ -20,6 +20,7 @@
     "enriquecer:agenda": "tsx scripts/enriquecer.ts --tipo agendapro"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.91.1",
     "@google/generative-ai": "^0.24.1",
     "@libsql/client": "^0.17.2",
     "@whiskeysockets/baileys": "^7.0.0-rc.9",
