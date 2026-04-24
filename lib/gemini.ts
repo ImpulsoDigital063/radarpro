@@ -1165,9 +1165,7 @@ export async function gerarPlanoNegocio(params: {
     .map(([k, v]) => `- **${k}:** ${v || '[CONFIRMAR COM O CLIENTE]'}`)
     .join('\n')
 
-  const prompt = `Gere o Plano de Negócio & Marketing COMPLETO pro cliente abaixo em Markdown.
-
-## Dados operacionais do cliente
+  const dadosContexto = `## Dados operacionais do cliente
 - Nome/Negócio: ${dadosLead.nome}
 - Categoria: ${dadosLead.categoria || '[inferir do briefing]'}
 - Cidade: ${dadosLead.cidade || '[inferir do briefing]'}
@@ -1183,26 +1181,66 @@ ${diagFmt}
 
 ## Respostas do Briefing (pós-venda, 19 perguntas)
 
-${briefFmt}
+${briefFmt}`
 
-## Instruções finais
+  // ── Chamada 1: seções 1-7 ──────────────────────────────────────────────────
+  const prompt1 = `Gere a PRIMEIRA METADE do Plano de Negócio & Marketing em Markdown (apenas seções 1 a 7).
 
-1. Gere as 14 seções completas seguindo a estrutura definida na system instruction
-2. O plano é pra orientar a produção do projeto que a Impulso Digital vai entregar pro cliente — deve ser ACIONÁVEL, não teórico
-3. Se o serviço contratado é LP, foque em plano pra transformar visitante em lead/cliente pelo site
-4. Se for Shopify, foque em operação de loja + marketing pra atrair compra
-5. Se for AgendaPRO, foque em conversão de agendamento + retenção
-6. Se for Consultoria, foque em roteiro de sessões + entregáveis
-7. Use TABELAS sempre que possível (melhor que prosa corrida)
-8. Slogan recomendado no início da seção 4, em blockquote grande
+${dadosContexto}
 
-Comece agora. Output apenas o Markdown, sem code fence externo.`
+## Seções a gerar agora (1-7)
 
-  const result = await generateWithRetry(model, prompt)
-  const markdown = result.response.text()
+1. Visão Geral do Negócio (parágrafo introdutório + tabela "Dado Operacional × Detalhe")
+2. Diagnóstico — Situação Atual (O que existe / O que ativar / Custos e plataformas + blockquote "Oportunidade única")
+3. O Problema que Estamos Resolvendo (dor do cliente final + dor do dono + solução proposta)
+4. Proposta de Valor e Diferenciais (slogan em blockquote grande + tabela 5-7 diferenciais)
+5. Público-Alvo (tabela 4-6 perfis × quem é × como chegar + blockquote "Prioridade absoluta")
+6. Análise de Mercado Local (oportunidade em bullets + tabela de concorrência + blockquote "Posicionamento estratégico")
+7. Estrutura Operacional [INCLUIR apenas se o negócio tem logística física como entrega, agendamento, estoque. Caso contrário, escreva só uma linha: "Não aplicável para este serviço — plano foca em captação digital."]
+
+## Regras
+
+- Comece com "# [Nome do Negócio] — Plano de Negócio & Marketing"
+- Apenas as seções 1 a 7. NÃO comece seção 8 ainda.
+- Terminar com a seção 7 completa.
+- Output apenas Markdown. SEM code fence.`
+
+  const r1 = await generateWithRetry(model, prompt1)
+  const parte1 = r1.response.text()
     .trim()
     .replace(/^```(?:markdown|md)?\n?/i, '')
     .replace(/\n?```$/, '')
 
-  return { markdown, modelo: 'gemini-2.5-flash' }
+  // ── Chamada 2: seções 8-14 ────────────────────────────────────────────────
+  const prompt2 = `Continue o Plano de Negócio & Marketing — gere agora a SEGUNDA METADE (seções 8 a 14). Esta é a continuação direta das seções 1-7 já geradas, então NÃO repita o título nem reapresente o negócio.
+
+${dadosContexto}
+
+## Seções a gerar agora (8-14)
+
+8. Plano de Marketing (posicionamento + canais estratégia + conteúdo por canal + estratégia de lançamento 3 fases com tabela 7 dias do Dia 1 ao Dia 7)
+9. Cronograma de Lançamento (tabela período × fase × ações × meta, cobrindo Dias 1-3 / Dias 4-5 / Dias 6-12 / Semanas 3-4 / Mês 2+. Terminar com blockquote "Regra de ouro")
+10. Catálogo de Produtos e Projeções de Receita [se serviço, chamar "Oferta e Projeções"] — se aplicável, mostrar ticket médio + cenários conservador/realista/otimista. Se não tiver produto físico, simplificar.
+11. Sugestões de Promoções (5-8 cards no formato: **NOME** — Duração: X / Oferta: X / Por que funciona: X)
+12. Ferramentas e Custos (tabela ferramenta × função × custo + "Custo fixo real para começar")
+13. Metas e Indicadores de Sucesso (tabela indicador × meta cobrindo lançamento/mês 1/mês 3/mês 6 + blockquote "KPI principal")
+14. Checklist de Ação (5 grupos A/B/C/D/E com 3-5 passos numerados cada, cobrindo áreas como: configuração digital / redes / operação / lançamento / pós-lançamento)
+
+## Regras
+
+- Apenas seções 8 a 14.
+- NÃO incluir o título principal do plano nem dados gerais do negócio (isso já foi na parte 1).
+- Comece direto com "## 8. Plano de Marketing".
+- Terminar com a seção 14 completa.
+- Output apenas Markdown. SEM code fence.`
+
+  const r2 = await generateWithRetry(model, prompt2)
+  const parte2 = r2.response.text()
+    .trim()
+    .replace(/^```(?:markdown|md)?\n?/i, '')
+    .replace(/\n?```$/, '')
+
+  const markdown = `${parte1}\n\n${parte2}`
+
+  return { markdown, modelo: 'gemini-2.5-flash (chunking 2x)' }
 }

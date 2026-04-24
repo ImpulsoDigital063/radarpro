@@ -673,7 +673,7 @@ function PlanoModal({ lead, onClose, onSaved }: {
         }}>
           {!markdown && (
             <ActionButton onClick={() => gerar(false)} bg={ACCENT_VIOLET} color="#fff">
-              {gerando ? '⏳ Gerando plano (30-60s)...' : '🤖 Gerar plano agora'}
+              {gerando ? '⏳ Gerando plano completo (60-120s)...' : '🤖 Gerar plano agora'}
             </ActionButton>
           )}
           {markdown && (
@@ -708,8 +708,9 @@ function PlanoModal({ lead, onClose, onSaved }: {
               Gerar o plano agora?
             </h3>
             <p style={{ fontSize: '13px', color: MUTED, maxWidth: '500px', margin: '0 auto 16px' }}>
-              A IA vai analisar todas as respostas do briefing + diagnóstico e gerar um plano completo de
-              14 seções em Markdown. Leva uns 30-60 segundos. Depois você edita o que quiser antes de
+              A IA vai analisar todas as respostas do briefing + diagnóstico e gerar um plano completo
+              de <strong style={{ color: TXT }}>14 seções</strong> em Markdown. Gera em 2 partes pra
+              garantir que nada trunque: leva 60-120 segundos. Depois você edita o que quiser antes de
               imprimir o PDF.
             </p>
             <ActionButton onClick={() => gerar(false)} bg={ACCENT_VIOLET} color="#fff">

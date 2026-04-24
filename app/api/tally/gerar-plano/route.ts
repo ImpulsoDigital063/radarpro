@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getClient, initDb } from '@/lib/db'
 import { gerarPlanoNegocio } from '@/lib/gemini'
 
-export const maxDuration = 60 // Gemini pode demorar pra gerar 14 seções
+export const maxDuration = 120 // Gemini em 2 chamadas (chunking seções 1-7 + 8-14)
 
 // POST /api/tally/gerar-plano
 // body: { id: number, regenerate?: boolean }
