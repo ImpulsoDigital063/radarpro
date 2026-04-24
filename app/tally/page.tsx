@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
+import HeaderRadarPRO from '@/components/HeaderRadarPRO'
 
 // ══════════════════════════════════════════════════════════════
 // Dashboard /tally — leads vindos dos formulários da LP Impulso
+// Tema escuro pra combinar com o painel principal do radarPRO
 // ══════════════════════════════════════════════════════════════
 
 type Lead = {
@@ -19,7 +21,6 @@ type Lead = {
   status: string
   termometro: string | null
   fechou: number
-  // Tally-specific
   diagnostico_respondido_em: string | null
   diagnostico_respostas: string | null
   briefing_enviado_em: string | null
@@ -34,6 +35,19 @@ type Lead = {
 }
 
 type Tab = 'novo' | 'briefing-pendente' | 'briefing-respondido' | 'em-projeto'
+
+// ── Paleta igual ao painel principal ─────────────────────────────────────────
+const BG    = '#0F1117'
+const CARD  = '#111827'
+const BRD   = '#1F2937'
+const TXT   = '#F9FAFB'
+const MUTED = '#6B7280'
+const DIM   = '#9CA3AF'
+const ACCENT_AMBER  = '#F59E0B'
+const ACCENT_BLUE   = '#2563EB'
+const ACCENT_VIOLET = '#7C3AED'
+const ACCENT_GREEN  = '#10B981'
+const ACCENT_RED    = '#EF4444'
 
 const LINK_BRIEFING = 'https://tally.so/r/yP0Dyp'
 
@@ -111,7 +125,6 @@ export default function TallyDashboard() {
     try {
       const res = await fetch('/api/leads')
       const data = await res.json()
-      // Filtra só leads vindos do Tally
       const tally = data.filter(
         (l: Lead) => l.fonte === 'tally-diagnostico' || l.fonte === 'tally-briefing' ||
           l.diagnostico_respondido_em || l.briefing_respondido_em,
@@ -131,15 +144,15 @@ export default function TallyDashboard() {
     const emProjeto: Lead[] = []
 
     for (const l of leads) {
-      const temDiag = !!l.diagnostico_respondido_em
       const temBrief = !!l.briefing_respondido_em
       const temPag = !!l.pagamento_50_em
+      const temDiag = !!l.diagnostico_respondido_em
 
       if (temBrief && temPag) emProjeto.push(l)
       else if (temBrief) briefingRespondido.push(l)
       else if (l.fechou === 1 && !temBrief) briefingPendente.push(l)
       else if (temDiag && l.fechou === 0) novo.push(l)
-      else novo.push(l) // fallback
+      else novo.push(l)
     }
 
     return { novo, briefingPendente, briefingRespondido, emProjeto }
@@ -158,64 +171,64 @@ export default function TallyDashboard() {
     briefingPendente: grupos.briefingPendente.length,
     briefingRespondido: grupos.briefingRespondido.length,
     emProjeto: grupos.emProjeto.length,
-    taxaConversao: leads.length > 0
-      ? Math.round((grupos.emProjeto.length / leads.length) * 100)
-      : 0,
   }), [leads, grupos])
 
   return (
-    <main className="min-h-screen bg-slate-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-6">
-          <a
-            href="/"
-            className="inline-block text-sm text-slate-500 hover:text-slate-900 mb-3"
-          >
-            ← Painel principal
-          </a>
-          <h1 className="text-3xl font-black text-slate-900">
-            Leads Tally — Funil Impulso Digital
-          </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            Formulários da LP: <strong>Diagnóstico</strong> (pré-venda) e <strong>Briefing</strong> (pós-pagamento)
+    <div style={{ minHeight: '100vh', background: BG, color: TXT, fontFamily: 'system-ui, sans-serif' }}>
+      <HeaderRadarPRO activeTab="tally" />
+
+      <div style={{ padding: '24px 32px' }}>
+        {/* Título */}
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 800, margin: 0, color: TXT }}>
+            Funil Impulso Digital
+          </h2>
+          <p style={{ fontSize: '13px', color: MUTED, margin: '4px 0 0' }}>
+            Formulários da LP: <strong style={{ color: DIM }}>Diagnóstico</strong> (pré-venda) e <strong style={{ color: DIM }}>Briefing</strong> (pós-pagamento)
           </p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
-          <StatCard label="Total Tally" value={stats.total} />
-          <StatCard label="Novos do diagnóstico" value={stats.novo} accent="amber" />
-          <StatCard label="Briefing pendente" value={stats.briefingPendente} accent="blue" />
-          <StatCard label="Briefing respondido" value={stats.briefingRespondido} accent="violet" />
-          <StatCard label="Em projeto" value={stats.emProjeto} accent="green" />
+        {/* Stats — 5 cards no mesmo estilo do painel */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+          gap: '12px', marginBottom: '24px',
+        }}>
+          <StatCard label="Total" value={stats.total} color={TXT} />
+          <StatCard label="Novos do diagnóstico" value={stats.novo} color={ACCENT_AMBER} />
+          <StatCard label="Briefing pendente" value={stats.briefingPendente} color={ACCENT_BLUE} />
+          <StatCard label="Briefing respondido" value={stats.briefingRespondido} color={ACCENT_VIOLET} />
+          <StatCard label="Em projeto" value={stats.emProjeto} color={ACCENT_GREEN} />
         </div>
 
         {/* Abas */}
-        <div className="flex gap-2 mb-4 flex-wrap">
-          <TabButton active={tab === 'novo'} onClick={() => setTab('novo')}>
+        <div style={{ display: 'flex', gap: '6px', marginBottom: '16px', flexWrap: 'wrap' }}>
+          <TabButton active={tab === 'novo'} onClick={() => setTab('novo')} color={ACCENT_AMBER}>
             📥 Novos do diagnóstico ({grupos.novo.length})
           </TabButton>
-          <TabButton active={tab === 'briefing-pendente'} onClick={() => setTab('briefing-pendente')}>
+          <TabButton active={tab === 'briefing-pendente'} onClick={() => setTab('briefing-pendente')} color={ACCENT_BLUE}>
             📋 Briefing pendente ({grupos.briefingPendente.length})
           </TabButton>
-          <TabButton active={tab === 'briefing-respondido'} onClick={() => setTab('briefing-respondido')}>
+          <TabButton active={tab === 'briefing-respondido'} onClick={() => setTab('briefing-respondido')} color={ACCENT_VIOLET}>
             ✅ Briefing respondido ({grupos.briefingRespondido.length})
           </TabButton>
-          <TabButton active={tab === 'em-projeto'} onClick={() => setTab('em-projeto')}>
+          <TabButton active={tab === 'em-projeto'} onClick={() => setTab('em-projeto')} color={ACCENT_GREEN}>
             🚀 Em projeto ({grupos.emProjeto.length})
           </TabButton>
         </div>
 
         {/* Lista */}
         {loading ? (
-          <div className="p-12 text-center text-slate-400">Carregando...</div>
+          <div style={{ padding: '48px', textAlign: 'center', color: MUTED }}>Carregando...</div>
         ) : listaAtiva.length === 0 ? (
-          <div className="p-12 text-center text-slate-400 bg-white rounded-xl border border-slate-200">
+          <div style={{
+            padding: '48px', textAlign: 'center', color: MUTED,
+            background: CARD, border: `1px solid ${BRD}`, borderRadius: '12px',
+          }}>
             Nenhum lead nessa categoria ainda.
           </div>
         ) : (
-          <div className="space-y-3">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {listaAtiva.map((lead) => (
               <LeadCard
                 key={lead.id}
@@ -227,13 +240,12 @@ export default function TallyDashboard() {
             ))}
           </div>
         )}
-
-        {/* Modal de detalhes */}
-        {selectedLead && (
-          <DetailsModal lead={selectedLead} onClose={() => setSelectedLead(null)} />
-        )}
       </div>
-    </main>
+
+      {selectedLead && (
+        <DetailsModal lead={selectedLead} onClose={() => setSelectedLead(null)} />
+      )}
+    </div>
   )
 }
 
@@ -241,32 +253,31 @@ export default function TallyDashboard() {
 // Componentes
 // ══════════════════════════════════════════════════════════════
 
-function StatCard({ label, value, accent }: { label: string; value: number; accent?: string }) {
-  const colorMap: Record<string, string> = {
-    amber: 'text-amber-600',
-    blue: 'text-blue-600',
-    violet: 'text-violet-600',
-    green: 'text-green-600',
-  }
+function StatCard({ label, value, color }: { label: string; value: number; color: string }) {
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-4">
-      <div className={`text-2xl font-black ${colorMap[accent || ''] || 'text-slate-900'}`}>{value}</div>
-      <div className="text-xs text-slate-500 mt-1">{label}</div>
+    <div style={{
+      background: CARD, border: `1px solid ${BRD}`, borderRadius: '12px', padding: '16px',
+    }}>
+      <div style={{ fontSize: '28px', fontWeight: 800, color, lineHeight: 1 }}>{value}</div>
+      <div style={{ fontSize: '11px', color: MUTED, marginTop: '6px' }}>{label}</div>
     </div>
   )
 }
 
-function TabButton({ active, onClick, children }: {
-  active: boolean; onClick: () => void; children: React.ReactNode
+function TabButton({ active, onClick, color, children }: {
+  active: boolean; onClick: () => void; color: string; children: React.ReactNode
 }) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-        active
-          ? 'bg-slate-900 text-white'
-          : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-400'
-      }`}
+      style={{
+        padding: '8px 14px', borderRadius: '8px', fontSize: '12px', fontWeight: 700,
+        background: active ? color + '22' : CARD,
+        border: `1px solid ${active ? color : BRD}`,
+        color: active ? color : DIM,
+        cursor: 'pointer',
+        transition: 'all 0.15s',
+      }}
     >
       {children}
     </button>
@@ -296,13 +307,11 @@ function LeadCard({
   }
 
   async function marcarPagamento() {
-    // Precisa de endpoint específico — por enquanto usa notas como marcador temporário
-    const nowSql = new Date().toISOString().slice(0, 19).replace('T', ' ')
     await fetch(`/api/tally/marcar-pagamento`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: lead.id, when: nowSql, tipo: 'entrada' }),
-    }).catch(() => {}) // endpoint opcional — pode não existir ainda
+      body: JSON.stringify({ id: lead.id, tipo: 'entrada' }),
+    }).catch(() => {})
     onRefresh()
   }
 
@@ -311,44 +320,46 @@ function LeadCard({
   const faixa = faixaLabel(lead.faixa_investimento)
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-5 hover:border-slate-400 transition-colors">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
-        {/* Info principal */}
-        <div className="flex-1 min-w-[240px]">
-          <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="font-bold text-slate-900">{lead.nome}</h3>
+    <div style={{
+      background: CARD, border: `1px solid ${BRD}`, borderRadius: '12px', padding: '16px',
+    }}>
+      <div style={{
+        display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+        gap: '16px', flexWrap: 'wrap',
+      }}>
+        <div style={{ flex: 1, minWidth: '240px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap', marginBottom: '6px' }}>
+            <h3 style={{ fontSize: '15px', fontWeight: 700, color: TXT, margin: 0 }}>{lead.nome}</h3>
             {lead.categoria && (
-              <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
-                {lead.categoria}
-              </span>
+              <Badge color="#374151" bg="#37415122">{lead.categoria}</Badge>
             )}
             {lead.servico_recomendado && (
-              <span className="text-xs bg-violet-100 text-violet-700 px-2 py-0.5 rounded font-semibold">
-                {servico}
-              </span>
+              <Badge color={ACCENT_VIOLET} bg={ACCENT_VIOLET + '22'}>{servico}</Badge>
             )}
             {lead.faixa_investimento && (
-              <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded">
-                {faixa}
-              </span>
+              <Badge color={ACCENT_AMBER} bg={ACCENT_AMBER + '22'}>{faixa}</Badge>
             )}
             {lead.termometro === 'quente' && (
-              <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">🔥 Quente</span>
+              <Badge color={ACCENT_RED} bg={ACCENT_RED + '22'}>🔥 Quente</Badge>
             )}
           </div>
 
-          <div className="text-sm text-slate-600 flex gap-4 flex-wrap">
+          <div style={{ fontSize: '12px', color: DIM, display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
             {lead.telefone && <span>📱 {fmtTelefone(lead.telefone)}</span>}
             {lead.instagram && <span>📷 {lead.instagram}</span>}
           </div>
 
           {lead.mensagem && (
-            <div className="mt-2 text-sm text-slate-700 bg-slate-50 p-2 rounded">
-              <strong>Dor:</strong> {lead.mensagem}
+            <div style={{
+              marginTop: '8px', fontSize: '12px', color: DIM,
+              background: BG, padding: '8px 10px', borderRadius: '6px',
+              border: `1px solid ${BRD}`,
+            }}>
+              <strong style={{ color: MUTED }}>Dor:</strong> {lead.mensagem}
             </div>
           )}
 
-          <div className="mt-2 text-xs text-slate-400 flex gap-3 flex-wrap">
+          <div style={{ marginTop: '8px', fontSize: '11px', color: MUTED, display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             {lead.diagnostico_respondido_em && (
               <span>Diagnóstico: {fmtData(lead.diagnostico_respondido_em)}</span>
             )}
@@ -358,74 +369,92 @@ function LeadCard({
           </div>
         </div>
 
-        {/* Ações */}
-        <div className="flex gap-2 flex-wrap">
-          <button
-            onClick={onViewDetails}
-            className="px-3 py-2 text-xs font-semibold bg-slate-100 text-slate-700 rounded hover:bg-slate-200"
-          >
+        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+          <ActionButton onClick={onViewDetails} bg="#374151" color={TXT}>
             Ver respostas
-          </button>
+          </ActionButton>
 
           {wa && (
-            <a
-              href={wa}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-2 text-xs font-semibold bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              WhatsApp
+            <a href={wa} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <ActionButton bg={ACCENT_GREEN} color="#fff">WhatsApp</ActionButton>
             </a>
           )}
 
           {tab === 'novo' && (
             <>
-              <button
+              <ActionButton
                 onClick={() => copiar(MSG_PRIMEIRO_CONTATO(lead.nome, lead.mensagem, lead.servico_recomendado), 'msg')}
-                className="px-3 py-2 text-xs font-semibold bg-blue-500 text-white rounded hover:bg-blue-600"
+                bg={ACCENT_BLUE} color="#fff"
               >
                 {copying === 'msg' ? '✓ Copiado!' : 'Copiar msg'}
-              </button>
-              <button
-                onClick={marcarFechou}
-                className="px-3 py-2 text-xs font-semibold bg-violet-500 text-white rounded hover:bg-violet-600"
-              >
+              </ActionButton>
+              <ActionButton onClick={marcarFechou} bg={ACCENT_VIOLET} color="#fff">
                 Marcar fechou
-              </button>
+              </ActionButton>
             </>
           )}
 
           {tab === 'briefing-pendente' && (
             <>
-              <button
+              <ActionButton
                 onClick={() => copiar(MSG_ENVIO_BRIEFING(lead.nome), 'brief-msg')}
-                className="px-3 py-2 text-xs font-semibold bg-blue-500 text-white rounded hover:bg-blue-600"
+                bg={ACCENT_BLUE} color="#fff"
               >
                 {copying === 'brief-msg' ? '✓ Copiado!' : 'Copiar msg briefing'}
-              </button>
-              <button
-                onClick={marcarPagamento}
-                className="px-3 py-2 text-xs font-semibold bg-green-600 text-white rounded hover:bg-green-700"
-              >
+              </ActionButton>
+              <ActionButton onClick={marcarPagamento} bg={ACCENT_GREEN} color="#fff">
                 Marcar pagamento 50%
-              </button>
+              </ActionButton>
             </>
           )}
 
           {tab === 'briefing-respondido' && (
-            <span className="px-3 py-2 text-xs font-semibold text-violet-600">
+            <span style={{
+              padding: '6px 10px', fontSize: '11px', fontWeight: 700,
+              color: ACCENT_VIOLET,
+            }}>
               ⏳ Aguardando pagamento
             </span>
           )}
 
           {tab === 'em-projeto' && (
-            <span className="px-3 py-2 text-xs font-semibold text-green-600">
+            <span style={{
+              padding: '6px 10px', fontSize: '11px', fontWeight: 700,
+              color: ACCENT_GREEN,
+            }}>
               ✅ Em construção
             </span>
           )}
         </div>
       </div>
     </div>
+  )
+}
+
+function Badge({ children, color, bg }: { children: React.ReactNode; color: string; bg: string }) {
+  return (
+    <span style={{
+      fontSize: '10px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px',
+      color, background: bg, border: `1px solid ${color}33`,
+    }}>
+      {children}
+    </span>
+  )
+}
+
+function ActionButton({
+  children, onClick, bg, color,
+}: {
+  children: React.ReactNode; onClick?: () => void; bg: string; color: string
+}) {
+  return (
+    <button onClick={onClick} style={{
+      padding: '6px 10px', fontSize: '11px', fontWeight: 700,
+      background: bg, color, border: 'none', borderRadius: '6px',
+      cursor: 'pointer', transition: 'opacity 0.15s',
+    }}>
+      {children}
+    </button>
   )
 }
 
@@ -436,25 +465,45 @@ function DetailsModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+      style={{
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '16px', zIndex: 50,
+      }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto p-6"
+        style={{
+          background: CARD, border: `1px solid ${BRD}`, borderRadius: '12px',
+          maxWidth: '700px', width: '100%', maxHeight: '85vh', overflowY: 'auto',
+          padding: '24px',
+        }}
       >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold">{lead.nome} — Respostas</h2>
-          <button onClick={onClose} className="text-2xl text-slate-400 hover:text-slate-700">×</button>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: 800, color: TXT, margin: 0 }}>
+            {lead.nome} — Respostas
+          </h2>
+          <button
+            onClick={onClose}
+            style={{
+              background: 'none', border: 'none', color: MUTED,
+              fontSize: '24px', cursor: 'pointer', padding: 0,
+            }}
+          >
+            ×
+          </button>
         </div>
 
         {diag && (
-          <section className="mb-6">
-            <h3 className="font-bold text-amber-700 mb-2">📥 Diagnóstico (pré-venda)</h3>
-            <div className="space-y-2">
+          <section style={{ marginBottom: '24px' }}>
+            <h3 style={{ fontSize: '13px', fontWeight: 800, color: ACCENT_AMBER, margin: '0 0 10px' }}>
+              📥 Diagnóstico (pré-venda)
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {Object.entries(diag).map(([k, v]) => (
-                <div key={k} className="border-l-2 border-amber-300 pl-3">
-                  <div className="text-xs text-slate-500 font-semibold">{k}</div>
-                  <div className="text-sm text-slate-800">{String(v || '—')}</div>
+                <div key={k} style={{ borderLeft: `2px solid ${ACCENT_AMBER}77`, paddingLeft: '12px' }}>
+                  <div style={{ fontSize: '11px', color: MUTED, fontWeight: 700 }}>{k}</div>
+                  <div style={{ fontSize: '13px', color: TXT }}>{String(v || '—')}</div>
                 </div>
               ))}
             </div>
@@ -463,12 +512,14 @@ function DetailsModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
 
         {brief && (
           <section>
-            <h3 className="font-bold text-violet-700 mb-2">📋 Briefing (pós-pagamento)</h3>
-            <div className="space-y-2">
+            <h3 style={{ fontSize: '13px', fontWeight: 800, color: ACCENT_VIOLET, margin: '0 0 10px' }}>
+              📋 Briefing (pós-pagamento)
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {Object.entries(brief).map(([k, v]) => (
-                <div key={k} className="border-l-2 border-violet-300 pl-3">
-                  <div className="text-xs text-slate-500 font-semibold">{k}</div>
-                  <div className="text-sm text-slate-800 whitespace-pre-wrap">{String(v || '—')}</div>
+                <div key={k} style={{ borderLeft: `2px solid ${ACCENT_VIOLET}77`, paddingLeft: '12px' }}>
+                  <div style={{ fontSize: '11px', color: MUTED, fontWeight: 700 }}>{k}</div>
+                  <div style={{ fontSize: '13px', color: TXT, whiteSpace: 'pre-wrap' }}>{String(v || '—')}</div>
                 </div>
               ))}
             </div>
@@ -476,7 +527,7 @@ function DetailsModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
         )}
 
         {!diag && !brief && (
-          <div className="text-center text-slate-400 py-8">
+          <div style={{ textAlign: 'center', color: MUTED, padding: '32px 0' }}>
             Este lead ainda não respondeu nenhum formulário Tally.
           </div>
         )}

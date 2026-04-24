@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import HeaderRadarPRO from '@/components/HeaderRadarPRO'
 
 type Licao = {
   id:           number
@@ -68,36 +69,33 @@ export default function LicoesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
-      <div className="max-w-5xl mx-auto">
-        <header className="mb-6">
-          <h1 className="text-2xl font-bold">Lições da máquina</h1>
-          <p className="text-zinc-400 text-sm mt-1">
-            Cada conversa terminada vira lição candidata. Você aprova → vira regra do agente. Rejeita → some.
-          </p>
-        </header>
+    <div style={{ minHeight: '100vh', background: '#0F1117', color: '#F9FAFB' }}>
+      <HeaderRadarPRO activeTab="licoes" />
 
-        <div className="flex gap-2 mb-4 text-sm">
-          {(['pendente', 'aprovada', 'rejeitada', 'todas'] as const).map(f => (
-            <button
-              key={f}
-              onClick={() => setFiltro(f)}
-              className={`px-3 py-1.5 rounded-lg border transition ${
-                filtro === f
-                  ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
-                  : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700'
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-          <a
-            href="/"
-            className="ml-auto px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-zinc-700"
-          >
-            ← Voltar ao painel
-          </a>
-        </div>
+      <main className="p-6">
+        <div className="max-w-5xl mx-auto">
+          <header className="mb-6">
+            <h1 className="text-2xl font-bold">Lições da máquina</h1>
+            <p className="text-zinc-400 text-sm mt-1">
+              Cada conversa terminada vira lição candidata. Você aprova → vira regra do agente. Rejeita → some.
+            </p>
+          </header>
+
+          <div className="flex gap-2 mb-4 text-sm flex-wrap">
+            {(['pendente', 'aprovada', 'rejeitada', 'todas'] as const).map(f => (
+              <button
+                key={f}
+                onClick={() => setFiltro(f)}
+                className={`px-3 py-1.5 rounded-lg border transition ${
+                  filtro === f
+                    ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
+                    : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700'
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
 
         {loading && <p className="text-zinc-500">Carregando...</p>}
         {!loading && licoes.length === 0 && (
@@ -196,8 +194,9 @@ export default function LicoesPage() {
               )}
             </article>
           ))}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }
