@@ -78,6 +78,17 @@ export async function initDb() {
     `ALTER TABLE leads ADD COLUMN converteu_call INTEGER DEFAULT 0`,  // aceitou os 3 horários?
     `ALTER TABLE leads ADD COLUMN fechou INTEGER DEFAULT 0`,
     `ALTER TABLE leads ADD COLUMN motivo_perdido TEXT`,
+
+    // Tally integration (24/04/2026) — leads vindos dos formulários da LP Impulso
+    `ALTER TABLE leads ADD COLUMN diagnostico_respondido_em TEXT`,   // timestamp preenchimento Tally diagnóstico
+    `ALTER TABLE leads ADD COLUMN diagnostico_respostas TEXT`,       // JSON com respostas das 8 perguntas
+    `ALTER TABLE leads ADD COLUMN briefing_enviado_em TEXT`,         // timestamp envio do briefing via WhatsApp
+    `ALTER TABLE leads ADD COLUMN briefing_respondido_em TEXT`,      // timestamp preenchimento Tally briefing
+    `ALTER TABLE leads ADD COLUMN briefing_respostas TEXT`,          // JSON com respostas das 19 perguntas
+    `ALTER TABLE leads ADD COLUMN servico_recomendado TEXT`,         // 'lp' | 'shopify' | 'nextjs' | 'consultoria'
+    `ALTER TABLE leads ADD COLUMN faixa_investimento TEXT`,          // 'ate-500' | '500-1000' | '1000-2000' | 'acima-2000'
+    `ALTER TABLE leads ADD COLUMN pagamento_50_em TEXT`,             // timestamp entrada paga (Mercado Pago)
+    `ALTER TABLE leads ADD COLUMN pagamento_final_em TEXT`,          // timestamp entrega paga
   ]) {
     try { await db.execute(col) } catch { /* coluna já existe */ }
   }
