@@ -506,6 +506,34 @@ export default function RadarPRO() {
           WhatsApp {waStatus === 'conectado' ? 'online' : waStatus === 'aguardando_qr' ? 'QR' : 'offline'}
         </a>
 
+        {/* Link pro dashboard Tally — leads vindos da LP Impulso */}
+        <a href="/tally"
+          title="Leads vindos dos formulários Tally da LP Impulso"
+          style={{
+            display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '5px 10px', borderRadius: '999px',
+            background: '#1F2937',
+            border: `1px solid ${brd}`,
+            color: muted,
+            fontSize: '11px', fontWeight: 700, textDecoration: 'none',
+          }}>
+          📋 Tally
+        </a>
+
+        {/* Link pro dashboard de Lições */}
+        <a href="/licoes"
+          title="Lições aprendidas das conversas"
+          style={{
+            display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '5px 10px', borderRadius: '999px',
+            background: '#1F2937',
+            border: `1px solid ${brd}`,
+            color: muted,
+            fontSize: '11px', fontWeight: 700, textDecoration: 'none',
+          }}>
+          📚 Lições
+        </a>
+
         {/* Seletor de tipo */}
         <div style={{ display: 'flex', gap: '4px' }}>
           {(['lp', 'shopify', 'agendapro'] as const).map(t => (

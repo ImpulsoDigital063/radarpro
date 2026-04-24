@@ -168,6 +168,12 @@ export default function TallyDashboard() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
+          <a
+            href="/"
+            className="inline-block text-sm text-slate-500 hover:text-slate-900 mb-3"
+          >
+            ← Painel principal
+          </a>
           <h1 className="text-3xl font-black text-slate-900">
             Leads Tally — Funil Impulso Digital
           </h1>
