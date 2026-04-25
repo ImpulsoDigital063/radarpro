@@ -27,6 +27,43 @@ Eduardo Barros não é freela de internet. Atende a Impulso Digital de Palmas-TO
 - **60+ negócios** → autoridade geral, primeira mensagem
 - **IA todo dia** → diferenciação contra freela ("entrego em 7 dias, não 2 meses")
 
+## 🥊 Mapa de concorrência em Palmas-TO (atualizado 25/04/2026)
+
+Pesquisa Claude in Chrome mapeou o universo competitivo. **Pode ser citado quando lead disser "já vi outras agências".**
+
+**Concorrentes LOCAIS reais (DDD 63):**
+- **DevFlow** — concorrente DIRETO no vertical "criação de site". Promete resposta em 2h. NÃO tem cases visíveis nem protótipo funcional.
+- **Palmasite** — único transparente em preço: LP 3 seções R$1.040 + R$590/seção extra. Modelo modular caro. Domina busca orgânica pelo nome.
+- **Agência Topo** — maior presença social local (14.9k Insta). Posiciona como "agência completa" — sem nicho.
+- **WB Web / Namastê / Agência Public** — agências tradicionais 15-20 anos, pouco digital, foco em propaganda/branding.
+- **Mago Digital** — freelancer maquiado de agência, sem site próprio.
+
+**Concorrentes FANTASMA (geo-SEO spam, atendem remoto):**
+- **DIVIA, MOBI, Alex Sacchi, MW7** — DDDs de outras cidades, fazem landing por cidade. Aparecem no Google mas NÃO operam em Palmas. Cliente que descobre o endereço perde confiança.
+
+**Posição da Impulso vs mercado:**
+- DIY Wix: R$0 mas 40h tuas
+- Fiverr: R$200-1.500 sem suporte
+- **Impulso: R$499/R$599 com tudo incluso** ← sweet spot
+- Palmasite: R$1.040+ modular
+- Agências locais: R$2.000-5.000+ (estimado)
+
+**Vetores de ataque por concorrente (use só quando lead mencionar):**
+
+| Lead disse | Resposta |
+|---|---|
+| "Vou ver na DevFlow / agência X" | "Em 20 min de call, tu sai com protótipo Next.js JÁ NO AR — não mockup. Eles falam em 'resposta em 2h', eu entrego protótipo funcional na hora da call." |
+| "Palmasite cobra R$1.040 LP" | "Sim — 3 seções, com cobrança extra por página. Comigo é R$499 com 8-10 seções, hospedagem vitalícia, 3 artigos SEO no blog. Sem extras." |
+| "Vi a Agência Topo / Public" | "São ótimas pra branding/propaganda completa. Eu sou especialista em [LP de [nicho do lead] / Loja Shopify de moda em Palmas]. Não atendo qualquer um — atendo quem precisa do que eu domino." |
+| "Vi uma agência Google Partner" | "Provavelmente é DIVIA ou MOBI. Tu reparou que o telefone não é (63)? Eles fazem landing geo por cidade, mas atendem de Pelotas/Caxias. Eu sou daqui mesmo — te encontro presencialmente se precisar." |
+
+**Diferenciais únicos da Impulso (NINGUÉM em Palmas oferece):**
+1. Hospedagem vitalícia
+2. Protótipo Next.js no ar em 20 min de call
+3. 5 cases reais com prova social (criativosdoceu, dra-janaina, EV Suplementos, irsnayra, locajv)
+4. Frete expresso motoboy + Shopify integrado
+5. Pricing transparente (R$499/R$599) publicado
+
 ## 📁 Cases reais entregues (5 LPs em produção pra prova social cirúrgica)
 
 Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem o seu uso:
