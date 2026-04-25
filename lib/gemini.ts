@@ -1244,3 +1244,115 @@ ${dadosContexto}
 
   return { markdown, modelo: 'gemini-2.5-flash (chunking 2x)' }
 }
+
+// ══════════════════════════════════════════════════════════════
+// Script de Venda — versão Gemini (1 chamada, ~7k tokens cabem em 8k)
+// ══════════════════════════════════════════════════════════════
+
+type DadosParaScript = {
+  nome: string
+  categoria?: string | null
+  cidade?: string | null
+  instagram?: string | null
+  site?: string | null
+  telefone?: string | null
+  servicoRecomendado?: string | null
+  faixaInvestimento?: string | null
+}
+
+const SYSTEM_SCRIPT_VENDA_GEMINI = `Você é o estrategista de vendas da Impulso Digital. Eduardo Barros (fundador, Palmas-TO, 6+ anos vendendo) vai usar teu output pra abordar um lead específico no WhatsApp e fechar venda.
+
+O lead JÁ preencheu um diagnóstico de 8 perguntas na LP. Está QUENTE — mostrou interesse, declarou dor, tem urgência. Tua missão: gerar SCRIPT CIRÚRGICO em 8 seções.
+
+## Princípios
+
+- Direto, conversa de WhatsApp, não corporativês
+- Tom Eduardo: "tamo junto", "dai", "deixando dinheiro na mesa"
+- Números reais sempre (UrbanFeet 1.600+ pares em 3 anos, 60+ negócios)
+- Mira transformação, não feature
+- NUNCA: "democratizar", "exatamente", paralelismos estruturados
+
+## Tabela de preços Impulso 2026
+
+- Landing Page R$499 (hospedagem vitalícia + 3 artigos SEO)
+- Loja Shopify R$599 (setup + 20 produtos + tema MPN + Yampi/Melhor Envio)
+- Site Next.js R$799
+- Consultoria R$499 (1-2 sessões)
+- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+
+## Estrutura obrigatória (8 seções)
+
+### 1. ANÁLISE DO LEAD
+Leitura entre linhas. Urgência (alta/média/baixa), perfil (operador/dono passivo), arquétipo (sufocado/curioso/perdido).
+
+### 2. PRIMEIRA MENSAGEM WHATSAPP
+Texto EXATO pra colar (3-5 linhas). Gancho específico, termina com pergunta que dói.
+
+### 3. DIAGNÓSTICO VERBAL
+3-4 perguntas pra fazer no chat antes da oferta. Cada uma com objetivo.
+
+### 4. PITCH DA SOLUÇÃO
+Por que ESSE serviço pra ESSE lead. 2-3 frases cirúrgicas. Dor → mecanismo → resultado.
+
+### 5. ANCORAGEM DE PREÇO
+Valor empilhado antes do número. 3-4 entregas com valor de mercado. Total mercado vs Impulso. Frase exata pra anunciar preço.
+
+### 6. 3 OBJEÇÕES PROVÁVEIS + RESPOSTA
+Pra cada: objeção (texto exato esperado), estratégia (ângulo), resposta pronta (texto pra colar).
+
+### 7. FECHAMENTO
+Quando puxar, frase exata, próximo passo (link MP), urgência REAL.
+
+### 8. FOLLOW-UP SE NÃO RESPONDER
+D+1 / D+3 / D+7 com texto exato e ângulo diferente em cada.
+
+## Output
+
+Só o Markdown completo. SEM code fence. Comece com "# Script de Venda — [Nome do Lead]". Não trunque.`
+
+export async function gerarScriptVenda(params: {
+  dadosLead: DadosParaScript
+  diagnosticoRespostas: Record<string, string | null>
+}): Promise<{ markdown: string; modelo: string }> {
+  const genAI = getClient()
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    systemInstruction: SYSTEM_SCRIPT_VENDA_GEMINI,
+    generationConfig: {
+      temperature: 0.7,
+      maxOutputTokens: 8192,
+    },
+  })
+
+  const { dadosLead, diagnosticoRespostas } = params
+
+  const diagFmt = Object.entries(diagnosticoRespostas)
+    .map(([k, v]) => `- **${k}:** ${v || '—'}`)
+    .join('\n')
+
+  const prompt = `Gere o Script de Venda cirúrgico pro lead abaixo.
+
+## Dados do lead
+- Nome: ${dadosLead.nome}
+- Negócio: ${dadosLead.categoria || '—'}
+- Cidade: ${dadosLead.cidade || '—'}
+- Instagram: ${dadosLead.instagram || '—'}
+- Site atual: ${dadosLead.site || 'Não tem'}
+- WhatsApp: ${dadosLead.telefone || '—'}
+- Serviço inferido: ${dadosLead.servicoRecomendado || '—'}
+- Faixa investimento: ${dadosLead.faixaInvestimento || '—'}
+
+## Respostas do Diagnóstico (8 perguntas)
+
+${diagFmt}
+
+Gere as 8 seções completas em Markdown. Mensagens WhatsApp prontas pra colar (sem placeholders). Use o nome real ${dadosLead.nome}. Output só Markdown, sem code fence.`
+
+  const result = await generateWithRetry(model, prompt)
+  const markdown = result.response.text()
+    .trim()
+    .replace(/^```(?:markdown|md)?\n?/i, '')
+    .replace(/\n?```$/, '')
+
+  return { markdown, modelo: 'gemini-2.5-flash' }
+}

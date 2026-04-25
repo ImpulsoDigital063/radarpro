@@ -127,3 +127,99 @@ Gere as 14 seções completas sem truncar. Output apenas o Markdown, sem code fe
     modelo: 'gpt-4o-mini',
   }
 }
+
+// ══════════════════════════════════════════════════════════════
+// Script de Venda — versão OpenAI (gpt-4o-mini, 1 chamada)
+// ══════════════════════════════════════════════════════════════
+
+const SYSTEM_SCRIPT_VENDA_OPENAI = `Você é o estrategista de vendas da Impulso Digital. Eduardo Barros (fundador, Palmas-TO) vai usar teu output pra abordar lead no WhatsApp e fechar venda.
+
+Lead JÁ preencheu diagnóstico de 8 perguntas. Está QUENTE. Gere SCRIPT CIRÚRGICO em 8 seções.
+
+## Princípios
+- Direto, conversa de WhatsApp, não corporativês
+- Tom Eduardo: "tamo junto", "dai", "deixando dinheiro na mesa"
+- Números reais (UrbanFeet 1.600+ pares em 3 anos, 60+ negócios)
+- Mira transformação, não feature
+- NUNCA: "democratizar", "exatamente", paralelismos estruturados
+
+## Preços Impulso 2026
+- Landing Page R$499 / Loja Shopify R$599 / Site Next.js R$799 / Consultoria R$499
+- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+
+## Estrutura (8 seções)
+
+1. **ANÁLISE DO LEAD** — leitura entre linhas, urgência, perfil, arquétipo
+2. **PRIMEIRA MENSAGEM WHATSAPP** — texto exato 3-5 linhas, gancho específico
+3. **DIAGNÓSTICO VERBAL** — 3-4 perguntas pra fazer no chat
+4. **PITCH DA SOLUÇÃO** — por que ESSE serviço pra ESSE lead, 2-3 frases cirúrgicas
+5. **ANCORAGEM DE PREÇO** — valor empilhado antes do número, frase exata
+6. **3 OBJEÇÕES + RESPOSTA** — texto pra colar
+7. **FECHAMENTO** — frase exata, próximo passo (link MP), urgência real
+8. **FOLLOW-UP** — D+1 / D+3 / D+7 com texto exato
+
+Output só Markdown completo, sem code fence. Comece com "# Script de Venda — [Nome]". Não trunque.`
+
+type DadosParaScriptOpenAI = {
+  nome: string
+  categoria?: string | null
+  cidade?: string | null
+  instagram?: string | null
+  site?: string | null
+  telefone?: string | null
+  servicoRecomendado?: string | null
+  faixaInvestimento?: string | null
+}
+
+export async function gerarScriptVenda(params: {
+  dadosLead: DadosParaScriptOpenAI
+  diagnosticoRespostas: Record<string, string | null>
+}): Promise<{ markdown: string; modelo: string }> {
+  const apiKey = process.env.OPENAI_API_KEY
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY não configurada')
+  }
+
+  const client = new OpenAI({ apiKey })
+
+  const { dadosLead, diagnosticoRespostas } = params
+
+  const diagFmt = Object.entries(diagnosticoRespostas)
+    .map(([k, v]) => `- **${k}:** ${v || '—'}`)
+    .join('\n')
+
+  const prompt = `Gere Script de Venda cirúrgico pro lead abaixo.
+
+## Dados do lead
+- Nome: ${dadosLead.nome}
+- Negócio: ${dadosLead.categoria || '—'}
+- Cidade: ${dadosLead.cidade || '—'}
+- Instagram: ${dadosLead.instagram || '—'}
+- Site atual: ${dadosLead.site || 'Não tem'}
+- WhatsApp: ${dadosLead.telefone || '—'}
+- Serviço inferido: ${dadosLead.servicoRecomendado || '—'}
+- Faixa investimento: ${dadosLead.faixaInvestimento || '—'}
+
+## Respostas do Diagnóstico (8 perguntas)
+
+${diagFmt}
+
+Gere 8 seções completas. Mensagens WhatsApp prontas pra colar. Nome real ${dadosLead.nome}. Só Markdown, sem code fence.`
+
+  const response = await client.chat.completions.create({
+    model: 'gpt-4o-mini',
+    max_tokens: 8192,
+    temperature: 0.7,
+    messages: [
+      { role: 'system', content: SYSTEM_SCRIPT_VENDA_OPENAI },
+      { role: 'user', content: prompt },
+    ],
+  })
+
+  const markdown = (response.choices[0]?.message?.content || '')
+    .trim()
+    .replace(/^```(?:markdown|md)?\n?/i, '')
+    .replace(/\n?```$/, '')
+
+  return { markdown, modelo: 'gpt-4o-mini' }
+}

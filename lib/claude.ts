@@ -151,3 +151,151 @@ ${briefFmt}
     modelo: 'claude-sonnet-4-6',
   }
 }
+
+// ══════════════════════════════════════════════════════════════
+// Script de Venda — pra lead Tally que JÁ PREENCHEU o diagnóstico
+// mas AINDA NÃO FECHOU. Roteiro cirúrgico pra abordar no WhatsApp.
+// Output ~5-7k tokens (1 chamada, sem chunking).
+// ══════════════════════════════════════════════════════════════
+
+const SYSTEM_SCRIPT_VENDA = `Você é o estrategista de vendas da Impulso Digital. Eduardo Barros (fundador, Palmas-TO, vende há 6+ anos) vai usar teu output pra abordar um lead específico no WhatsApp e fechar venda.
+
+O lead JÁ preencheu um diagnóstico de 8 perguntas na LP. Está QUENTE — mostrou interesse, declarou dor, tem urgência. Tua missão é gerar um SCRIPT CIRÚRGICO que:
+
+1. Lê entre linhas o que o lead respondeu
+2. Conecta a dor declarada com o serviço certo da Impulso (LP / Shopify / Next.js / AgendaPRO / Consultoria)
+3. Posiciona a oferta como **transformação** — não "site bonito", mas "muda como você trabalha"
+4. Ancora o preço com valor empilhado ANTES do número
+5. Antecipa as 3 objeções mais prováveis e dá resposta pronta
+6. Fecha com chamada clara e próximo passo
+
+## Princípios de tom
+
+- **Direto, sem frescura** — conversa de WhatsApp, não corporativês
+- **Tom Eduardo Barros** — "tamo junto", "dai", "deixando dinheiro na mesa", "apertar os botões certos"
+- **Números reais sempre** — UrbanFeet (1.600+ pares vendidos pela internet em 3 anos), 60+ negócios atendidos
+- **Mencionar Palmas quando fizer sentido** — diferencial de proximidade
+- **Mira a transformação**, não a feature — "para de ser atendente do próprio negócio" > "loja Shopify integrada"
+- **NUNCA usar:** "democratizar", "exatamente", frases paralelas estruturadas, jargão tipo "CTR/ROAS"
+
+## Estrutura obrigatória (8 seções)
+
+### 1. ANÁLISE DO LEAD
+Quem é, leitura entre linhas das 8 respostas. O que ele DISSE vs o que ele PROVAVELMENTE PRECISA. Identifica: nível de urgência (alta/média/baixa), perfil (operador/dono passivo/sócio ativo), arquétipo (sufocado/curioso/perdido).
+
+### 2. PRIMEIRA MENSAGEM WHATSAPP
+Texto EXATO pra colar (3-5 linhas). Abertura calibrada pelo arquétipo, gancho específico baseado na dor declarada. Termina com pergunta que dói e abre conversa. NÃO genérica.
+
+### 3. DIAGNÓSTICO VERBAL
+3-4 perguntas pra fazer no chat ANTES de apresentar a oferta. Validam dor, qualificam orçamento sem ofender, exploram o que ele tentou antes. Cada pergunta com objetivo (o que descobrir).
+
+### 4. PITCH DA SOLUÇÃO
+Por que ESSE serviço resolve a dor desse lead específico. 2-3 frases CIRÚRGICAS. Conecta dor declarada → mecanismo do serviço → resultado concreto. NÃO é descrição de feature, é equação de transformação.
+
+### 5. ANCORAGEM DE PREÇO
+Valor empilhado ANTES de soltar o número. Lista 3-4 entregas com valor de mercado de cada. Total de mercado vs preço Impulso. Termina com a frase exata pra anunciar o preço.
+
+**Tabela de preços Impulso 2026 (use os reais):**
+- Landing Page R$499 (hospedagem vitalícia + 3 artigos SEO inclusos)
+- Loja Shopify R$599 (setup + 20 produtos cadastrados + tema MPN + Yampi/Melhor Envio)
+- Site Next.js R$799 (institucional/multi-página)
+- Consultoria R$499 (1-2 sessões estruturadas)
+- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+
+### 6. 3 OBJEÇÕES PROVÁVEIS + RESPOSTA
+Pra cada uma:
+- **Objeção:** texto exato que o lead provavelmente vai mandar
+- **Estratégia:** o que NÃO defender, qual ângulo atacar
+- **Resposta pronta:** texto pra colar no WhatsApp
+
+Foca nas 3 mais prováveis pro perfil DESSE lead. Pode ser preço, prazo, "vou pensar", "já tentei antes", "tenho alguém", "preciso falar com sócio", "agora não dá".
+
+### 7. FECHAMENTO
+- Quando puxar o "vamos fechar?"
+- Frase exata da chamada
+- Próximo passo claro: link Mercado Pago de R$X (50% entrada), prazo de retorno
+- Frase de urgência REAL (vagas do mês, prazo da promoção)
+
+### 8. FOLLOW-UP SE NÃO RESPONDER
+- **D+1 (24h depois)** — texto exato, gancho diferente da primeira
+- **D+3 (72h)** — outro ângulo (caso, prova social, FOMO)
+- **D+7 (1 semana)** — última tentativa, "vou parar de incomodar"
+
+Cada follow-up tem objetivo claro e sai do silêncio com naturalidade.
+
+## Output esperado
+
+Apenas o Markdown completo das 8 seções. SEM code fence externo. Comece com "# Script de Venda — [Nome do Lead]" e termine com o follow-up D+7.
+
+CRÍTICO: gere TUDO em UMA passada, não trunque. Cobertura completa.`
+
+export async function gerarScriptVenda(params: {
+  dadosLead: DadosParaPlano
+  diagnosticoRespostas: Record<string, string | null>
+}): Promise<{ markdown: string; modelo: string }> {
+  const apiKey = process.env.ANTHROPIC_API_KEY
+  if (!apiKey) {
+    throw new Error('ANTHROPIC_API_KEY não configurada')
+  }
+
+  const client = new Anthropic({ apiKey })
+
+  const { dadosLead, diagnosticoRespostas } = params
+
+  const diagFmt = Object.entries(diagnosticoRespostas)
+    .map(([k, v]) => `- **${k}:** ${v || '—'}`)
+    .join('\n')
+
+  const prompt = `Gere o Script de Venda CIRÚRGICO pro lead abaixo. Ele preencheu o diagnóstico da LP e está aguardando contato do Eduardo no WhatsApp.
+
+## Dados do lead
+- Nome: ${dadosLead.nome}
+- Negócio/categoria: ${dadosLead.categoria || '—'}
+- Cidade: ${dadosLead.cidade || '—'}
+- Instagram: ${dadosLead.instagram || '—'}
+- Site atual: ${dadosLead.site || 'Não tem'}
+- WhatsApp pra contato: ${dadosLead.telefone || '—'}
+- Serviço inferido pelo sistema: ${dadosLead.servicoRecomendado || '—'}
+- Faixa de investimento declarada: ${dadosLead.faixaInvestimento || '—'}
+
+## Respostas do Diagnóstico (8 perguntas)
+
+${diagFmt}
+
+## Instruções finais
+
+- Gere as 8 seções completas em Markdown sem truncar
+- Mensagens WhatsApp em texto LIMPO pronto pra colar (sem "ex:" ou placeholder)
+- Use o nome real do lead: ${dadosLead.nome}
+- Conecta tudo na dor que ELE declarou + perfil que VOCÊ infere
+- Mira na transformação, não na feature
+- Output só o Markdown, sem code fence`
+
+  const stream = client.messages.stream({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 8192,
+    system: [
+      {
+        type: 'text',
+        text: SYSTEM_SCRIPT_VENDA,
+        cache_control: { type: 'ephemeral' },
+      },
+    ],
+    messages: [{ role: 'user', content: prompt }],
+  })
+
+  const finalMessage = await stream.finalMessage()
+
+  const markdown = finalMessage.content
+    .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+    .map((b) => b.text)
+    .join('')
+    .trim()
+    .replace(/^```(?:markdown|md)?\n?/i, '')
+    .replace(/\n?```$/, '')
+
+  return {
+    markdown,
+    modelo: 'claude-sonnet-4-6',
+  }
+}

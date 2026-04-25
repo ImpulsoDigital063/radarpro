@@ -93,8 +93,14 @@ export async function initDb() {
     // Plano de Negócio & Marketing gerado pela IA (Nivel 2)
     `ALTER TABLE leads ADD COLUMN plano_negocio_md TEXT`,            // markdown completo do plano (14 secoes)
     `ALTER TABLE leads ADD COLUMN plano_gerado_em TEXT`,             // timestamp da geracao
-    `ALTER TABLE leads ADD COLUMN plano_modelo_ia TEXT`,             // qual modelo gerou (gemini-2.5-flash etc)
+    `ALTER TABLE leads ADD COLUMN plano_modelo_ia TEXT`,             // qual modelo gerou
     `ALTER TABLE leads ADD COLUMN plano_revisado_em TEXT`,           // quando Eduardo editou/aprovou
+
+    // Script de Venda gerado pela IA — pra lead Tally (pre-venda)
+    `ALTER TABLE leads ADD COLUMN script_venda_md TEXT`,             // markdown do script (8 secoes)
+    `ALTER TABLE leads ADD COLUMN script_venda_gerado_em TEXT`,
+    `ALTER TABLE leads ADD COLUMN script_venda_modelo_ia TEXT`,
+    `ALTER TABLE leads ADD COLUMN script_venda_revisado_em TEXT`,
   ]) {
     try { await db.execute(col) } catch { /* coluna já existe */ }
   }

@@ -34,6 +34,10 @@ type Lead = {
   plano_gerado_em: string | null
   plano_modelo_ia: string | null
   plano_revisado_em: string | null
+  script_venda_md: string | null
+  script_venda_gerado_em: string | null
+  script_venda_modelo_ia: string | null
+  script_venda_revisado_em: string | null
   criado_em: string
   atualizado_em: string
 }
@@ -124,6 +128,7 @@ export default function TallyDashboard() {
   const [loading, setLoading] = useState(true)
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
   const [planoLead, setPlanoLead] = useState<Lead | null>(null)
+  const [scriptLead, setScriptLead] = useState<Lead | null>(null)
 
   async function fetchLeads() {
     setLoading(true)
@@ -241,6 +246,7 @@ export default function TallyDashboard() {
                 tab={tab}
                 onViewDetails={() => setSelectedLead(lead)}
                 onOpenPlano={() => setPlanoLead(lead)}
+                onOpenScript={() => setScriptLead(lead)}
                 onRefresh={fetchLeads}
               />
             ))}
@@ -256,6 +262,14 @@ export default function TallyDashboard() {
         <PlanoModal
           lead={planoLead}
           onClose={() => setPlanoLead(null)}
+          onSaved={fetchLeads}
+        />
+      )}
+
+      {scriptLead && (
+        <ScriptVendaModal
+          lead={scriptLead}
+          onClose={() => setScriptLead(null)}
           onSaved={fetchLeads}
         />
       )}
@@ -299,9 +313,9 @@ function TabButton({ active, onClick, color, children }: {
 }
 
 function LeadCard({
-  lead, tab, onViewDetails, onOpenPlano, onRefresh,
+  lead, tab, onViewDetails, onOpenPlano, onOpenScript, onRefresh,
 }: {
-  lead: Lead; tab: Tab; onViewDetails: () => void; onOpenPlano: () => void; onRefresh: () => void
+  lead: Lead; tab: Tab; onViewDetails: () => void; onOpenPlano: () => void; onOpenScript: () => void; onRefresh: () => void
 }) {
   const [copying, setCopying] = useState<string | null>(null)
 
@@ -396,11 +410,14 @@ function LeadCard({
 
           {tab === 'novo' && (
             <>
+              <ActionButton onClick={onOpenScript} bg={ACCENT_RED} color="#fff">
+                💬 {lead.script_venda_md ? 'Ver script venda' : 'Gerar script venda'}
+              </ActionButton>
               <ActionButton
                 onClick={() => copiar(MSG_PRIMEIRO_CONTATO(lead.nome, lead.mensagem, lead.servico_recomendado), 'msg')}
                 bg={ACCENT_BLUE} color="#fff"
               >
-                {copying === 'msg' ? '✓ Copiado!' : 'Copiar msg'}
+                {copying === 'msg' ? '✓ Copiado!' : 'Copiar msg curta'}
               </ActionButton>
               <ActionButton onClick={marcarFechou} bg={ACCENT_VIOLET} color="#fff">
                 Marcar fechou
@@ -858,4 +875,218 @@ function renderizarHtml(md: string, titulo: string): string {
   </div>
   <script>setTimeout(() => window.print(), 500);</script>
 </body></html>`
+}
+
+// ══════════════════════════════════════════════════════════════
+// ScriptVendaModal — gerar script de venda pra lead Tally (pré-venda)
+// ══════════════════════════════════════════════════════════════
+
+function ScriptVendaModal({ lead, onClose, onSaved }: {
+  lead: Lead; onClose: () => void; onSaved: () => void
+}) {
+  const [markdown, setMarkdown] = useState<string>(lead.script_venda_md || '')
+  const [gerando, setGerando] = useState(false)
+  const [salvando, setSalvando] = useState(false)
+  const [erro, setErro] = useState<string | null>(null)
+  const [status, setStatus] = useState<string | null>(null)
+  const [modelosDisponiveis, setModelosDisponiveis] = useState<string[]>([])
+  const [modeloEscolhido, setModeloEscolhido] = useState<string>('claude')
+
+  useEffect(() => {
+    fetch('/api/tally/gerar-script-venda')
+      .then((r) => r.json())
+      .then((d) => {
+        setModelosDisponiveis(d.disponiveis || [])
+        setModeloEscolhido(d.recomendado || d.disponiveis?.[0] || 'claude')
+      })
+      .catch(() => {})
+  }, [])
+
+  async function gerar(regenerate = false) {
+    setGerando(true); setErro(null); setStatus(null)
+    try {
+      const r = await fetch('/api/tally/gerar-script-venda', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: lead.id, regenerate, modelo: modeloEscolhido }),
+      })
+      const data = await r.json()
+      if (!r.ok) throw new Error(data.error || 'Falha')
+      setMarkdown(data.markdown)
+      setStatus(data.cached ? 'Carregado do cache.' : `Gerado com ${data.modelo}.`)
+      onSaved()
+    } catch (e: any) {
+      setErro(String(e?.message || e))
+    } finally {
+      setGerando(false)
+    }
+  }
+
+  async function salvarEdicao() {
+    setSalvando(true); setErro(null)
+    try {
+      const r = await fetch('/api/tally/gerar-script-venda', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: lead.id, markdown }),
+      })
+      if (!r.ok) throw new Error('Falha ao salvar')
+      setStatus('Revisão salva.')
+      onSaved()
+    } catch (e: any) {
+      setErro(String(e?.message || e))
+    } finally {
+      setSalvando(false)
+    }
+  }
+
+  function copiarMarkdown() {
+    navigator.clipboard.writeText(markdown)
+    setStatus('Markdown copiado.')
+    setTimeout(() => setStatus(null), 2000)
+  }
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '16px', zIndex: 60,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: CARD, border: `1px solid ${BRD}`, borderRadius: '12px',
+          maxWidth: '1200px', width: '100%', maxHeight: '90vh',
+          display: 'flex', flexDirection: 'column',
+        }}
+      >
+        <div style={{
+          padding: '16px 20px', borderBottom: `1px solid ${BRD}`,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          gap: '12px', flexWrap: 'wrap',
+        }}>
+          <div>
+            <h2 style={{ fontSize: '16px', fontWeight: 800, color: TXT, margin: 0 }}>
+              💬 Script de Venda — {lead.nome}
+            </h2>
+            <p style={{ fontSize: '11px', color: MUTED, margin: '4px 0 0' }}>
+              Roteiro pra abordar no WhatsApp e fechar venda
+              {lead.script_venda_gerado_em && ` · Gerado em ${lead.script_venda_gerado_em} · ${lead.script_venda_modelo_ia}`}
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', color: MUTED, fontSize: '24px', cursor: 'pointer' }}
+          >
+            ×
+          </button>
+        </div>
+
+        <div style={{
+          padding: '12px 20px', borderBottom: `1px solid ${BRD}`,
+          display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center',
+        }}>
+          {modelosDisponiveis.length > 0 && (
+            <label style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              fontSize: '11px', color: MUTED, fontWeight: 600,
+            }}>
+              Modelo:
+              <select
+                value={modeloEscolhido}
+                onChange={(e) => setModeloEscolhido(e.target.value)}
+                disabled={gerando}
+                style={{
+                  background: BG, color: TXT, border: `1px solid ${BRD}`,
+                  borderRadius: '6px', padding: '4px 8px', fontSize: '11px',
+                  fontWeight: 600, cursor: 'pointer',
+                }}
+              >
+                {modelosDisponiveis.includes('claude') && (
+                  <option value="claude">Claude Sonnet 4.6 (recomendado)</option>
+                )}
+                {modelosDisponiveis.includes('gemini') && (
+                  <option value="gemini">Gemini Flash (grátis)</option>
+                )}
+                {modelosDisponiveis.includes('openai') && (
+                  <option value="openai">GPT-4o-mini</option>
+                )}
+              </select>
+            </label>
+          )}
+
+          {!markdown && (
+            <ActionButton onClick={() => gerar(false)} bg={ACCENT_RED} color="#fff">
+              {gerando ? '⏳ Gerando script (30-45s)...' : '💬 Gerar script agora'}
+            </ActionButton>
+          )}
+          {markdown && (
+            <>
+              <ActionButton onClick={() => gerar(true)} bg={ACCENT_AMBER} color="#000">
+                {gerando ? '⏳ Regerando...' : '🔄 Gerar de novo'}
+              </ActionButton>
+              <ActionButton onClick={salvarEdicao} bg={ACCENT_GREEN} color="#fff">
+                {salvando ? 'Salvando...' : '💾 Salvar revisão'}
+              </ActionButton>
+              <ActionButton onClick={copiarMarkdown} bg="#374151" color={TXT}>
+                📋 Copiar MD
+              </ActionButton>
+            </>
+          )}
+          {status && (
+            <span style={{ fontSize: '11px', color: ACCENT_GREEN, marginLeft: 'auto' }}>{status}</span>
+          )}
+          {erro && (
+            <span style={{ fontSize: '11px', color: ACCENT_RED, marginLeft: 'auto' }}>{erro}</span>
+          )}
+        </div>
+
+        {!markdown ? (
+          <div style={{ padding: '48px 32px', textAlign: 'center' }}>
+            <div style={{ fontSize: '48px', marginBottom: '12px' }}>💬</div>
+            <h3 style={{ fontSize: '16px', fontWeight: 700, color: TXT, margin: '0 0 8px' }}>
+              Gerar script de venda?
+            </h3>
+            <p style={{ fontSize: '13px', color: MUTED, maxWidth: '500px', margin: '0 auto 16px' }}>
+              A IA vai analisar as 8 respostas do diagnóstico e gerar um script
+              cirúrgico em <strong style={{ color: TXT }}>8 seções</strong>: análise do lead,
+              primeira mensagem, diagnóstico verbal, pitch, ancoragem de preço, 3 objeções com
+              resposta pronta, fechamento e follow-up D+1/3/7. Tudo em texto pronto pra colar
+              no WhatsApp. ~30-45 segundos.
+            </p>
+            <ActionButton onClick={() => gerar(false)} bg={ACCENT_RED} color="#fff">
+              {gerando ? '⏳ Gerando...' : '💬 Gerar script agora'}
+            </ActionButton>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+            <textarea
+              value={markdown}
+              onChange={(e) => setMarkdown(e.target.value)}
+              style={{
+                width: '50%',
+                background: BG, color: TXT, border: 'none',
+                borderRight: `1px solid ${BRD}`,
+                padding: '16px', fontSize: '12px',
+                fontFamily: 'Consolas, Monaco, monospace',
+                lineHeight: 1.6, resize: 'none', outline: 'none',
+              }}
+            />
+            <div style={{
+              width: '50%',
+              padding: '20px 24px', overflowY: 'auto',
+              background: '#fff', color: '#111',
+            }}>
+              <div
+                dangerouslySetInnerHTML={{ __html: renderizarPreview(markdown) }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
