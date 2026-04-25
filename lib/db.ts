@@ -16,7 +16,13 @@ export function getClient(): Client {
 
 // ── Schema ────────────────────────────────────────────────────────────────────
 
+// Flag de cache pro initDb — evita rodar 30+ ALTER TABLE em cada request.
+// Em Next.js serverless, mesmo que a função reinicie, o módulo é reusado
+// dentro da mesma instância warm, então essa flag corta latência ~500ms-1s.
+let _initDone = false
+
 export async function initDb() {
+  if (_initDone) return
   const db = getClient()
   await db.batch([
     `CREATE TABLE IF NOT EXISTS leads (
@@ -127,6 +133,8 @@ export async function initDb() {
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_licoes_status ON licoes(status)`)
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_licoes_lead   ON licoes(lead_id)`)
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_licoes_oferta ON licoes(tipo_oferta)`)
+
+  _initDone = true
 }
 
 // Garante schema criado uma vez por processo
