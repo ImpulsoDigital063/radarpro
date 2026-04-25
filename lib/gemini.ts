@@ -894,7 +894,7 @@ export type ScriptCompleto = {
     frase_pronta:     string  // frase pra jogar antes de revelar preço
   }
   prova_social: {
-    case_sugerido:    string  // 'ev_suplementos' | 'criativos_do_ceu'
+    case_sugerido:    string  // 'ev_suplementos' | 'criativos_do_ceu' | 'urbanfeet' | 'gb_nutrition' | 'agendapro_proprio' | 'mpn_on'
     frase_intro:      string  // como introduzir o case na conversa
   }
   objecoes: {
@@ -902,9 +902,35 @@ export type ScriptCompleto = {
     quanto_custa:       string
     vou_pensar:         string
     sem_dinheiro:       string
+    // NOVAS — FAQ matador (objeções de fechamento, lead já quente)
+    por_que_voce_e_nao_agencia?: string
+    por_que_nao_wix_canva?:      string
+    e_se_nao_gostar?:            string
+    e_se_voce_sumir?:            string  // = "vou conseguir mexer sozinho"
+    custo_escondido?:            string  // = "tem mensalidade?"
+    quando_o_site_paga?:         string  // = "em quanto tempo o site paga?"
+    e_se_eu_desistir?:           string  // = "e se eu desistir no meio do projeto?"
   }
   fechamento:         string  // Msg 4 — 3 horários concretos
   followup_timeline: Array<{ dia: number; mensagem: string }>
+
+  // NOVOS — armas adicionadas em 24/04/2026
+  autoridade_eduardo?: {
+    qual_prova_usar:  string  // ex: "UrbanFeet 1.600+ pares (perfil Shopify)"
+    frase_pronta:     string  // frase pra inserir na conversa
+  }
+  gancho_urgencia_hospedagem?: {
+    aplicavel:        boolean // só pra LP/Combo
+    frase_pronta:     string  // ex: "Hoje a hospedagem é vitalícia. Semana que vem volta a R$49,90/mês — depois você não consegue mais entrar nessa condição."
+  }
+  qualificador_diagnostico?: {
+    quando_mandar:    string  // contexto de uso
+    frase_pronta:     string  // mensagem com link tally.so/r/A76J90
+  }
+  fechamento_pagamento?: {
+    cta_mp:           string  // como falar do link Mercado Pago no fechamento
+    opcoes_pagamento: string  // "Pix · Cartão débito/crédito · Boleto · Cartão Caixa"
+  }
 }
 
 export async function gerarScriptCompleto(lead: DadosLead): Promise<ScriptCompleto> {
@@ -937,10 +963,24 @@ export async function gerarScriptCompleto(lead: DadosLead): Promise<ScriptComple
 - Resoluções e argumentos devem usar os GANCHOS específicos do produto (revise o SYSTEM_PROMPT)
 - Arma de vendas: pegar o gancho MAIS LETAL pro segmento do lead (ex: confeitaria → motoboy entrega hoje; nutri → blog SEO; barbearia → lista de espera + badge Google)
 - Ancoragem: referências reais de mercado — agência R$3-5k, freela Fiverr R$1-2k, manutenção de site R$100-300/mês
-- Prova social: escolha 'ev_suplementos' para saúde/estética/nutri; 'criativos_do_ceu' para serviço/digital/comércio variado
-- Objeções: use o script oficial exato do SYSTEM_PROMPT
+- **Prova social: escolha o case que MAIS RESSOA com o perfil do lead:**
+  - 'ev_suplementos' → loja Shopify ao vivo (mostrar visual)
+  - 'criativos_do_ceu' → LP de serviço variado
+  - **'urbanfeet'** → loja Shopify do EDUARDO (1.600+ pares vendidos pela internet em 3 anos) — usa pra QUEBRAR objeção "como sei que funciona?" em qualquer lead Shopify
+  - **'gb_nutrition'** → personal de Palmas que automatizou venda de suplemento → use quando lead é profissional liberal vendendo produto na mão (espelho perfeito)
+  - **'agendapro_proprio'** → SaaS que o Eduardo construiu → autoridade pra leads AgendaPRO ("não é sistema terceirizado, é meu")
+  - **'mpn_on'** → curso → use quando lead duvida que Eduardo "sabe ensinar"
+- **Objeções principais (sempre obrigatórias):** use o script oficial exato do SYSTEM_PROMPT
+- **Objeções FAQ matador (FACULTATIVAS — preencher se a categoria/perfil sugerir que vão aparecer):** use as respostas EXATAS do FAQ matador no SYSTEM_PROMPT
 - Fechamento: SEMPRE 3 horários concretos (Quinta/Sexta/Segunda com horário)
 - Follow-up timeline: dias 3, 5, 7 e 30 com mensagem pronta pra cada dia
+
+## Armas novas — preencher quando aplicável
+
+- **autoridade_eduardo**: SEMPRE preencher. Escolha qual prova do Eduardo é mais relevante pra esse lead específico (UrbanFeet 1.600+ pares pra Shopify, AgendaPRO próprio pra agenda, 60+ negócios pra LP). Frase pronta pra usar quando precisar plantar credibilidade no chat.
+- **gancho_urgencia_hospedagem**: SE produto for LP ou Combo, preencher com "aplicavel: true" e frase exata da promo (vitalícia grátis hoje vs R$49,90/mês depois). Se for Shopify ou AgendaPRO solo, "aplicavel: false".
+- **qualificador_diagnostico**: SEMPRE preencher. Quando lead pedir muita info ou parecer hesitante, sugerir mandar o link do Diagnóstico (https://tally.so/r/A76J90) com frase pronta como gatilho de qualificação ("antes de marcar, preenche esse diagnóstico em 2min").
+- **fechamento_pagamento**: SEMPRE preencher. Mostrar como falar do link MP único (Pix/Cartão/Boleto/Caixa) na hora do fechamento. Modelo 50% entrada + 50% entrega.
 
 ## Retorne EXATAMENTE neste JSON (sem markdown, sem comentários):
 {
@@ -962,26 +1002,49 @@ export async function gerarScriptCompleto(lead: DadosLead): Promise<ScriptComple
   },
   "ancoragem_preco": {
     "concorrencia": "<ex: 'Agência local Palmas: R$3-5k · Freela Fiverr: R$1-2k · Manutenção anual site comum: R$1,2k/ano'>",
-    "nosso_preco": "<ex: 'R$499 com hospedagem vitalícia inclusa — zero mensalidade'>",
+    "nosso_preco": "<ex: 'R$499 com hospedagem vitalícia inclusa — zero mensalidade. (Hoje pega vitalício; semana que vem volta a R$49,90/mês.)'>",
     "frase_pronta": "<frase exata pra jogar ANTES de revelar preço — monta a âncora>"
   },
   "prova_social": {
-    "case_sugerido": "<ev_suplementos | criativos_do_ceu>",
+    "case_sugerido": "<ev_suplementos | criativos_do_ceu | urbanfeet | gb_nutrition | agendapro_proprio | mpn_on>",
     "frase_intro": "<frase pronta pra introduzir o case na conversa — sem mandar link>"
   },
   "objecoes": {
     "ja_tenho_instagram": "<resposta exata>",
     "quanto_custa": "<resposta exata>",
     "vou_pensar": "<resposta exata com escassez real>",
-    "sem_dinheiro": "<resposta exata — nunca insistir>"
+    "sem_dinheiro": "<resposta exata — nunca insistir>",
+    "por_que_voce_e_nao_agencia": "<resposta exata do FAQ matador, ajustada pro perfil — 'Quem te responde é quem digita o código...'>",
+    "por_que_nao_wix_canva": "<resposta do FAQ matador — 'Já refiz 12 sites de cliente que vieram do Wix...'>",
+    "e_se_nao_gostar": "<resposta do FAQ matador — 'No Dia 1-3 você recebe prévia visual ANTES de eu escrever uma linha de código...'>",
+    "e_se_voce_sumir": "<resposta do FAQ matador — 'Tudo no seu nome, uso Next.js e Shopify padrão...'>",
+    "custo_escondido": "<resposta do FAQ matador — 'Zero mensalidade minha. Hospedagem vitalícia. Domínio no seu nome...'>",
+    "quando_o_site_paga": "<resposta do FAQ matador — 'Quem promete prazo de retorno tá mentindo. Entrego site rápido que converte quando o lead chega...'>",
+    "e_se_eu_desistir": "<resposta do FAQ matador — 'Antes da prévia: 100% volta. Depois: cobrança proporcional do que foi feito, arquivos pra você...'>"
   },
   "fechamento": "<Msg 4: 3 horários concretos com dia e hora>",
   "followup_timeline": [
     { "dia": 3,  "mensagem": "<mensagem pro dia 3 — pergunta sobre dúvidas>" },
-    { "dia": 5,  "mensagem": "<mensagem pro dia 5 — escassez>" },
+    { "dia": 5,  "mensagem": "<mensagem pro dia 5 — escassez (mencione promo de hospedagem se for LP)>" },
     { "dia": 7,  "mensagem": "<mensagem pro dia 7 — última do mês>" },
     { "dia": 30, "mensagem": "<reabordagem — ângulo novo>" }
-  ]
+  ],
+  "autoridade_eduardo": {
+    "qual_prova_usar": "<UrbanFeet 1.600+ pares pela internet em 3 anos | AgendaPRO próprio | 60+ negócios atendidos | MPN-On curso — escolha a mais relevante pra ESTE lead>",
+    "frase_pronta": "<frase exata pra inserir naturalmente na conversa quando lead duvidar>"
+  },
+  "gancho_urgencia_hospedagem": {
+    "aplicavel": <true se LP/Combo, false se Shopify/AgendaPRO>,
+    "frase_pronta": "<se aplicavel=true: frase exata da urgência. Se false: ''>"
+  },
+  "qualificador_diagnostico": {
+    "quando_mandar": "<contexto: ex: 'Lead pedindo muita info antes da consultoria, ou hesitante mas curioso'>",
+    "frase_pronta": "<mensagem WhatsApp com link https://tally.so/r/A76J90 — natural, não forçada>"
+  },
+  "fechamento_pagamento": {
+    "cta_mp": "<frase pra mandar link MP no fechamento — 'Te mando o link de pagamento agora, são 50% pra começar (R$X), aceita Pix, cartão...'>",
+    "opcoes_pagamento": "Pix · Cartão débito/crédito · Boleto · Cartão Caixa"
+  }
 }`
 
   const result = await model.generateContent(prompt)
