@@ -38,6 +38,9 @@ export type LeadDisparo = {
   analise: Analise
   scripts: {
     abertura: string
+    followupD3: string
+    followupD7: string
+    preEngajamentoIg: string
     diagnostico: { variante: string; texto: string }
     pitchSeSoIG: string
     pitchSeTemSite: string
@@ -45,6 +48,10 @@ export type LeadDisparo = {
     callAlinhamento?: string
   }
   linkWhatsApp: string
+  linksFollowup: {
+    d3: string
+    d7: string
+  }
 }
 
 function resolverSite(siteRaw: string | null): string {
@@ -107,6 +114,9 @@ export async function GET() {
         analise: a,
         scripts: {
           abertura: a.abertura,
+          followupD3: a.followup_d3,
+          followupD7: a.followup_d7,
+          preEngajamentoIg: a.pre_engajamento_ig,
           diagnostico: { variante: diag.variante, texto: diag.texto },
           pitchSeSoIG: script.pitch_se_so_ig,
           pitchSeTemSite: script.pitch_se_tem_site,
@@ -114,6 +124,10 @@ export async function GET() {
           callAlinhamento: script.call_alinhamento || undefined,
         },
         linkWhatsApp: link,
+        linksFollowup: {
+          d3: gerarLinkWhatsApp(r.telefone, a.followup_d3),
+          d7: gerarLinkWhatsApp(r.telefone, a.followup_d7),
+        },
       }
       return lead
     })

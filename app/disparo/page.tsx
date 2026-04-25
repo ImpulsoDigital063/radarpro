@@ -30,6 +30,9 @@ type LeadDisparo = {
   analise: Analise
   scripts: {
     abertura: string
+    followupD3: string
+    followupD7: string
+    preEngajamentoIg: string
     diagnostico: { variante: string; texto: string }
     pitchSeSoIG: string
     pitchSeTemSite: string
@@ -37,6 +40,10 @@ type LeadDisparo = {
     callAlinhamento?: string
   }
   linkWhatsApp: string
+  linksFollowup: {
+    d3: string
+    d7: string
+  }
 }
 
 const card = '#111827'
@@ -309,13 +316,92 @@ export default function DisparoPage() {
 
                         {/* Mensagens */}
                         <Secao
+                          keyId={`${lead.id}:preig`}
+                          titulo="📸 D-1: Pré-engajamento Instagram (24h ANTES da Msg 1)"
+                          cor="#EC4899"
+                          aberta={secaoAberta[`${lead.id}:preig`] !== false}
+                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:preig`]: !(p[`${lead.id}:preig`] !== false) }))}
+                        >
+                          <div style={{ padding: '10px 12px', background: '#1A0A14', border: '1px solid #EC489940', borderRadius: '7px', fontSize: '12px', color: '#F9A8D4', lineHeight: 1.5 }}>
+                            {lead.scripts.preEngajamentoIg}
+                          </div>
+                          <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
+                            Multichannel = +287% respostas (Landbase 2025). Aquece o perfil antes do WhatsApp chegar.
+                          </p>
+                        </Secao>
+
+                        <Secao
                           keyId={`${lead.id}:abord`}
-                          titulo="📍 Msg 1 — Abertura cirúrgica (calibrada pelos 5 livros)"
+                          titulo="📍 D+0: Msg 1 — Abertura cirúrgica (timeline hook + Voss + <80 palavras)"
                           cor="#60A5FA"
                           aberta={secaoAberta[`${lead.id}:abord`] !== false}
                           onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:abord`]: !(p[`${lead.id}:abord`] !== false) }))}
                         >
                           <Msg keyId={`${lead.id}-abord`} texto={lead.scripts.abertura} cor="#60A5FA" copiar={copiar} copiado={copiado} />
+                        </Secao>
+
+                        <Secao
+                          keyId={`${lead.id}:fup3`}
+                          titulo="🔁 D+3: Follow-up (se não respondeu — pivô diferente)"
+                          cor="#F59E0B"
+                          aberta={secaoAberta[`${lead.id}:fup3`] !== false}
+                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fup3`]: !(p[`${lead.id}:fup3`] !== false) }))}
+                        >
+                          <Msg keyId={`${lead.id}-fup3`} texto={lead.scripts.followupD3} cor="#F59E0B" copiar={copiar} copiado={copiado} />
+                          <a
+                            href={lead.linksFollowup.d3}
+                            target="_blank"
+                            rel="noopener"
+                            style={{
+                              alignSelf: 'flex-start',
+                              padding: '4px 10px',
+                              background: '#16A34A22',
+                              border: '1px solid #16A34A',
+                              borderRadius: '5px',
+                              color: '#86EFAC',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              textDecoration: 'none',
+                              marginTop: '4px',
+                            }}
+                          >
+                            💬 Abrir WhatsApp com follow-up D+3
+                          </a>
+                          <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
+                            42% das respostas vêm em follow-up. 48% dos vendedores NUNCA mandam segundo toque.
+                          </p>
+                        </Secao>
+
+                        <Secao
+                          keyId={`${lead.id}:fup7`}
+                          titulo="🚪 D+7: Breakup message (última tentativa)"
+                          cor="#DC2626"
+                          aberta={secaoAberta[`${lead.id}:fup7`] !== false}
+                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fup7`]: !(p[`${lead.id}:fup7`] !== false) }))}
+                        >
+                          <Msg keyId={`${lead.id}-fup7`} texto={lead.scripts.followupD7} cor="#DC2626" copiar={copiar} copiado={copiado} />
+                          <a
+                            href={lead.linksFollowup.d7}
+                            target="_blank"
+                            rel="noopener"
+                            style={{
+                              alignSelf: 'flex-start',
+                              padding: '4px 10px',
+                              background: '#16A34A22',
+                              border: '1px solid #16A34A',
+                              borderRadius: '5px',
+                              color: '#86EFAC',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              textDecoration: 'none',
+                              marginTop: '4px',
+                            }}
+                          >
+                            💬 Abrir WhatsApp com breakup D+7
+                          </a>
+                          <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
+                            Breakup tem 15-20% reply rate (mais alto da sequência). Depois disso, lead sai da lista ativa por 90 dias.
+                          </p>
                         </Secao>
 
                         <Secao
