@@ -245,9 +245,14 @@ export default function DisparoPage() {
                         {/* Links rápidos */}
                         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
                           {lead.instagram && (
-                            <span style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#E1306C', fontSize: '12px', fontWeight: 600 }}>
+                            <a
+                              href={`https://instagram.com/${lead.instagram.replace(/^@/, '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#E1306C', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}
+                            >
                               📸 {lead.instagram}
-                            </span>
+                            </a>
                           )}
                           {lead.site !== 'NÃO TEM' && !lead.site.startsWith('NÃO TEM') && (
                             <a href={lead.site} target="_blank" rel="noopener noreferrer"
