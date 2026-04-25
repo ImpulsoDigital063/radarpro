@@ -12,6 +12,7 @@ type Analise = {
   resposta_objecao: string
   abertura: string
   razao_ranking: string
+  nota_interna?: string
 }
 
 type LeadDisparo = {
@@ -36,6 +37,7 @@ type LeadDisparo = {
     diagnostico: { variante: string; texto: string }
     pitchSeSoIG: string
     pitchSeTemSite: string
+    pitchSeTemSiteResposta?: string
     fechamento: string
     callAlinhamento?: string
   }
@@ -279,21 +281,39 @@ export default function DisparoPage() {
                             letterSpacing: '0.02em',
                           }}
                         >
-                          🎯 Playbook calibrado — clique em qualquer seção pra abrir
+                          🎯 Playbook calibrado pelos 5 livros — pronto pra disparar
                         </div>
 
-                        {/* Razão do ranking + Dor + Gancho */}
+                        {/* Razão do ranking — INFO INTERNA pro Eduardo (cor amarela = nota privada) */}
                         <Secao
                           keyId={`${lead.id}:razao`}
-                          titulo="🎯 Razão do ranking"
-                          cor="#A78BFA"
+                          titulo="💡 Razão do ranking (interno — não é pra mandar)"
+                          cor="#F59E0B"
                           aberta={secaoAberta[`${lead.id}:razao`] !== false}
                           onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:razao`]: !(p[`${lead.id}:razao`] !== false) }))}
                         >
-                          <div style={{ padding: '10px 12px', background: '#0F0A1A', border: '1px solid #A78BFA40', borderRadius: '7px', fontSize: '12px', color: '#E5E7EB', lineHeight: 1.5 }}>
+                          <div style={{ padding: '10px 12px', background: '#1A1500', border: '1px solid #D97706', borderRadius: '7px', fontSize: '12px', color: '#FCD34D', lineHeight: 1.5 }}>
                             {lead.analise.razao_ranking}
                           </div>
                         </Secao>
+
+                        {/* Nota interna específica — só aparece se a análise tem instrução privada */}
+                        {lead.analise.nota_interna && (
+                          <Secao
+                            keyId={`${lead.id}:notainterna`}
+                            titulo="📌 Nota interna (FAZER ANTES de disparar)"
+                            cor="#F59E0B"
+                            aberta={secaoAberta[`${lead.id}:notainterna`] !== false}
+                            onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:notainterna`]: !(p[`${lead.id}:notainterna`] !== false) }))}
+                          >
+                            <div style={{ padding: '10px 12px', background: '#1A1500', border: '1px solid #D97706', borderRadius: '7px', fontSize: '12px', color: '#FCD34D', lineHeight: 1.5, fontWeight: 600 }}>
+                              {lead.analise.nota_interna}
+                            </div>
+                            <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
+                              Esse texto é SÓ PRA TI — não copia/cola pro cliente. É instrução pré-abordagem.
+                            </p>
+                          </Secao>
+                        )}
 
                         <Secao
                           keyId={`${lead.id}:dor`}
@@ -426,10 +446,16 @@ export default function DisparoPage() {
                           aberta={secaoAberta[`${lead.id}:apres`] !== false}
                           onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:apres`]: !(p[`${lead.id}:apres`] !== false) }))}
                         >
-                          <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "só Instagram":</p>
+                          <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "só Instagram / só indicação":</p>
                           <Msg keyId={`${lead.id}-pitchIG`} texto={lead.scripts.pitchSeSoIG} cor="#A78BFA" copiar={copiar} copiado={copiado} />
-                          <p style={{ fontSize: '10px', color: '#A78BFA', margin: '6px 0 0', fontWeight: 700 }}>→ SE ele disser "tenho site":</p>
+                          <p style={{ fontSize: '10px', color: '#A78BFA', margin: '6px 0 0', fontWeight: 700 }}>→ SE ele disser "tenho site" — primeiro pede o link:</p>
                           <Msg keyId={`${lead.id}-pitchSite`} texto={lead.scripts.pitchSeTemSite} cor="#A78BFA" copiar={copiar} copiado={copiado} />
+                          {lead.scripts.pitchSeTemSiteResposta && (
+                            <>
+                              <p style={{ fontSize: '10px', color: '#A78BFA', margin: '6px 0 0', fontWeight: 700 }}>→ Depois que ele mandar o link (ajustar [X] com dado real):</p>
+                              <Msg keyId={`${lead.id}-pitchSiteResp`} texto={lead.scripts.pitchSeTemSiteResposta} cor="#A78BFA" copiar={copiar} copiado={copiado} />
+                            </>
+                          )}
                         </Secao>
 
                         <Secao

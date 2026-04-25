@@ -44,6 +44,7 @@ export type LeadDisparo = {
     diagnostico: { variante: string; texto: string }
     pitchSeSoIG: string
     pitchSeTemSite: string
+    pitchSeTemSiteResposta?: string
     fechamento: string
     callAlinhamento?: string
   }
@@ -120,6 +121,7 @@ export async function GET() {
           diagnostico: { variante: diag.variante, texto: diag.texto },
           pitchSeSoIG: script.pitch_se_so_ig,
           pitchSeTemSite: script.pitch_se_tem_site,
+          pitchSeTemSiteResposta: script.pitch_se_tem_site_resposta || undefined,
           fechamento: script.fechamento,
           callAlinhamento: script.call_alinhamento || undefined,
         },
