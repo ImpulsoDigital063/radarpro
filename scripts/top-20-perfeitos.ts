@@ -50,13 +50,20 @@ function siteRealmenteVazio(r: Row): boolean {
 
 async function buscarTudo(): Promise<Row[]> {
   const db = getClient()
+  // Critério relaxado 25/04: aceitar leads SEM Instagram desde que tenham
+  // sinais de operação real (nota Google + avaliações). 99 leads novos
+  // de moda festa/biquini/joalheria caíram sem IG (scrape ainda não rodou
+  // pra eles), mas têm autoridade Google.
   const res = await db.execute(
     `SELECT id, nome, categoria, telefone, instagram, site, nota, num_avaliacoes,
             tem_site, score, status
        FROM leads
       WHERE telefone IS NOT NULL AND telefone != ''
-        AND instagram IS NOT NULL AND instagram != ''
-        AND status = 'novo'`,
+        AND status = 'novo'
+        AND (
+          (instagram IS NOT NULL AND instagram != '')
+          OR (nota >= 4.5 AND num_avaliacoes >= 10)
+        )`,
   )
   return res.rows as unknown as Row[]
 }

@@ -208,16 +208,27 @@ const CATEGORIAS_COMBO = [
 const CATEGORIAS_SHOPIFY_MATCH = [
   // Moda (foto vende, ticket >R$80, vende pra fora)
   'moda feminina', 'moda masculina', 'moda fitness', 'moda festa', 'moda praia',
-  'loja de roupas', 'loja de calçados', 'loja de calcados',
-  'loja de acessórios', 'loja de acessorios',
+  'loja de roupa', 'loja de roupas',         // singular + plural
+  'loja de calçado', 'loja de calçados',     // singular + plural
+  'loja de calcado', 'loja de calcados',     // sem cedilha
+  'loja de acessório', 'loja de acessórios', // singular + plural
+  'loja de acessorio', 'loja de acessorios', // sem acento
+  'loja de vestido', 'loja de vestidos',     // singular + plural
+  'loja de moda', 'atacado de moda', 'atacado de roupa',
   'lingerie', 'boutique',
   // Joias
-  'joalheria', 'semi-joias', 'semi joias', 'semijoias',
+  'joalheria', 'joalherias',
+  'semi-joia', 'semi-joias', 'semi joia', 'semi joias', 'semijoia', 'semijoias',
   // Saúde/beleza (produto físico)
-  'loja de suplementos', 'whey protein', 'suplemento',
-  'perfumaria', 'cosméticos', 'cosmeticos', 'skincare', 'maquiagem',
+  'loja de suplemento', 'loja de suplementos', 'suplemento',
+  'whey protein',
+  'perfumaria', 'perfumarias',
+  'cosmético', 'cosméticos', 'cosmetico', 'cosmeticos',
+  'skincare', 'maquiagem',
   // Esportivo (Copa timing)
-  'loja de artigos esportivos', 'artigos esportivos', 'camisa de time',
+  'loja de artigo esportivo', 'loja de artigos esportivos',
+  'artigos esportivos', 'artigo esportivo',
+  'camisa de time', 'camisas de time',
   // Nicho
   'loja de artesanato', 'artesanato',
 ]
