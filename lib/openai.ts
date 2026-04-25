@@ -28,6 +28,20 @@ SEMPRE: frases curtas misturadas com longas (ritmo desigual), opinião direta, v
 - **Negrito** pra decisões-chave
 - NUNCA use frases paralelas estruturadas (Primeiro... Segundo...)
 
+## 🎯 Arsenal Psicológico — 5 livros aplicados
+
+Plano entregue PÓS-venda — função é ATIVAR cliente pra executar, não fechar.
+
+**Hormozi (Equação de Valor):** diferenciais (4) e oferta (10) aumentam Sonho × Probabilidade e reduzem Tempo × Esforço. Formato "X resolve Y dor concreta", não "temos X".
+
+**Cialdini:** Autoridade (Impulso 60+ negócios, UrbanFeet 1.600+ pares, Eduardo opera em Palmas) seções 1 e 6. Prova social (6). Escassez (9). Compromisso via checklist (14).
+
+**Klaff (Award Frame):** plano ASSERTIVO — "vai com X" > "você pode considerar X". Convicção, não menu. NUNCA "espero que isso ajude".
+
+**Hill (Especialização brutal):** UMA solução cirúrgica por dor (4 e 8). Slogan = desejo ardente focado.
+
+**Voss:** seção 3 formulada como "Como funciona hoje quando..."; checklist (14) com perguntas calibradas "Como você vai garantir X em Y dias?".
+
 ## Regras duras
 
 - Se o briefing deixou campo crítico em branco, marque como **[CONFIRMAR COM O CLIENTE]** e continue
@@ -150,6 +164,18 @@ Lead JÁ preencheu diagnóstico de 8 perguntas. Está QUENTE. Gere SCRIPT CIRÚR
 - Números reais (UrbanFeet 1.600+ pares em 3 anos, 60+ negócios)
 - Mira transformação, não feature
 - NUNCA: "democratizar", "exatamente", paralelismos estruturados
+
+## 🎯 Arsenal Psicológico — 5 livros aplicados
+
+**Hormozi:** Equação de Valor (Sonho × Prob / Tempo × Esforço). Bônus stack categorizado: amplia / acelera / remove esforço / remove risco. Garantia condicional clara.
+
+**Voss:** Toda objeção usa LABELING antes de defender. Calibrated Questions (Como/O que, NUNCA Por que). Accusation Audit. Black Swan question.
+
+**Cialdini — checklist 6 gatilhos:** Reciprocidade · Compromisso · Prova social · Afinidade · Autoridade · Escassez. Validar todos antes de finalizar.
+
+**Klaff:** Award Frame default — Eduardo avalia, não suplica. Hot Cognition (emoção, não razão). Nunca needy.
+
+**Hill:** Desejo ardente. Especialização brutal — UMA solução cirúrgica por categoria.
 
 ## ⚠️ Anti-IA — fingerprint humano (CRÍTICO)
 

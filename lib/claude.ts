@@ -42,6 +42,37 @@ O cliente recebe esse PDF assinado pela Impulso Digital — Eduardo Barros é qu
 
 **Tom-alvo:** sente como se Eduardo escreveu o documento à mão depois de uma conversa profunda com o cliente. Não como template preenchido nem relatório de consultoria genérica. Vivo, opinativo, com terreno.
 
+## 🎯 Arsenal Psicológico — 5 livros aplicados ao Plano
+
+Este plano é entregue ao cliente DEPOIS da venda fechada — então o Arsenal aqui ATIVA O CLIENTE pra executar (não fecha venda). Cada framework tem aplicação específica:
+
+**Hormozi (Equação de Valor) — seção 4 (Diferenciais) e 10 (Oferta/Projeções):**
+- Diferenciais devem aumentar SONHO + PROBABILIDADE percebidos (não só listar features)
+- Cronograma curto = reduz TEMPO percebido
+- Operação simplificada = reduz ESFORÇO percebido
+- Cada diferencial em formato "X resolve Y dor concreta", não "temos X"
+
+**Cialdini — embutido na estrutura:**
+- **Autoridade** (seção 1, 6) — Impulso Digital tem 60+ negócios atendidos, UrbanFeet (1.600+ pares vendidos), Eduardo opera os próprios negócios em Palmas
+- **Prova social** (seção 6) — citar concorrentes que JÁ usam X estratégia, ou case Impulso similar
+- **Compromisso/Coerência** (seção 14) — checklist gera micro-compromissos que aumentam execução
+- **Escassez** (seção 9) — "se você esperar 30 dias, perde a janela do mês X" quando aplicável
+- **Reciprocidade** — plano detalhado em si É reciprocidade (cliente pagou X, recebe Y de valor visível)
+
+**Klaff (Frame Award) — postura geral do documento:**
+- Eduardo NÃO escreve "espero que isso ajude" — escreve "isso é o que eu faria se fosse meu negócio"
+- Plano ASSERTIVO, opinativo. "Vai com X canal" > "Você pode considerar X canal"
+- Award Frame = consultor que entrega convicção, não opções
+
+**Hill (Especialização brutal) — seção 4 e 8:**
+- Posicionar UMA solução cirúrgica por dor — não menu de possibilidades
+- Slogan da seção 4 = manifestação de desejo ardente focado, não tagline genérica
+- Foco maníaco no problema certo, não tentar resolver tudo
+
+**Voss (Calibrated Questions) — seção 3 e 14:**
+- Seção 3 (problema): formular como "Como funciona hoje quando..." em vez de afirmações chapadas
+- Checklist final pode ter perguntas calibradas no formato "Como você vai garantir que X aconteça em Y dias?" pra forçar reflexão
+
 ## Regras duras
 
 - Se o briefing deixou campo crítico em branco, marque como **[CONFIRMAR COM O CLIENTE]** e continue
@@ -192,6 +223,41 @@ O lead JÁ preencheu um diagnóstico de 8 perguntas na LP. Está QUENTE — most
 - **Mencionar Palmas quando fizer sentido** — diferencial de proximidade
 - **Mira a transformação**, não a feature — "para de ser atendente do próprio negócio" > "loja Shopify integrada"
 - **NUNCA usar:** "democratizar", "exatamente", frases paralelas estruturadas, jargão tipo "CTR/ROAS"
+
+## 🎯 Arsenal Psicológico — 5 livros aplicados
+
+Cada seção do script deve usar ARMAS específicas dos 5 livros estudados (Hill, Hormozi, Voss, Cialdini, Klaff). Validação obrigatória antes de finalizar:
+
+**Hormozi ($100M Offers):**
+- Pitch da seção 4 deve mirar a transformação (sonho), não a feature
+- Ancoragem da seção 5 segue Equação de Valor: Sonho × Probabilidade / Tempo × Esforço
+- Bônus stack categorizado em 4 tipos (amplia / acelera / remove esforço / remove risco)
+- Garantia condicional clara
+
+**Voss (Never Split the Difference):**
+- Seção 6 (objeções) usa SEMPRE Labeling antes de qualquer resposta: *"Me parece que tu tá pensando..."*
+- Calibrated Questions (Como/O que, NUNCA Por que) na seção 3 e 6
+- Accusation Audit pode aparecer na seção 4 (antecipar objeções antes do lead falar)
+- Black Swan question na seção 3: *"Tem alguma coisa que tu acha importante eu saber..."*
+
+**Cialdini (Influence) — checklist 6 gatilhos:**
+1. Reciprocidade — lead recebeu valor antes de pagar?
+2. Compromisso — citou o que lead declarou no diagnóstico?
+3. Prova social — case relevante pro perfil?
+4. Afinidade — Palmas, contexto pessoal?
+5. Autoridade — UrbanFeet/AgendaPRO/60+ negócios?
+6. Escassez — promo hospedagem vitalícia / vagas?
+
+Se algum estiver faltando, REFORCE antes de finalizar.
+
+**Klaff (Pitch Anything):**
+- Seção 2 (primeira mensagem) usa Award Frame por default — Eduardo avalia se vale ajudar, não suplica
+- Hot Cognition na seção 4 (vender pra emoção: medo, ambição, status, segurança), não pra razão
+- Nunca needy — vendedor que precisa afasta, vendedor que avalia atrai
+
+**Hill (Pense e Enriqueça):**
+- Tom de desejo ardente, não passivo — sempre tentar mais um ângulo, mais uma pergunta
+- Especialização brutal — Eduardo NÃO vende "marketing digital", vende UMA solução cirúrgica
 
 ## ⚠️ Anti-IA — fingerprint humano (REGRA DURA)
 
