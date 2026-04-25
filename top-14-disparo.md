@@ -110,7 +110,7 @@ Antes de cada disparo, lembrar:
 
 **Objeção esperada:** Psicólogo tem escrúpulo com marketing agressivo. Provável: "não quero algo que pareça venda".
 
-**Como responder:** LP sóbria (paleta clara, foto profissional, linguagem ética), sem copy agressiva — a autoridade dos 135 avaliações 4.9 fala por si. Mostra o case Gilson Afonso na pasta de trabalhos depois (virou prova social).
+**Como responder:** Faz sentido — tu tem ética profissional alta. A LP que eu monto pra psicólogo é o oposto de copy agressiva: paleta clara, foto profissional, linguagem ética. A autoridade dos teus 135 avaliações 4.9 fala por si. Não vende "promessa de cura" — vende presença digital regulamentar. Pode te mostrar 2 LPs de psi que ranqueiam sem soar comercial?
 
 **Razão do ranking:** Autônomo (decide sozinho), ticket alto (R$150-250/sessão), 135 avaliações = reputação já construída (não precisa provar nada), dor de credibilidade digital é clássica do psicólogo. R$499 paga com 3 sessões.
 
@@ -147,26 +147,22 @@ Porque eu vejo muito psicólogo perder cliente só por não ter um link profissi
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Psicólogo em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Psicólogo em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -176,9 +172,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -190,7 +186,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com psicólogo.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -247,26 +243,22 @@ Porque eu vejo muito advogado perder cliente só por não ter um link profission
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Advogado em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Advogado em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -276,9 +268,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -290,7 +282,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com advogado.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -347,32 +339,24 @@ Quanto tempo isso come por semana?
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -382,9 +366,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -396,7 +380,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992712424?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AAntes%20do%20dia%20das%20m%C3%A3es%20(faltam%203%20semanas)%2C%20t%C3%B4%20olhando%20perfumarias%20fortes%20em%20Palmas.%205%20com%20109%20avalia%C3%A7%C3%B5es%20%C3%A9%20refer%C3%AAncia%20a%C3%AD%20no%20segmento%20de%20importado.%0A%0AMe%20parece%20que%20cliente%20que%20j%C3%A1%20te%20conhece%20compra%20de%20boa%20pelo%20WhatsApp.%20Mas%20o%20cliente%20NOVO%20%E2%80%94%20aquele%20que%20t%C3%A1%20com%20R%24500%20na%20m%C3%A3o%20pra%20gastar%20num%20perfume%20e%20nunca%20pisou%20a%C3%AD%20%E2%80%94%20esse%20n%C3%A3o%20compra%20de%20quem%20s%C3%B3%20tem%20Insta.%0A%0ATu%20j%C3%A1%20calculou%20quantas%20vendas%20o%20cliente%20novo%20deixa%20de%20fazer%3F
@@ -451,32 +435,24 @@ Quanto tempo isso come por semana?
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -486,9 +462,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -500,7 +476,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984379144?text=Oi%20Dely%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20moda%20executiva%20feminina%20em%20Palmas%20com%205%20estrelas%20e%2063%20aval%20%C3%A9%20nicho%20posicionado%20de%20verdade.%20N%C3%A3o%20%C3%A9%20loja%20gen%C3%A9rica.%0A%0AMe%20parece%20que%20tu%20sente%20que%20cliente%20fiel%20compra%20pessoalmente.%20Mas%20a%20advogada%20que%20mudou%20pra%20Palmas%20semana%20passada%2C%20a%20servidora%20que%20tomou%20posse%20m%C3%AAs%20passado%20%E2%80%94%20essa%20pesquisa%20%22moda%20executiva%20Palmas%22%20no%20Google.%20E%20quem%20aparece%20%C3%A9%20concorrente%20que%20vende%20pior%20mas%20tem%20site.%0A%0AO%20que%20tu%20acha%20disso%3F
@@ -557,26 +533,22 @@ Ou só seu Insta, que o Google nem indexa direito?
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Nutricionista em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Nutricionista em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -586,9 +558,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -600,7 +572,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com nutricionista.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -657,26 +629,22 @@ Pergunto porque a diferença aí é tudo.
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Nutricionista em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Nutricionista em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -686,9 +654,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -700,7 +668,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com nutricionista.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -757,32 +725,24 @@ Deixa eu te perguntar: cliente de Palmas que quer receber HOJE — ele compra de
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -792,9 +752,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -806,7 +766,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984199311?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AAntes%20da%20Copa%20come%C3%A7ar%20(faltam%206%20semanas)%20e%20do%20ver%C3%A3o%20chegando%2C%20t%C3%B4%20olhando%20lojas%20fortes%20de%20moda%20praia%20em%20Palmas.%204.9%2F73%20%C3%A9%20forte%20mesmo.%0A%0AMe%20parece%20que%20tu%20deve%20responder%20muita%20mensagem%20do%20tipo%20%22tem%20esse%20tamanho%3F%22%2C%20%22aceita%20cart%C3%A3o%3F%22%20antes%20da%20cliente%20bater%20o%20martelo.%20Mensagem%20que%20toma%20teu%20tempo%20e%20a%20cliente%20some%20na%20metade.%0A%0AQuantas%20dessas%20tu%20responde%20por%20dia%3F
@@ -859,32 +819,24 @@ Deixa eu te perguntar: cliente de Palmas que quer receber HOJE — ele compra de
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -894,9 +846,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -908,7 +860,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556330280065?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AAntes%20da%20Copa%20come%C3%A7ar%20(junho)%2C%20t%C3%B4%20mapeando%20lojas%20de%20moda%20masculina%20fortes%20em%20Palmas.%2091%20aval%20com%204.6%20%C3%A9%20base%20consolidada%2C%20d%C3%A1%20pra%20ver%20que%20tu%20tem%20cliente%20fiel.%0A%0AMe%20parece%20que%20cliente%20que%20mora%20perto%20da%20loja%20vai%20presencialmente.%20Mas%20o%20que%20viu%20um%20look%20teu%20no%20Insta%20l%C3%A1%20do%20Plano%20Diretor%20Sul%2C%20ou%20em%20Para%C3%ADso%20%E2%80%94%20esse%20trava%20em%20%22tem%20que%20ir%20presencial%3F%22%20e%20some.%0A%0AComo%20tu%20atende%20esse%20cliente%20hoje%3F
@@ -963,26 +915,22 @@ Pergunto porque a diferença aí é tudo.
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Dentista em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Dentista em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -992,9 +940,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -1006,7 +954,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com dentista.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -1063,26 +1011,22 @@ Porque eu vejo muito dentista perder cliente só por não ter um link profission
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Dentista em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Dentista em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -1092,9 +1036,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -1106,7 +1050,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com dentista.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -1124,9 +1068,9 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 **Gancho da oferta:** LP resolve exatamente isso — você centraliza o posicionamento. Seja qual for o nome profissional que você quer fortalecer, LP com domínio próprio = sua autoridade.
 
-**Objeção esperada:** Possível confusão: "essa mensagem é pra quem?" — o prospecto pode não se reconhecer como "Tatiane" se ele se promove como "@nutripridbarros".
+**Objeção esperada:** Possível confusão dela mesma: "essa mensagem é pra quem?" — ela pode não se reconhecer como "Tatiane" se ela se promove como "@nutripridbarros".
 
-**Como responder:** Investigar IG antes de disparar. Se @nutripridbarros for a marca principal, abordar como "nutri Pridbarros" em vez de "Tatiane".
+**Como responder:** Faz sentido. Me parece que tu tá num momento de transição e por isso o nome ainda tá em duas frentes. LP resolve exatamente esse limbo: domínio próprio + foto + posicionamento no nome que tu QUER fortalecer = paciente novo bate o martelo no canal certo. Sem apagar o histórico do outro nome — só centralizando autoridade.
 
 **Razão do ranking:** Nutri, bom ticket, mas ambiguidade de branding pode indicar lead confuso/em transição. Priorizar Izabela e Allana antes.
 
@@ -1163,26 +1107,22 @@ Pergunto porque a diferença aí é tudo.
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. É exatamente onde eu resolvo.
+Entendi. Vou direto ao ponto.
 
-Antes de falar preço, deixa eu te mostrar o que você leva:
+LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
 
-→ Página profissional de 8-10 seções (Hero, Dores, Serviços, Prova social, FAQ) — agência cobra R$1.500 por isso
-→ SEO local configurado — você aparece quando alguém pesquisa "Nutricionista em Palmas" no Google (R$500)
-→ Mobile-first de verdade — 80% do cliente abre no celular (R$300)
-→ WhatsApp integrado em toda página — cliente fala com você em 1 clique (R$200)
+*Bônus stack:*
+🔥 AMPLIA — 3 artigos SEO ranqueando "Nutricionista em Palmas"
+⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
+🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
+🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
 
-*Valor de mercado: R$2.500.*
+*Mercado:*
+• Agência Palmas: R$1.500-3.000 + mensalidade
+• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
+• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-E GRÁTIS empilhado:
-✓ Hospedagem VITALÍCIA — você NUNCA paga mensalidade (R$600-1.200/ano que você não desembolsa pra sempre)
-✓ 3 artigos SEO no blog — tráfego orgânico sem depender de Meta Ads
-
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-3.000 + mensalidade
-• Freela Fiverr: R$800-1.200, sem SEO, sem blog, sem hospedagem
-
-*Meu preço: R$499 uma vez.* 7 dias de garantia. Entrega em 7 dias.
+*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -1192,9 +1132,9 @@ Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando 
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -1206,7 +1146,7 @@ Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min)
 
 Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com nutricionista.
 
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. Técnica que a equipe validou: fecha 10x mais do que quem mostra só mockup.
+Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
 
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
@@ -1261,32 +1201,24 @@ Sábado de noite, domingo de manhã — cliente vê seu produto e quer comprar. 
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -1296,9 +1228,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -1310,7 +1242,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992539472?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AAntes%20do%20dia%20das%20m%C3%A3es%2C%20t%C3%B4%20olhando%20perfumarias%20e%20cosm%C3%A9ticos%20em%20Palmas.%205%20com%2063%20avalia%C3%A7%C3%B5es%20em%20multimarcas%20%C3%A9%20base%20fiel%20de%20verdade.%0A%0AMe%20parece%20que%20cliente%20que%20j%C3%A1%20te%20conhece%20compra%20direto.%20Mas%20o%20cliente%20que%20pesquisa%20%22onde%20comprar%20perfume%20O%20Botic%C3%A1rio%20em%20Palmas%22%20cai%20no%20site%20da%20matriz%2C%20n%C3%A3o%20em%20ti%20como%20ponto%20de%20venda.%0A%0ATu%20vende%20multimarcas%20ou%20%C3%A9%20revendedora%20autorizada%20de%20uma%20s%C3%B3%3F
@@ -1330,7 +1262,7 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 **Objeção esperada:** Primeira coisa: "você mandou pra pessoa certa?" — se o Insta tá errado, o telefone pode estar errado também.
 
-**Como responder:** QUALIFICAR ANTES DE PITCH. Primeira msg: "Olá, é da Doxsen?" — confirma identidade. Se sim, segue com pitch normal. Se não, abandona.
+**Como responder:** Sem stress se eu errei o número — só me confirma "é da Doxsen?" que eu sigo ou abandono. Não quero te tomar tempo com pitch errado.
 
 **Razão do ranking:** Volume de avaliações alto mas Insta suspeito = dado sujo. Não investir tempo antes de confirmar identidade. Se confirmar = vira TIER A.
 
@@ -1363,32 +1295,24 @@ Sábado de noite, domingo de manhã — cliente vê seu produto e quer comprar. 
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -1398,9 +1322,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -1412,7 +1336,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992124974?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AAntes%20de%20qualquer%20coisa%2C%20me%20confirma%20uma%20parada%20%E2%80%94%20falo%20com%20a%20equipe%20da%20Doxsen%20mesmo%20(Moda%20Praia%2C%20Fitness%20e%20Casual)%3F%0A%0APergunto%20porque%20vi%20voc%C3%AAs%20no%20Google%20com%20161%20avalia%C3%A7%C3%B5es%20nota%204.8%20%E2%80%94%20n%C3%BAmero%20forte%20%E2%80%94%20mas%20o%20Instagram%20que%20apareceu%20aqui%20parece%20n%C3%A3o%20ser%20de%20voc%C3%AAs.%20N%C3%A3o%20quero%20te%20tomar%20tempo%20com%20pitch%20errado.
@@ -1430,7 +1354,7 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 **Objeção esperada:** Provável: "não posso, a Racco não deixa" ou "só posso vender via catálogo deles".
 
-**Como responder:** Concordar e reposicionar: LP pessoal de consultora (R$499) pra vender o SERVIÇO dela (atendimento, consultoria, visita domiciliar) — não o produto Racco. Isso a matriz permite. Foca em "pegue sua consultora de confiança", não em e-commerce.
+**Como responder:** Faz total sentido — a Racco tem regra apertada pra revendedora. Mas o que eu te ofereço NÃO é loja de produto Racco. É LP pessoal TUA, vendendo o teu SERVIÇO de consultora (atendimento, consultoria, visita domiciliar) com "pegue sua consultora de confiança em Palmas". Isso a matriz permite. R$499. Topa eu te mostrar 1 caso de consultora que faz isso?
 
 **Razão do ranking:** Qualificação duvidosa (revendedora vs. dona). Shopify provavelmente não cabe legalmente. Requer mudar oferta pra LP pessoal. Não perder tempo até esclarecer modelo de negócio.
 
@@ -1463,32 +1387,24 @@ Deixa eu te perguntar: cliente de Palmas que quer receber HOJE — ele compra de
 
 #### Msg 3A — Pitch se "só tenho Instagram"
 ```
-Entendi. Deixa eu te mostrar o que você leva antes de falar preço.
+Entendi. Vou direto ao ponto.
 
-→ Setup Shopify completo — tema profissional, domínio, SSL, checkout otimizado (agência cobra R$1.500)
-→ Tema MPN customizado — mesmo tema que a UrbanFeet e o Gabriel usam, não é template genérico (R$1.000)
-→ Integrações prontas — Mercado Pago (PIX/cartão 12x), Melhor Envio (5+ transportadoras), WhatsApp (R$400)
-→ 20 produtos cadastrados — fotos, descrição, preço, variação, estoque (R$300)
+Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
 
-*Valor de mercado: R$3.200.*
+*Bônus stack:*
+🔥 AMPLIA — lista de fornecedores do nicho que mapeei
+⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
+🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
+🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
 
-E GRÁTIS empilhado:
-✓ Shopify $1/mês nos primeiros 3 meses — programa promocional, quase de graça pra testar
-✓ Lista de fornecedores do nicho que a Impulso mapeou
-✓ Scripts de prospecção pra puxar os primeiros 10 clientes
-✓ Call de entrega ao vivo gravada — *o vídeo fica seu*, esqueceu algo daqui a 6 meses você revê
+*Mercado:*
+• Agência Palmas: R$1.500-4.000 + mensalidade
+• Fiverr: R$1.200-2.000 sem motoboy/integração local
+• Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-Pra referência de mercado:
-• Agência local Palmas: R$1.500-4.000 + mensalidade
-• Freela Fiverr: R$1.200-2.000, sem tema custom, sem integração local, sem call
+*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
-*Meu preço: R$599 uma vez.* Entrega em 7-10 dias.
-
-Palmas recebe no dia (PIX 10h → em casa 14h via motoboy nos 2 horários fixos). Brasil todo via Melhor Envio até 80% mais barato que Correios.
-
-Gancho de ticket médio grátis: "frete grátis a partir de R$250" faz cliente levar 2 pra fechar o valor. Você define a regra.
-
-Case real: o *Gabriel* (GB Nutrition, personal trainer aqui em Palmas) vendia suplemento no WhatsApp — cada pedido ele confirmava PIX, combinava entrega, era gargalo. Hoje a loja dele tá automatizada. Palmas recebe no dia, Brasil todo no checkout. *O Gabriel parou de ser atendente. Voltou a ser personal.*
+Topa ver o protótipo da TUA loja antes de decidir?
 ```
 
 #### Msg 3B — Pitch se "tenho site"
@@ -1498,9 +1414,9 @@ Que legal! Qual é o link? Quero dar uma olhada.
 
 #### Msg 4 — Fechamento
 ```
-Posso te mostrar como fica na prática em 20 minutos.
+Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
 
-Qual é melhor pra você:
+Qual horário é melhor:
 - Quinta (15h)?
 - Sexta (14h)?
 - Segunda (10h)?
@@ -1512,7 +1428,7 @@ Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhame
 
 Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
 
-Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
+Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
 **→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332161401?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%2C%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20Racco%20no%20Google%2C%205%20com%2063%20avalia%C3%A7%C3%B5es.%20Antes%20de%20te%20pitchar%20qualquer%20coisa%2C%20preciso%20entender%3A%0A%0ATu%20%C3%A9%20consultora%20autorizada%20Racco%20ou%20dona%20de%20um%20ponto%20f%C3%ADsico%20independente%3F%20Pergunto%20porque%20a%20Racco%20tem%20regra%20de%20marketing%20pra%20revendedora%2C%20e%20a%20solu%C3%A7%C3%A3o%20que%20faz%20sentido%20pra%20ti%20muda%20completamente%20dependendo%20de%20qual%20dos%20dois.

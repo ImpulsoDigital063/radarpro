@@ -14,13 +14,14 @@ export type Analise = {
   posicao_no_tier: number
   dor: string
   gancho: string
-  objecao: string
-  resposta_objecao: string
+  objecao: string                 // o que o cliente provavelmente vai dizer
+  resposta_objecao: string        // resposta pra MANDAR no WhatsApp depois do label
   abertura: string
   followup_d3: string
   followup_d7: string
   pre_engajamento_ig: string
-  razao_ranking: string
+  razao_ranking: string           // info INTERNA pro Eduardo (cliente nunca vê)
+  nota_interna?: string           // instrução PRIVADA pro Eduardo fazer ANTES da abordagem (não é mensagem)
 }
 
 const PRE_IG_PADRAO = `D-1 (24h antes de mandar): abrir Instagram do lead, curtir 2 posts recentes, comentar 1 (comentario genuino — nada de "foto top"; algo do tipo "boa, isso ai" ou referencia ao conteudo). Isso cria pre-warming: quando WhatsApp chegar, perfil ja foi visto.`
@@ -34,7 +35,8 @@ export const ANALISES: Record<number, Analise> = {
     dor: 'Psicólogo em Palmas compete por confiança. Paciente que busca "psicólogo Palmas" no Google hoje encontra o Gilson no Maps, mas clica e vê só endereço e telefone — zero contexto, zero cara, zero abordagem. Insta não transmite sigilo/seriedade do consultório. 4.9 com 135 avaliações prova autoridade, mas ele não está capitalizando esse ativo.',
     gancho: 'LP dedicada mostra linha de abordagem, especialidades, primeira consulta, FAQ ("sigilo é garantido?", "atende online?"). O "aparece no Google quando alguém pesquisa psicólogo em Palmas" é literal — Gilson já tem a reputação pra estourar SEO local.',
     objecao: 'Psicólogo tem escrúpulo com marketing agressivo. Provável: "não quero algo que pareça venda".',
-    resposta_objecao: 'LP sóbria (paleta clara, foto profissional, linguagem ética), sem copy agressiva — a autoridade dos 135 avaliações 4.9 fala por si. Mostra o case Gilson Afonso na pasta de trabalhos depois (virou prova social).',
+    resposta_objecao: 'Faz sentido — tu tem ética profissional alta. A LP que eu monto pra psicólogo é o oposto de copy agressiva: paleta clara, foto profissional, linguagem ética. A autoridade dos teus 135 avaliações 4.9 fala por si. Não vende "promessa de cura" — vende presença digital regulamentar. Pode te mostrar 2 LPs de psi que ranqueiam sem soar comercial?',
+    nota_interna: 'Se ele fechar e a LP virar boa, propor o caso Gilson Afonso como prova social na pasta de trabalhos — virou um dos cases mais elegantes pra mostrar pra outros profissionais de saúde.',
     abertura: `Oi Gilson, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
 
 Olha — tô mapeando consultórios fortes daqui essa semana pra entender o terreno digital. 4.9 com 135 avaliações em psicologia é dos números mais sólidos que vi.
@@ -235,8 +237,9 @@ Quanto vale, em paciente perdido por mês, esse buraco?`,
     posicao_no_tier: 5,
     dor: 'Parecido com Izabela, mas com detalhe: IG é @nutripridbarros (não @tatianesouza). Nome do IG ≠ nome do Google = confusão de branding. Isso pode ser ex-nome, co-autora ou parceria. Precisa investigar antes de disparar.',
     gancho: 'LP resolve exatamente isso — você centraliza o posicionamento. Seja qual for o nome profissional que você quer fortalecer, LP com domínio próprio = sua autoridade.',
-    objecao: 'Possível confusão: "essa mensagem é pra quem?" — o prospecto pode não se reconhecer como "Tatiane" se ele se promove como "@nutripridbarros".',
-    resposta_objecao: 'Investigar IG antes de disparar. Se @nutripridbarros for a marca principal, abordar como "nutri Pridbarros" em vez de "Tatiane".',
+    objecao: 'Possível confusão dela mesma: "essa mensagem é pra quem?" — ela pode não se reconhecer como "Tatiane" se ela se promove como "@nutripridbarros".',
+    resposta_objecao: 'Faz sentido. Me parece que tu tá num momento de transição e por isso o nome ainda tá em duas frentes. LP resolve exatamente esse limbo: domínio próprio + foto + posicionamento no nome que tu QUER fortalecer = paciente novo bate o martelo no canal certo. Sem apagar o histórico do outro nome — só centralizando autoridade.',
+    nota_interna: 'INVESTIGAR IG antes de disparar. Se @nutripridbarros for a marca principal hoje, abordar como "nutri Pridbarros" em vez de "Tatiane" pra ela se reconhecer na primeira mensagem.',
     abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
 
 Olha — tô olhando perfis de nutri em Palmas e o teu chamou atenção: no Google é Tatiane Souza, no Insta é @nutripridbarros. Nota 5 com 63 aval, autoridade construída.
@@ -278,7 +281,8 @@ Tu vende multimarcas ou é revendedora autorizada de uma só?`,
     dor: 'Nota altíssima (4.8 com 161 aval — o MAIOR volume dos 14 shopify). MAS o Instagram cadastrado é @startpage — isso não parece Instagram oficial da loja, parece erro de cadastro ou captura errada do scraper. @startpage é conta genérica, provavelmente não é dela.',
     gancho: 'Se for lead verdadeiro: Shopify com catálogo por categoria (praia, fitness, casual), tamanhos, parcelamento. Mesma tese da Cia do Verão mas com mais volume.',
     objecao: 'Primeira coisa: "você mandou pra pessoa certa?" — se o Insta tá errado, o telefone pode estar errado também.',
-    resposta_objecao: 'QUALIFICAR ANTES DE PITCH. Primeira msg: "Olá, é da Doxsen?" — confirma identidade. Se sim, segue com pitch normal. Se não, abandona.',
+    resposta_objecao: 'Sem stress se eu errei o número — só me confirma "é da Doxsen?" que eu sigo ou abandono. Não quero te tomar tempo com pitch errado.',
+    nota_interna: 'QUALIFICAR ANTES DE PITCH. Confirmar identidade na 1ª mensagem ("é da Doxsen mesmo?"). Se confirmar = segue com pitch Tier A normal. Se não = abandona, atualiza banco com "telefone errado" e foca em outro lead. NÃO investir 30 min pesquisando antes de saber se é a empresa certa.',
     abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
 
 Antes de qualquer coisa, me confirma uma parada — falo com a equipe da Doxsen mesmo (Moda Praia, Fitness e Casual)?
@@ -296,7 +300,8 @@ Pergunto porque vi vocês no Google com 161 avaliações nota 4.8 — número fo
     dor: 'RACCO é marca nacional de cosméticos vendida via REVENDEDORA/consultora (MMN, tipo Avon/Natura). Essa "loja" provavelmente é uma consultora autorizada, não dona de negócio próprio. Revendedora não pode montar loja online própria — regra da matriz.',
     gancho: 'Possível ângulo: LP pessoal de consultora (NÃO Shopify com produtos Racco) mostrando "encontre sua consultora Racco em Palmas". Mas isso é LP, não Shopify — mudou a oferta.',
     objecao: 'Provável: "não posso, a Racco não deixa" ou "só posso vender via catálogo deles".',
-    resposta_objecao: 'Concordar e reposicionar: LP pessoal de consultora (R$499) pra vender o SERVIÇO dela (atendimento, consultoria, visita domiciliar) — não o produto Racco. Isso a matriz permite. Foca em "pegue sua consultora de confiança", não em e-commerce.',
+    resposta_objecao: 'Faz total sentido — a Racco tem regra apertada pra revendedora. Mas o que eu te ofereço NÃO é loja de produto Racco. É LP pessoal TUA, vendendo o teu SERVIÇO de consultora (atendimento, consultoria, visita domiciliar) com "pegue sua consultora de confiança em Palmas". Isso a matriz permite. R$499. Topa eu te mostrar 1 caso de consultora que faz isso?',
+    nota_interna: 'IMPORTANTE: NÃO oferecer Shopify (vai contra regra Racco). REPOSICIONAR pra LP pessoal R$499 (serviço, não produto). Confirmar antes de pitchar se ela é consultora autorizada ou ponto físico independente — muda tudo.',
     abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
 
 Olha — vi a Racco no Google, 5 com 63 avaliações. Antes de te pitchar qualquer coisa, preciso entender:
