@@ -51,3 +51,4 @@ next-env.d.ts
 # dump intermediário do playbook de disparo (regenerável via scripts/dump-top-14-raw.ts)
 top-14-raw.json
 
+/data/
