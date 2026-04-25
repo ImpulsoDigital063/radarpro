@@ -17,7 +17,16 @@
     "enriquecer": "tsx scripts/enriquecer.ts",
     "enriquecer:lp": "tsx scripts/enriquecer.ts --tipo lp",
     "enriquecer:shopify": "tsx scripts/enriquecer.ts --tipo shopify",
-    "enriquecer:agenda": "tsx scripts/enriquecer.ts --tipo agendapro"
+    "enriquecer:agenda": "tsx scripts/enriquecer.ts --tipo agendapro",
+    "disparo:14": "tsx scripts/top-14-disparo.ts",
+    "disparo:20-perfeitos": "tsx scripts/top-20-perfeitos.ts",
+    "calc:nuvemshop": "tsx scripts/calc-analise-nuvemshop.ts",
+    "check:disparo-ids": "tsx scripts/check-disparo-ids.ts",
+    "check:categorias": "tsx scripts/check-categorias.ts",
+    "stats": "tsx scripts/stats-final.ts",
+    "cleanup:junk": "tsx scripts/cleanup-junk.ts",
+    "test:gemini": "tsx scripts/test-gemini.ts",
+    "test:site": "tsx scripts/testar-site.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
@@ -30,7 +39,6 @@
     "next": "16.2.3",
     "openai": "^6.34.0",
     "pino": "^10.3.1",
-    "playwright": "^1.59.1",
     "qrcode": "^1.5.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -44,6 +52,7 @@
     "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "playwright": "^1.59.1",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
