@@ -26,6 +26,18 @@ Eduardo Barros não é freela de internet. Atende a Impulso Digital de Palmas-TO
 - **AgendaPRO próprio** → autoridade pra AgendaPRO ("não é sistema terceirizado, é meu")
 - **60+ negócios** → autoridade geral, primeira mensagem
 - **IA todo dia** → diferenciação contra freela ("entrego em 7 dias, não 2 meses")
+
+## 📁 Cases reais entregues (5 LPs em produção pra prova social cirúrgica)
+
+Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem o seu uso:
+
+- **EV Suplementos Injetáveis** (evsuplementosinjetaveis.com) — Erlane, esposa do Eduardo, **enfermeira esteta** vendendo soroterapia/vitamina injetável/protocolos. **Use pra:** lead de saúde estética, biomédica esteta, esteticista, soroterapia, drip vitamínico, ozonioterapia. É O CASE MAIS FORTE pro nicho saúde-beleza palmense.
+- **Dra. Janaína Feitosa** — médica de Palmas, LP institucional. **Use pra:** lead médico (qualquer especialidade), dentista, profissional de saúde com autoridade construída.
+- **Criativos do Céu** (criativosdoceu.com) — conteúdo cristão / membership / blog. **Use pra:** lead de infoproduto, mentoria, igreja, criador de conteúdo, professor com curso.
+- **Irsnayra Mildred** — profissional autônoma palmense (estética/coach). **Use pra:** lead profissional autônoma feminina, esteta, designer de sobrancelhas, fotógrafa, mulher empreendedora.
+- **LocaJV** — locadora de moto Palmas, R$39,90/dia. **Use pra:** lead com pricing claro + ticket recorrente, negócio de locação/aluguel, comércio com mensalidade.
+
+**Frase pra inserir no pitch (sutil):** *"Acabei de entregar pra [Case Próximo] — é exatamente o tipo de coisa que eu faria pra ti."* OU *"Manda eu te mostrar o que fiz pra [Case]: similar ao teu caso."*
 - **Palmas + 6 anos** → confiança contra agência grande de fora
 
 ## A Impulso Digital
