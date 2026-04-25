@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
       jimp: { browser: '@whiskeysockets/baileys' },
     },
   },
+  outputFileTracingIncludes: {
+    '/api/disparo': ['./top-14-disparo.md'],
+  },
 };
 
 export default nextConfig;

@@ -1,8 +1,9 @@
-# Playbook de ataque — 14 leads (2026-04-23)
+# Playbook de ataque — 14 leads (atualizado 2026-04-25)
 
 **Meta:** fechar no mínimo 2 dos 14 esta semana.
-**Fonte:** análise cirúrgica hardcoded em `scripts/top-14-disparo.ts` (feita no Claude, plano MAX).
-**Importante:** scraping IG ainda pendente — leads NÃO têm bio nem seguidores. Análise baseada em categoria, nota Google, volume de avaliações e nicho.
+**Fonte:** análise cirúrgica hardcoded em `scripts/top-14-disparo.ts`.
+**Arsenal aplicado:** aberturas calibradas pelos 5 livros — **Voss** (Labeling + Black Swan question), **Klaff** (Award Frame, Eduardo avalia o lead, não suplica), **Hormozi** (Equação de Valor na oferta), **Cialdini** (autoridade + escassez real), **Hill** (especialização brutal — UMA solução por categoria).
+**Importante:** scraping IG ainda pendente — análise baseada em categoria, nota Google, volume de avaliações e nicho.
 
 ## Ranking realista (ordem de ataque)
 
@@ -28,22 +29,71 @@
 
 ---
 
-## Oferta consolidada
+## Oferta consolidada — Grand Slam Offer (Hormozi)
 
-### LP (R$499)
-- Valor de mercado empilhado: **R$2.500** (setup R$1.500 + SEO R$500 + mobile R$300 + WhatsApp R$200)
-- Grátis: hospedagem **vitalícia** + 3 artigos SEO no blog
-- Ancoragem: agência Palmas R$1.500-3.000 + mensalidade · Fiverr R$800-1.200 sem SEO/blog/hosting
-- Preço: **R$499 uma vez** · Entrega 7 dias · Garantia 7 dias
-- Call de alinhamento: 20 min, sai com **protótipo funcional Next.js no ar** (fecha 10× mais que mockup)
+Toda oferta segue 4 vetores da **Equação de Valor**: (Sonho × Probabilidade) / (Tempo × Esforço). Bônus stack categorizado em 4 tipos: **AMPLIA** o resultado / **ACELERA** entrega / **REMOVE ESFORÇO** do cliente / **REMOVE RISCO**.
 
-### Shopify (R$599)
-- Valor de mercado empilhado: **R$3.200** (setup R$1.500 + tema MPN R$1.000 + integrações R$400 + 20 produtos R$300)
-- Grátis: Shopify $1/mês por 3 meses + lista de fornecedores + scripts prospecção + call de entrega gravada
-- Ancoragem: agência Palmas R$1.500-4.000 + mensalidade · Fiverr R$1.200-2.000 sem tema/integrações/call
-- Preço: **R$599 uma vez** · Entrega 7-10 dias
-- Call de alinhamento: 30 min, **diagnóstico operacional ao vivo** (motoboy + MP + frete + fornecedores)
-- Case vivo: Gabriel da GB Nutrition (personal trainer que virou loja automatizada)
+### Pacote Lançamento Vitalício (LP — R$499)
+
+> *Aparece no Google em 7 dias e nunca mais paga hospedagem.*
+
+**O que entra:**
+- Landing Page Next.js otimizada pra SEO local (mobile-first, carrega em 1s)
+- Botão WhatsApp flutuante com mensagem pré-preenchida
+- Formulário de captura integrado ao seu WhatsApp/email
+
+**Bônus stack (R$2.500 de valor de mercado):**
+- 🔥 **AMPLIA:** 3 artigos SEO ranqueados pra captar tráfego orgânico vitalício (R$500)
+- ⚡ **ACELERA:** entrega em 7 dias contados do briefing (mercado entrega em 30-60)
+- 🪶 **REMOVE ESFORÇO:** call de alinhamento de 20 min onde sai um protótipo funcional Next.js já no ar (você não explica nada do zero)
+- 🛡️ **REMOVE RISCO:** hospedagem **vitalícia** grátis (mercado: R$30/mês × eternidade) + garantia de 7 dias após prévia
+
+**Ancoragem de mercado:**
+- Agência local Palmas: R$1.500-3.000 + R$200/mês de mensalidade
+- Fiverr terceirizado: R$800-1.200 SEM SEO, blog ou hosting
+- **Impulso Digital: R$499 uma vez** (50% entrada, 50% na entrega)
+
+**Garantia condicional:** "Se a prévia visual não for a cara do seu negócio, devolvo 100%. Antes de a gente publicar."
+
+**Escassez REAL:** Promo hospedagem vitalícia válida só pros primeiros 10 fechamentos. Depois volta pra R$49,90/mês de hosting.
+
+### Pacote Loja-Que-Vende-Dormindo (Shopify — R$599)
+
+> *Sua loja vende enquanto você dorme — você só recebe o pedido pronto pra despachar.*
+
+**O que entra:**
+- Loja Shopify com tema MPN (mesmo da UrbanFeet, 1.600+ pares vendidos)
+- 20 produtos cadastrados (foto + descrição + variações)
+- Integração Yampi (checkout) + Melhor Envio (frete automático)
+- Mercado Pago configurado (Pix + cartão 12x + boleto)
+
+**Bônus stack (R$3.200 de valor de mercado):**
+- 🔥 **AMPLIA:** lista de fornecedores Palmas + scripts de prospecção pra atacado (R$400)
+- ⚡ **ACELERA:** Shopify a $1/mês nos 3 primeiros meses (economia R$300)
+- 🪶 **REMOVE ESFORÇO:** call de alinhamento de 30 min com diagnóstico operacional ao vivo (motoboy + MP + frete + fornecedores)
+- 🛡️ **REMOVE RISCO:** call de entrega gravada — você revê quantas vezes precisar
+
+**Ancoragem de mercado:**
+- Agência local Palmas: R$1.500-4.000 + mensalidade
+- Fiverr terceirizado: R$1.200-2.000 SEM tema profissional, integrações ou call
+- **Impulso Digital: R$599 uma vez** (50% entrada, 50% na entrega)
+
+**Prova social viva:** Gabriel da GB Nutrition (personal trainer em Palmas) virou loja automatizada de suplementos com entrega expressa no mesmo dia. Plano de Negócio entregue, loja no ar.
+
+**Garantia condicional:** "Antes de publicar, você aprova a prévia. Se não for a cara do seu negócio, devolvo 100%."
+
+---
+
+## Princípios de abordagem (5 livros)
+
+Antes de cada disparo, lembrar:
+- **Award Frame (Klaff):** Eduardo NÃO suplica. Ele AVALIA se vale ajudar esse lead. Postura de quem tem agenda cheia, não de quem precisa fechar.
+- **Labeling (Voss):** "Me parece que tu..." antes de qualquer pitch. Antecipa o que ele tá sentindo e ele baixa a guarda.
+- **Black Swan question:** termina abertura com uma pergunta que dói. Não "quer um site?" — "quem busca [seu serviço] hoje em Palmas, te acha?"
+- **Calibrated Questions:** "Como…" e "O que…" — NUNCA "Por que" (soa acusatório).
+- **Hot Cognition (Klaff):** mira emoção (medo de perder, ambição, status), não razão.
+- **Hill — desejo ardente:** se o lead disser "vou pensar", insiste com mais um ângulo. Nunca passivo.
+- **Tom Eduardo:** "tamo junto", "olha", "pensa comigo", "tu manda?". Curto. Sem corporativês. Pontuação de chat real.
 
 ---
 
@@ -66,11 +116,13 @@
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá Gilson, tudo bem?
+Oi Gilson, beleza? Eduardo aqui da Impulso Digital, falo de Palmas.
 
-Vi seu consultório no Google — 4.9 com 135 avaliações é muita coisa, é claramente o maior ativo digital que você tem hoje.
+Olha — vi teu consultório no Google. 4.9 com 135 avaliações em psicologia em Palmas é raro pra caramba, tu sabe disso.
 
-Só que quando alguém pesquisa "psicólogo Palmas" e te acha, cai no Maps sem site. Posso te perguntar uma coisa rápida sobre isso?
+Me parece que esse é hoje teu maior ativo digital. Mas quando paciente novo pesquisa "psicólogo Palmas" e cai em ti pelo Maps, ele vê endereço e telefone. Não te vê. Não vê tua linha de abordagem, não vê se tu atende online, não vê nada que faça ele bater o martelo de marcar.
+
+Posso te perguntar uma coisa? Quantos pacientes mês passado tu acha que pesquisaram "psicólogo Palmas" e fecharam com outro só porque o outro tinha um site?
 ```
 
 #### Msg 2 — Diagnóstico (variante C, escolhida por hash do telefone)
@@ -130,7 +182,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984189311?text=Ol%C3%A1%20Gilson%2C%20tudo%20bem%3F%0A%0AVi%20seu%20consult%C3%B3rio%20no%20Google%20%E2%80%94%204.9%20com%20135%20avalia%C3%A7%C3%B5es%20%C3%A9%20muita%20coisa%2C%20%C3%A9%20claramente%20o%20maior%20ativo%20digital%20que%20voc%C3%AA%20tem%20hoje.%0A%0AS%C3%B3%20que%20quando%20algu%C3%A9m%20pesquisa%20%22psic%C3%B3logo%20Palmas%22%20e%20te%20acha%2C%20cai%20no%20Maps%20sem%20site.%20Posso%20te%20perguntar%20uma%20coisa%20r%C3%A1pida%20sobre%20isso%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984189311?text=Oi%20Gilson%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20teu%20consult%C3%B3rio%20no%20Google.%204.9%20com%20135%20avalia%C3%A7%C3%B5es%20em%20psicologia%20em%20Palmas%20%C3%A9%20raro%20pra%20caramba%2C%20tu%20sabe%20disso.%0A%0AMe%20parece%20que%20esse%20%C3%A9%20hoje%20teu%20maior%20ativo%20digital.%20Mas%20quando%20paciente%20novo%20pesquisa%20%22psic%C3%B3logo%20Palmas%22%20e%20cai%20em%20ti%20pelo%20Maps%2C%20ele%20v%C3%AA%20endere%C3%A7o%20e%20telefone.%20N%C3%A3o%20te%20v%C3%AA.%20N%C3%A3o%20v%C3%AA%20tua%20linha%20de%20abordagem%2C%20n%C3%A3o%20v%C3%AA%20se%20tu%20atende%20online%2C%20n%C3%A3o%20v%C3%AA%20nada%20que%20fa%C3%A7a%20ele%20bater%20o%20martelo%20de%20marcar.%0A%0APosso%20te%20perguntar%20uma%20coisa%3F%20Quantos%20pacientes%20m%C3%AAs%20passado%20tu%20acha%20que%20pesquisaram%20%22psic%C3%B3logo%20Palmas%22%20e%20fecharam%20com%20outro%20s%C3%B3%20porque%20o%20outro%20tinha%20um%20site%3F
 
 ---
 
@@ -151,11 +203,13 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá Guilherme, tudo bem?
+Oi Guilherme, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Vi o escritório no Google — nota 5 com 120 avaliações é raríssimo na advocacia. Quando alguém pesquisa "advogado Palmas" e te acha, cai só no Maps, sem site.
+Olha — nota 5 com 120 avaliações em escritório de advocacia em Palmas é coisa rara. Tu construiu autoridade pesada aí.
 
-Posso te perguntar uma coisa rápida sobre isso?
+Me parece que tu já sente que metade do cliente novo pesquisa "advogado [área] Palmas" antes de ligar. E quando cai em ti, vê só Maps. Sem áreas de atuação, sem teu rosto, sem nada que ele use pra escolher entre tu e o concorrente.
+
+Como funciona hoje, quando chega um cliente novo que não veio por indicação?
 ```
 
 #### Msg 2 — Diagnóstico (variante C, escolhida por hash do telefone)
@@ -215,7 +269,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992371484?text=Ol%C3%A1%20Guilherme%2C%20tudo%20bem%3F%0A%0AVi%20o%20escrit%C3%B3rio%20no%20Google%20%E2%80%94%20nota%205%20com%20120%20avalia%C3%A7%C3%B5es%20%C3%A9%20rar%C3%ADssimo%20na%20advocacia.%20Quando%20algu%C3%A9m%20pesquisa%20%22advogado%20Palmas%22%20e%20te%20acha%2C%20cai%20s%C3%B3%20no%20Maps%2C%20sem%20site.%0A%0APosso%20te%20perguntar%20uma%20coisa%20r%C3%A1pida%20sobre%20isso%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992371484?text=Oi%20Guilherme%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20nota%205%20com%20120%20avalia%C3%A7%C3%B5es%20em%20escrit%C3%B3rio%20de%20advocacia%20em%20Palmas%20%C3%A9%20coisa%20rara.%20Tu%20construiu%20autoridade%20pesada%20a%C3%AD.%0A%0AMe%20parece%20que%20tu%20j%C3%A1%20sente%20que%20metade%20do%20cliente%20novo%20pesquisa%20%22advogado%20%5B%C3%A1rea%5D%20Palmas%22%20antes%20de%20ligar.%20E%20quando%20cai%20em%20ti%2C%20v%C3%AA%20s%C3%B3%20Maps.%20Sem%20%C3%A1reas%20de%20atua%C3%A7%C3%A3o%2C%20sem%20teu%20rosto%2C%20sem%20nada%20que%20ele%20use%20pra%20escolher%20entre%20tu%20e%20o%20concorrente.%0A%0AComo%20funciona%20hoje%2C%20quando%20chega%20um%20cliente%20novo%20que%20n%C3%A3o%20veio%20por%20indica%C3%A7%C3%A3o%3F
 
 ---
 
@@ -236,11 +290,13 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi a Don Parfum no Google — nota 5 com 109 avaliações, é claramente a perfumaria de importado mais forte de Palmas.
+Oi, tudo bem? Eduardo aqui da Impulso Digital, falo de Palmas.
 
-Queria te perguntar rápido: cliente novo, que nunca te comprou, como ele decide gastar R$500 num perfume sem nunca ter pisado na loja?
+Olha — vi a Don Parfum no Google. 5 com 109 avaliações em perfumaria de importado é muito forte aí em Palmas, parabéns.
 
-Pergunto porque é exatamente o gargalo que a gente resolve.
+Me parece que cliente que já te conhece e confia compra de boa pelo WhatsApp. Mas o cliente NOVO — aquele que nunca pisou aí, que tá com R$500 na mão pra gastar num perfume — esse não compra pelo WhatsApp de quem só tem Insta. Ele pesquisa, vê site, vê política de troca, vê foto da loja.
+
+Tu já parou pra calcular quantas vendas de R$400-800 o cliente novo deixa de fazer só por não ter um lugar profissional pra comprar?
 ```
 
 #### Msg 2 — Diagnóstico (variante B, escolhida por hash do telefone)
@@ -304,7 +360,7 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992712424?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20a%20Don%20Parfum%20no%20Google%20%E2%80%94%20nota%205%20com%20109%20avalia%C3%A7%C3%B5es%2C%20%C3%A9%20claramente%20a%20perfumaria%20de%20importado%20mais%20forte%20de%20Palmas.%0A%0AQueria%20te%20perguntar%20r%C3%A1pido%3A%20cliente%20novo%2C%20que%20nunca%20te%20comprou%2C%20como%20ele%20decide%20gastar%20R%24500%20num%20perfume%20sem%20nunca%20ter%20pisado%20na%20loja%3F%0A%0APergunto%20porque%20%C3%A9%20exatamente%20o%20gargalo%20que%20a%20gente%20resolve.
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992712424?text=Oi%2C%20tudo%20bem%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20Don%20Parfum%20no%20Google.%205%20com%20109%20avalia%C3%A7%C3%B5es%20em%20perfumaria%20de%20importado%20%C3%A9%20muito%20forte%20a%C3%AD%20em%20Palmas%2C%20parab%C3%A9ns.%0A%0AMe%20parece%20que%20cliente%20que%20j%C3%A1%20te%20conhece%20e%20confia%20compra%20de%20boa%20pelo%20WhatsApp.%20Mas%20o%20cliente%20NOVO%20%E2%80%94%20aquele%20que%20nunca%20pisou%20a%C3%AD%2C%20que%20t%C3%A1%20com%20R%24500%20na%20m%C3%A3o%20pra%20gastar%20num%20perfume%20%E2%80%94%20esse%20n%C3%A3o%20compra%20pelo%20WhatsApp%20de%20quem%20s%C3%B3%20tem%20Insta.%20Ele%20pesquisa%2C%20v%C3%AA%20site%2C%20v%C3%AA%20pol%C3%ADtica%20de%20troca%2C%20v%C3%AA%20foto%20da%20loja.%0A%0ATu%20j%C3%A1%20parou%20pra%20calcular%20quantas%20vendas%20de%20R%24400-800%20o%20cliente%20novo%20deixa%20de%20fazer%20s%C3%B3%20por%20n%C3%A3o%20ter%20um%20lugar%20profissional%20pra%20comprar%3F
 
 ---
 
@@ -325,11 +381,15 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá Dely, tudo bem?
+Oi Dely, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Vi a loja no Google — nota 5 com 63 avaliações em moda executiva feminina é posicionamento forte. Minha pergunta: a cliente que acabou de passar em concurso ou mudar pra Palmas, que busca "moda executiva Palmas" hoje — ela te acha online?
+Olha — moda executiva feminina em Palmas com nota 5 e 63 aval é nicho posicionado de verdade. Não é loja genérica, é posicionamento.
 
-Porque se ela não te acha, quem acha é a concorrente.
+Me parece que tu já sente isso: tua cliente fiel compra pessoalmente. Mas a advogada que mudou pra Palmas semana passada, a servidora que tomou posse mês passado, a executiva que nem te conhece ainda — essa pesquisa "moda executiva feminina Palmas" no Google. E tu não aparece.
+
+Quem aparece pra ela: concorrente que vende pior mas tem site.
+
+O que tu acha disso?
 ```
 
 #### Msg 2 — Diagnóstico (variante B, escolhida por hash do telefone)
@@ -393,7 +453,7 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984379144?text=Ol%C3%A1%20Dely%2C%20tudo%20bem%3F%0A%0AVi%20a%20loja%20no%20Google%20%E2%80%94%20nota%205%20com%2063%20avalia%C3%A7%C3%B5es%20em%20moda%20executiva%20feminina%20%C3%A9%20posicionamento%20forte.%20Minha%20pergunta%3A%20a%20cliente%20que%20acabou%20de%20passar%20em%20concurso%20ou%20mudar%20pra%20Palmas%2C%20que%20busca%20%22moda%20executiva%20Palmas%22%20hoje%20%E2%80%94%20ela%20te%20acha%20online%3F%0A%0APorque%20se%20ela%20n%C3%A3o%20te%20acha%2C%20quem%20acha%20%C3%A9%20a%20concorrente.
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984379144?text=Oi%20Dely%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20moda%20executiva%20feminina%20em%20Palmas%20com%20nota%205%20e%2063%20aval%20%C3%A9%20nicho%20posicionado%20de%20verdade.%20N%C3%A3o%20%C3%A9%20loja%20gen%C3%A9rica%2C%20%C3%A9%20posicionamento.%0A%0AMe%20parece%20que%20tu%20j%C3%A1%20sente%20isso%3A%20tua%20cliente%20fiel%20compra%20pessoalmente.%20Mas%20a%20advogada%20que%20mudou%20pra%20Palmas%20semana%20passada%2C%20a%20servidora%20que%20tomou%20posse%20m%C3%AAs%20passado%2C%20a%20executiva%20que%20nem%20te%20conhece%20ainda%20%E2%80%94%20essa%20pesquisa%20%22moda%20executiva%20feminina%20Palmas%22%20no%20Google.%20E%20tu%20n%C3%A3o%20aparece.%0A%0AQuem%20aparece%20pra%20ela%3A%20concorrente%20que%20vende%20pior%20mas%20tem%20site.%0A%0AO%20que%20tu%20acha%20disso%3F
 
 ---
 
@@ -414,11 +474,13 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá Izabela, tudo bem?
+Oi Izabela, beleza? Eduardo aqui da Impulso Digital, falo de Palmas.
 
-Vi seu perfil — nota 5 com 63 avaliações é ótimo. Mas queria te perguntar: paciente novo, que não te conhece e nunca viu seu Insta, pesquisa "nutricionista em Palmas" no Google — você aparece?
+Olha — vi teu perfil. Nota 5 com 63 avaliações pra nutri autônoma é ótimo. Tu construiu base sólida no Insta, dá pra ver.
 
-Pergunto porque vejo muita nutri forte perder paciente só por esse buraco.
+Me parece que tu sente que o Insta capta quem já te segue. Mas paciente novo que NUNCA ouviu falar de ti — aquele que pesquisa "nutricionista em Palmas" no Google às 23h pensando em começar dieta na segunda — esse cai no Maps de nutri qualquer e não te encontra.
+
+Quantos pacientes desse tipo tu acha que perde por mês?
 ```
 
 #### Msg 2 — Diagnóstico (variante A, escolhida por hash do telefone)
@@ -480,7 +542,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563991332171?text=Ol%C3%A1%20Izabela%2C%20tudo%20bem%3F%0A%0AVi%20seu%20perfil%20%E2%80%94%20nota%205%20com%2063%20avalia%C3%A7%C3%B5es%20%C3%A9%20%C3%B3timo.%20Mas%20queria%20te%20perguntar%3A%20paciente%20novo%2C%20que%20n%C3%A3o%20te%20conhece%20e%20nunca%20viu%20seu%20Insta%2C%20pesquisa%20%22nutricionista%20em%20Palmas%22%20no%20Google%20%E2%80%94%20voc%C3%AA%20aparece%3F%0A%0APergunto%20porque%20vejo%20muita%20nutri%20forte%20perder%20paciente%20s%C3%B3%20por%20esse%20buraco.
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563991332171?text=Oi%20Izabela%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20teu%20perfil.%20Nota%205%20com%2063%20avalia%C3%A7%C3%B5es%20pra%20nutri%20aut%C3%B4noma%20%C3%A9%20%C3%B3timo.%20Tu%20construiu%20base%20s%C3%B3lida%20no%20Insta%2C%20d%C3%A1%20pra%20ver.%0A%0AMe%20parece%20que%20tu%20sente%20que%20o%20Insta%20capta%20quem%20j%C3%A1%20te%20segue.%20Mas%20paciente%20novo%20que%20NUNCA%20ouviu%20falar%20de%20ti%20%E2%80%94%20aquele%20que%20pesquisa%20%22nutricionista%20em%20Palmas%22%20no%20Google%20%C3%A0s%2023h%20pensando%20em%20come%C3%A7ar%20dieta%20na%20segunda%20%E2%80%94%20esse%20cai%20no%20Maps%20de%20nutri%20qualquer%20e%20n%C3%A3o%20te%20encontra.%0A%0AQuantos%20pacientes%20desse%20tipo%20tu%20acha%20que%20perde%20por%20m%C3%AAs%3F
 
 ---
 
@@ -501,11 +563,15 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá Dra. Allana, tudo bem?
+Oi Dra. Allana, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Vi seu perfil — nutri nefro é um nicho raríssimo em Palmas, imagino a demanda que você tem. Queria te perguntar: paciente renal que pesquisa "nutri pra insuficiência renal em Palmas" hoje, ele te acha no Google?
+Olha — nutri nefro em Palmas é nicho RARÍSSIMO. Tu sabe melhor que eu: paciente renal precisa cirurgicamente da nutri certa pra evitar diálise antecipada. Não é nutri genérica.
 
-Porque se não acha, ele cai em nutricionista genérico que não entende de nefro.
+Me parece que tu vive isso na prática: paciente renal chega encaminhado pelo nefro, ou por indicação. Mas o paciente que descobriu o problema agora, que tá pesquisando "nutricionista pra insuficiência renal Palmas" hoje à noite no celular — esse cai em nutri genérica que não entende de nefro.
+
+E tu sabe o estrago que isso faz no rim dele.
+
+Como é que esse paciente novo te acharia hoje?
 ```
 
 #### Msg 2 — Diagnóstico (variante B, escolhida por hash do telefone)
@@ -565,7 +631,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563991342546?text=Ol%C3%A1%20Dra.%20Allana%2C%20tudo%20bem%3F%0A%0AVi%20seu%20perfil%20%E2%80%94%20nutri%20nefro%20%C3%A9%20um%20nicho%20rar%C3%ADssimo%20em%20Palmas%2C%20imagino%20a%20demanda%20que%20voc%C3%AA%20tem.%20Queria%20te%20perguntar%3A%20paciente%20renal%20que%20pesquisa%20%22nutri%20pra%20insufici%C3%AAncia%20renal%20em%20Palmas%22%20hoje%2C%20ele%20te%20acha%20no%20Google%3F%0A%0APorque%20se%20n%C3%A3o%20acha%2C%20ele%20cai%20em%20nutricionista%20gen%C3%A9rico%20que%20n%C3%A3o%20entende%20de%20nefro.
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563991342546?text=Oi%20Dra.%20Allana%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20nutri%20nefro%20em%20Palmas%20%C3%A9%20nicho%20RAR%C3%8DSSIMO.%20Tu%20sabe%20melhor%20que%20eu%3A%20paciente%20renal%20precisa%20cirurgicamente%20da%20nutri%20certa%20pra%20evitar%20di%C3%A1lise%20antecipada.%20N%C3%A3o%20%C3%A9%20nutri%20gen%C3%A9rica.%0A%0AMe%20parece%20que%20tu%20vive%20isso%20na%20pr%C3%A1tica%3A%20paciente%20renal%20chega%20encaminhado%20pelo%20nefro%2C%20ou%20por%20indica%C3%A7%C3%A3o.%20Mas%20o%20paciente%20que%20descobriu%20o%20problema%20agora%2C%20que%20t%C3%A1%20pesquisando%20%22nutricionista%20pra%20insufici%C3%AAncia%20renal%20Palmas%22%20hoje%20%C3%A0%20noite%20no%20celular%20%E2%80%94%20esse%20cai%20em%20nutri%20gen%C3%A9rica%20que%20n%C3%A3o%20entende%20de%20nefro.%0A%0AE%20tu%20sabe%20o%20estrago%20que%20isso%20faz%20no%20rim%20dele.%0A%0AComo%20%C3%A9%20que%20esse%20paciente%20novo%20te%20acharia%20hoje%3F
 
 ---
 
@@ -588,9 +654,13 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi a Cia do Verão no Google — 4.9 com 73 avaliações em moda praia Palmas é forte.
+Oi, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Queria te perguntar rápido: quantas mensagens por dia você responde só com "tem esse tamanho?" ou "aceita cartão?" antes da cliente comprar?
+Olha — vi a Cia do Verão no Google. 4.9 com 73 aval em moda praia em Palmas tá forte mesmo.
+
+Me parece que tu deve responder muita mensagem do tipo "tem esse tamanho?", "aceita cartão?", "qual o frete?" antes da cliente bater o martelo. Mensagem que toma teu tempo e a cliente some na metade.
+
+Quantas dessas tu acha que tu responde por dia?
 ```
 
 #### Msg 2 — Diagnóstico (variante A, escolhida por hash do telefone)
@@ -652,7 +722,7 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984199311?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20a%20Cia%20do%20Ver%C3%A3o%20no%20Google%20%E2%80%94%204.9%20com%2073%20avalia%C3%A7%C3%B5es%20em%20moda%20praia%20Palmas%20%C3%A9%20forte.%0A%0AQueria%20te%20perguntar%20r%C3%A1pido%3A%20quantas%20mensagens%20por%20dia%20voc%C3%AA%20responde%20s%C3%B3%20com%20%22tem%20esse%20tamanho%3F%22%20ou%20%22aceita%20cart%C3%A3o%3F%22%20antes%20da%20cliente%20comprar%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563984199311?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20Cia%20do%20Ver%C3%A3o%20no%20Google.%204.9%20com%2073%20aval%20em%20moda%20praia%20em%20Palmas%20t%C3%A1%20forte%20mesmo.%0A%0AMe%20parece%20que%20tu%20deve%20responder%20muita%20mensagem%20do%20tipo%20%22tem%20esse%20tamanho%3F%22%2C%20%22aceita%20cart%C3%A3o%3F%22%2C%20%22qual%20o%20frete%3F%22%20antes%20da%20cliente%20bater%20o%20martelo.%20Mensagem%20que%20toma%20teu%20tempo%20e%20a%20cliente%20some%20na%20metade.%0A%0AQuantas%20dessas%20tu%20acha%20que%20tu%20responde%20por%20dia%3F
 
 ---
 
@@ -673,9 +743,13 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi a San Remo no Google — 91 avaliações é base consolidada em Palmas.
+Oi, beleza? Eduardo aqui da Impulso Digital, falo de Palmas.
 
-Queria te perguntar: o cliente que NÃO mora na região da loja mas viu um look seu no Insta — como ele compra hoje? WhatsApp na mão?
+Olha — vi a San Remo no Google. 91 aval com 4.6 é base consolidada, dá pra ver que tu tem cliente fiel.
+
+Me parece que cliente que mora perto da loja vai presencialmente sem problema. Mas o que viu um look teu no Insta lá do Plano Diretor Sul, ou aquele que mora em Paraíso e não vai dirigir 40 min — esse trava em "tem que ir presencial?" e some.
+
+Como tu atende esse cliente hoje?
 ```
 
 #### Msg 2 — Diagnóstico (variante A, escolhida por hash do telefone)
@@ -737,7 +811,7 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556330280065?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20a%20San%20Remo%20no%20Google%20%E2%80%94%2091%20avalia%C3%A7%C3%B5es%20%C3%A9%20base%20consolidada%20em%20Palmas.%0A%0AQueria%20te%20perguntar%3A%20o%20cliente%20que%20N%C3%83O%20mora%20na%20regi%C3%A3o%20da%20loja%20mas%20viu%20um%20look%20seu%20no%20Insta%20%E2%80%94%20como%20ele%20compra%20hoje%3F%20WhatsApp%20na%20m%C3%A3o%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556330280065?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20San%20Remo%20no%20Google.%2091%20aval%20com%204.6%20%C3%A9%20base%20consolidada%2C%20d%C3%A1%20pra%20ver%20que%20tu%20tem%20cliente%20fiel.%0A%0AMe%20parece%20que%20cliente%20que%20mora%20perto%20da%20loja%20vai%20presencialmente%20sem%20problema.%20Mas%20o%20que%20viu%20um%20look%20teu%20no%20Insta%20l%C3%A1%20do%20Plano%20Diretor%20Sul%2C%20ou%20aquele%20que%20mora%20em%20Para%C3%ADso%20e%20n%C3%A3o%20vai%20dirigir%2040%20min%20%E2%80%94%20esse%20trava%20em%20%22tem%20que%20ir%20presencial%3F%22%20e%20some.%0A%0AComo%20tu%20atende%20esse%20cliente%20hoje%3F
 
 ---
 
@@ -758,9 +832,13 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi o Palmas Bucal no Google — 4.8 com 144 avaliações é reputação sólida.
+Oi, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Queria te perguntar rápido: paciente que busca "dentista de confiança em Palmas" no Google, com site profissional + galeria antes/depois + equipe visível — ele clica em vocês ou no concorrente?
+Olha — vi o Palmas Bucal no Google. 4.8 com 144 avaliações é reputação que muito consultório novo nunca vai alcançar.
+
+Me parece que vocês têm essa autoridade construída mas não capitalizam. Quando paciente novo pesquisa "dentista de confiança em Palmas" e compara dois resultados — um com galeria antes/depois, equipe com CRO, especialidades; outro só com Maps — ele não dá segunda chance pra quem não mostra.
+
+Como funciona hoje a captação de paciente novo aí?
 ```
 
 #### Msg 2 — Diagnóstico (variante B, escolhida por hash do telefone)
@@ -820,7 +898,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332133091?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20o%20Palmas%20Bucal%20no%20Google%20%E2%80%94%204.8%20com%20144%20avalia%C3%A7%C3%B5es%20%C3%A9%20reputa%C3%A7%C3%A3o%20s%C3%B3lida.%0A%0AQueria%20te%20perguntar%20r%C3%A1pido%3A%20paciente%20que%20busca%20%22dentista%20de%20confian%C3%A7a%20em%20Palmas%22%20no%20Google%2C%20com%20site%20profissional%20%2B%20galeria%20antes%2Fdepois%20%2B%20equipe%20vis%C3%ADvel%20%E2%80%94%20ele%20clica%20em%20voc%C3%AAs%20ou%20no%20concorrente%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332133091?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20o%20Palmas%20Bucal%20no%20Google.%204.8%20com%20144%20avalia%C3%A7%C3%B5es%20%C3%A9%20reputa%C3%A7%C3%A3o%20que%20muito%20consult%C3%B3rio%20novo%20nunca%20vai%20alcan%C3%A7ar.%0A%0AMe%20parece%20que%20voc%C3%AAs%20t%C3%AAm%20essa%20autoridade%20constru%C3%ADda%20mas%20n%C3%A3o%20capitalizam.%20Quando%20paciente%20novo%20pesquisa%20%22dentista%20de%20confian%C3%A7a%20em%20Palmas%22%20e%20compara%20dois%20resultados%20%E2%80%94%20um%20com%20galeria%20antes%2Fdepois%2C%20equipe%20com%20CRO%2C%20especialidades%3B%20outro%20s%C3%B3%20com%20Maps%20%E2%80%94%20ele%20n%C3%A3o%20d%C3%A1%20segunda%20chance%20pra%20quem%20n%C3%A3o%20mostra.%0A%0AComo%20funciona%20hoje%20a%20capta%C3%A7%C3%A3o%20de%20paciente%20novo%20a%C3%AD%3F
 
 ---
 
@@ -841,9 +919,13 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi a Odonto Fama — 4.8 com 112 avaliações focada em implante é autoridade clara.
+Oi, beleza? Eduardo aqui da Impulso Digital, falo de Palmas.
 
-Pergunta objetiva: paciente novo que nunca te conheceu, pesquisa "implante dentário Palmas" no Google hoje — ele te acha, ou cai numa clínica menor com site?
+Olha — vi a Odonto Fama. 4.8 com 112 avaliações focada em implante é autoridade que clínica nova vai levar 5 anos pra construir.
+
+Me parece que vocês já fecharam muito implante por indicação. Mas o paciente novo que vai gastar R$3-5k num implante — esse pesquisa MUITO antes de marcar. "Implante com garantia em Palmas", "quanto custa implante Palmas", "clínica de implante boa". E hoje ele cai em clínica menor que tem site e parece mais profissional só por isso.
+
+Quanto vale, em paciente perdido por mês, esse buraco?
 ```
 
 #### Msg 2 — Diagnóstico (variante C, escolhida por hash do telefone)
@@ -903,7 +985,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332243954?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20a%20Odonto%20Fama%20%E2%80%94%204.8%20com%20112%20avalia%C3%A7%C3%B5es%20focada%20em%20implante%20%C3%A9%20autoridade%20clara.%0A%0APergunta%20objetiva%3A%20paciente%20novo%20que%20nunca%20te%20conheceu%2C%20pesquisa%20%22implante%20dent%C3%A1rio%20Palmas%22%20no%20Google%20hoje%20%E2%80%94%20ele%20te%20acha%2C%20ou%20cai%20numa%20cl%C3%ADnica%20menor%20com%20site%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332243954?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20falo%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20Odonto%20Fama.%204.8%20com%20112%20avalia%C3%A7%C3%B5es%20focada%20em%20implante%20%C3%A9%20autoridade%20que%20cl%C3%ADnica%20nova%20vai%20levar%205%20anos%20pra%20construir.%0A%0AMe%20parece%20que%20voc%C3%AAs%20j%C3%A1%20fecharam%20muito%20implante%20por%20indica%C3%A7%C3%A3o.%20Mas%20o%20paciente%20novo%20que%20vai%20gastar%20R%243-5k%20num%20implante%20%E2%80%94%20esse%20pesquisa%20MUITO%20antes%20de%20marcar.%20%22Implante%20com%20garantia%20em%20Palmas%22%2C%20%22quanto%20custa%20implante%20Palmas%22%2C%20%22cl%C3%ADnica%20de%20implante%20boa%22.%20E%20hoje%20ele%20cai%20em%20cl%C3%ADnica%20menor%20que%20tem%20site%20e%20parece%20mais%20profissional%20s%C3%B3%20por%20isso.%0A%0AQuanto%20vale%2C%20em%20paciente%20perdido%20por%20m%C3%AAs%2C%20esse%20buraco%3F
 
 ---
 
@@ -924,11 +1006,13 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem?
+Oi, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Vi seu perfil no Google como Tatiane Souza (nutri) e no Instagram como @nutripridbarros — nota 5 com 63 avaliações.
+Olha — vi teu perfil. No Google tu tá como Tatiane Souza (nutri), no Instagram como @nutripridbarros. Nota 5 com 63 aval, autoridade construída.
 
-Queria te perguntar: paciente novo pesquisa "nutricionista Palmas" e cai no Google, que te mostra só no Maps. Isso já te fez perder paciente que ficou confuso entre os dois nomes?
+Me parece que tu tá num momento de transição de marca, ou o IG é da parceria — mas pra paciente novo que pesquisa "nutricionista Palmas" no Google, é confusão. Ele vê dois nomes e não sabe pra qual canal vai.
+
+Como tu vê isso hoje?
 ```
 
 #### Msg 2 — Diagnóstico (variante B, escolhida por hash do telefone)
@@ -988,7 +1072,7 @@ Você sai da call com um *protótipo funcional* da sua LP rodando — não mocku
 Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332336380?text=Ol%C3%A1%2C%20tudo%20bem%3F%0A%0AVi%20seu%20perfil%20no%20Google%20como%20Tatiane%20Souza%20(nutri)%20e%20no%20Instagram%20como%20%40nutripridbarros%20%E2%80%94%20nota%205%20com%2063%20avalia%C3%A7%C3%B5es.%0A%0AQueria%20te%20perguntar%3A%20paciente%20novo%20pesquisa%20%22nutricionista%20Palmas%22%20e%20cai%20no%20Google%2C%20que%20te%20mostra%20s%C3%B3%20no%20Maps.%20Isso%20j%C3%A1%20te%20fez%20perder%20paciente%20que%20ficou%20confuso%20entre%20os%20dois%20nomes%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332336380?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20teu%20perfil.%20No%20Google%20tu%20t%C3%A1%20como%20Tatiane%20Souza%20(nutri)%2C%20no%20Instagram%20como%20%40nutripridbarros.%20Nota%205%20com%2063%20aval%2C%20autoridade%20constru%C3%ADda.%0A%0AMe%20parece%20que%20tu%20t%C3%A1%20num%20momento%20de%20transi%C3%A7%C3%A3o%20de%20marca%2C%20ou%20o%20IG%20%C3%A9%20da%20parceria%20%E2%80%94%20mas%20pra%20paciente%20novo%20que%20pesquisa%20%22nutricionista%20Palmas%22%20no%20Google%2C%20%C3%A9%20confus%C3%A3o.%20Ele%20v%C3%AA%20dois%20nomes%20e%20n%C3%A3o%20sabe%20pra%20qual%20canal%20vai.%0A%0AComo%20tu%20v%C3%AA%20isso%20hoje%3F
 
 ---
 
@@ -1009,9 +1093,13 @@ Essa call faz parte do processo — não começo a produção sem ela. É o que 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi a Cheiro de Amor no Google — 5 com 63 avaliações é sólido.
+Oi, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Queria te perguntar: cliente que quer comprar um perfume específico em Palmas, pesquisa a marca e o bairro — ele te acha como ponto de venda, ou cai direto no site da marca?
+Olha — vi a Cheiro de Amor. 5 com 63 avaliações em perfumaria/cosméticos em Palmas é base fiel de verdade.
+
+Me parece que cliente que já te conhece compra direto contigo. Mas o cliente que entra no Google pesquisando "onde comprar perfume O Boticário em Palmas" ou "perfumaria importado Palmas" — esse cai no site da marca matriz, não em ti como ponto de venda.
+
+Tu vende multimarcas ou é revendedora autorizada de uma só?
 ```
 
 #### Msg 2 — Diagnóstico (variante C, escolhida por hash do telefone)
@@ -1073,7 +1161,7 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992539472?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20a%20Cheiro%20de%20Amor%20no%20Google%20%E2%80%94%205%20com%2063%20avalia%C3%A7%C3%B5es%20%C3%A9%20s%C3%B3lido.%0A%0AQueria%20te%20perguntar%3A%20cliente%20que%20quer%20comprar%20um%20perfume%20espec%C3%ADfico%20em%20Palmas%2C%20pesquisa%20a%20marca%20e%20o%20bairro%20%E2%80%94%20ele%20te%20acha%20como%20ponto%20de%20venda%2C%20ou%20cai%20direto%20no%20site%20da%20marca%3F
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992539472?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20Cheiro%20de%20Amor.%205%20com%2063%20avalia%C3%A7%C3%B5es%20em%20perfumaria%2Fcosm%C3%A9ticos%20em%20Palmas%20%C3%A9%20base%20fiel%20de%20verdade.%0A%0AMe%20parece%20que%20cliente%20que%20j%C3%A1%20te%20conhece%20compra%20direto%20contigo.%20Mas%20o%20cliente%20que%20entra%20no%20Google%20pesquisando%20%22onde%20comprar%20perfume%20O%20Botic%C3%A1rio%20em%20Palmas%22%20ou%20%22perfumaria%20importado%20Palmas%22%20%E2%80%94%20esse%20cai%20no%20site%20da%20marca%20matriz%2C%20n%C3%A3o%20em%20ti%20como%20ponto%20de%20venda.%0A%0ATu%20vende%20multimarcas%20ou%20%C3%A9%20revendedora%20autorizada%20de%20uma%20s%C3%B3%3F
 
 ---
 
@@ -1096,11 +1184,11 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Aqui é o Eduardo da Impulso Digital.
+Oi, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Só pra confirmar — falo com a equipe da Doxsen (Moda Praia, Fitness e Casual), Avenida Palmas?
+Antes de qualquer coisa, me confirma uma parada — falo com a equipe da Doxsen mesmo (Moda Praia, Fitness e Casual)?
 
-Perguntei porque vi vocês no Google com 161 avaliações (nota 4.8) mas o Instagram que tenho aqui parece errado.
+Pergunto porque vi vocês no Google com 161 avaliações nota 4.8 — número forte — mas o Instagram que apareceu aqui parece não ser de vocês. Não quero te tomar tempo com pitch errado.
 ```
 
 #### Msg 2 — Diagnóstico (variante C, escolhida por hash do telefone)
@@ -1162,7 +1250,7 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992124974?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Aqui%20%C3%A9%20o%20Eduardo%20da%20Impulso%20Digital.%0A%0AS%C3%B3%20pra%20confirmar%20%E2%80%94%20falo%20com%20a%20equipe%20da%20Doxsen%20(Moda%20Praia%2C%20Fitness%20e%20Casual)%2C%20Avenida%20Palmas%3F%0A%0APerguntei%20porque%20vi%20voc%C3%AAs%20no%20Google%20com%20161%20avalia%C3%A7%C3%B5es%20(nota%204.8)%20mas%20o%20Instagram%20que%20tenho%20aqui%20parece%20errado.
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/5563992124974?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AAntes%20de%20qualquer%20coisa%2C%20me%20confirma%20uma%20parada%20%E2%80%94%20falo%20com%20a%20equipe%20da%20Doxsen%20mesmo%20(Moda%20Praia%2C%20Fitness%20e%20Casual)%3F%0A%0APergunto%20porque%20vi%20voc%C3%AAs%20no%20Google%20com%20161%20avalia%C3%A7%C3%B5es%20nota%204.8%20%E2%80%94%20n%C3%BAmero%20forte%20%E2%80%94%20mas%20o%20Instagram%20que%20apareceu%20aqui%20parece%20n%C3%A3o%20ser%20de%20voc%C3%AAs.%20N%C3%A3o%20quero%20te%20tomar%20tempo%20com%20pitch%20errado.
 
 ---
 
@@ -1183,9 +1271,11 @@ Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify 
 
 #### Msg 1 — Abertura cirúrgica
 ```
-Olá, tudo bem? Vi a Racco Cosméticos no Google — 5 com 63 avaliações.
+Oi, beleza? Eduardo aqui da Impulso Digital, sou de Palmas.
 
-Antes de qualquer coisa, me conta: você é consultora autorizada Racco ou dona de um ponto físico independente? Pergunto porque a solução certa muda bastante.
+Olha — vi a Racco Cosméticos no Google, 5 com 63 avaliações. Antes de te pitchar qualquer coisa, preciso entender:
+
+Tu é consultora autorizada Racco ou dona de um ponto físico independente? Pergunto porque a Racco tem regra de marketing pra revendedora, e a solução que faz sentido pra ti muda completamente dependendo de qual dos dois.
 ```
 
 #### Msg 2 — Diagnóstico (variante A, escolhida por hash do telefone)
@@ -1247,6 +1337,6 @@ Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia:
 Você sai da call com a loja já alinhada pra rodar: não é mockup, é Shopify no ar com a sua cara. A GB Nutrition do Gabriel e a UrbanFeet só ficaram únicas porque a gente sentou antes de codar. *Não começo a produção sem essa call.*
 ```
 
-**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332161401?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Vi%20a%20Racco%20Cosm%C3%A9ticos%20no%20Google%20%E2%80%94%205%20com%2063%20avalia%C3%A7%C3%B5es.%0A%0AAntes%20de%20qualquer%20coisa%2C%20me%20conta%3A%20voc%C3%AA%20%C3%A9%20consultora%20autorizada%20Racco%20ou%20dona%20de%20um%20ponto%20f%C3%ADsico%20independente%3F%20Pergunto%20porque%20a%20solu%C3%A7%C3%A3o%20certa%20muda%20bastante.
+**→ Disparar no WhatsApp (abertura já pré-preenchida):** https://wa.me/556332161401?text=Oi%2C%20beleza%3F%20Eduardo%20aqui%20da%20Impulso%20Digital%2C%20sou%20de%20Palmas.%0A%0AOlha%20%E2%80%94%20vi%20a%20Racco%20Cosm%C3%A9ticos%20no%20Google%2C%205%20com%2063%20avalia%C3%A7%C3%B5es.%20Antes%20de%20te%20pitchar%20qualquer%20coisa%2C%20preciso%20entender%3A%0A%0ATu%20%C3%A9%20consultora%20autorizada%20Racco%20ou%20dona%20de%20um%20ponto%20f%C3%ADsico%20independente%3F%20Pergunto%20porque%20a%20Racco%20tem%20regra%20de%20marketing%20pra%20revendedora%2C%20e%20a%20solu%C3%A7%C3%A3o%20que%20faz%20sentido%20pra%20ti%20muda%20completamente%20dependendo%20de%20qual%20dos%20dois.
 
 ---

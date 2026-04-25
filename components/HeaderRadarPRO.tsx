@@ -3,7 +3,7 @@
 // Header compartilhado entre painéis secundários (/tally, /licoes, futuros)
 // Painel principal (/) tem header próprio mais rico (com busca, filtros, etc)
 
-type ActiveTab = 'tally' | 'licoes' | null
+type ActiveTab = 'tally' | 'licoes' | 'disparo' | null
 
 const BG    = '#0F1117'
 const CARD  = '#111827'
@@ -38,6 +38,10 @@ export default function HeaderRadarPRO({ activeTab = null }: { activeTab?: Activ
 
       <a href="/tally" style={badgeStyle({ active: activeTab === 'tally' })}>
         📋 Tally
+      </a>
+
+      <a href="/disparo" style={badgeStyle({ active: activeTab === 'disparo' })}>
+        🎯 Disparo
       </a>
 
       <a href="/licoes" style={badgeStyle({ active: activeTab === 'licoes' })}>
