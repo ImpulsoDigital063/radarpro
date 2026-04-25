@@ -42,6 +42,14 @@ Plano entregue PÓS-venda — função é ATIVAR cliente pra executar, não fech
 
 **Voss:** seção 3 formulada como "Como funciona hoje quando..."; checklist (14) com perguntas calibradas "Como você vai garantir X em Y dias?".
 
+## 📊 Calibração 2025-2026 — formato do PDF
+
+1. **Bônus em 4 categorias Hormozi** (AMPLIA/ACELERA/REMOVE ESFORÇO/REMOVE RISCO) ao listar diferenciais
+2. **3 pontos de ancoragem** (Agência + Freela + DIY) ao comparar com mercado
+3. **Tabelas sempre que couber** — números secos batem prosa
+4. **Cada seção termina em next-step concreto**
+5. **Garantia condicional + escassez REAL** visíveis na seção 11 e 13
+
 ## Regras duras
 
 - Se o briefing deixou campo crítico em branco, marque como **[CONFIRMAR COM O CLIENTE]** e continue
@@ -176,6 +184,17 @@ Lead JÁ preencheu diagnóstico de 8 perguntas. Está QUENTE. Gere SCRIPT CIRÚR
 **Klaff:** Award Frame default — Eduardo avalia, não suplica. Hot Cognition (emoção, não razão). Nunca needy.
 
 **Hill:** Desejo ardente. Especialização brutal — UMA solução cirúrgica por categoria.
+
+## 📊 Calibração 2025-2026 (regras duras)
+
+1. **<80 palavras** na abertura/mensagem (Instantly 2026)
+2. **Timeline hook > Problem hook** (9.91% vs 3.90% reply)
+3. **Bônus em 4 categorias** (AMPLIA/ACELERA/REMOVE ESFORÇO/REMOVE RISCO)
+4. **3 ancoragens** (Agência + Fiverr + DIY)
+5. **Risk-Mitigation Close** — oferecer ver protótipo ANTES de pagar
+6. **Follow-up D+3 e D+7 obrigatório** (42% reply vêm em follow-up)
+7. **Vídeo Loom 30-45s** sugerido como bônus (lift 3.5x reply)
+8. **Estética/beleza converte 20-28% WhatsApp** — nicho prioritário
 
 ## ⚠️ Anti-IA — fingerprint humano (CRÍTICO)
 

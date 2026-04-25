@@ -73,6 +73,17 @@ Este plano é entregue ao cliente DEPOIS da venda fechada — então o Arsenal a
 - Seção 3 (problema): formular como "Como funciona hoje quando..." em vez de afirmações chapadas
 - Checklist final pode ter perguntas calibradas no formato "Como você vai garantir que X aconteça em Y dias?" pra forçar reflexão
 
+## 📊 Calibração 2025-2026 — formato do PDF
+
+Aplicar ao gerar o documento (regras pra Plano de Negócio):
+
+1. **Bônus em 4 categorias Hormozi** quando listar diferenciais (seção 4) ou oferta (seção 10): AMPLIA / ACELERA / REMOVE ESFORÇO / REMOVE RISCO
+2. **3 pontos de ancoragem** quando comparar com mercado (seção 4 e 10): Agência + Freela/Fiverr + DIY (cliente que faz sozinho)
+3. **Tabelas SEMPRE quando couber** — comparações, perfis, cronograma, ferramentas (números secos batem prosa)
+4. **Cada seção termina em next-step concreto** — não "depois ver", mas "no Dia 1 fazer X"
+5. **Risk-Mitigation visível** — garantia condicional + escassez REAL na seção 11 (Promoções) e 13 (KPIs)
+6. **Frases-bordão em destaque** — slogan na seção 4, regra de ouro na 9, KPI principal na 13
+
 ## Regras duras
 
 - Se o briefing deixou campo crítico em branco, marque como **[CONFIRMAR COM O CLIENTE]** e continue
@@ -258,6 +269,19 @@ Se algum estiver faltando, REFORCE antes de finalizar.
 **Hill (Pense e Enriqueça):**
 - Tom de desejo ardente, não passivo — sempre tentar mais um ângulo, mais uma pergunta
 - Especialização brutal — Eduardo NÃO vende "marketing digital", vende UMA solução cirúrgica
+
+## 📊 Calibração 2025-2026 (regras duras de copy — pesquisa 25/04)
+
+1. **Abertura/mensagens <80 palavras** — Instantly 2026: short bate long em reply rate
+2. **Timeline hook** ("antes da Copa", "esta semana") **> Problem hook** ("você tem dor X?") — 9.91% vs 3.90% reply rate (Digital Bloom 2025)
+3. **Bônus stack em 4 categorias** (AMPLIA / ACELERA / REMOVE ESFORÇO / REMOVE RISCO), não lista plana — Hormozi
+4. **3 pontos de ancoragem** (Agência + Fiverr + DIY que faz sozinho), não 2
+5. **Risk-Mitigation Close** no fechamento — oferecer ver protótipo ANTES de pagar ("em 20 min te mostro a TUA LP/loja no ar — não é mockup, é Next.js/Shopify funcionando")
+6. **Follow-up D+3 e D+7** obrigatório (42% das respostas vêm em follow-up; 48% dos vendedores nunca mandam segundo toque)
+7. **Vídeo Loom 30-45s** sugerido como bônus opcional (lift 3.5x reply rate, Sendspark 2025)
+8. **Multichannel = +287% respostas** (Landbase 2025) — sequência D-1 (Insta engagement) → D+0 (WhatsApp) → D+3 → D+7
+9. **WhatsApp estética/beleza converte 20-28% no Brasil** — se nicho saúde estética, ajustar tom pra leveza/cuidado feminino
+10. **Separar instrução interna de resposta de objeção** — se "como responder" tem instrução do tipo "investigar antes", isso é nota interna pro Eduardo, NUNCA texto pra mandar
 
 ## ⚠️ Anti-IA — fingerprint humano (REGRA DURA)
 
