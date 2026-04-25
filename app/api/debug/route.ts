@@ -1,10 +1,34 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET() {
-  const url   = process.env.TURSO_URL   ?? ''
+// /api/debug — endpoint protegido pra debug de conexão Turso.
+// Antes: PÚBLICO e vazava URL completa + prefix do auth token.
+// Agora: exige header `x-debug-key` igual a env DEBUG_KEY.
+//
+// Uso:
+//   curl -H "x-debug-key: SUA_KEY" https://radarpro-inky.vercel.app/api/debug
+//
+// Se DEBUG_KEY não estiver setado no env, endpoint retorna 503 (forçar
+// configuração consciente — nunca aceita request).
+
+export async function GET(req: NextRequest) {
+  const expectedKey = process.env.DEBUG_KEY
+  if (!expectedKey) {
+    return NextResponse.json(
+      { error: 'DEBUG_KEY não configurado — endpoint desabilitado em produção' },
+      { status: 503 },
+    )
+  }
+
+  const providedKey = req.headers.get('x-debug-key')
+  if (providedKey !== expectedKey) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  }
+
+  const url = process.env.TURSO_URL ?? ''
   const token = process.env.TURSO_TOKEN ?? ''
 
-  // Localiza cada whitespace no token (posição e char code)
+  // Só metadata SEM expor o token cru. Localiza whitespaces (problema comum
+  // de copy/paste do dashboard Turso pro Vercel).
   const wsPositions: Array<{ i: number; code: number; name: string }> = []
   for (let i = 0; i < token.length; i++) {
     if (/\s/.test(token[i])) {
@@ -17,38 +41,32 @@ export async function GET() {
     }
   }
 
-  const checks: Record<string, any> = {
+  const checks: Record<string, unknown> = {
     GEMINI_API_KEY: process.env.GEMINI_API_KEY ? '✅ definida' : '❌ ausente',
-    TURSO_URL:      url   ? '✅ ' + url : '❌ ausente',
-    TURSO_TOKEN:    token ? `✅ definido — len=${token.length}, prefix=${token.slice(0, 20)}…, suffix=…${token.slice(-10)}` : '❌ ausente',
-    url_has_whitespace:   /\s/.test(url),
+    ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY ? '✅ definida' : '❌ ausente',
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '✅ definida' : '❌ ausente',
+    TALLY_WEBHOOK_SECRET: process.env.TALLY_WEBHOOK_SECRET ? '✅ definido' : '❌ ausente',
+    INTERNAL_API_KEY: process.env.INTERNAL_API_KEY ? '✅ definida' : '❌ ausente',
+    TURSO_URL: url ? '✅ definida (length=' + url.length + ')' : '❌ ausente',
+    TURSO_TOKEN: token ? `✅ definido — len=${token.length}` : '❌ ausente',
+    url_has_whitespace: /\s/.test(url),
     token_has_whitespace: /\s/.test(token),
     token_whitespace_count: wsPositions.length,
     token_whitespace_positions: wsPositions.slice(0, 10),
-    url_scheme:     url.split('://')[0] || '(nenhum)',
-    node_version:   process.version,
+    node_version: process.version,
   }
 
-  // Teste 1: conexão com o valor cru (como vem do env)
+  // Teste de conexão (sem expor o token na resposta)
   try {
     const { createClient } = await import('@libsql/client')
-    const client = createClient({ url, authToken: token })
+    const client = createClient({
+      url: url.replace(/\s/g, ''),
+      authToken: token.replace(/\s/g, ''),
+    })
     const result = await client.execute({ sql: 'SELECT 1 as ok', args: [] })
-    checks.test_raw = '✅ conectado — ' + JSON.stringify(result.rows[0])
-  } catch (err: any) {
-    checks.test_raw = '❌ ' + (err?.message ?? String(err))
-  }
-
-  // Teste 2: conexão com whitespace removido (strip total, não só trim)
-  try {
-    const { createClient } = await import('@libsql/client')
-    const urlClean   = url.replace(/\s/g, '')
-    const tokenClean = token.replace(/\s/g, '')
-    const client = createClient({ url: urlClean, authToken: tokenClean })
-    const result = await client.execute({ sql: 'SELECT 1 as ok', args: [] })
-    checks.test_stripped = `✅ conectado (stripped, token len=${tokenClean.length}) — ` + JSON.stringify(result.rows[0])
-  } catch (err: any) {
-    checks.test_stripped = '❌ ' + (err?.message ?? String(err))
+    checks.test_conexao = '✅ conectado — ' + JSON.stringify(result.rows[0])
+  } catch (err) {
+    checks.test_conexao = '❌ ' + (err instanceof Error ? err.message : String(err))
   }
 
   return NextResponse.json(checks, { headers: { 'Cache-Control': 'no-store' } })

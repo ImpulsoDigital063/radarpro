@@ -32,9 +32,17 @@ type TallyPayload = {
 }
 
 // ── Verificação de assinatura (HMAC-SHA256) ──────────────────────────────────
+// PROD: rejeita request se secret não estiver setado (fail-closed)
+// DEV: aceita request sem assinatura (NODE_ENV !== 'production')
 function verifySignature(body: string, signature: string | null): boolean {
   const secret = process.env.TALLY_WEBHOOK_SECRET
-  if (!secret) return true // dev mode: aceita sem assinatura
+  const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production'
+
+  if (!secret) {
+    // Em produção: rejeita. Forçar configuração consciente do secret.
+    // Em dev: aceita pra facilitar testes locais.
+    return !isProd
+  }
   if (!signature) return false
 
   const expected = crypto.createHmac('sha256', secret).update(body).digest('base64')
