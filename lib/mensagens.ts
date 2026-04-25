@@ -202,24 +202,62 @@ const CATEGORIAS_COMBO = [
   'fonoaudiólogo', 'fonoaudiologo', 'terapeuta',
 ]
 
+// Categorias que casam com Shopify (FIT estrito após calibração 25/04)
+// Cuidado: ordem importa, MATCH usa includes() (parcial). Termos amplos
+// como 'loja' não entram aqui — vão pra LP por default.
 const CATEGORIAS_SHOPIFY_MATCH = [
+  // Moda (foto vende, ticket >R$80, vende pra fora)
+  'moda feminina', 'moda masculina', 'moda fitness', 'moda festa', 'moda praia',
   'loja de roupas', 'loja de calçados', 'loja de calcados',
   'loja de acessórios', 'loja de acessorios',
-  'joalheria', 'confeitaria', 'açaí', 'acai',
-  'café', 'cafe', 'empório', 'emporio',
-  'loja de suplementos', 'perfumaria',
-  'loja de cosméticos', 'loja de cosmeticos',
-  'pet shop', 'petshop', 'papelaria',
-  'loja de artesanato', 'floricultora', 'floricultura',
+  'lingerie', 'boutique',
+  // Joias
+  'joalheria', 'semi-joias', 'semi joias', 'semijoias',
+  // Saúde/beleza (produto físico)
+  'loja de suplementos', 'whey protein', 'suplemento',
+  'perfumaria', 'cosméticos', 'cosmeticos', 'skincare', 'maquiagem',
+  // Esportivo (Copa timing)
+  'loja de artigos esportivos', 'artigos esportivos', 'camisa de time',
+  // Nicho
+  'loja de artesanato', 'artesanato',
+]
+
+// Categorias EXPLICITAMENTE NÃO-FIT pra Shopify — mesmo que apareçam no
+// scrape, NÃO entram no funil. Auditoria 25/04 confirmou: tiro perdido.
+const CATEGORIAS_NAO_FIT = [
+  'papelaria',
+  'pet shop', 'petshop',
+  'açaí', 'acai', 'sorveteria',
+  'café', 'cafe', 'lanchonete',
+  'floricultora', 'floricultura', 'floricultor',
+  'empório', 'emporio', 'mercado', 'mercadinho',
+  'material de construção', 'material de construcao',
+  'confeitaria', 'doceria',
+  'loja de bebida', 'distribuidora de bebida',
 ]
 
 export function detectarTipoOferta(categoria: string): TipoOferta {
   const cat = categoria.toLowerCase()
+
+  // Filtro NÃO-FIT primeiro — categorias descartadas em auditoria 25/04
+  // (papelaria, açaí, café, floricultora, etc) ainda recebem 'lp-solo'
+  // como fallback técnico, mas top-20-perfeitos.ts vai filtrar elas.
+  // (Não retornamos 'no-fit' como tipo pra não quebrar contratos
+  // existentes — quem usa a função espera um TipoOferta válido.)
+
   if (CATEGORIAS_SHOPIFY_MATCH.some(c => cat.includes(c))) return 'shopify-solo'
+
   // AgendaPRO fora do foco de prospecção atual: tudo que não é
   // loja/produto físico vira LP. CATEGORIAS_PURO_AGENDA e CATEGORIAS_COMBO
   // seguem exportadas pra uso em outras telas, mas não roteiam mais.
   return 'lp-solo'
+}
+
+// Helper: lead deve ser ignorado na prospecção?
+// Usado por scripts/top-20-perfeitos.ts pra filtrar antes de listar.
+export function categoriaEhNaoFit(categoria: string): boolean {
+  const cat = (categoria ?? '').toLowerCase()
+  return CATEGORIAS_NAO_FIT.some(c => cat.includes(c))
 }
 
 // Oferta combo — setup AgendaPRO GRÁTIS como gancho da LP
@@ -371,29 +409,56 @@ export function gerarLinkInstagram(handle: string): string {
   return `https://instagram.com/${username}`
 }
 
-// Categorias para LP — profissionais liberais
+// Categorias para LP — profissionais liberais com cliente que PESQUISA antes
+// Calibração FIT 25/04/2026: tirei serviços de baixa autoridade (Coach,
+// Professor, Personal organizer) — quem fecha LP precisa ter reputação
+// construída + cliente pesquisa antes de marcar.
 export const CATEGORIAS_LP = [
-  // Saúde
-  'Nutricionista', 'Personal trainer', 'Psicólogo', 'Fisioterapeuta',
-  'Terapeuta', 'Fonoaudiólogo', 'Médico esteta', 'Dentista',
-  // Beleza
-  'Esteticista', 'Designer de sobrancelhas', 'Maquiadora',
-  'Nail designer', 'Cabeleireiro',
-  // Serviços
-  'Fotógrafo', 'Coach', 'Personal organizer',
-  'Professor particular', 'Videógrafo',
+  // Saúde mental e corporal — paciente pesquisa autoridade antes
+  'Nutricionista', 'Psicólogo', 'Fisioterapeuta', 'Fonoaudiólogo',
+  'Terapeuta', 'Médico esteta', 'Dentista', 'Podólogo',
+  // Estética — nicho injetáveis (Erlane case) é prioridade alta
+  'Esteticista', 'Biomédica esteta', 'Designer de sobrancelhas',
+  // Especialistas com ticket alto
+  'Personal trainer', 'Advogado', 'Arquiteto',
+  'Designer de interiores', 'Fotógrafo casamento',
 ]
 
-// Categorias para Shopify — negócios com produto físico
+// Categorias para Shopify — produto físico que CABE foto + ticket >R$80
+// + vende pra fora OU motoboy mesmo dia FAZ DIFERENÇA
+//
+// Calibração FIT 25/04/2026: tirei papelaria/açaí/café/empório/floricultora
+// (negócios LOCAIS sem dor de e-commerce real). Tirei pet shop também
+// (cliente vai presencial toda semana). Adicionei nichos quentes.
 export const CATEGORIAS_SHOPIFY = [
-  // Moda
-  'Loja de roupas', 'Loja de calçados', 'Loja de acessórios', 'Joalheria',
-  // Alimentação
-  'Confeitaria', 'Açaí', 'Café', 'Empório',
-  // Saúde & Beleza
-  'Loja de suplementos', 'Perfumaria', 'Loja de cosméticos',
-  // Outros
-  'Pet shop', 'Papelaria', 'Loja de artesanato', 'Floricultora',
+  // Moda — alta probabilidade, foto vende
+  'Loja de roupas', 'Loja de calçados', 'Loja de acessórios',
+  'Moda feminina', 'Moda masculina', 'Moda fitness',
+  'Moda festa', 'Moda praia', 'Lingerie', 'Boutique',
+  // Joias — ticket alto + decisão visual
+  'Joalheria', 'Semi-joias',
+  // Saúde & Beleza com produto físico
+  'Loja de suplementos', 'Perfumaria importada', 'Loja de cosméticos',
+  'Skincare', 'Loja de maquiagem',
+  // Esportivo — Copa 2026 timing
+  'Loja de artigos esportivos', 'Camisa de time',
+  // Nicho com ticket ou venda pra fora
+  'Loja de artesanato',
+]
+
+// Categorias DESCARTADAS (NÃO fit) — não prospectar, não vale tempo
+// Mantém aqui pra documentar a decisão e justificar pra quem pergunta
+export const CATEGORIAS_NAO_FIT_SHOPIFY = [
+  'Papelaria',          // cliente local, ticket baixo
+  'Pet shop',           // cliente recorrente presencial (ração)
+  'Açaí',               // venda na hora, sem catálogo
+  'Sorveteria',         // mesmo problema
+  'Café', 'Lanchonete', // venda urgente, sem ticket
+  'Floricultora',       // já tem WhatsApp + delivery próprio
+  'Empório', 'Mercado', // cliente compra perto de casa
+  'Material de construção', // volume + B2B
+  'Confeitaria',        // sob encomenda WhatsApp já funciona
+  'Loja de bebida',     // restrição legal
 ]
 
 // Queries para o Google Maps — LP

@@ -24,7 +24,7 @@ import { resolve } from 'path'
 config({ path: resolve(process.cwd(), '.env.local') })
 
 import { getClient } from '../lib/db'
-import { detectarTipoOferta } from '../lib/mensagens'
+import { detectarTipoOferta, categoriaEhNaoFit } from '../lib/mensagens'
 import { ANALISES } from '../lib/disparo-analises'
 
 type Row = {
@@ -109,7 +109,10 @@ async function main() {
   const idsNoDisparo = new Set(Object.keys(ANALISES).map(Number))
 
   const todos = (await buscarTudo()).filter(
-    (r) => siteRealmenteVazio(r) && !idsNoDisparo.has(r.id),
+    (r) =>
+      siteRealmenteVazio(r) &&
+      !idsNoDisparo.has(r.id) &&
+      !categoriaEhNaoFit(r.categoria ?? ''), // descarta papelaria, açaí, etc
   )
 
   const ranqueado = todos
