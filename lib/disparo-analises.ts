@@ -1069,6 +1069,138 @@ E olha — vi que tu segue o Gabriel Barros (@gbnutritionn). Ele é meu cliente.
     razao_ranking: 'TIER S (score 8). Match PERFEITO direção Eduardo (sub-persona consultor online declarado). Diluição de marca com Tebas Conceito = pitch ÚNICO de "saída da diluição". Network direta Gabriel-mãe. CREF GO/TO confirmado. Pitch padrão R$499 + R$99/mês ou complexo R$799 + R$199/mês.',
   },
 
+  // ── TIER A (CIC #12 — 26/04 médicos especialistas via IA Overview CRM) ──
+  // PRIMEIRO BATCH MÉDICO COMPLETO via método-ouro IA Overview.
+  // 6 Tier S premium + 5 concorrentes médicos descartados (mapa).
+  // SEM CASE-CLONE médico real ainda — usar argumento estrutural +
+  // proposta showcase R$200 desconto pra primeiro fechado virar case.
+
+  1157: {
+    tier: 'A',
+    posicao_no_tier: 48,
+    dor: 'Dr. Marcel Freitas é Médico do Esporte CRM-TO 3949 + RQE 3191. 7.085 seguidores Insta + 178 posts + 10 anos de experiência. ATENDE 2 PERFIS DE PACIENTE: (1) atletas/esportistas pra performance e recuperação, (2) procedimento alto-ticket de Transplante Capilar (R$8.000-15.000 por sessão). Site atual: bit.ly/AgendamentosNewLife (URL shortener amador). Destaques estruturados (Pacientes / Perguntas / Transplante Capilar) mostram que ele tem PROGRAMA de atendimento, mas falta funil que canalize/qualifique paciente premium. Cada post chega em milhares mas sem captura — paciente novo de transplante (que vai gastar R$10k+) precisa pesquisar e ver biografia + casos + processo, não cair em bit.ly genérico.',
+    gancho: 'PONTE VERTICAL FITNESS — Marcel atende ATLETAS e o GB Nutrition (Gabriel) é nosso case ATIVO em Palmas que vende suplemento pra atletas. Bridge natural: "Dr. Marcel, vi teu trabalho de Médico do Esporte e o Gabriel Barros (@gbnutritionn) é meu cliente — ele atende atletas como tu e a gente trabalhou junto na LP profissional + Shopify dele. Vocês têm overlap de público (atletas Palmas)." LP New Life com formulário triagem (objetivo emagrecimento/performance/transplante capilar/longevidade) + agendamento Calendly + pacotes acompanhamento mensal + área de pacientes com vídeos de orientação + integração WhatsApp Business. Cross-sell: alunos do Júnior Sá / Marcel Freitas como bridge médico-treinador.',
+    objecao: '"Tô bem com bit.ly, paciente acha pelo Insta" — defesa do operacional atual que parece funcionar.',
+    resposta_objecao: 'Faz sentido — bit.ly cumpre o básico. Mas pensa pelo lado do paciente novo de transplante capilar: ele vai gastar R$10-15k. Pesquisa MUITO antes de marcar — quer ver biografia, casos antes/depois (com ética), processo, recuperação, garantia. Cai no bit.ly e vê só "AGENDAR" sem nada disso. 70% recua. LP profissional pega esse momento: ele chega e vê biografia + CRM/RQE + galeria casos com cuidado ético + FAQ ("dói?", "quanto tempo recuperação?", "qual o método?") + agendamento integrado. Mesmo paciente, conversão diferente. E olha — vi que tu tem network com o Gabriel Barros (GB Nutrition), ele é meu cliente. Vocês se conhecem?',
+    nota_interna: 'NÃO TEMOS case médico real ainda — proposta SHOWCASE R$200 desconto pra Marcel virar PRIMEIRO CASE médico esporte da Impulso (depois usa pra prospectar outros médicos). PONTE COM GABRIEL é vetor forte (network confirmado: @joaolabre videomaker GB segue Marcel). ANTES DE DISPARAR: falar com Gabriel sobre Marcel — ele provavelmente conhece. Telefone NÃO veio direto (bit.ly) — abrir e capturar. RQE 3191 confirmado. Pre-engajamento Insta D-1 obrigatório. Pitch "complexo" R$799-999 (formulário multi-categoria + área pacientes + Calendly).',
+    abertura: `Oi Dr. Marcel, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Vi que tu segue / é seguido por @gabribarros10 (GB Nutrition) — ele é meu cliente. Tô olhando médicos do esporte autônomos em Palmas e o teu perfil chamou atenção forte: 7k seg + 10 anos + nicho duplo (atleta + transplante capilar) + 178 posts.
+
+Mas vi teu link da bio (bit.ly amador). Paciente novo de transplante capilar vai gastar R$10-15k — pesquisa MUITO antes de marcar e cai num bit.ly sem biografia, sem casos, sem FAQ. 70% recua.
+
+Topa eu te mostrar caso similar e como o Gabriel migrou pra LP profissional?`,
+    followup_d3: `Oi Dr. Marcel, voltei. Pensando: tu tem 2 funis distintos (atleta performance + transplante capilar premium) que poderiam ter LP dedicada cada um. Marketing médico em Palmas tá começando a despontar — quem chegar com LP profissional primeiro fica com a busca por anos. Topa ver protótipo?`,
+    followup_d7: `Oi Dr. Marcel, última mensagem da minha parte. Sei que rotina de médico do esporte + transplante é puxada. Vou parar. Só registro: ponte com a vertical fitness (Gabriel/atletas) é canal raro de prospecção. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar conteúdo técnico de medicina do esporte OU transplante capilar — NÃO foto pessoal). NÃO comentar (médico recebe muito comentário genérico). Pre-warming via consumo do conteúdo. Mencionar Gabriel na 1ª mensagem é vetor direto (eles têm network confirmado).',
+    razao_ranking: 'TIER S (score 9.5). Médico do Esporte com nicho duplo (atleta + transplante capilar) = 2 funis de receita potencial. Network confirmado com Gabriel/GB Nutrition (case real Impulso). Bit.ly amador = sinal de compra. PROPOSTA: 1º case médico Impulso com R$200 desconto pra virar showcase. Pitch "complexo" R$799-999.',
+  },
+
+  1158: {
+    tier: 'A',
+    posicao_no_tier: 49,
+    dor: 'Dr. Rudinei Brunetto é urologista CRM-TO 4856 + RQE 2183 com sub-especialização em Uro-oncologia + Cirurgia Robótica. Endereço Qd. 401 Sul Av Lo 11, Clínica Salus Palmas-TO. 293 posts + 1.000+ pacientes atendidos + 5 destaques cirúrgicos estruturados (Enuc.Próstata / Cir.Robótica / Hérnia VL / CA Próstata / Mídia). 2.644 seguidores. Site atual: linktr.ee/dr.rudineibrunetto. CASO PERFEITO de "autoridade clínica + still uses linktr.ee" = ponto IDEAL de upgrade. Ticket altíssimo: cirurgia robótica R$8.000-25.000 + consultas R$400-700 + acompanhamento pré/pós-cirúrgico.',
+    gancho: 'ARGUMENTO ESTRUTURAL — urologista solo com 1.000+ pacientes operados + 5 destaques cirúrgicos estruturados + ZERO domínio profissional = combinação que paga LP profissional com 1 cirurgia robótica fechada. LP Dr. Rudinei Brunetto Uro-oncologia: hero com 1.000+ pacientes + galeria casos cirúrgicos (com cuidado ético CFM) + biblioteca orientações pré-cirúrgicas + formulário triagem (CA próstata / hérnia / incontinência / vasectomia / robótica) + agendamento integrado + área de pacientes pós-cirúrgicos com follow-up + 3 artigos SEO ("cirurgia robótica próstata Palmas", "vasectomia segura", "uro-oncologia Tocantins"). Pitch: "a cirurgia robótica de Palmas merece a primeira LP médica robótica do estado".',
+    objecao: '"Já tenho linktr.ee, paciente do hospital me indica, tá funcionando" — defesa da indicação como canal principal.',
+    resposta_objecao: 'Total razão — indicação médica é o canal mais nobre e tu tem 1.000+ pacientes que viraram boca-a-boca. Mas pensa: o paciente NOVO indicado pelo cunhado dele que ouviu falar do "urologista da robótica em Palmas" vai pesquisar "Dr. Rudinei Brunetto urologia Palmas" antes de marcar (decisão cirúrgica, alta confiança). Cai no linktr.ee e vê 5 links sem catálogo cirúrgico, sem CFM em destaque, sem casos. Recua. LP profissional pega exatamente esse momento: ele chega e vê biografia + RQE Uro-oncologia + 5 procedimentos catalogados com FAQ ético + galeria casos. Mesmo paciente indicado, conversão diferente. E posso te oferecer uma coisa: tu pode virar o primeiro case URO da Impulso com R$200 desconto — vira showcase pra outros urologistas de Palmas. Topa?',
+    nota_interna: 'PROPOSTA SHOWCASE prioritária — Rudinei pode virar PRIMEIRO CASE URO da Impulso (R$200 desconto). Telefone (63)3322-3278 confirmado Maps (fixo Clínica Salus — VALIDAR celular WhatsApp via linktr.ee). RQE 2183 confirmado. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts técnicos cirúrgicos, NÃO comentar). Pitch "complexo" R$899-1.297 (5 destaques + galeria + área pacientes + 3 artigos SEO premium).',
+    abertura: `Oi Dr. Rudinei, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando urologistas autônomos em Palmas e o teu perfil chamou atenção MUITO forte — Cirurgia Robótica + Uro-oncologia + 1.000+ pacientes + 5 destaques cirúrgicos estruturados. Tu já é referência local.
+
+Mas vi teu link da bio (linktr.ee). Paciente novo de cirurgia robótica de próstata (R$15-25k) pesquisa MUITO antes — quer ver biografia, RQE, casos, processo. Cai no linktr.ee e vê 5 links sem catálogo. Recua.
+
+Topa eu te mostrar como ficaria a 1ª LP médica robótica do estado?`,
+    followup_d3: `Oi Dr. Rudinei, voltei. Pensando: 1.000+ pacientes operados + 5 destaques cirúrgicos = capital social que poucos urologistas do Brasil têm. Mas o canal não comunica isso. LP profissional com galeria ética + FAQ específico de cada procedimento + biblioteca pré-cirúrgica = vira destino oficial pra busca "cirurgia robótica próstata Palmas" que hoje não tem dono. Posso te oferecer R$200 desconto pra tu virar 1º case URO da Impulso — Topa?`,
+    followup_d7: `Oi Dr. Rudinei, última mensagem da minha parte. Sei que rotina de urologista cirurgião é puxada. Vou parar. Só registro: cirurgia robótica em Palmas é nicho premium sem dono no Google — quem chegar primeiro com LP fica com a busca por anos. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos (priorizar conteúdo cirúrgico ou educativo sobre próstata/uro — NÃO foto pessoal). NÃO comentar (cirurgião recebe genérico).',
+    razao_ranking: 'TIER S (score 9.5). Cirurgia robótica = ticket altíssimo (R$8-25k por procedimento). Linktree amador = oportunidade clara. PROPOSTA SHOWCASE pra virar 1º case URO Impulso. Volume 2.6k é OURO (autoridade clínica + ainda amador). Pitch "complexo" R$899-1.297.',
+  },
+
+  1159: {
+    tier: 'A',
+    posicao_no_tier: 50,
+    dor: 'Dr. Tarcísio Andrade é urologista CRM-TO 7893 + RQE 3686 com sub-especialização Uro-oncologia + Robótica + Vasectomia. 116 posts + 1.403 seg. BIO COMEÇA COM "Empreendedor" — mindset de venda já pronto (raro em médico, geralmente é elemento de identidade). Membro Titular Sociedade Brasileira de Urologia. Destaques estruturados (Orientações / Robótica / TCG / Vasectomia / Próstata) já formam funil informacional. Site atual: linktr.ee/drtarcisioandrade.uro. Volume médio (em construção, recente) mas posicionamento já maduro — falta a página que CONVERTE essa autoridade.',
+    gancho: 'ARGUMENTO DIRETO via mindset empreendedor explícito — "vi tua bio começa com EMPREENDEDOR. Urologistas que se posicionam como empreendedores faturam 3-5x mais que urologistas que se posicionam como médicos puros". LP Dr. Tarcísio Empreendedor: formulário "qual procedimento te interessa?" (vasectomia/cirurgia robótica/uro-oncologia/orientação) + checkout vasectomia online (procedimento de ticket previsível) + área pacientes pré/pós + integração SBU credibilidade + 3 artigos SEO ("vasectomia Palmas TO segura", "cirurgia robótica urológica", "uro-oncologia tratamento"). Diferencial vs Rudinei: foco em VASECTOMIA como produto-âncora de funil (procedimento de ticket previsível, decisão masculina racional, conversão alta com LP).',
+    objecao: '"Tô construindo agora, prefiro investir em mais conteúdo Insta primeiro" — defesa do estágio inicial.',
+    resposta_objecao: 'Faz sentido — conteúdo Insta é fundamental, e tu tá na fase certa. Mas pensa: tu posicionou "Empreendedor" na bio — isso é mindset de quem entende que precisa de funil agora, não depois. Urologista que monta LP enquanto cresce no Insta captura cada novo seguidor desde o zero (vai virando lead, não só folower). Quem só monta DEPOIS de chegar a 5k segue capturou zero ao longo da curva. Custo é o mesmo (R$499), retorno acumulado é dramaticamente diferente. Tu já é Membro SBU, tu já cresce — falta o canal que captura. Topa ver?',
+    nota_interna: 'BIO COMEÇA COM "EMPREENDEDOR" = lead diferente da maioria dos médicos (mindset comercial pronto). PROPOSTA SHOWCASE válida — pode virar 2º case URO Impulso ou primeiro de "vasectomia Palmas". Telefone NÃO veio direto — pegar via linktr.ee. RQE 3686 confirmado. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts educativos, NÃO comentar).',
+    abertura: `Oi Dr. Tarcísio, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando urologistas autônomos em Palmas e o teu perfil chamou atenção forte — começa com "Empreendedor" na bio (raro em médico) + Membro SBU + Cirurgia Robótica + Vasectomia + 5 destaques estruturados.
+
+Mas vi teu link da bio (linktr.ee). Tu posicionou "Empreendedor" — esse é mindset de quem sabe que precisa de funil agora, não depois.
+
+Topa eu te mostrar como uma LP captura cada novo seguidor desde o zero, em vez de só depois quando virar 5k?`,
+    followup_d3: `Oi Dr. Tarcísio, voltei. Pensando: tu tá no momento ÚNICO (volume crescendo + posicionamento empreendedor maduro). LP montada agora captura cada paciente potencial desde os primeiros mil. Em 12 meses, quando tu tiver 4-5k seg, já está com 80-150 leads de vasectomia/robótica capturados. Versus quem só monta depois e captura zero retroativo. Topa ver protótipo?`,
+    followup_d7: `Oi Dr. Tarcísio, última mensagem. Posicionamento empreendedor + volume crescendo = combinação rara em médico. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar conteúdo de vasectomia OU empreendedorismo médico — bio dele declara "Empreendedor"). NÃO comentar.',
+    razao_ranking: 'TIER S (score 8.5). Mindset "Empreendedor" explícito + Membro SBU + RQE robótica = perfil ideal. Volume crescendo = momento ÚNICO de montar LP. Pitch padrão R$499 + R$99/mês ou complexo R$799-999 com checkout vasectomia online.',
+  },
+
+  1160: {
+    tier: 'A',
+    posicao_no_tier: 51,
+    dor: 'Dr. Hugo Rossoni é reumatologista CRM-TO 3873 + RQE 1688 e PROFESSOR Afya & UNIRG (autoridade ACADÊMICA além da clínica). 6.626 seguidores + 1.139 posts = autoridade máxima editorial. Atende em CERTO + CERTO Prime (clínica multi-prof, perfil próprio mantém solo). Site atual: wa.me/message/R74WM4PL7SOXH1 — WHATSAPP DIRETO ZERO web profissional. CASO ABSURDO: professor universitário de medicina perdendo TODO lead novo de paciente que pesquisa autoridade antes de marcar. Destaques formam biblioteca SEO pronta (fibromialgia / lupus / artrite / osteoporose / cisto sinovial) — basta extrair pra LP.',
+    gancho: 'PITCH AUTORIDADE ACADÊMICA: "Professor da Afya e UNIRG perdendo paciente premium em wa.me direto é desperdício de capital social". LP Dr. Hugo Rossoni Reumatologia Palmas: biblioteca SEO de 5-10 artigos técnicos (fibromialgia / lupus / artrite / osteoporose / cisto sinovial — TODOS seus destaques!) + formulário avaliação inicial + agendamento clínica CERTO + área de pacientes com plano de acompanhamento crônico + Prof. Afya autoridade em destaque. Pitch específico: "professor de medicina da Afya merece SEO médico que canaliza pacientes em vez de wa.me direto".',
+    objecao: '"Tô na clínica CERTO, eles divulgam, tô tranquilo" — defesa do canal institucional.',
+    resposta_objecao: 'Concordo — clínica multi-prof tem força. Mas pensa: paciente novo de fibromialgia que viu teu post sobre "vivendo com fibromialgia" no Insta vai pesquisar "Dr. Hugo Rossoni reumatologista Palmas" antes de marcar (doença crônica, alta confiança). Cai no wa.me direto, vê só "Olá!" sem biografia, sem CRM, sem teu papel de professor da Afya destacado, sem os 5 temas de destaque dele. 70% recua. LP pessoal SUA (não da CERTO) destaca: "Reumatologista + Professor Afya & UNIRG" como diferencial absoluto. Mesmo paciente, conversão diferente. Mantém a CERTO como canal de agendamento, mas LP vira destino oficial da TUA marca pessoal.',
+    nota_interna: 'PROFESSOR universitário de medicina = autoridade RARA em prospect Impulso. PROPOSTA SHOWCASE válida — Hugo pode virar PRIMEIRO CASE REUMATO Impulso (R$200 desconto). Telefone NÃO veio direto (wa.me/message) — abrir, capturar número. RQE 1688 confirmado. CRM-TO 3873 confirmado. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts técnicos sobre fibromialgia/lupus). Pitch "complexo" R$899-1.197 (biblioteca SEO 5-10 artigos + área pacientes crônicos + Prof. Afya destaque).',
+    abertura: `Oi Dr. Hugo, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando reumatologistas autônomos em Palmas e o teu perfil chamou atenção MUITO forte — Professor Afya & UNIRG + 6.6k seg + 1.139 posts + 5 temas de destaque estruturados (fibromialgia/lupus/artrite/osteoporose/cisto sinovial).
+
+Mas vi teu link da bio: wa.me direto. Professor universitário de medicina perdendo paciente novo num "Olá!" sem biografia + sem teus 5 temas + sem destaque do papel acadêmico.
+
+Topa eu te mostrar como ficaria uma LP que canaliza paciente premium em vez de wa.me direto?`,
+    followup_d3: `Oi Dr. Hugo, voltei. Pensando: teus 5 destaques (fibromialgia/lupus/artrite/osteoporose/cisto sinovial) são 5 ARTIGOS SEO PRONTOS esperando virar página. Cada um capta paciente que pesquisa "fibromialgia tratamento Palmas" no Google. Hoje quem aparece é blog genérico nacional. Tu poderia dominar essas buscas como Prof. Afya. Posso te oferecer R$200 desconto pra tu virar 1º case REUMATO Impulso. Topa?`,
+    followup_d7: `Oi Dr. Hugo, última mensagem da minha parte. Sei que rotina de reumato + professor é puxada. Vou parar. Só registro: tua autoridade acadêmica + 5 temas crônicos = combinação que vira SEO médico dominante em Palmas. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos sobre fibromialgia/lupus/artrite (priorizar conteúdo educativo, NÃO foto pessoal). NÃO comentar (médico recebe muito comentário paciente). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S (score 8). Professor Afya = autoridade ACADÊMICA rara. wa.me direto = sinal de compra extremo. 5 destaques = 5 artigos SEO prontos. PROPOSTA SHOWCASE 1º case REUMATO Impulso. Pitch "complexo" R$899-1.197.',
+  },
+
+  1161: {
+    tier: 'A',
+    posicao_no_tier: 52,
+    dor: 'Dr. Daniel Janczuk é cardiologista CRM-TO 4081 + RQE 1763 e EX-PRESIDENTE da Sociedade Brasileira de Cardiologia Tocantins 2024-2025 (autoridade MÁXIMA da cardiologia no estado — top 1-2). 1.955 posts + 10.300 seguidores. Atende Particular Prime - Certo Prime + Convênios. Telefone (63)99977-1541 confirmado bio. Site atual: linktr.ee/CardiologistaDanielJanczuk. CASO DESPROPORCIONAL: ex-presidente SBC-TO usando linktree é como Mercedes em estacionamento de bicicleta. Pacientes de classe A/B que pesquisam autoridade cardiológica antes de marcar consulta de R$500-700 NÃO encontram a página que ele merece.',
+    gancho: 'PITCH PREMIUM AUTORIDADE-MÁXIMA: "Ex-Presidente SBC-TO 2024-2025 é autoridade RARÍSSIMA — pacientes premium pesquisam autoridade ANTES de qualquer marca/clínica. Linktree é desproporcional ao calibre". LP Dr. Daniel Janczuk Premium Cardiologia: hero com selo Ex-Presidente SBC-TO em destaque + biografia médica completa + biblioteca SEO técnica (HAS / dislipidemia / IAM prevenção / check-up cardiológico / risco cardiovascular) + agendamento Particular/Convênios diferenciado + área pacientes com exames + teleconsulta para retorno + tele-laudo. Pitch ESPECIAL: "autoridade SBC merece a primeira LP cardiologia premium do estado".',
+    objecao: '"10k seguidores + linktree dá conta, paciente acha" — defesa de quem já tem volume.',
+    resposta_objecao: 'Tu tem RAZÃO em parte — 10k seg + ex-presidente SBC = autoridade que poucos cardiologistas do Brasil têm. Mas pensa pelo perfil de paciente classe A/B que tu atende: ele pesquisa "Daniel Janczuk cardiologista Palmas" no Google, cai no linktree, vê 5 links sem hierarquia. Onde está o selo "Ex-Presidente SBC-TO"? Onde está a explicação de check-up cardiológico premium? Onde está o canal Particular vs Convênios distinto? Linktree planifica tudo. LP premium destaca tudo. Mesmo paciente, conversão diferente. PROPOSTA: tu pode virar 1º case CARDIO premium Impulso com R$200 desconto — vira showcase pra outros cardiologistas de prestígio em Palmas/Tocantins. Topa?',
+    nota_interna: 'EX-PRESIDENTE SBC-TO = autoridade MÁXIMA do estado. PROPOSTA SHOWCASE prioritária — se Daniel fechar, vira case CARDIO PREMIUM da Impulso (resto dos cardiologistas Palmas vai querer). Telefone (63)99977-1541 confirmado bio. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts técnicos cardiológicos, NÃO comentar — 10k seg recebe muito genérico). Pitch "complexo Premium" R$1.197-1.497 (autoridade SBC + Particular vs Convênios + biblioteca SEO + área pacientes + tele-laudo).',
+    abertura: `Oi Dr. Daniel, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando cardiologistas autônomos consolidados em Palmas e o teu perfil é referência absoluta — Ex-Presidente SBC-TO 2024-2025 + 10k seg + 1.955 posts + Certo Prime. Top 1-2 cardiologia do estado.
+
+Mas vi teu link da bio: linktr.ee. Paciente classe A/B que pesquisa "Daniel Janczuk cardiologista Palmas" antes de marcar consulta de R$500-700 cai num linktr.ee genérico — onde está o selo Ex-Presidente SBC-TO? Onde está canal Particular vs Convênios distinto?
+
+Topa eu te mostrar a primeira LP cardiologia premium do estado?`,
+    followup_d3: `Oi Dr. Daniel, voltei. Pensando: tu é UM dos 2-3 cardiologistas mais respeitados de Palmas. Pacientes premium que tu atende pesquisam ANTES de marcar — e o linktree planifica autoridade. LP premium destaca: Ex-Presidente SBC + 5 áreas técnicas + canal Particular vs Convênios + tele-laudo. Posso te oferecer R$200 desconto pra tu virar 1º case CARDIO PREMIUM Impulso. Topa?`,
+    followup_d7: `Oi Dr. Daniel, última mensagem da minha parte. Ex-Presidente SBC-TO é autoridade que merece vitrine adequada — sei que isso bate quando tu tem tempo de pensar. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos cardiológicos (priorizar conteúdo educativo de risco cardiovascular OU prevenção, NÃO foto pessoal). NÃO comentar (10k seg + verified-tier recebe muito genérico).',
+    razao_ranking: 'TIER S (score 8). EX-PRESIDENTE SBC-TO = autoridade máxima cardiologia estado. 10k seg acima sweet spot mas autoridade compensa. PROPOSTA SHOWCASE PREMIUM — 1º case CARDIO Impulso. Pitch Premium R$1.197-1.497.',
+  },
+
+  1162: {
+    tier: 'A',
+    posicao_no_tier: 53,
+    dor: 'Dr. Edson Pedroza é reumatologista CRM-TO 2799 com RQE 2054 TRIPLO (Reumatologia + Clínica Médica + Medicina do Trabalho). 2.342 POSTS — RECORDE editorial absoluto da rodada de prospecção (consistência monumental). 4.775 seguidores. Posicionamento humanizado "escuta e cuidado". Centro de Reumatologia Tocantins. Site atual: linktr.ee/Dredsonpedroza.reumato. OPORTUNIDADE DUPLA RARA: triplo RQE permite estratégia HIBRIDIZADA — (B2C) reumatologia humanizada + (B2B) Medicina do Trabalho com laudos PCMSO/PPRA pra empresas. Hoje tudo cai num linktr.ee linear que não capitaliza essa diferença.',
+    gancho: 'LP DUPLA — explorar o RQE TRIPLO como vantagem competitiva única. (a) LP B2C reumatologia humanizada com calculadora de fibromialgia + biblioteca de orientações + agendamento + área pacientes crônicos; (b) Mini-site B2B Medicina do Trabalho com formulário PCMSO/PPRA empresas + casos corporativos + cotação online. Pitch único: "transformar 2.342 posts em 2 funis de receita simultâneos — paciente individual + empresa contratante". Diferencial vs outro reumato: ninguém em Palmas explora B2B Medicina do Trabalho por LP profissional ainda.',
+    objecao: '"Linktree me serve, atendo direto, não preciso de complicação" — defesa do simples atual.',
+    resposta_objecao: 'Faz sentido — linktree é simples e funciona. Mas pensa: tu tem RQE TRIPLO — Reumatologia + Clínica Médica + MEDICINA DO TRABALHO. O 3º RQE é canal B2B inteiro (laudos pra empresas, PCMSO, PPRA) que linktree não consegue separar do B2C. Empresa que precisa de PCMSO pesquisa "médico do trabalho Palmas TO" — e cai num linktr.ee genérico misturado com fibromialgia e lupus. Recua. LP estruturada permite SEPARAR os funis — paciente individual entra por uma porta, empresa entra por outra, ambos convertendo. Mesmo médico, 2x receita. Topa ver protótipo?',
+    nota_interna: 'OPORTUNIDADE B2B+B2C ÚNICA no banco — explorar RQE TRIPLO como vantagem. Telefone NÃO veio direto (linktr.ee) — pegar antes. RQE 2054 confirmado. PROPOSTA SHOWCASE válida — pode virar 1º case "médico LP dupla B2C+B2B" da Impulso. Pre-engajamento Insta D-1 obrigatório.',
+    abertura: `Oi Dr. Edson, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando reumatologistas autônomos em Palmas e o teu perfil chamou atenção MUITO forte — 2.342 posts (recorde absoluto editorial dos médicos que mapeei) + RQE TRIPLO (Reumato + Clínica + Medicina do Trabalho).
+
+Pergunto direto: o RQE Medicina do Trabalho hoje — empresa que precisa de PCMSO/PPRA encontra TI no Google, ou cai num linktree misturado com fibromialgia e lupus?
+
+Topa eu te mostrar como separar 2 funis de receita (paciente + empresa) numa LP estruturada?`,
+    followup_d3: `Oi Dr. Edson, voltei. Pensando: 2.342 posts é capital editorial que MUITO médico do Brasil leva 10 anos pra construir. Mas RQE Medicina do Trabalho é receita B2B desperdiçada num linktr.ee linear. LP dupla — paciente individual + empresa contratante PCMSO — vira 2 funis simultâneos. Topa ver caso?`,
+    followup_d7: `Oi Dr. Edson, última mensagem da minha parte. Posicionamento humanizado + RQE triplo + 2.342 posts é combinação rara. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar conteúdo humanizado sobre fibromialgia OU casos clínicos respeitosos — perfil dele valoriza humanização). NÃO comentar.',
+    razao_ranking: 'TIER S (score 7.5). RQE TRIPLO = oportunidade rara de LP DUPLA (B2C reumato + B2B Medicina do Trabalho). 2.342 posts = capital editorial recorde. Linktree subdimensionado. Pitch "complexo Premium" R$1.197-1.497 (LP dupla + 2 funis).',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {

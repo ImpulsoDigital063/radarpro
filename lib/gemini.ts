@@ -41,7 +41,18 @@ Pesquisa Claude in Chrome mapeou o universo competitivo. **Pode ser citado quand
 **Concorrentes FANTASMA (geo-SEO spam, atendem remoto):**
 - **DIVIA, MOBI, Alex Sacchi, MW7** — DDDs de outras cidades, fazem landing por cidade. Aparecem no Google mas NÃO operam em Palmas. Cliente que descobre o endereço perde confiança.
 
-**Mapa de PROFISSIONAIS palmenses que JÁ TÊM LP profissional (prova social pesada — atualizado 26/04 batches CIC #5 + #6):**
+## 🔬 LIÇÕES META do batch CIC #12 (médicos via IA Overview CRM-TO)
+
+### Lição 1 — Padrão "5k+ seg em médicos Palmas = JÁ tem .com.br"
+Médicos com 5.000+ seguidores Insta tendem a JÁ ter LP profissional rodando. Tier S real pra prospecção LP médica é a faixa **2.000-4.500 seguidores** que ainda usa linktr.ee/bit.ly/wa.me direto. Acima disso, alta probabilidade de ser CONCORRÊNCIA (já mapear no banco como concorrência).
+
+### Lição 2 — GEO TRAP IA Overview
+Google IA Overview pode falsificar geo localização. Exemplo real do batch #12: "Dr. Robert Alcântara" apareceu na busca "CRM-TO RQE cardiologista Palmas" mas é CRM-MG 55820 + Oliveira-MG + DDD 37. **Cross-validar SEMPRE DDD do bio link** antes de aprovar lead da IA Overview. Não confiar cegamente.
+
+### Lição 3 — Proposta SHOWCASE pra nichos sem case real
+Pra qualquer nicho onde Impulso ainda NÃO tem case real entregue (médico, dental, advogado, psi), oferecer **R$200 desconto pra primeiro fechado virar SHOWCASE** — depois desse, próximos do mesmo nicho têm case-clone real pra ser usado como prova social. Sequência geradora: Monnaliza fecha → vira case dental → outras dentistas têm prova social real. Douglas fecha → vira case advogado. E assim por diante.
+
+**Mapa de PROFISSIONAIS palmenses que JÁ TÊM LP profissional (prova social pesada / concorrência mapeada — atualizado 26/04 batches CIC #5 + #6 + #12):**
 
 | Nicho | Profissional | URL |
 |---|---|---|
@@ -57,6 +68,11 @@ Pesquisa Claude in Chrome mapeou o universo competitivo. **Pode ser citado quand
 | Ginecologia/Obstetrícia | Dra. Pollyana Macedo | pollyanamacedo.com.br |
 | Endocrinologia | Dra. Marcela Pitaluga | dramarcelapitaluga.com.br |
 | Ozonioterapia / Injetáveis | Ozônioterapia Palmas | ozonioterapiapalmas.com.br (concorrência direta no nicho clone-Erlane) |
+| Cardiologia | Dra. Elaine Ferreira | draelaineferreiracardio.com.br (CRM-TO 2545, RQE 3021) — NOVO #12 |
+| Urologia | Dr. Hamilton Franco | drhamiltonfranco.com.br/bio.pdf (CRM-TO 3709, urologia pediátrica + robótica) — NOVO #12 |
+| Mastologia | Dra. Tatiana Ferrari Jacinto | mastoclinicapalmas.com.br (CRM-TO 2823, RQE 1181/1486) — NOVO #12 |
+| Mastologia | Dra. Juliana Souza | drajulianamastologista.com.br (CRM-TO 7972, RQE 3718) — NOVO #12 |
+| Oftalmologia | Dr. Henrique de Deus | drhenriquededeus.com.br/links (CRM-TO 4835, RQE 2221) — NOVO #12, verified IG |
 
 **Use esses como prova social quando lead resistir** — argumento: *"Os profissionais autônomos mais consolidados de Palmas no [nicho do lead] já têm LP profissional. [Cita 1-2 nomes do mapa acima do mesmo nicho]. Eles entenderam que paciente novo pesquisa antes de marcar — e quem aparece com LP profissional fica com a venda."*
 
