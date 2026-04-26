@@ -135,6 +135,45 @@ Lead que cruza estes 4 critérios = **Tier S sem validação manual extra**:
 
 **Aplicar automaticamente nos próximos prompts CIC.**
 
+## 💉 VACINA DE PITCH — Cluster Clone-Irsnayra (lição do batch CIC #8)
+
+**Contexto:** Irsnayra Mildred (case-portfolio) foi prospect que NÃO fechou. Aprendizado virou ativo pra evitar repetir o erro com perfis análogos (farmacêuticas/biomédicas estetas com harmonização — maior cluster identificado em Palmas, 5 Tier S num único batch).
+
+### Hipóteses validadas do não-fechamento Irsnayra (e o que fazer diferente)
+
+| Causa provável | Anti-pitch a aplicar nos clones |
+|---|---|
+| Volume IG 1.1k seg → "ainda não escala pra justificar LP" | **NUNCA argumentar "preciso de site pra escalar"** — argumentar QUALIFICAÇÃO de paciente premium |
+| Bio dispersa em 5+ áreas → falta de produto-âncora | **Escolher UM protocolo-âncora ANTES da call** (Glútea OU Full Face OU PEIM — não bio inteira) |
+| Ticket dela já é alto (R$1k+) → R$499 soa "barato demais pro nível" | **NUNCA argumentar preço LP**. Argumentar "LP que coloca tu no nível visual de quem cobra teu ticket" + ROI por paciente ("1 paciente nova de R$1k paga 2x a LP") |
+| Indicação reduz urgência → "vou pensar" | **Ancorar gatilho sazonal concreto** (verão, BBB, casamentos, lançamento de protocolo novo) |
+
+### Como identificar um lead "clone-Irsnayra" (filtro de aplicação da vacina)
+
+Aplicar a vacina sempre que o lead tiver TODOS estes:
+- Profissão paramédica (farmacêutica/biomédica/enfermeira) com título "Esteta" na bio
+- Sub-nicho corporal premium (harmonização glútea/facial/protocolos injetáveis)
+- Ticket R$1.000+ por sessão/protocolo (não R$200-400)
+- Volume IG 1k-5k seguidores (não influencer, é técnica)
+- Posts em formato carrossel-cápsula com produtos nomeados (PILL FOOD, HARMONIZAÇÃO X, PROTOCOLO Y)
+- Bio técnica-acadêmica (MBAs, especializações empilhadas)
+
+### Frases CHAVE pra usar com clones-Irsnayra
+
+✅ *"Não é pra captar quem escolhe pelo preço — é pra QUALIFICAR a paciente premium que vai gastar R$3k em harmonização."*
+✅ *"1 paciente nova de R$1k paga 2x o investimento da LP."*
+✅ *"LP que te coloca no nível visual de quem cobra teu ticket."*
+✅ *"Foco em UM protocolo-âncora — não tentar caber bio inteira."*
+✅ *"A Erlane (@ev.suplementosinjetaveis), nossa cliente em Palmas, tinha exatamente o teu setup há 6 meses."*
+
+### Frases que QUEIMAM com clones-Irsnayra
+
+❌ "Site profissional barato a partir de R$499"
+❌ "Pra começar a escalar tua presença online"
+❌ "Pra ter site profissional"
+❌ "Hoje tu tem só linktr.ee"
+❌ Qualquer argumento focado em PREÇO BAIXO ou estágio iniciante
+
 ## 📁 Cases reais entregues (5 LPs em produção pra prova social cirúrgica)
 
 Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem o seu uso:
@@ -142,7 +181,7 @@ Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem 
 - **EV Suplementos Injetáveis** (evsuplementosinjetaveis.com) — Erlane, esposa do Eduardo, **enfermeira esteta** vendendo soroterapia/vitamina injetável/protocolos. **Use pra:** lead de saúde estética, biomédica esteta, esteticista, soroterapia, drip vitamínico, ozonioterapia. É O CASE MAIS FORTE pro nicho saúde-beleza palmense.
 - **Dra. Janaína Feitosa** — médica de Palmas, LP institucional. **Use pra:** lead médico (qualquer especialidade), dentista, profissional de saúde com autoridade construída.
 - **Criativos do Céu** (criativosdoceu.com) — conteúdo cristão / membership / blog. **Use pra:** lead de infoproduto, mentoria, igreja, criador de conteúdo, professor com curso.
-- **Irsnayra Mildred** — profissional autônoma palmense (estética/coach). **Use pra:** lead profissional autônoma feminina, esteta, designer de sobrancelhas, fotógrafa, mulher empreendedora.
+- **Irsnayra Mildred** (irsnayra.com.br) — profissional autônoma palmense (farmacêutica/biomédica esteta com harmonização glútea + facial + suplementação injetável). **Use pra:** lead farmacêutica/biomédica esteta, harmonização facial/corporal, profissional autônoma feminina premium. **NOTA HISTÓRICA:** Irsnayra foi prospect que NÃO fechou — usar como referência VISUAL/PORTFOLIO ("essa LP é da Irsnayra Mildred, é o padrão visual que monto pro teu nicho"), sem mencionar que ela não foi cliente final. Ela continua sendo case-portfolio válido.
 - **LocaJV** — locadora de moto Palmas, R$39,90/dia. **Use pra:** lead com pricing claro + ticket recorrente, negócio de locação/aluguel, comércio com mensalidade.
 
 **Frase pra inserir no pitch (sutil):** *"Acabei de entregar pra [Case Próximo] — é exatamente o tipo de coisa que eu faria pra ti."* OU *"Manda eu te mostrar o que fiz pra [Case]: similar ao teu caso."*

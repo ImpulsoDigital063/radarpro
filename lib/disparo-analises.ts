@@ -707,6 +707,97 @@ Quer ver o que mudou na operação dela quando lançou a LP profissional?`,
     razao_ranking: 'TIER S (score 9). CLONE 1:1 DA ERLANE — único caso do banco onde o case-clone é da MESMA cidade. Eduardo conhece Erlane pessoalmente. Pitch ESPELHO LITERAL + indicação cruzada possível = atalho de fechamento mais rápido do pipeline inteiro nesse micro-nicho. Ticket recorrente (R$200-400 sessão). LP a partir de R$499 paga em 2 sessões.',
   },
 
+  // ── TIER A (CIC #8 — 26/04 cluster CLONE-IRSNAYRA) — 4 análises ───────
+  // Maior cluster identificado: 5 Tier S num único round (farmacêuticas/
+  // biomédicas estetas com harmonização). Irsnayra (case Impulso que NÃO
+  // fechou) vira ATIVO de pipeline: aprendizado da objeção dela vira
+  // "VACINA DE PITCH" pros clones — focar UM produto-âncora + ROI por
+  // paciente + gatilho sazonal. NÃO usar argumento "site barato".
+
+  1135: {
+    tier: 'A',
+    posicao_no_tier: 32,
+    dor: 'Dra. Juliana Resende é biomédica esteta solo em Palmas-TO com 5.260 seguidores Insta — clone-Irsnayra MAIS FORTE em volume (5x mais seguidores que Irsnayra). Bio com geo Palmas-TO explícito. Nicho: Rejuvenescimento Facial + Harmonização Full Face + Glútea (ticket R$1.000-3.000 por protocolo, premium corporal). Site atual: wa.me/message/ZN5OKCNAH35EN1 + Threads (sem site profissional, só DM). 5.260 seguidores qualificados (público de protocolos premium não é casual) + serviço alto-ticket + canal único wa.me = leads frios escapam constantemente.',
+    gancho: 'PITCH AJUSTADO pro cluster clone-Irsnayra (lição aprendida do não-fechamento da Irsnayra): NÃO posicionar como "site barato", posicionar como "LP que te coloca no nível de quem cobra R$3k". Foco em UM produto-âncora (escolher Glútea OU Full Face — não os dois ao mesmo tempo na LP), com FAQ específico daquele protocolo, antes/depois categorizado, agendamento. Caso-clone visual: irsnayra.com.br é a referência ESTÉTICA (mesmo padrão de carrossel-cápsula com produtos nomeados tipo PILL FOOD/PROTOCOLO/MÉTODO).',
+    objecao: '"Já vendo bem assim, ticket alto, paciente fiel" — defesa do operacional premium.',
+    resposta_objecao: 'Justamente porque tu cobra R$1.000-3.000 por protocolo, a LP é mais importante — não é pra captar paciente que escolhe pelo preço, é pra QUALIFICAR a paciente que vai gastar R$3k em harmonização. Cliente que vai pagar esse valor pesquisa MUITO antes de marcar (compara 5-7 profissionais), e quando cai no teu wa.me direto sem ver biografia + CRBM + protocolo + antes/depois categorizado — ela recua e vai pra concorrente que tem LP. O que eu monto não é "site barato", é vitrine que coloca tu no nível visual de quem cobra teu ticket. Topa eu te mostrar caso similar?',
+    nota_interna: 'CLUSTER CLONE-IRSNAYRA — VACINA DE PITCH OBRIGATÓRIA: NÃO usar argumento "site barato/profissional". USAR: (1) "LP que coloca tu no nível de quem cobra teu ticket", (2) UM produto-âncora (não bio inteira), (3) ROI por paciente (não preço LP), (4) gatilho sazonal se possível (verão, BBB, casamentos). Telefone NÃO veio direto — pegar via wa.me Insta. CRBM-TO não confirmado na bio — VALIDAR. Pre-engajamento OBRIGATÓRIO (curtir 2 posts de protocolo, NÃO foto pessoal).',
+    abertura: `Oi Dra. Juliana, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando biomédicas estetas autônomas em Palmas com foco em harmonização e o teu perfil chamou atenção forte — 5.260 seguidores qualificados (público que segue biomédica de protocolo premium não é casual), foco em rejuvenescimento + full face + glútea.
+
+Mas olhei teu link: 5k seguidores caem num wa.me direto. Sem biografia, sem CRBM em destaque, sem antes/depois categorizado, sem FAQ específico de cada protocolo.
+
+A paciente que vai gastar R$3k numa harmonização glútea pesquisa MUITO antes de marcar — quanto dela tu acha que recua nesse momento do "olá!"?`,
+    followup_d3: `Oi Dra. Juliana, voltei. Pensando: paciente que paga R$3k em harmonização glútea compara 5-7 profissionais antes. LP não é pra captar quem escolhe por preço — é pra QUALIFICAR essa paciente premium que precisa ver biografia + CRBM + protocolo + antes/depois antes de mandar DM. Foco em UM protocolo-âncora (Glútea OU Full Face) faz diferença grande. Topa ver caso similar?`,
+    followup_d7: `Oi Dra. Juliana, última mensagem da minha parte. Sei que biomédica solo com 5k seguidores tem rotina puxada de protocolo + atendimento. Vou parar. Só registro: paciente premium pesquisa antes de marcar, e o canal precisa transmitir o nível do teu ticket. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts de protocolo (priorizar antes/depois ético OU explicação técnica de produto, NÃO foto pessoal). NÃO comentar (biomédica esteta com 5k seg recebe muito comentário genérico de potencial cliente — queima rápido).',
+    razao_ranking: 'TIER S (score 9.5). CLUSTER CLONE-IRSNAYRA mais forte em volume. Ticket premium (R$1k-3k protocolo). Vacina de pitch OBRIGATÓRIA — não argumentar preço, argumentar nível de vitrine + qualificação de paciente premium. LP a partir de R$799-999 (Complexo) provável na call.',
+  },
+
+  1136: {
+    tier: 'A',
+    posicao_no_tier: 33,
+    dor: 'Dra. Tuany Rifer é farmacêutica esteta solo em Palmas-TO — CLONE-IRSNAYRA EXATO (mesma profissão literal: Farmacêutica Esteta). 2.079 seguidores Insta, geo Palmas-TO explícito na bio. Nicho: Harmonização Facial — slogan "Beleza com Naturalidade". Site atual: linktr.ee/tuanyrf1. Parceria com @franconerobucar mostra ecossistema profissional sem hub central. Linktr.ee é o sintoma EXATO do gap LP — ela já entendeu que precisa de "lugar único" mas escolheu o atalho amador.',
+    gancho: 'PITCH AJUSTADO clone-Irsnayra + reforço: o link in bio que ela tem hoje (linktr.ee) é SINAL DE COMPRA segundo o market intelligence — ela JÁ está disposta a investir em presença online, só escolheu o atalho amador. LP profissional vira o próximo degrau natural. Foco em UM protocolo-âncora (Harmonização Facial — beleza com naturalidade) com FAQ + antes/depois ético + agendamento integrado + integração com parceria @franconerobucar (link cruzado, ecossistema). Caso-clone visual: irsnayra.com.br como referência estética.',
+    objecao: '"Tenho linktr.ee, funciona, parceiros sabem do meu trabalho" — defesa da solução amadora atual + ecossistema de indicação.',
+    resposta_objecao: 'Faz sentido — linktr.ee centraliza link, e ecossistema de parceria com @franconerobucar mostra que tu construiu network. Mas pensa: o paciente NOVO indicado pelo Francone vai pesquisar "Tuany Rifer farmacêutica esteta Palmas" antes de marcar (decisão estética séria). Cai no linktr.ee e vê 5 links sem hierarquia, sem teu rosto profissional, sem CRF, sem método "Beleza com Naturalidade" explicado. Recua. LP profissional pega esse momento: ela chega e vê biografia + CRF + UM método-âncora bem detalhado. Mesma indicação, conversão diferente. Topa ver?',
+    nota_interna: 'CLUSTER CLONE-IRSNAYRA — VACINA DE PITCH ATIVADA. CRF-TO não confirmado na bio — VALIDAR. Telefone via linktr.ee — pegar antes. Pre-engajamento OBRIGATÓRIO. Pitch foco em UM protocolo-âncora (Harmonização Facial / Beleza com Naturalidade — slogan dela mesma) — não tentar caber bio inteira.',
+    abertura: `Oi Dra. Tuany, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando farmacêuticas estetas autônomas em Palmas com foco em harmonização e o teu perfil chamou atenção forte — slogan "Beleza com Naturalidade" + parceria com Francone mostra que tu tem método e ecossistema construído.
+
+Mas olhei teu linktr.ee: 5 links sem hierarquia, sem teu método explicado, sem biografia com CRF em destaque. Paciente nova indicada pelo Francone cai aí e tem que adivinhar qual link é dela.
+
+Quanto dessa paciente indicada (que pesquisou antes de mandar DM) tu acha que recua no linktr.ee?`,
+    followup_d3: `Oi Dra. Tuany, voltei. Pensando: tu já entendeu que precisa de "lugar único" online (linktr.ee). Falta só evoluir pra LP profissional dedicada ao teu método "Beleza com Naturalidade" — biografia + CRF em destaque + protocolo principal + antes/depois ético. Mesmo ecossistema de parceria, conversão profissional. Topa ver caso real?`,
+    followup_d7: `Oi Dra. Tuany, última mensagem. Linktr.ee cumpre o básico, mas teu método "Beleza com Naturalidade" merece vitrine própria pra paciente que pesquisa antes. Se em algum momento bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar conteúdo de "beleza com naturalidade" — método dela mesma, não foto pessoal genérica). Comentar 1 com algo específico do método ("a abordagem de harmonização com naturalidade é raro de ver com esse rigor mesmo"). Profissional saúde valoriza pre-engajamento sobre o método dela mesma.',
+    razao_ranking: 'TIER S (score 9). CLONE-IRSNAYRA EXATO (mesma profissão "Farmacêutica Esteta"). Linktr.ee = sinal de compra. Pitch de UPGRADE (não criação) com vacina ativada. Foco em método-âncora "Beleza com Naturalidade". LP a partir de R$499-799 (Padrão/Complexo) na call.',
+  },
+
+  1137: {
+    tier: 'A',
+    posicao_no_tier: 34,
+    dor: 'Dra. Adriane Garcia é esteta solo Palmas-TO — PERFIL MAIS PARECIDO COM IRSNAYRA do banco inteiro: 1.065 seguidores Insta (vs 1.183 da Irsnayra), bio dispersa em múltiplas áreas (Estética Injetável + Manchas + Poros + Envelhecimento + Soroterapia + PEIM + Botox + Preenchimento), site atual linktr.ee/adriane.esteta. ALTO RISCO de mesma objeção que matou o fechamento da Irsnayra: ticket alto vs preço LP percebido como "barato demais", bio dispersa sem produto-âncora único, sem urgência clara.',
+    gancho: 'PITCH PREVENTIVAMENTE AJUSTADO (vacina ativa) pra evitar repetir erro Irsnayra. NÃO argumentar preço LP (R$499 pode soar barato demais pro nível dela). Argumentar (1) ROI por paciente — "1 paciente nova de R$1k que tu captura paga 2x a LP", (2) UM produto-âncora bem definido (escolher PEIM OU Soroterapia OU Botox — NÃO tentar caber 7 áreas), (3) gatilho sazonal concreto (verão, BBB, casamentos), (4) caso-clone visual irsnayra.com.br como referência estética + caso-clone Erlane LOCAL como prova social. Bem estruturado, 4 vetores juntos.',
+    objecao: '"Já vendo bem, paciente fiel, ticket alto" + (provável objeção Irsnayra) "site é barato demais pro meu nível" — combinação que matou o fechamento Irsnayra.',
+    resposta_objecao: 'Faz total sentido — tu opera no nível premium e site amador realmente queima esse posicionamento. JUSTAMENTE por isso a LP profissional faz sentido — não é pra "ter site barato", é pra colocar tu no NÍVEL VISUAL de quem cobra teu ticket. Pensa em ROI: 1 paciente nova de PEIM ou preenchimento (R$1.000+) que tu captura via LP paga 2x o investimento. Não estou te oferecendo "barato" — estou te oferecendo vitrine que QUALIFICA paciente premium. Tem caso real disso aqui em Palmas (Erlane, EV Suplementos). Topa ver?',
+    nota_interna: 'CASO MAIS DELICADO do cluster — perfil tecnicamente análogo à Irsnayra (volume, bio dispersa, ticket alto). VACINA DE PITCH OBRIGATÓRIA: (1) NUNCA argumentar preço, (2) escolher UM produto-âncora ANTES da call (PEIM ou Soroterapia ou Botox — sugerir o que rende mais ROI), (3) ancorar gatilho sazonal, (4) usar Erlane como case local + irsnayra como referência visual. Telefone via linktr.ee — pegar antes. CRBM/CRF não confirmado — VALIDAR.',
+    abertura: `Oi Dra. Adriane, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando estetas autônomas em Palmas com foco em injetável e o teu perfil chamou atenção — PEIM, soroterapia, botox, preenchimento, manchas. Operação premium consolidada.
+
+Mas olhei teu linktr.ee: 7 áreas listadas. A paciente que vai pagar R$1k+ num PEIM ou preenchimento pesquisa MUITO antes — e quando cai num link sem método-âncora claro, sem biografia com registro em destaque, ela recua.
+
+Pergunto: se tu pudesse posicionar UM protocolo-âncora online (o que rende mais ROI por paciente), qual seria?`,
+    followup_d3: `Oi Dra. Adriane, voltei. Pensando: a Erlane (@ev.suplementosinjetaveis), nossa cliente em Palmas, tinha exatamente o mesmo desafio — bio dispersa entre soroterapia, vitamina, ozônio. Quando focamos a LP em UM protocolo-âncora (sem perder os outros), captura premium dobrou. Não é "site barato" — é vitrine que qualifica paciente que paga teu ticket. Topa ver?`,
+    followup_d7: `Oi Dra. Adriane, última mensagem. Sei que estética injetável tem ciclo de protocolo + retorno. Vou parar. Só registro: 1 paciente nova de R$1k+ paga 2x o investimento da LP. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts de protocolo específico (priorizar PEIM, preenchimento OU soroterapia — NÃO foto pessoal). NÃO comentar (perfil pequeno mas premium recebe genérico — queima). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S (score 9). CASO MAIS DELICADO do cluster — perfil análogo à Irsnayra (não fechou). VACINA DE PITCH ATIVA. Pitch foco em ROI por paciente + UM produto-âncora + gatilho sazonal — NUNCA argumentar preço. LP a partir de R$799-999 provável (justamente pra evitar percepção de "barato demais").',
+  },
+
+  1140: {
+    tier: 'A',
+    posicao_no_tier: 35,
+    dor: 'Dra. Ana Luíza Duarte é DENTISTA CRO TO 3556 (não farmac/biomédica — pertence à categoria Dentista Estético, não cluster Irsnayra estrito). 16.500 seguidores Insta (volume gigante), Maps 5.0/99 reviews, método PROTAGONIZE — Harmonização Facial. CASO ÚNICO no banco: ELA TEM SITE — `dra-analuizaduarte.vizzoone.com`. MAS Vizzoone é plataforma odonto genérica de subdomínio compartilhado (similar a Trinks/Booksy mas pra dentista) — site dela é template padronizado, sem identidade autoral, com URL feia (subdomínio.vizzoone.com não é .com.br próprio). Pitch radicalmente diferente: "MIGRAR DA PLATAFORMA GENÉRICA pra LP autoral com domínio próprio".',
+    gancho: 'PITCH ESPECIAL — único do banco onde lead JÁ PAGA POR plataforma profissional MAS é compartilhada/genérica. Argumento: "Tu já entendeu que precisa de site profissional (e parabéns por isso, raro em Palmas). Mas dra-analuizaduarte.vizzoone.com é subdomínio de plataforma — toda dentista do Vizzoone tem site igual ao teu, só com nome trocado. O que eu monto é diferente: domínio próprio (analuizaduarte.com.br ou similar), identidade visual TUA, método PROTAGONIZE em destaque, biografia + CRO + galeria antes/depois ÚNICA. Tu sai da plataforma, vira marca." Caso-clone: dra-janaina.com.br (médica solo com domínio autoral).',
+    objecao: '"Já tenho site Vizzoone, pago mensalidade, funciona" — defesa do investimento atual.',
+    resposta_objecao: 'Concordo que ter Vizzoone é melhor que não ter nada — e parabéns por já ter saído da fase amadora. MAS pensa: cada dentista do Vizzoone tem site IGUAL AO TEU, só com nome trocado. URL é "dra-analuizaduarte.vizzoone.com" — paciente que vê isso percebe na hora "isso é template de plataforma". Pra paciente que vai pagar R$3k+ em harmonização, o URL é parte da percepção de seriedade. Domínio próprio (analuizaduarte.com.br ou método.com.br) + identidade autoral + método PROTAGONIZE em destaque = vitrine que NÃO existe em outra dentista. Tu sai do template, vira marca. E o Vizzoone tu pode manter como agendamento secundário, não desliga. Topa ver?',
+    nota_interna: 'CASO ÚNICO no banco — Lead que JÁ PAGA POR plataforma profissional. Pitch RADICAL: "domínio próprio + identidade autoral" — argumento de DIFERENCIAÇÃO, não de criação. CRO TO 3556 confirmado. Maps 5.0/99 reviews valida operação. Telefone NÃO veio direto — pegar via DM Insta ou Vizzoone. Pre-engajamento OBRIGATÓRIO (16.5k seg = volume gigante). Pitch "complexo" provável (R$899-1.197) pelo branding autoral + integração com Vizzoone como secundário.',
+    abertura: `Oi Dra. Ana Luíza, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando dentistas autônomas de harmonização em Palmas e o teu perfil chamou atenção forte — 16.5k seguidores Insta + 5★/99 reviews Maps + método PROTAGONIZE é nível raríssimo aqui. E parabéns, vi que tu já investe em site (dra-analuizaduarte.vizzoone.com) — raro em Palmas.
+
+Mas pergunto direto: tu já reparou que toda dentista do Vizzoone tem site IGUAL ao teu, só com nome trocado? Pra paciente que vai pagar R$3k em harmonização, o URL e o template idêntico transmitem "plataforma de dentista", não "marca autoral".
+
+Quanto dessa paciente premium tu acha que percebe isso e recua?`,
+    followup_d3: `Oi Dra. Ana Luíza, voltei. Pensando: tu tem método PROTAGONIZE (autoral) + 16.5k seguidores + 99 reviews 5★ = marca consolidada. Mas o canal digital é template de plataforma. Domínio próprio + identidade autoral + método em destaque + galeria única vira vitrine que NENHUMA dentista tem em Palmas. Vizzoone fica como agendamento secundário, não desliga. Topa ver caso?`,
+    followup_d7: `Oi Dra. Ana Luíza, última mensagem da minha parte. Tu já passou da fase amadora — agora é diferenciação. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts do método PROTAGONIZE (autoral dela, NÃO foto pessoal). NÃO comentar (16.5k seg = recebe muito genérico).',
+    razao_ranking: 'TIER B/A híbrido (score 6 base + caso especial). ÚNICO lead do banco que JÁ PAGA por plataforma profissional. Pitch RADICAL diferenciação: domínio próprio + identidade autoral + método em destaque. 16.5k IG + 5★/99 = autoridade gigante. Se fechar, vira case showcase de "saída de Vizzoone pra LP autoral".',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {
