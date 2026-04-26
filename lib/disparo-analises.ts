@@ -336,7 +336,7 @@ Quantos desses tu acha que perde por mês?`,
     gancho: 'PITCH ESPELHO da Erlane: "Verônica, vi tua operação e ela é praticamente idêntica à da Erlane Vieira (@evsuplementosinjetaveis). Mesmo serviço-âncora (suplementação injetável + soroterapia), mesma identidade visual, mesmo gargalo wa.me. Ela construiu uma LP profissional — evsuplementosinjetaveis.com — que parou de depender só do DM e capturou paciente novo do Google. Posso te mostrar o que mudou na operação dela?". Case real ESPECÍFICO + persona-clone = pitch zero genérico.',
     objecao: '"Meu paciente vem por indicação, não preciso de site" — clássico de profissional autônoma de saúde.',
     resposta_objecao: 'Faz total sentido — paciente de injetável vem MUITO por indicação, é como o nicho funciona. Mas pensa: a paciente que ouviu falar de ti pela amiga e vai pesquisar "Verônica Lima enfermeira Palmas" antes de marcar — ela hoje cai no teu Insta. Vê 1.315 seguidores, posts misturados, link wa.me sem contexto. Comparar com a Erlane: paciente cai numa LP profissional com biografia, lista de protocolos, antes/depois categorizado, formulário de pré-anamnese. Mesma indicação, conversão diferente. Topa eu te mostrar a diferença em 1 print?',
-    nota_interna: 'CASE-CLONE da Erlane (EV Suplementos Injetáveis) = pitch de venda mais forte do batch CIC. USAR evsuplementosinjetaveis.com como referência DIRETA na primeira mensagem. Telefone NÃO veio direto (wa.me/message/R3QWJIHAGS6CF1) — abrir o link wa.me, capturar número e validar antes de disparar. Pre-engajamento OBRIGATÓRIO via Insta D-1.',
+    nota_interna: 'CASE-CLONE da Erlane (EV Suplementos Injetáveis) = pitch de venda mais forte do batch CIC. **REFORÇADO no batch CIC #7**: Verônica é REPLICA 1:1 da Erlane — mesma cidade (Palmas), mesma profissão paramédica (enfermeira esteta), mesmo serviço (suplementação injetável + soroterapia + ozônio), mesmo canal (wa.me sem site). Erlane vira PROVA SOCIAL LITERAL LOCAL (raríssimo em prospecção de cidade média — case da MESMA cidade, não exemplo distante). **AÇÃO ESPECIAL**: pedir permissão da Erlane antes de disparar pra usar nome dela explicitamente + checar se ela conhece Verônica pessoalmente (em Palmas, indicação cruzada da própria persona-mãe é o atalho de fechamento mais rápido). Telefone NÃO veio direto (wa.me/message/R3QWJIHAGS6CF1) — abrir o link wa.me, capturar número e validar antes de disparar. Pre-engajamento OBRIGATÓRIO via Insta D-1.',
     abertura: `Oi Verônica, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
 
 Tô olhando enfermeiras estetas autônomas em Palmas essa semana e o teu perfil chamou atenção forte — operação igualzinha a uma profissional que eu acompanho há um tempo, a Erlane (EV Suplementos Injetáveis).
@@ -678,6 +678,33 @@ Paciente que pesquisa "cirurgia da mão Palmas" hoje cai em cirurgião geral. Qu
     followup_d7: `Oi Dr. Ricardo, última mensagem. Microcirurgia em Palmas não tem dono no Google — quem chegar primeiro com LP técnica fica com o nicho por anos. Tu já tem o domínio, falta o conteúdo. Se em algum momento bater, tu sabe onde me achar.`,
     pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos (priorizar conteúdo cirúrgico, casos de mão — NÃO foto pessoal). NÃO comentar (médica especialista recebe muito genérico). Pre-warming via consumo do conteúdo.',
     razao_ranking: 'TIER S (score 9). PITCH UPGRADE puríssimo — ele já tem domínio próprio (ricardomendonca.com.br) mas só link-in-bio. ULTRA-NICHO técnico (cirurgia mão + microcirurgia) = concorrência regional zero. Case-clone Janaína. Pitch "complexo" R$899-1.197 (LP profissional + integração com domínio existente).',
+  },
+
+  // ── TIER A (CIC #7 — 26/04 micro-nicho clone-Erlane) — 1 lead novo ─────
+  // Batch #7 inspirado pela própria Erlane (esposa do Eduardo, case-mãe Impulso).
+  // Termo de busca "terapias injetáveis ortomolecular" abriu vertical
+  // específica: enfermeiras/biomédicas/farmacêuticas em saúde funcional
+  // integrativa. Erlane vira PROVA SOCIAL LITERAL LOCAL — match 1:1.
+
+  1133: {
+    tier: 'A',
+    posicao_no_tier: 31,
+    dor: 'Amanda Silveira é enfermeira especialista (COREN — não exibido na bio, validar) que opera "Estética e Terapias Injetáveis" em Palmas-TO. Maps 5.0/10 reviews, endereço Q.104 Sul Rua SE 05 N 33 AP 01 (opera home-office em apartamento). Profissional goiana de 33 anos atendendo em Palmas. Nicho: Estética + Saúde Funcional Integrativa (terapias injetáveis, bioestimuladores, soroterapia). 1.360 seguidores Insta, ZERO link in bio visível — tudo no DM. CLONE 1:1 da Erlane (EV Suplementos Injetáveis): mesma profissão paramédica, mesmo serviço, mesma cidade, mesmo gargalo de captura.',
+    gancho: 'PITCH ESPECIAL — único do banco onde o case-clone é da MESMA cidade (Erlane mora em Palmas, Eduardo conhece pessoalmente). Abertura: *"A Erlane (@ev.suplementosinjetaveis) é nossa cliente em Palmas e tinha exatamente o seu setup — enfermeira, terapias injetáveis, saúde funcional, atendimento por horário marcado. Construímos a LP dela (evsuplementosinjetaveis.com), parou de explicar protocolo no DM 50x por dia. Posso te mostrar o que mudou na operação dela?"*. Em cidade média, indicação cruzada da própria persona-mãe é o atalho de fechamento mais rápido — pedir permissão da Erlane antes de disparar.',
+    objecao: '"Atendo em casa, fluxo pequeno, não preciso de site agora" — defesa do operacional home-office.',
+    resposta_objecao: 'Justamente porque tu opera home-office, LP é ainda mais importante — paciente nova que viu teu post sobre suplementação injetável vai pesquisar "Amanda Silveira enfermeira Palmas" antes de marcar (ela vai até a TUA casa, decisão de confiança máxima). Sem LP profissional com biografia + COREN + protocolos + endereço + agendamento, paciente recua. A Erlane teve esse mesmo medo no começo — depois da LP, parou de receber DM perguntando "é confiável?", "como funciona?". Topa ver?',
+    nota_interna: 'CLONE 1:1 DA ERLANE — Eduardo conhece a Erlane pessoalmente (esposa). VALIDAR antes de disparar: (1) pedir permissão da Erlane pra usar nome dela explicitamente como case, (2) checar se Erlane conhece Amanda pessoalmente — em cidade média, indicação cruzada da persona-mãe é atalho de fechamento. Telefone NÃO veio direto — pegar via DM Insta antes de disparar. Pre-engajamento OBRIGATÓRIO via Insta D-1. COREN não exibido na bio — confirmar registro antes do pitch (filtro 0 obrigatório).',
+    abertura: `Oi Amanda, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando enfermeiras autônomas de terapias injetáveis em Palmas e o teu perfil chamou atenção forte. Tu opera home-office, atende com horário marcado, foco em saúde funcional integrativa.
+
+Pergunto direto: tu conhece a Erlane (@ev.suplementosinjetaveis)? Ela é nossa cliente aqui em Palmas e tinha EXATAMENTE o teu setup há 6 meses — enfermeira, terapias injetáveis, atendimento por horário, gargalo no DM.
+
+Quer ver o que mudou na operação dela quando lançou a LP profissional?`,
+    followup_d3: `Oi Amanda, voltei. Pensando: paciente que vai até TUA casa pra terapia injetável tem decisão de confiança máxima — ela pesquisa MUITO antes. Erlane tinha esse mesmo medo, depois da LP a paciente já chegava informada (biografia, COREN, protocolos, endereço). Topa eu te mostrar a LP dela em 1 print + diferença operacional?`,
+    followup_d7: `Oi Amanda, última mensagem da minha parte. Sei que home-office pequeno parece "não preciso de site agora". Erlane também pensava assim. Hoje ela atende quase full por causa da LP. Se em algum momento isso bater pra ti, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2-3 posts técnicos (terapias injetáveis, bioestimuladores, soroterapia — não foto pessoal). Comentar 1 com algo do tipo "bioestimulador injetável tem feito diferença mesmo em estética" ou referência ao protocolo específico. Profissional saúde valoriza pre-engajamento técnico, NÃO emoji.',
+    razao_ranking: 'TIER S (score 9). CLONE 1:1 DA ERLANE — único caso do banco onde o case-clone é da MESMA cidade. Eduardo conhece Erlane pessoalmente. Pitch ESPELHO LITERAL + indicação cruzada possível = atalho de fechamento mais rápido do pipeline inteiro nesse micro-nicho. Ticket recorrente (R$200-400 sessão). LP a partir de R$499 paga em 2 sessões.',
   },
 
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────

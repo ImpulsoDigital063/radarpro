@@ -56,6 +56,7 @@ Pesquisa Claude in Chrome mapeou o universo competitivo. **Pode ser citado quand
 | Dermatologia (clínica grande) | Dra. Raquel Amashta / Instituto RA | dermatto.com.br (estrutura grande, descartar) |
 | Ginecologia/Obstetrícia | Dra. Pollyana Macedo | pollyanamacedo.com.br |
 | Endocrinologia | Dra. Marcela Pitaluga | dramarcelapitaluga.com.br |
+| Ozonioterapia / Injetáveis | Ozônioterapia Palmas | ozonioterapiapalmas.com.br (concorrência direta no nicho clone-Erlane) |
 
 **Use esses como prova social quando lead resistir** — argumento: *"Os profissionais autônomos mais consolidados de Palmas no [nicho do lead] já têm LP profissional. [Cita 1-2 nomes do mapa acima do mesmo nicho]. Eles entenderam que paciente novo pesquisa antes de marcar — e quem aparece com LP profissional fica com a venda."*
 
