@@ -909,6 +909,119 @@ Quanto desse cliente tu acha que recua nesse momento, antes mesmo de te ligar?`,
     razao_ranking: 'TIER S (score 9). TICKET ALTÍSSIMO (R$200-2.500) = ROI Shopify rapidíssimo. 1 venda de R$1.500 paga 2.5x LP. abre.ai = sinal de compra. Assistência autorizada = diferencial pra prova social. Pitch "complexo" R$899-1.197.',
   },
 
+  // ── TIER A (CIC #10 — 26/04 cluster CLONE-GABRIEL faceta LP fitness) — 5 leads ──
+  // Persona-mãe LP: Gabriel Barros (@gabribarros10) faceta personal/coach
+  // (NÃO a loja GB). Vetor /following/ do case ATIVO Impulso descobriu
+  // 6 personal trainers/nutri solo qualificados em 35 min — método-ouro
+  // de prospecção. CREF GO-TO funciona como filtro geo automático.
+  // Concorrência rival local mapeada: @agenciaprintdesign (atende
+  // @brunocosta.treinador) — possível parceria white-label, não competição.
+
+  1150: {
+    tier: 'A',
+    posicao_no_tier: 41,
+    dor: 'Gabriel Santiago é Personal Trainer + Coach com nicho específico CrossFit + Atleta Híbrido em Palmas-TO. CREF 2094-GO/TO confirmado. 1.433 POSTS Insta em 3.905 seguidores (engagement altíssimo, raro de ver) — significa que ele entrega conteúdo CONSISTENTE há anos sem retorno proporcional em conversão de aluno. ZERO link externo, só Threads. Bio: "Coach CrossFit & Atleta Híbrido | Bacharel Educação Física | CREF 2094-GO/TO | Performance • Força • Resistência". 1.433 posts sem LP de captura = pelo menos 100 alunos perdidos ao longo do tempo por não ter onde mandar quem quer contratar.',
+    gancho: 'CASE-CLONE QUASE PERFEITO do Gabriel Barros (case ATIVO Impulso) com nicho COMPLEMENTAR (CrossFit vs Bodybuilding clássico). Pitch: "Gabriel, vi que tu segue meu cliente Gabriel Barros (GB Nutrition) — vocês têm posicionamento similar mas em nichos complementares. Ele construiu LP profissional + loja Shopify, parou de perder aluno na falta de funil. Tu tem 1.433 posts sem onde mandar quem quer contratar — é como vender ingresso sem ter bilheteria. LP CrossFit Performance: formulário objetivo (ganho massa / atleta híbrido / preparação prova) + agendamento avaliação física + planos mensal/trimestral + depoimentos transformação. Posiciona como CrossFit Specialist Palmas (nicho não coberto pelo @gabribarros10)."',
+    objecao: '"Já vendo aluno pelo Insta, tá funcionando" — operação ativa defendendo o que funciona.',
+    resposta_objecao: 'Concordo — 3.9k seg + 1.433 posts mostra que tu construiu autoridade real. Mas pensa: cada post teu chega em 500-1000 pessoas. Quantas dessas tu acha que pensam "tô interessado, mas onde mando mensagem?" e depois esquecem? Sem LP, o aluno potencial perde ti por inércia (não mandou DM no momento certo). LP não substitui Insta — captura quem viu post, ficou interessado e teria perdido na fricção do "vou mandar DM depois". Mesmo aluno, conversão diferente. E olha — vi que tu segue o Gabriel (GB Nutrition). Ele é meu cliente. Topa eu te mostrar o que mudou na operação dele quando montei a LP?',
+    nota_interna: 'CASE-CLONE QUASE PERFEITO Gabriel Barros (faceta personal). MENCIONAR Gabriel na 1ª mensagem é vetor direto — eles se seguem. ANTES DE DISPARAR, falar com o Gabriel pra: (1) pedir permissão usar nome dele, (2) checar se conhecem pessoalmente (provável — networking fitness Palmas é fluido), (3) possível indicação direta. CREF 2094-GO/TO confirmado na bio. Pegar telefone via DM Insta antes. Pitch padrão R$499 ou complexo R$799-999 (formulário multi-step + área aluno online).',
+    abertura: `Oi Gabriel, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Vi que tu segue o Gabriel Barros (@gbnutritionn, GB Nutrition) — ele é meu cliente. Tô olhando personal trainers consolidados de Palmas e o teu perfil chamou atenção MUITO forte: 1.433 posts em 3.9k seguidores é engagement raro de ver + CREF GO-TO + nicho CrossFit/Atleta Híbrido (complementar ao bodybuilding do Gabriel-mãe).
+
+Mas vi tua bio: zero link externo. 1.433 posts sem LP de captura — cada post chega em 500-1000 pessoas, e quantas dessas pensam "tô interessada" e somem na fricção de mandar DM?
+
+Topa eu te mostrar o que mudou na operação do Gabriel quando ele montou a LP?`,
+    followup_d3: `Oi Gabriel, voltei. Pensando: tu tem 1.433 posts (3 anos de conteúdo consistente!) sem captura. Estimativa conservadora: 100 alunos perdidos por ano em quem viu conteúdo + interessou + esqueceu de mandar DM. LP CrossFit Performance pega exatamente esse momento: visitante chega, vê biografia + CREF + método + planos, agenda avaliação. Topa ver caso real?`,
+    followup_d7: `Oi Gabriel, última mensagem da minha parte. Sei que rotina de personal solo + atleta competidor é puxada (vi os Arnold). Vou parar. Só registro: tua autoridade técnica + 1.433 posts é capital social que merece infraestrutura de captura. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts técnicos (priorizar conteúdo CrossFit ou Atleta Híbrido — NÃO foto pessoal). Comentar 1 com algo específico ("a abordagem de atleta híbrido com força + resistência é raro de ver com esse rigor"). Personal trainer técnico valoriza pre-engajamento técnico, não emoji.',
+    razao_ranking: 'TIER S (score 10!) — RECORD do batch #10. CASE-CLONE Gabriel Barros + nicho complementar (CrossFit vs Bodybuilding) + 1.433 posts + ZERO web + CREF GO-TO. Pitch ESPELHO direto via Gabriel-mãe (eles se seguem — networking fitness Palmas). Pitch padrão R$499 ou complexo R$799-999 com formulário qualificador.',
+  },
+
+  1149: {
+    tier: 'A',
+    posicao_no_tier: 42,
+    dor: 'Dafne Sixel é nutricionista funcional vinculada à Integral Clinic Palmas-TO (Q.104 Sul Av LO 1, N.10 - Plano Diretor Sul - clínica 4.8/731 reviews validada via Google Knowledge Panel). 4.805 seguidores Insta + 1.143 POSTS (consistência editorial MONUMENTAL — uma das maiores produções de conteúdo nutri em Palmas). Bio: "Flexibilidade metabólica, saúde intestinal e autonomia. Nutrição centrada em você – não em protocolos!". Site atual: msha.ke/dafneqnutri (ferramenta amador BR). 1.143 posts publicados + ALTA DEMANDA REPRIMIDA + canal de captura amador = receita massiva escapando. Atendimento online declarado.',
+    gancho: 'PITCH UPGRADE pra LP nutri funcional co-branded com Integral Clinic. Estrutura: biografia + CRN em destaque + vínculo Integral Clinic (autoridade médica gigantesca — 731 reviews 4.8★) + 4 áreas (flexibilidade metabólica, saúde intestinal, autonomia, paciente "centrada em você") + formulário avaliação metabólica (objetivos / restrições alimentares / histórico) + escolha pacote (3/6/12 meses) + biblioteca de receitas exclusiva pra alunos + integração Calendly/WhatsApp Business + 3 artigos SEO ("dieta flexível", "saúde intestinal", "nutrição funcional Palmas"). Mantém msha.ke como redirect, LP vira destino oficial.',
+    objecao: '"Tenho msha.ke + Integral Clinic, paciente acha" — defesa do operacional atual.',
+    resposta_objecao: 'Faz total sentido — Integral Clinic com 731 reviews 4.8★ é canal de chegada principal pra paciente local. Mas pensa: paciente NOVO que viu teu post sobre flexibilidade metabólica, vai pesquisar "Dafne Sixel nutri Palmas" antes de marcar consulta. Cai no msha.ke, vê 5 links sem hierarquia, sem teu rosto profissional em destaque, sem vínculo Integral Clinic explícito, sem áreas de expertise estruturadas. 60% recua nesse momento. LP profissional pega exatamente isso: ela chega e vê biografia + CRN + INTEGRAL CLINIC em destaque (autoridade triplicada) + áreas + FAQ. Mesma paciente, conversão diferente. Topa ver?',
+    nota_interna: 'AUTORIDADE GIGANTESCA via Integral Clinic (731 reviews 4.8★) — usar como ÂNCORA pesada na LP. Telefone NÃO veio direto (msha.ke) — abrir, capturar. CRN não validado no scrape — VALIDAR. Pre-engajamento OBRIGATÓRIO (curtir 2 posts técnicos sobre flexibilidade metabólica OU saúde intestinal — nutri funcional valoriza pre-engajamento técnico). Pitch "complexo" R$899-1.197 (4 áreas + biblioteca receitas + integração Calendly + co-branding Integral Clinic).',
+    abertura: `Oi Dafne, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando nutricionistas funcionais autônomas em Palmas e o teu perfil chamou atenção MUITO forte — 1.143 posts (uma das maiores produções de conteúdo nutri em Palmas) + vinculação à Integral Clinic (731 reviews 4.8★ — autoridade médica gigantesca).
+
+Mas vi teu link da bio (msha.ke). Paciente nova que viu post sobre flexibilidade metabólica e vai pesquisar antes de marcar — cai num link sem teu rosto, sem CRN, sem Integral Clinic em destaque, sem áreas estruturadas.
+
+Quanto dessa paciente nova tu acha que recua nesse momento da pesquisa?`,
+    followup_d3: `Oi Dafne, voltei. Pensando: 1.143 posts é consistência editorial monumental — capital de conteúdo que MUITO nutri funcional do Brasil leva 5 anos pra construir. Mas o canal de captura é amador. LP profissional co-branded com Integral Clinic + biblioteca de receitas exclusiva alunos + formulário avaliação metabólica = vira destino oficial. Topa ver?`,
+    followup_d7: `Oi Dafne, última mensagem. Vínculo Integral Clinic + 1.143 posts é capital social raro. Falta só vitrine adequada. Se em algum momento bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos (priorizar flexibilidade metabólica, saúde intestinal, dieta carnívora — temas técnicos dela). Comentar 1 com algo específico ("a abordagem de flexibilidade metabólica sem rigidez de protocolo é raro de ver mesmo"). Nutri funcional valoriza pre-engajamento técnico.',
+    razao_ranking: 'TIER S (score 9.5). Vinculação Integral Clinic = autoridade gigantesca. 1.143 posts = consistência editorial monumental. msha.ke = sinal de compra. Pitch "complexo" R$899-1.197 (co-branding clínica + 4 áreas + biblioteca receitas + Calendly).',
+  },
+
+  1151: {
+    tier: 'A',
+    posicao_no_tier: 43,
+    dor: 'Júnior Sá é Personal Coach com Insta VERIFICADO (raríssimo em personal trainer Palmas — sinal de operação consolidada). Bio: "Coach | Resultados que refletem em toda a sua vida! Avaliação Diagnóstica Clínica/Funcional | Espec. em Medicina do Exercício". 3.934 seg + 302 posts. Site atual: eksy.me/treinadorjrsa (ferramenta amador BR). Destaques: Fat Burn, Emagrecimento, Hipertrofia, Mind Set, Longevidade. Network direta: seguido por @gbnutritionn + @gabribarros10. Diferencial: "MEDICINA DO EXERCÍCIO" como especialização = nicho mais clínico, ticket potencialmente maior que personal padrão. Tem clientes online (eksy.me sugere) mas usa ferramenta amadora — falta LP médica de avaliação funcional com formulário qualificador.',
+    gancho: 'LP MÉDICA Júnior Sá — biografia + Medicina do Exercício em destaque + formulário ANAMNESE pré-consulta (objetivos / restrições / disponibilidade / patologias prévias) + agendamento online + depoimentos especificamente de longevidade (área de destaque dele) + integração WhatsApp Business + área de membros pra alunos online. Posicionar como UM dos poucos coaches com Medicina do Exercício em Palmas — autoridade específica que personal padrão não tem.',
+    objecao: '"Tenho eksy.me, alunos chegam, tá funcionando" — defesa da solução amadora atual.',
+    resposta_objecao: 'Faz sentido — eksy.me cumpre o básico de redirecionar pro WhatsApp. Mas pensa: tu tem Insta verified (raríssimo em personal Palmas) + Medicina do Exercício (autoridade clínica). Aluno potencial que vê teu post, vai pesquisar antes de marcar — cai no eksy.me e vê só "AGENDAR" sem biografia, sem explicação do método, sem distinção do "Coach padrão" pro "Coach com Medicina do Exercício". Recua. LP médica pega esse momento: ele chega e vê biografia + especialização clínica + Avaliação Diagnóstica explicada + formulário anamnese. Mesmo aluno, conversão diferente. E vi que tu segue/é seguido pelo Gabriel (GB Nutrition) — ele é meu cliente. Topa ver caso?',
+    nota_interna: 'INSTA VERIFICADO em personal Palmas é RARÍSSIMO — autoridade extra. Pegar telefone via eksy.me. Network direta com Gabriel-mãe = vetor de mensão. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts técnicos longevidade ou avaliação funcional). Pitch padrão R$499 ou complexo R$799-999 (formulário anamnese + área membros + integração).',
+    abertura: `Oi Júnior, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando personal trainers consolidados de Palmas e o teu perfil chamou atenção MUITO forte — Insta verified (raríssimo em personal aqui) + "Medicina do Exercício" como especialização + 302 posts. Operação séria.
+
+Mas vi teu link (eksy.me). Aluno potencial que viu post sobre longevidade vai pesquisar antes de marcar — cai num link sem biografia, sem especialização clínica em destaque, sem formulário anamnese.
+
+Quanto dele tu acha que recua nesse momento? E olha: vi que o Gabriel Barros (@gbnutritionn) te segue — ele é meu cliente.`,
+    followup_d3: `Oi Júnior, voltei. Pensando: "Medicina do Exercício" + verified Insta = combinação rara em Palmas. Aluno premium (que paga R$500+/mês) pesquisa MUITO antes de fechar — quer ver biografia clínica, método, FAQ específico. eksy.me não entrega isso. LP médica pega exatamente esse momento. Topa ver?`,
+    followup_d7: `Oi Júnior, última mensagem. Verified + Medicina do Exercício é capital social raro. Se em algum momento bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos (priorizar longevidade ou avaliação diagnóstica, NÃO foto pessoal). NÃO comentar (verified recebe muito comentário genérico). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S (score 9). VERIFIED Insta = autoridade extra. Medicina do Exercício = nicho clínico premium. eksy.me = sinal de compra. Network Gabriel-mãe direta. Pitch padrão R$499 ou complexo R$799-999.',
+  },
+
+  1152: {
+    tier: 'A',
+    posicao_no_tier: 44,
+    dor: 'José Wilker é Personal Trainer com tese forte de COMUNIDADE: "+200 alunos transformados | teamJW". Bio: "Saúde e perfomance. Casado @gabriellasoza. Clica e faça parte do teamJW". CREF14/GO-TO Palmas confirmado via Google. 2.048 seg + 87 posts. Site atual: clique.ink/0xuta1 (amador BR). Network dupla GB+Gabriel. Diferencial vs Gabriel-mãe: ele vende COMUNIDADE/MOVIMENTO ("teamJW"), enquanto Gabriel-mãe vende método individual. Conceito "team" tem POTENCIAL DE MEMBERSHIP RECORRENTE — mas hoje tá jogado fora porque clique.ink não tem área de membros, tabela de planos, ranking de alunos.',
+    gancho: 'LP TEAMJW MEMBERSHIP AREA — pivotar a tese "team" em produto recorrente real. Estrutura: biografia + +200 alunos transformados + área de membros (treinos progressivos + chat exclusivo + nutricionista parceira opcional + ranking de alunos com transformações) + assinatura mensal R$199-299/mês (premium pelo módulo membership) + planos trimestral/anual com desconto. Posicionar não como "personal solo" mas como "comunidade fitness com método" — alteração radical de produto que justifica ticket recorrente alto.',
+    objecao: '"Tô conseguindo alunos pelo Insta, +200 transformados, tá funcionando" — defesa do operacional atual + autoridade construída.',
+    resposta_objecao: 'Concordo — +200 alunos é número que poucos personal palmenses tem. Mas pensa: tu posiciona "teamJW" como comunidade, mas hoje teamJW é só HASHTAG. Não tem área onde aluno antigo conversa com aluno novo, não tem ranking de transformações pra inspirar quem entrou ontem, não tem treinos progressivos por nível. teamJW é tese sem produto. LP membership area transforma a tese em produto recorrente: aluno paga R$199-299/mês e tem comunidade + treinos + chat + ranking. Tu para de vender hora de personal e vende ASSINATURA. R$200/mês x 50 alunos = R$10k recorrente, sem precisar de novo aluno todo mês. Topa ver?',
+    nota_interna: 'PITCH MEMBERSHIP RECORRENTE — diferente do pitch padrão personal solo. R$499 setup + R$199-299/mês justifica pelo módulo membership area. Network dupla com Gabriel-mãe = vetor de menção. Pegar telefone via clique.ink. Pre-engajamento Insta D-1 obrigatório.',
+    abertura: `Oi José, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando personal trainers consolidados em Palmas e o teu perfil chamou atenção forte — +200 alunos transformados + posicionamento "teamJW" + CREF GO-TO. Tu construiu marca pessoal de verdade.
+
+Mas pergunto direto: tu posiciona "teamJW" como comunidade, mas hoje é só hashtag. Não tem área onde aluno antigo conversa com novo, não tem ranking de transformações, não tem treinos progressivos por nível. teamJW tá hoje no clique.ink — tese sem produto.
+
+Topa virar teamJW em produto recorrente real (assinatura R$199-299/mês com membership area)?`,
+    followup_d3: `Oi José, voltei. Pensando: "team" é a maior tese tua, mas hoje só vive como hashtag. LP membership area transforma em produto: 50 alunos x R$199/mês = R$10k recorrente sem precisar de novo aluno todo mês. Tu para de vender hora, vende assinatura. Caso real disso?`,
+    followup_d7: `Oi José, última mensagem. teamJW + 200 alunos transformados = base perfeita pra membership area. Se em algum momento bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar transformação de aluno OU conteúdo team — NÃO foto pessoal). Comentar 1 com algo específico ("a tese teamJW como comunidade é diferenciada — vejo poucos personal pensando em assinatura recorrente"). Personal valoriza pre-engajamento estratégico.',
+    razao_ranking: 'TIER S (score 8). PITCH ESPECIAL membership area — diferente do pitch padrão personal solo. teamJW = tese forte que pode virar produto recorrente. R$499 setup + R$199-299/mês = ROI premium. CREF GO-TO + network Gabriel-mãe.',
+  },
+
+  1153: {
+    tier: 'A',
+    posicao_no_tier: 45,
+    dor: 'Rodolpho Margonari é Personal Trainer entry-level: 925 seguidores (abaixo do sweet spot LP), 101 posts, CREF 002143-G/TO confirmado. Bio: "Instrutor de fitness | Te ajudo a chegar na sua melhor versão | Personal Trainer | Casado @mmargonari Palmas-To". ZERO link externo. Network tripla GB+Gabriel+Letícia. Volume baixo MAS qualidade maturidade compensa: bio explícita Palmas-TO + CREF + zero web = pacote "Tier A alto potencial" especialmente porque ticket de upsell é fácil (vai de R$300 pra R$500/mês com LP profissional).',
+    gancho: 'LP ENTRY-LEVEL Rodolpho — pacote essencial R$499 setup + R$79-99/mês (tier econômico pela faixa <1k seg). Foco em formulário simples + agendamento + 5 depoimentos + biografia + CREF em destaque. Conforme ele cresce em seg, upgrade pra plano completo. Pitch: "comece a captura agora, antes de chegar em 3k seg — depois é só ampliar".',
+    objecao: '"Não tenho volume Insta ainda, vou esperar crescer" — defesa do estágio atual.',
+    resposta_objecao: 'Justamente porque tu tá começando, LP faz mais sentido AGORA — não depois. Personal com 5k seg que monta LP só captura quem JÁ segue. Tu, que tá com 925 e crescendo, monta LP agora e cada novo seguidor já cai num funil de captura — em vez de só ver post + esquecer. Em 6 meses, quando tu tiver 3k seg, já tá com 50-80 alunos capturados pela LP. Caso de personal que começou exatamente assim aqui em Palmas — quer ver?',
+    nota_interna: 'TIER A entry-level. Pitch ECONÔMICO (R$79-99/mês manutenção). Network tripla com Gabriel-mãe = vetor de menção. Pegar telefone via DM Insta. CREF confirmado bio. Pre-engajamento Insta D-1 obrigatório.',
+    abertura: `Oi Rodolpho, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando personal trainers em Palmas e o teu perfil chamou atenção — CREF GO-TO + bio explícita Palmas + posicionamento técnico ("melhor versão"). Tu tá construindo o perfil certo.
+
+Mas vi tua bio: zero link externo. Tu tá começando a crescer no Insta — esse é EXATAMENTE o momento de montar LP de captura. Não depois quando tiver 5k.
+
+Pergunto: cada novo seguidor teu hoje vê post + esquece, ou cai num funil que captura?`,
+    followup_d3: `Oi Rodolpho, voltei. Pensando: tu tá num momento ÚNICO — Insta crescendo + CREF + posicionamento. LP montada agora captura cada novo seguidor desde o zero. Em 6 meses, quando tu tiver 3k seg, já tá com 50-80 alunos capturados pela LP. Versus quem só monta DEPOIS de crescer e captura zero. Topa ver caso?`,
+    followup_d7: `Oi Rodolpho, última mensagem. Personal trainer crescendo precisa de funil ANTES de virar reclamação "estou perdendo aluno". Se em algum momento bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar transformação OU método, não foto pessoal). Comentar 1 com algo do tipo "ver personal Palmas com CREF GO-TO consistente é raro mesmo" ou referência ao método.',
+    razao_ranking: 'TIER A (score 7.5). Entry-level com alto potencial de upgrade. Pitch econômico R$499 + R$79-99/mês. CREF GO-TO + network Gabriel-mãe. Aluno em fase de construção é momento ÚNICO de montar funil.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {

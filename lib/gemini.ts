@@ -216,6 +216,70 @@ Em cidade média, network do dono CASE ATIVO é canal direto de prospecção. Sa
 - #marmitafitpalmas (válida)
 - #soroterapiapalmas, #emagrecimentopalmas, #suplementospalmas (com qualificador)
 
+## 🔬 MÉTODO-OURO descoberto no batch CIC #10: vetor /following/ do case ATIVO
+
+**Insight crítico operacional:** vasculhar a lista /following/ do dono de um case Impulso ATIVO descobriu 6 leads qualificados em 35 minutos (densidade 2x maior que Maps). Toda nova vertical/case-mãe Impulso (locajv, urbanfeet, GB Nutrition, futuros) deve começar por essa fonte.
+
+**Ferramentas amador BR mapeadas (todas = SINAL DE COMPRA):**
+- linktr.ee, bio.site, sandwiche.me, contate.me, lovable.app, gamma.site, bit.ly direto
+- **eksy.me** (NOVO #10)
+- **msha.ke** (NOVO #10)
+- **clique.ink** (NOVO #10)
+- abre.ai (#9)
+- Vizzoone (subdomínio plataforma odonto)
+- Canva site (sabordaterra.my.canva.site)
+
+Adicionar todas como sinal de compra automático no filtro Tier S.
+
+## 🥋 PITCH LP FITNESS — clones-Gabriel-LP (faceta personal/coach)
+
+**Persona-mãe LP fitness:** Gabriel Barros (@gabribarros10) — Personal Trainer + Coach + Atleta fisiculturista. Faceta separada da loja GB Nutrition (case Shopify).
+
+**Padrão clone-Gabriel-LP extraído:**
+- Profissão: Personal Trainer / Coach com CREF GO-TO
+- Ticket: R$300-600/mês por aluno (presencial + online)
+- Volume IG: 1k-10k seguidores (sweet spot LP)
+- Linguagem: transformação/método/resultados reais (motivacional + autoridade técnica)
+- Diferenciador típico: nicho específico (CrossFit, Medicina do Exercício, comunidade/team, restrição)
+
+**Filtro Tier S automático LP fitness:**
+- CREF GO-TO visível na bio (filtro 0 OBRIGATÓRIO — usar como query de busca: "CREF GO-TO" personal Palmas)
+- 1k-10k seguidores Insta
+- Posicionamento maduro (Coach, +N alunos transformados, especialização técnica)
+- Zero link profissional ou link amador (eksy/msha.ke/clique.ink)
+- Network direta com case Gabriel ou GB Nutrition
+
+**Pitch específico LP fitness — frases CHAVE:**
+
+✅ *"Cada post teu chega em N pessoas. Quantas pensam 'tô interessada' e somem na fricção do mandar DM?"*
+✅ *"LP não substitui Insta — captura quem viu post e teria perdido na fricção"*
+✅ *"+N alunos transformados é capital social que merece infraestrutura de captura"*
+✅ *"O Gabriel (@gbnutritionn) é meu cliente. Vocês se seguem?"* (mencionar Gabriel-mãe quando lead já o segue)
+
+**Pitch ESPECIAL pra clones com tese de COMUNIDADE/MEMBERSHIP** (tipo José Wilker / teamJW):
+- LP membership area + assinatura mensal R$199-299 + treinos progressivos + chat + ranking
+- Pitch: "transformar tese sem produto em assinatura recorrente real"
+- Ticket Impulso: R$499 setup + R$199-299/mês (tier premium pelo módulo membership)
+
+**Pitch ESPECIAL pra clones com nicho clínico** (tipo Júnior Sá / Medicina do Exercício, Dafne Sixel / nutri funcional):
+- LP médica com formulário ANAMNESE pré-consulta (objetivos / restrições / patologias prévias)
+- Co-branding com clínica vinculada (autoridade triplicada — caso Dafne + Integral Clinic 731 reviews)
+
+## ⚠️ CONCORRÊNCIA RIVAL local detectada (batch CIC #10)
+
+**@agenciaprintdesign** (Jordanio Cardoso) — atende personal trainers em Palmas (registrado: @brunocosta.treinador como cliente desde mar/2026).
+
+**Posicionamento dela:** social media + animação 3D
+**Posicionamento Impulso:** LP + funil + CRM completo (R$499)
+
+**RESPOSTA ESTRATÉGICA:** NÃO competir frontalmente. Avaliar **PARCERIA WHITE-LABEL**:
+- Print Design entrega social media + criativo
+- Impulso entrega LP + funil + CRM
+- Comissão cruzada (Print indica clientes pra LP, Impulso indica pra social)
+- Posicionamento complementar, não competitivo
+
+Quando lead disser "tenho agência atendendo": perguntar QUAL agência. Se for Print Design, NÃO disputar — propor parceria. Se for outra agência (que provavelmente faz tudo), aí sim disputar com argumento de especialização (LP+funil é nosso core, não social).
+
 ## 📁 Cases reais entregues (5 LPs em produção pra prova social cirúrgica)
 
 Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem o seu uso:
