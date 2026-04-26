@@ -256,6 +256,73 @@ Tu sente esse buraco?`,
     razao_ranking: 'PROCESSO MADURO sem ferramenta. Preço + parcelamento + frete Brasil já no caption = ela pensa como dona de loja online, só não tem o checkout. 1.105 posts = catálogo. Loja física + envio Brasil = volume real. Shopify cabe perfeito.',
   },
 
+  // ── TIER A (CIC #2.5 v2 — 25/04 multi-nicho) — 3 leads-âncora score 8 ──
+  // Hashtags varridas: suplementos, semi-joias, perfumaria. 35 perfis abertos,
+  // 11 aprovados nos 7 filtros duros. Top 3 com score 8 ganham playbook customizado.
+
+  1103: {
+    tier: 'A',
+    posicao_no_tier: 12,
+    dor: 'Mara Camargo Semijoias tem 16 ANOS de curadoria, ticket alto (semijoia premium R$200-1.500), 3.047 posts no Instagram (catálogo gigantesco) e dona-marca que aparece em vídeos (decisão direta, sem comitê). MAS o foco é 100% LOCAL — atendimento exclusivo seg-sex 9h30-18h30 na 208 Sul. Cliente de fora de Palmas que quer aquela peça vista no Insta NÃO consegue comprar. 16 anos de catálogo digital sem checkout = oceano de receita escapando.',
+    gancho: 'Shopify pega o catálogo dela (3.047 posts = ~800 peças únicas em rotação) e monta vitrine premium com filtro por categoria (anel, brinco, colar, pulseira) + parcelamento 12x + frete Brasil. Mara continua a curadoria + atendimento exclusivo no físico — Shopify só captura a cliente de fora que JÁ quer comprar. Posicionamento mantido (premium, não Shein), só destrava distribuição.',
+    objecao: '"Meu negócio é atendimento exclusivo, presencial. Online tira a alma da marca." — defesa de valor da experiência.',
+    resposta_objecao: 'Faz total sentido — atendimento exclusivo é teu diferencial e o teu cliente fiel ama isso. Shopify NÃO substitui isso. Pega só a cliente de FORA de Palmas que viu uma peça tua num story compartilhado e não consegue ir até a loja. Ela hoje desiste e compra outra. Com Shopify, ela compra a TUA peça, a curadoria continua tua, e tua cliente local continua sendo recebida no espaço. Tu ganha o canal nacional sem perder o atendimento.',
+    nota_interna: 'LEAD ESTRATÉGICO TOP do batch CIC #2.5 v2. Dona-marca = decisão direta. Pre-engajamento OBRIGATÓRIO (curtir 3 posts editorial, comentar 1 sobre peça específica). Telefone (63)99975-4455 confirmado no perfil. Pitch da call de alinhamento é CRUCIAL aqui — projeto é "complexo" pelo volume de catálogo + branding premium, valor final provavelmente sobe pra R$899-1.199.',
+    abertura: `Oi Mara, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando os negócios mais consolidados de Palmas essa semana e 16 anos de curadoria em semijoia premium é coisa rara. Tu construiu uma marca que tem identidade própria — não é "loja de joia", é Mara Camargo.
+
+Me parece que tua cliente fiel ama o atendimento exclusivo na loja. Mas a cliente que mora em Goiânia, Brasília, São Paulo e viu uma peça tua no story de uma amiga — essa hoje desiste e compra outra coisa.
+
+Quanto dessa cliente de fora tu acha que perde por mês?`,
+    followup_d3: `Oi Mara, voltei. Pensando: 16 anos + 3.047 posts = catálogo digital que ninguém em Palmas tem. O que falta é só botão de compra. Shopify abriria mercado nacional sem mexer no atendimento exclusivo presencial — uma porta extra, não substituição. Topa eu te montar um protótipo da vitrine pra tu olhar antes de decidir?`,
+    followup_d7: `Oi Mara, última mensagem da minha parte. Sei que decisão de marca consolidada não é compra de impulso — tu construiu isso ao longo de 16 anos. Só registro: peça única + ticket alto + dona-marca é exatamente o perfil que mais escala em Shopify quando faz a transição. Se um dia fizer sentido, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 3 posts editorial dos últimos 7 dias (priorizar peças com close-up e foto de modelo), comentar 1 com algo específico da peça ("essa pulseira ficou com um caimento incrível" ou referência ao material). Marca premium valoriza relacionamento — engajamento genérico queima.',
+    razao_ranking: 'LEAD-ÂNCORA TOP do batch CIC #2.5 v2. Ticket alto + 16 anos curadoria + dona-marca decisão direta + 3.047 posts catálogo = case ideal Shopify pra escalar fora de Palmas. Foco LOCAL hoje é a oportunidade — destrava nacional. Pitch "complexo" (catálogo grande + branding premium), valor provável R$899-1.199 na call.',
+  },
+
+  1102: {
+    tier: 'A',
+    posicao_no_tier: 13,
+    dor: 'One Suplementos tem 5 LOJAS FÍSICAS em Palmas, 12.300 seguidores, 437 posts, "envia para todo Brasil" declarado na bio, frete grátis Tocantins R$199,90+, conta verificada e link tree no perfil. Operação grande já vendendo nacional via DM/link tree. Cada pedido de fora = pedido por mensagem (estoque, frete, pix), 5 lojas pra coordenar inventário, link tree em vez de checkout real. É EV Suplementos Injetáveis em escala maior — exatamente o caso GB Nutrition pronto pra Shopify.',
+    gancho: 'Shopify resolve 3 dores em 1: (a) checkout único com cálculo de frete automático (cliente paga sozinho, escolhe motoboy ou Correios), (b) catálogo unificado com estoque por loja (cliente vê o que tem perto e retira), (c) substitui link tree por loja real (legitimidade pra cliente novo). Mesma operação, 1/3 do trabalho de DM, 3x o ticket médio porque cliente compra cesta em vez de 1 item.',
+    objecao: '"Já vendemos pelo Brasil, dá certo. Por que mexer?" — operação madura defendendo o status quo.',
+    resposta_objecao: 'Entendo — vocês construíram operação que funciona, raríssimo nesse setor. Mas pensa: hoje o cliente de Cuiabá que viu vocês pelo Insta tem que mandar mensagem, esperar resposta, perguntar frete, mandar pix. Quantos desistem nessa jornada? No Shopify ele paga em 5 min, escolhe Correios ou motoboy, e vocês recebem o pedido pronto. Mesma operação — só sem o gargalo da DM. Topa eu te mostrar caso de Distribuidora de SP que fez essa migração e dobrou volume?',
+    nota_interna: 'OPERAÇÃO MADURA — não pitchar como entry-level Shopify. Pitch deve ser de UPGRADE de canal, não criação. Validar se já tem ERP (provável) — Shopify integra com Bling, Tiny e ContaAzul (o que já usa). Telefone NÃO veio direto no JSON (link tree) — pegar número do link tree antes de disparar. Projeto provavelmente "complexo" — múltiplas lojas, integração ERP, talvez Premium R$1.497+.',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando as operações de suplemento mais sólidas de Palmas essa semana. 5 lojas físicas + envio Brasil declarado + verificação Insta — isso é nível de operação que eu não esperava encontrar em loja palmense.
+
+Me parece que vocês construíram operação madura. Mas o gargalo agora é diferente do que era no início: cliente novo de Cuiabá manda DM perguntando estoque/frete/pix e desiste no caminho.
+
+Quanto vale esse cliente que se perde no DM?`,
+    followup_d3: `Oi, voltei. Pensando no caso de vocês: 5 lojas + Brasil é distribuição que loja única não tem. Shopify daria checkout unificado com cálculo de frete automático + estoque por loja física (cliente vê o que tem perto e retira). Tem caso real disso em distribuidora de SP que dobrou volume nos primeiros 90 dias. Topa ver?`,
+    followup_d7: `Oi, última mensagem. Operação de vocês é grande demais pra Shopify entry-level — meu pitch normal não cabe. Mas se em algum momento vocês quiserem conversar sobre upgrade de canal (não substituição da operação atual, agregação), tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar lançamentos/promoções recentes — operação grande gosta de feedback de mercado), NÃO comentar (operação madura recebe muitos comentários genéricos, queima rápido). Pre-warming via consumo do conteúdo, não via interação social.',
+    razao_ranking: 'CASO GB NUTRITION EM ESCALA MAIOR. 5 lojas + Brasil declarado + verificado = operação que JÁ pensa nacional. Ticket alto-médio (suplemento R$80-300), volume grande. Shopify destrava 3-5x. Pitch enterprise/complexo (não entry-level). Probabilidade de fechamento depende de quem decide (sócio único? 5 sócios?) — qualificar antes.',
+  },
+
+  1104: {
+    tier: 'A',
+    posicao_no_tier: 14,
+    dor: 'L\'Essence é a ÚNICA perfumaria de luxo importada do Capim Dourado Shopping (maior shopping de Palmas). Ticket altíssimo (Bad Boy Carolina Herrera, importados árabes, faixa R$300-1.500), 1.085 posts (catálogo robusto), foto editorial. Mas opera 100% LOCAL — quem mora fora de Palmas e quer importado original (não falsificado de marketplace) não tem onde comprar com selo de autenticidade. Oceano azul: Shopify abre mercado nacional pra perfume importado palmense.',
+    gancho: 'Shopify com selo "Perfumaria autorizada do Capim Dourado" + nota fiscal eletrônica visível + política de troca clara + parcelamento 12x = resolve a DOR DE AUTENTICIDADE que perfume importado tem. Cliente que vai gastar R$800 num Bad Boy não compra de Insta sem CNPJ — mas compra de Shopify com selo institucional. Mesma loja, alcance nacional. Ticket R$500-1.500 paga Shopify com 1-2 vendas.',
+    objecao: '"Já tenho clientela fiel no shopping, vendo bem" — operação física consolidada.',
+    resposta_objecao: 'Faz sentido — clientela fiel do Capim Dourado é tua base. Shopify não mexe nela. Mas pensa: tu é a ÚNICA perfumaria importada de luxo no shopping. Em Palmas inteira, em Tocantins, em todo o entorno. Quem em Goiânia, Brasília, Imperatriz quer comprar Bad Boy ORIGINAL e desconfia de marketplace — esse cliente hoje vai pra Sephora ou Beleza na Web. Shopify com selo "Perfumaria autorizada" pega exatamente esse cliente. 1 venda de R$800 paga 1/3 do investimento. Topa eu te mostrar 1 perfumaria que fez essa transição?',
+    nota_interna: 'TICKET ALTÍSSIMO = ROI rápido. Único do nicho em Palmas + entorno = oceano azul. Telefone não veio no JSON (linktr.ee/PerfumariaLessence) — pegar do link tree antes de disparar. Pitch da CALL DE ALINHAMENTO é crítico: pode argumentar Premium (R$1.297+) pelo branding luxo + integração com NF-e + selo de autenticidade. Confirmar antes na call quem é dono(a) — perfume importado tem decisor único geralmente.',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando as perfumarias mais consolidadas de Palmas essa semana e a L'Essence chamou atenção: única perfumaria importada de luxo no Capim Dourado. Não é "perfumaria" — é a perfumaria de Palmas.
+
+Me parece que cliente local fiel já vai aí. Mas quem mora em Goiânia, Imperatriz, Brasília e quer Bad Boy ORIGINAL com nota fiscal — esse hoje vai pra Sephora ou Beleza na Web.
+
+Quantos desses tu acha que perde por mês?`,
+    followup_d3: `Oi, voltei. Pensando no teu caso: perfume importado tem dor escancarada de AUTENTICIDADE. Cliente que vai gastar R$800 num importado não compra de Insta sem CNPJ. Shopify com selo "Perfumaria autorizada Capim Dourado" + NF-e visível + política de troca = resolve isso. 1 venda de R$800 paga 1/3 do investimento. Topa ver?`,
+    followup_d7: `Oi, última mensagem da minha parte. Tu é a única perfumaria de luxo do Capim Dourado — esse posicionamento vale ouro online. Hoje a busca "perfume importado original Tocantins" não tem dono. Quem chegar primeiro fica com o nicho por anos. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar lançamentos e fotos editoriais — perfumaria luxo valoriza estética). Comentar 1 com algo SEMPRE específico ao perfume mostrado ("Bad Boy é uma das fragrâncias mais procuradas mesmo" ou referência a notas olfativas se conseguir identificar). Comentário genérico tipo "lindo!" queima a abordagem.',
+    razao_ranking: 'OCEANO AZUL — única perfumaria importada de luxo em Palmas + entorno. Ticket altíssimo (R$300-1.500) = ROI Shopify rápido. Dor de AUTENTICIDADE escancarada (clássica de importado). Shopify resolve cirurgicamente. Pitch Premium provável na call (R$1.297+) — branding luxo + NF-e + selo institucional justificam.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {
