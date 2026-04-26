@@ -6,6 +6,8 @@ import {
   escolherScriptAbordagem,
   pickDiagnostico,
   gerarLinkWhatsApp,
+  gerarLinkDmInsta,
+  adaptarMensagemDm,
 } from '@/lib/mensagens'
 
 export const dynamic = 'force-dynamic'
@@ -49,6 +51,8 @@ export type LeadDisparo = {
     callAlinhamento?: string
   }
   linkWhatsApp: string
+  linkDmInsta: string
+  mensagemDm: string
   linksFollowup: {
     d3: string
     d7: string
@@ -128,6 +132,8 @@ export async function GET() {
           callAlinhamento: script.call_alinhamento || undefined,
         },
         linkWhatsApp: link,
+        linkDmInsta: gerarLinkDmInsta(r.instagram),
+        mensagemDm: adaptarMensagemDm(a.abertura),
         linksFollowup: {
           d3: gerarLinkWhatsApp(r.telefone, a.followup_d3),
           d7: gerarLinkWhatsApp(r.telefone, a.followup_d7),

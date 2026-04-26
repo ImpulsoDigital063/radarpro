@@ -422,6 +422,30 @@ export function gerarLinkInstagram(handle: string): string {
   return `https://instagram.com/${username}`
 }
 
+// Link direto pra abrir conversa de DM no Instagram
+// Usa ig.me/m/{handle} — atalho oficial Meta que abre direto a conversa
+// (mobile e web). Mais confiável que /direct/new/ que foi depreciado.
+export function gerarLinkDmInsta(handle: string | null): string {
+  if (!handle) return ''
+  const username = handle.replace(/^@/, '').trim()
+  if (!username) return ''
+  return `https://ig.me/m/${username}`
+}
+
+// Adapta a Msg 1 (escrita pra WhatsApp formal) pra tom DM Insta
+// (mais casual, sem auto-identificação porque o handle já te identifica
+// + saudação mais leve).
+export function adaptarMensagemDm(msgWhatsapp: string): string {
+  let dm = msgWhatsapp
+  // Remove identificação formal Eduardo/Impulso (handle já identifica no Insta)
+  dm = dm.replace(/^Oi[^,!?]*[,!]?\s*beleza\?\s*Eduardo aqui,?\s*Impulso Digital,?\s*sou de Palmas\.\s*/i, 'Oi! ')
+  dm = dm.replace(/^Oi[^,!?]*[,!]?\s*Eduardo aqui,?\s*Impulso Digital,?\s*sou de Palmas\.\s*/i, 'Oi! ')
+  dm = dm.replace(/^Oi[^,!?]*[,!]?\s*beleza\?\s*Eduardo aqui,?\s*Impulso Digital,?\s*falo de Palmas\.\s*/i, 'Oi! ')
+  // Limpa quebras de linha duplas no início
+  dm = dm.replace(/^\s*\n+/, '').trim()
+  return dm
+}
+
 // Categorias para LP — profissionais liberais com cliente que PESQUISA antes
 // Calibração FIT 25/04/2026: tirei serviços de baixa autoridade (Coach,
 // Professor, Personal organizer) — quem fecha LP precisa ter reputação

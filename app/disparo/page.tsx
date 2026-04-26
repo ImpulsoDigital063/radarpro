@@ -42,6 +42,8 @@ type LeadDisparo = {
     callAlinhamento?: string
   }
   linkWhatsApp: string
+  linkDmInsta: string
+  mensagemDm: string
   linksFollowup: {
     d3: string
     d7: string
@@ -288,12 +290,41 @@ export default function DisparoPage() {
                             </a>
                           ) : (
                             <span
-                              title="Sem telefone — pegar via DM Insta primeiro"
+                              title="Sem telefone — usar DM Insta como alternativa"
                               style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#9CA3AF', fontSize: '12px', fontWeight: 600, cursor: 'not-allowed' }}>
                               📋 Pegar telefone primeiro
                             </span>
                           )}
+                          {lead.linkDmInsta && (
+                            <a
+                              href={lead.linkDmInsta}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => {
+                                if (lead.mensagemDm) {
+                                  navigator.clipboard.writeText(lead.mensagemDm).catch(() => {})
+                                }
+                              }}
+                              title="Abre conversa DM no Insta + copia mensagem adaptada (mais casual, sem assinatura formal)"
+                              style={{
+                                padding: '5px 12px',
+                                background: lead.linkWhatsApp ? '#1F2937' : 'linear-gradient(135deg, #C026D3 0%, #7C3AED 100%)',
+                                border: lead.linkWhatsApp ? `1px solid ${brd}` : 'none',
+                                borderRadius: '6px',
+                                color: lead.linkWhatsApp ? '#C084FC' : '#fff',
+                                fontSize: '12px',
+                                fontWeight: 600,
+                                textDecoration: 'none',
+                              }}>
+                              📱 DM Insta {!lead.linkWhatsApp && '(copia msg)'}
+                            </a>
+                          )}
                         </div>
+                        {!lead.linkWhatsApp && lead.linkDmInsta && (
+                          <p style={{ fontSize: '10px', color: '#FBBF24', margin: '0', fontStyle: 'italic' }}>
+                            ⚠️ DM funciona melhor depois do pre-engajamento Insta D-1 (seguir + curtir + comentar 24h antes). Sem isso, mensagem pode cair em "Solicitações" e ser ignorada.
+                          </p>
+                        )}
 
                         {/* Banner: playbook pré-calibrado */}
                         <div
