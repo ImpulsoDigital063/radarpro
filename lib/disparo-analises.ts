@@ -798,6 +798,117 @@ Quanto dessa paciente premium tu acha que percebe isso e recua?`,
     razao_ranking: 'TIER B/A híbrido (score 6 base + caso especial). ÚNICO lead do banco que JÁ PAGA por plataforma profissional. Pitch RADICAL diferenciação: domínio próprio + identidade autoral + método em destaque. 16.5k IG + 5★/99 = autoridade gigante. Se fechar, vira case showcase de "saída de Vizzoone pra LP autoral".',
   },
 
+  // ── TIER A (CIC #9 — 26/04 cluster CLONE-GB NUTRITION Shopify) — 5 leads ──
+  // Persona-mãe: Gabriel (@gabribarros10) + GB Nutrition (@gbnutritionn).
+  // Case Impulso ATIVO em produção. Insight valiosíssimo: Sabor da Terra
+  // E Nutri+ SÃO SEGUIDAS pelo Gabriel — entrar via INDICAÇÃO DELE é
+  // atalho de fechamento. Padrão Shopify: NÃO argumentar autoridade
+  // (que funciona com LP), argumentar CONVERSÃO 24/7 + CHECKOUT QUE
+  // FUNCIONA SEM VOCÊ.
+
+  1141: {
+    tier: 'A',
+    posicao_no_tier: 36,
+    dor: 'Sabor da Terra Marmita Fit é o LEAD MAIS QUENTE DO PIPELINE INTEIRO até agora. Conta Insta VERIFICADA com 45.100 seguidores (público fitness Palmas qualificado), endereço Quadra 906 sul Av LO 23, telefone (63)99288-0204 confirmado. NICHO: marmita fit / comida saudável delivery com plano semanal recorrente. Site atual: sabordaterra.my.canva.site/cardapiodigital — Canva site é AMADOR (subdomínio plataforma + template genérico + zero checkout estruturado). 45k seg + recorrência semanal + Canva site = receita massiva escapando todo dia. Cada cliente que quer fechar plano semanal precisa pedir no WhatsApp, esperar resposta, mandar pix toda semana.',
+    gancho: 'PITCH ESPECIAL — Sabor da Terra é seguida pelo @gabribarros10 (Gabriel, case ATIVO Impulso GB Nutrition). ENTRAR VIA INDICAÇÃO DO GABRIEL é atalho de fechamento (em cidade média, indicação cruzada vale ouro). Pitch: Shopify com plano semanal automatizado (assinatura recorrente Mercado Pago) + cardápio navegável por categoria + entrega motoboy Palmas + opção pacote 5/7/15 dias. Cliente paga uma vez, marmita chega toda semana sem ela precisar pedir. Mesma operação dela hoje, sem gargalo do WhatsApp.',
+    objecao: '"Já tenho o site Canva, cliente pede pelo WhatsApp, dá certo" — operação ativa defendendo o status quo.',
+    resposta_objecao: 'Concordo — 45k seg + Canva site mostra que tu construiu marca real. Mas pensa em assinatura semanal: hoje cliente que quer pacote 7 dias tem que mandar mensagem TODA SEGUNDA pra confirmar pedido + mandar pix. 60% das clientes desistem do plano semanal nessa fricção (todo final de semana volta a duvidar se vale a pena). Shopify resolve com assinatura recorrente: ela paga uma vez, marmita chega toda semana, ela só recebe. 1 cliente recorrente de R$300/sem = R$1.200/mês x 12 meses = R$14.400/ano que tu não captura hoje. Topa eu te mostrar como ficaria? E olha — vi que o Gabriel (GB Nutrition) te segue, tu conhece ele pessoalmente?',
+    nota_interna: 'LEAD MAIS QUENTE DO PIPELINE INTEIRO. Conta verified + 45.100 seg + Canva site + plano semanal = combinação ÓBVIA de Shopify. Telefone (63)99288-0204 confirmado. AÇÃO ESPECIAL CRÍTICA: ANTES DE DISPARAR, pedir Gabriel pra fazer indicação direta ("Sabor, te apresento o Eduardo que cuida do meu site, ele ajuda lojas como a tua"). Se Gabriel topar, fechamento dispara. Pre-engajamento Insta D-1 obrigatório. Pitch "complexo" provável (R$899-1.297) pelo plano de assinatura recorrente + integração Mercado Pago.',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando marcas de comida fit em Palmas e o teu perfil chamou atenção MUITO forte — 45.100 seguidores qualificados + Insta verified + plano semanal de marmita = nível raríssimo aqui em Palmas.
+
+Mas vi teu link da bio: sabordaterra.my.canva.site. Cliente que quer plano semanal tem que mandar mensagem TODA SEGUNDA pra confirmar + mandar pix. 60% desistem nessa fricção semanal.
+
+Pergunto direto: tu conhece o Gabriel (@gbnutritionn)? Ele cuida do meu site e segue tu. Posso pedir uma intro?`,
+    followup_d3: `Oi, voltei. Pensando: 1 cliente recorrente de R$300/sem = R$14.400/ano que tu não captura hoje. Shopify resolve com assinatura recorrente — cliente paga uma vez, marmita chega toda semana, sem WhatsApp. Modelo idêntico ao do Gabriel (GB Nutrition) mas com plano semanal embutido. Topa eu te mostrar 1 print?`,
+    followup_d7: `Oi, última mensagem da minha parte. Sei que rotina de marmitaria fitness é puxada. Vou parar. Só registro: 45k seg verified é capital social que MUITO marmiteiro do Brasil vai levar 5 anos pra construir. Falta só o checkout que funciona sem ti. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts (priorizar foto de marmita finalizada OU cliente fitness consumindo, NÃO foto pessoal). Comentar 1 com algo específico do prato ("essa marmita com batata-doce fit ficou impecável" ou referência ao plano semanal). Marca verified com 45k seg recebe muito comentário genérico — comentário ESPECÍFICO destaca.',
+    razao_ranking: 'LEAD MAIS QUENTE DO PIPELINE (score 10!). Verified + 45.100 seg + Canva site + plano semanal recorrente + SEGUIDA PELO GABRIEL = atalho de fechamento via indicação. Pitch "complexo" R$899-1.297 (assinatura recorrente + cardápio + integração MP). 1 cliente recorrente paga 5x a LP em 1 ano.',
+  },
+
+  1142: {
+    tier: 'A',
+    posicao_no_tier: 37,
+    dor: 'Nutri+ Suplementos é concorrente DIRETO do Gabriel (GB Nutrition) mas em escala MUITO maior: conta Insta VERIFICADA, 44.200 seguidores, Maps 5.0/855 reviews (número ABSURDO em Palmas — acima de 99% das lojas), endereço Q.104 Norte Av LO 2, cobertura regional Palmas + Porto Nacional + Paraíso + Gurupi + Taquaralto. Site atual: linktr.ee/nsuplementos (sinal de compra — ela JÁ entendeu que precisa de hub digital, escolheu o atalho). Cobertura regional declarada SEM checkout estruturado = ineficiência massiva. Cliente de Gurupi que viu post sobre creatina tem que mandar DM, esperar resposta, perguntar frete, mandar pix.',
+    gancho: 'PITCH PARALELO — Nutri+ é seguida pelo @gabribarros10 mesmo sendo concorrente DIRETO. Networking fitness Palmas é fluido. Pitch: "Você já é referência regional no Tocantins, falta o checkout regional" — Shopify com cálculo de frete automático por cidade, integração motoboy Palmas + Correios pra Porto/Paraíso/Gurupi, catálogo navegável, conta única de cliente. Mesmo modelo do Gabriel (GB Nutrition) mas em escala maior. Linktr.ee como SINAL DE COMPRA: ela já investiu em hub digital, falta só evoluir pra Shopify real.',
+    objecao: '"Já tenho linktr.ee, 855 reviews, cobertura regional consolidada — tá funcionando" — operação madura defendendo o status quo.',
+    resposta_objecao: 'Total razão — 855 reviews 5★ é número que MUITO atacadista do Brasil leva 10 anos pra construir, e cobertura regional é capital social raro. Mas pensa: cliente novo de Gurupi que viu teu post de creatina pesquisa "Nutri+ suplementos Palmas" no Google às 23h. Cai no linktr.ee, vê 5 links sem hierarquia, sem cálculo de frete pra cidade dele, sem catálogo navegável. Recua. Shopify pega esse momento: ele entra, escolhe creatina, sistema calcula frete automático pra Gurupi, paga em 12x, recebe rastreio. Mesmo cliente que te conhece via Maps, conversão diferente. Topa ver caso? E vi que tu segue/é seguida pelo Gabriel (GB Nutrition) — vocês se conhecem?',
+    nota_interna: 'CONCORRENTE DIRETO do Gabriel — DELICADO. SEGUIDA POR @gabribarros10 = networking fluido (não rivalidade aberta). Antes de disparar, perguntar Gabriel se ele tem relação pessoal com ela (parceria, indicação cruzada, etc). Se Gabriel autorizar, fica natural mencionar ele na 1ª mensagem. Telefone (63)99982-8285 confirmado bio. Pitch "complexo" R$899-1.197 (catálogo regional + cálculo frete por cidade + área cliente).',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando lojas de suplemento mais consolidadas do Tocantins e o perfil de vocês chamou atenção MUITO forte — Insta verified + 44.200 seguidores + 855 reviews 5★ Maps + cobertura Palmas/Porto/Paraíso/Gurupi/Taquaralto. Vocês são literalmente a referência regional de suplemento no estado.
+
+Mas vi o linktr.ee/nsuplementos: cliente de Gurupi que vê teu post sobre creatina cai num link sem cálculo de frete pra cidade dele, sem catálogo navegável.
+
+Quanto desse cliente regional vocês acham que perdem por não ter checkout que funcione pra fora de Palmas?`,
+    followup_d3: `Oi, voltei. Pensando: vocês têm o ATIVO mais raro (855 reviews + cobertura regional) — só falta o canal converter. Shopify com frete automático por cidade + catálogo navegável + parcelamento 12x = checkout regional que vocês precisam. E olha, o Gabriel (GB Nutrition) é meu cliente — modelo dele é mesmo princípio em escala menor. Topa ver caso real?`,
+    followup_d7: `Oi, última mensagem. Cobertura regional Tocantins é capital que poucas marcas de suplemento do Brasil têm. Falta só capturar essa cobertura no checkout. Se em algum momento bater, vocês sabem onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar lançamento OU promoção regional, não foto pessoal). NÃO comentar (operação madura recebe muito genérico). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S puríssimo (score 9.5). Verified + 44.2k seg + 855 reviews 5★ (recorde Maps suplemento Palmas) + linktr.ee + cobertura regional = combinação perfeita Shopify. Concorrente DIRETO Gabriel mas seguida por ele = abordagem com cuidado. Pitch enterprise/regional R$1.197-1.497.',
+  },
+
+  1143: {
+    tier: 'A',
+    posicao_no_tier: 38,
+    dor: 'B K Moda Fitness é loja de varejo fitness em Taquaralto-Palmas com 20.100 seguidores Insta + 1.075 posts + LIVE COMO DESTAQUE PRINCIPAL no perfil. Endereço: Rua P4 frente feira Maria das Dores. Catálogo: LIVE, Bolha (calça), Micro canelado, Blusas tule, Flare Premium, ALO Yoga. Site atual: wa.me direto + Threads (ZERO web). Modelo de venda: Lives semanais. Problema: Live SÓ vende pra quem está online no momento exato. Cliente que viu story do produto 3 horas depois ou viu uma referência do produto numa amiga não consegue comprar — tem que mandar DM, esperar resposta, esperar próxima Live, etc.',
+    gancho: 'PITCH ESPECIAL — "A LIVE VENDE, O SHOPIFY FECHA". Lives BK acontecem semanalmente. Shopify resolve a fila pós-Live: cliente assiste Live, separa peça mentalmente, finaliza checkout 24/7 (mesmo às 3h da manhã). Loja vende ENQUANTO ELA DORME. Não substitui Live (que é o motor de vendas), complementa: Live → demanda → fila no Shopify → conversão automática. Case-clone GB Nutrition (varejo + envio + Lives recorrentes).',
+    objecao: '"As Lives já vendem demais, não preciso de site" — defesa do operacional atual que funciona.',
+    resposta_objecao: 'Concordo — Live é o motor de vendas e isso não muda. Mas pensa: cliente que assistiu Live ontem mas não comprou na hora porque tava no trabalho, hoje volta no Insta e vê o produto. O que ela faz? Manda DM. Espera resposta. Pergunta tamanho. Confirma. Pix. 30 min. 60% desistem nesse caminho. Shopify pega EXATAMENTE esse momento: ela vê o produto, clica, paga em 12x, recebe rastreio. Mesma demanda da Live, conversão de 60% pra 95%. E motoboy de Taquaralto continua entregando — só agora ele recebe pedido pronto, sem 30 mensagens cruzadas. Topa ver?',
+    nota_interna: 'MAIOR CLUSTER CLONE-GB IDENTIFICADO no batch #9: moda fitness com Lives + envio + motoboy. BK + DeLótus + PMW = 3 Tier S nesse padrão. Pitch dedicado "Live vende, Shopify fecha". Telefone (63)99267-2610 confirmado. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts de Live OU produto, não foto pessoal). Pitch "complexo" R$899-999 (catálogo Live + integração com agenda de Live + motoboy).',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando lojas de moda fitness mais ativas em Palmas e o teu perfil chamou atenção MUITO forte — 20.100 seguidores + 1.075 posts + Lives semanais como destaque principal. Tu construiu modelo de venda que funciona de verdade.
+
+Mas pergunto direto: cliente que assistiu Live ontem mas tava no trabalho e não comprou na hora — hoje ela volta no Insta, vê o produto, e tem que mandar DM. 30 mensagens cruzadas. Quantas dessas tu acha que desistem antes de fechar?`,
+    followup_d3: `Oi, voltei. Pensando no teu caso: a Live é o motor de vendas, isso não muda. Mas Shopify pega EXATAMENTE a fila pós-Live — cliente que viu produto, clica, paga em 12x, motoboy de Taquaralto entrega. Modelo: "A Live vende, o Shopify fecha". Topa ver caso real?`,
+    followup_d7: `Oi, última mensagem. Live + motoboy + Taquaralto é sistema que funciona de verdade. Falta só o checkout que captura quem viu Live mas não comprou na hora. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts (priorizar foto de produto da Live OU cliente real usando peça, NÃO foto pessoal). Comentar 1 com algo específico ("essa flare premium com micro canelado tem caimento incrível mesmo" ou referência à peça). Loja varejo valoriza comentário sobre produto.',
+    razao_ranking: 'TIER S (score 9). MAIOR CLUSTER CLONE-GB do batch #9 (Moda Fitness + Lives + Motoboy). Pitch dedicado "Live vende, Shopify fecha" — diferencial único. 20.1k seg + Lives semanais = volume de demanda alto sem captura. Pitch "complexo" R$899-999.',
+  },
+
+  1144: {
+    tier: 'A',
+    posicao_no_tier: 39,
+    dor: 'DeLótus Moda Fitness é loja de varejo Palmas com NICHO ESPECÍFICO RARÍSSIMO: moda fitness pra mulheres reais (numeração 34 ao 60). Endereço Q.307 Sul Rua 5, 468. Maps 5.0/46 reviews. 4.866 seguidores Insta. CEO visível: @deisedadelotus (dona-marca, decisão direta). Envio nacional declarado. Site atual: bio.site/delotus (genérico — mesmo padrão amador, sem filtro por tamanho, sem destaque pro nicho 34-60). NICHO 34-60 é OURO (mulher 44-60 quase nunca encontra moda fitness premium na cidade dela), MAS o canal não comunica isso — bio.site mostra só links genéricos, sem destaque pra inclusão dimensional.',
+    gancho: 'PITCH NICHO-ESPECÍFICO: Shopify com filtro de tamanho 34-60 explícito como categoria de primeira página + galeria de mulheres reais (NÃO modelos magras) + FAQ de medida + marca curada. Hoje a maior queixa da mulher 44+ é "tamanho não tem". A LP/Shopify da DeLótus pode ser a ÚNICA do Tocantins que abre com "Aqui tem do 34 ao 60, sem você precisar perguntar". Case-clone duplo: GB Nutrition (envio + marca + dona visível) + criativosdoceu (nicho específico + dona-marca pessoa pública).',
+    objecao: '"Já tenho bio.site, cliente acha tudo lá" — defesa da solução amadora atual.',
+    resposta_objecao: 'Faz sentido — bio.site centraliza link, e funciona como diretório. Mas pensa pelo lado da mulher 48 que viu uma calça tua num post compartilhado por amiga. Ela vai pesquisar "DeLótus moda fitness Palmas tamanho 48" antes de mandar DM (medo histórico de "tamanho não tem"). Cai no bio.site, vê 5 links sem destaque pro tamanho dela, sem confirmação que tem 48. Recua. Shopify dedicado: ela entra, filtra direto por "tamanho 48", vê 30 peças disponíveis, paga. Mesma cliente, conversão diferente. E o filtro de tamanho não é "feature escondida" — é a CATEGORIA principal da loja. Topa ver?',
+    nota_interna: 'NICHO 34-60 é DIFERENCIAL ENORME — diferenciação rara em Palmas. CEO visível @deisedadelotus = decisão direta. Telefone (63)99218-3631 confirmado Maps. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts de cliente real, NÃO modelo magra — DeLótus valoriza inclusão). Comentar 1 sobre acessibilidade dimensional. Pitch "complexo" R$899-1.197 (filtro tamanho como categoria + galeria mulheres reais + FAQ medida).',
+    abertura: `Oi Deise, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando marcas de moda fitness com diferencial real em Palmas e o teu chamou atenção forte — DeLótus é única na cidade que assume "do 34 ao 60". Mulher real, sem padrão Shein.
+
+Mas vi teu bio.site: a maior queixa dela é "tamanho não tem". Quando ela vai pesquisar "DeLótus tamanho 48" antes de mandar DM, cai num bio.site sem filtro por tamanho, sem confirmação que tem.
+
+Quanto dessa cliente 44+ tu acha que recua nesse momento da incerteza?`,
+    followup_d3: `Oi Deise, voltei. Pensando: tua proposta de "do 34 ao 60" é diferencial ÚNICO em Palmas. Mas precisa ser a CATEGORIA principal da loja, não filtro escondido. Shopify dedicado: cliente filtra por tamanho, vê peças disponíveis, paga em 12x. Topa ver como ficaria?`,
+    followup_d7: `Oi Deise, última mensagem. "Mulher real do 34 ao 60" é posicionamento que merece vitrine adequada. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts de cliente real (priorizar mulher 44+ usando peça em ambiente real, NÃO modelo magra). Comentar 1 sobre inclusão dimensional ("nicho 34-60 é capital social que muita marca esquece — bom ver com esse rigor"). Marca de inclusão valoriza comentário sobre o que ela representa.',
+    razao_ranking: 'TIER S (score 9). NICHO 34-60 = diferenciação rara. CEO visível + envio nacional + Maps 5★. Pitch nicho-específico (filtro tamanho como categoria principal). Pitch "complexo" R$899-1.197.',
+  },
+
+  1146: {
+    tier: 'A',
+    posicao_no_tier: 40,
+    dor: 'Sousa Fitness é loja de equipamentos esportivos em Palmas com TICKET ALTÍSSIMO (R$200-2.500 por equipamento — kettlebell, banco musculação, halteres, ergometria, esteiras, equipamentos Pilates/Yoga/Boxe/Muay Thai/Crossfit) + assistência técnica. Endereço 1503 sul Alameda 23, 02. Maps 5.0/39 reviews. 504 posts Insta + 3.264 seguidores. Site atual: abre.ai/hdl7 (canal amador — basicamente Linktr.ee renomeado). PROBLEMA CRÍTICO: ticket alto SEM checkout estruturado = gargalo MASSIVO de venda. Cliente que vai gastar R$1.500 num banco musculação precisa ver: ficha técnica completa, dimensões, peso, garantia, foto multi-ângulo, frete real calculado, parcelamento. abre.ai não entrega NADA disso.',
+    gancho: 'PITCH TICKET ALTO: Shopify com ficha técnica visual de cada equipamento (especificações, peso, dimensões), galeria multi-ângulo, cálculo de frete automático (peso/volume importam pra equipamento), parcelamento 12x sem juros. Adicionar "ASSISTÊNCIA TÉCNICA AUTORIZADA" como prova social — diferencial que NENHUMA loja online de equipamento entrega. Case-clone duplo: GB Nutrition (loja Palmas + envio) + Mobiliare Móveis (ticket alto físico + galeria editorial).',
+    objecao: '"Equipamento o cliente precisa ver antes, conversar, pegar entrega presencial" — defesa do modelo consultivo presencial.',
+    resposta_objecao: 'Total razão — equipamento de R$1.500 cliente quer ver antes. Mas pensa: cliente novo que pesquisa "banco musculação Palmas" hoje cai no abre.ai teu, vê 5 links sem ficha técnica, sem dimensões, sem peso, sem garantia. Não dá pra ele decidir QUAL banco ele quer ANTES de te ligar. 80% nem chega a entrar em contato. Shopify resolve isso: ele entra, vê 12 modelos de banco com ficha técnica completa, dimensões, peso, garantia, foto multi-ângulo. Decide qual ele quer. Aí sim te liga pra confirmar entrega presencial. Mesma venda consultiva, cliente chega 80% pré-aquecida em vez de 0%. E "Assistência Movement e Matrix" vira destaque na home — diferencial QUE NENHUMA loja online de equipamento tem. Topa ver?',
+    nota_interna: 'TICKET ALTÍSSIMO (R$200-2.500 por equipamento) = ROI Shopify rapidíssimo. 1 venda de R$1.500 paga 2.5x a LP. Telefone (63)99114-5676 confirmado. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts de equipamento finalizado em ambiente real, NÃO foto promocional). Comentar 1 sobre especificação técnica. Pitch "complexo" R$899-1.197 (catálogo técnico + cálculo frete por peso/volume + integração assistência).',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando lojas de equipamento esportivo em Palmas e o teu perfil chamou atenção forte — assistência autorizada Movement e Matrix + 504 posts + 5★/39 Maps + ticket alto (R$200-2.500). Operação consolidada.
+
+Mas vi teu link da bio (abre.ai). Cliente que vai gastar R$1.500 num banco musculação pesquisa MUITO antes — quer ver ficha técnica, dimensões, peso, garantia, foto multi-ângulo. Cai no abre.ai e vê 5 links sem nada disso.
+
+Quanto desse cliente tu acha que recua nesse momento, antes mesmo de te ligar?`,
+    followup_d3: `Oi, voltei. Pensando: ticket de equipamento (R$1.500-2.500) exige confiança visual antes do contato. Shopify resolve: ficha técnica completa + dimensões + peso + garantia + foto multi-ângulo + frete calculado. Cliente chega 80% pré-aquecida pra contato presencial. E "Assistência autorizada" vira destaque — diferencial ÚNICO. Topa ver caso?`,
+    followup_d7: `Oi, última mensagem. Equipamento esportivo é nicho de ticket alto que poucas lojas de Palmas atacam direito online. Se em algum momento bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar equipamento em ambiente real OU cliente final usando, NÃO foto promocional pura). Comentar 1 com algo técnico ("essa kettlebell com revestimento de borracha tá em alta — boa escolha pro estoque"). Loja técnica valoriza pre-engajamento técnico.',
+    razao_ranking: 'TIER S (score 9). TICKET ALTÍSSIMO (R$200-2.500) = ROI Shopify rapidíssimo. 1 venda de R$1.500 paga 2.5x LP. abre.ai = sinal de compra. Assistência autorizada = diferencial pra prova social. Pitch "complexo" R$899-1.197.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {

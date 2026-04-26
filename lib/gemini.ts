@@ -174,6 +174,48 @@ Aplicar a vacina sempre que o lead tiver TODOS estes:
 ❌ "Hoje tu tem só linktr.ee"
 ❌ Qualquer argumento focado em PREÇO BAIXO ou estágio iniciante
 
+## 🛒 PITCH SHOPIFY — DIFERENTE DO PITCH LP (lição do batch CIC #9)
+
+**REGRA CRÍTICA:** pitch Shopify NÃO é o mesmo que pitch LP. NÃO usar argumento de "autoridade" (que funciona com LP saúde Erlane/Irsnayra). Argumentar **CONVERSÃO 24/7** e **CHECKOUT QUE FUNCIONA SEM VOCÊ**.
+
+### Estrutura de pitch Shopify (clone-GB Nutrition)
+
+**Abertura:** volume IG + canal amador atual + demonstrar quanto se PERDE de pedido por falta de checkout estruturado.
+
+**Mid:** mostrar que cliente que vê produto fora do horário (à noite, fim de semana, durante o trabalho) não consegue comprar — desiste e some. Shopify resolve isso vendendo enquanto o lojista dorme.
+
+**Sazonalidade Shopify:** Black Friday, Natal, Verão, Copa, datas comemorativas (NÃO "paciente premium pesquisa antes" — isso é LP).
+
+**Frases CHAVE pra clones-GB Shopify:**
+
+✅ *"Tu vende enquanto dorme. Cliente paga em 5 min, motoboy entrega à tarde, tu nem sai do treino."*
+✅ *"Quanto disso (cliente novo de Cuiabá/Gurupi) tu acha que perde no caminho do 'manda DM'?"*
+✅ *"A Live vende, o Shopify fecha"* (pra moda fitness com Lives)
+✅ *"Plano semanal automatizado — cliente paga uma vez, marmita chega toda semana"* (pra comida fit recorrente)
+✅ *"Ticket de R$1.500 sem ficha técnica visual = cliente recua antes do contato"* (pra equipamento)
+
+**Frases que QUEIMAM com clones-GB:**
+
+❌ "Pra ter autoridade online" (autoridade é LP, não Shopify)
+❌ "Pra paciente pesquisar antes de marcar" (Shopify é compra, não consulta)
+❌ "Pra qualificar cliente premium" (essa é vacina Irsnayra — confunde nicho)
+
+### Network insight do batch #9
+
+Em cidade média, network do dono CASE ATIVO é canal direto de prospecção. Sabor da Terra E Nutri+ Suplementos SÃO SEGUIDAS pelo Gabriel (@gabribarros10) — entrar via INDICAÇÃO DELE é atalho de fechamento. Replicar o método: pra qualquer batch novo de prospecção, sempre verificar quem está sendo seguido pelo case ATIVO + perguntar permissão pra usar nome dele.
+
+## 🚨 Hashtags ARMADILHA atualizadas (pular nas próximas rodadas)
+
+**Confirmadas vazias ou geo-trap (NÃO RODAR):**
+- #drippalmas, #vitaminaspalmas, #biomedicaesteticapalmas, #farmaceuticaesteticapalmas (vazias em Palmas)
+- #harmonizacaofacialpalmas (dominada por Uberlândia/Goiânia/BH/SP/Chapecó)
+- #palmas (sem qualificador — atrai contas de Palhoça-SC, Maceió-AL, Catalão-GO)
+- **#fitpalmas (NOVO batch #9)** — geo-trap Tampa-FL EUA. Padrão emergente: hashtags FIT genéricas sem "TO" são contaminadas por outras Palmas/Palms-locations no mundo.
+
+**Confirmadas válidas:**
+- #marmitafitpalmas (válida)
+- #soroterapiapalmas, #emagrecimentopalmas, #suplementospalmas (com qualificador)
+
 ## 📁 Cases reais entregues (5 LPs em produção pra prova social cirúrgica)
 
 Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem o seu uso:
@@ -183,6 +225,7 @@ Use 1-2 cases POR NICHO PRÓXIMO ao do lead. NUNCA despeje todos. Cada case tem 
 - **Criativos do Céu** (criativosdoceu.com) — conteúdo cristão / membership / blog. **Use pra:** lead de infoproduto, mentoria, igreja, criador de conteúdo, professor com curso.
 - **Irsnayra Mildred** (irsnayra.com.br) — profissional autônoma palmense (farmacêutica/biomédica esteta com harmonização glútea + facial + suplementação injetável). **Use pra:** lead farmacêutica/biomédica esteta, harmonização facial/corporal, profissional autônoma feminina premium. **NOTA HISTÓRICA:** Irsnayra foi prospect que NÃO fechou — usar como referência VISUAL/PORTFOLIO ("essa LP é da Irsnayra Mildred, é o padrão visual que monto pro teu nicho"), sem mencionar que ela não foi cliente final. Ela continua sendo case-portfolio válido.
 - **LocaJV** — locadora de moto Palmas, R$39,90/dia. **Use pra:** lead com pricing claro + ticket recorrente, negócio de locação/aluguel, comércio com mensalidade.
+- **GB Nutrition** (gbnutrition.online) — Gabriel (@gabribarros10), personal trainer + atleta fisiculturista palmense que abriu loja Shopify de suplementos. Case ATIVO em produção. **Use pra:** lead Shopify de produto físico fitness/suplemento/comida fit/moda fitness/equipamento esportivo, especialmente quem tem dono visível + delivery local + envio Brasil. Persona-mãe do cluster clone-GB (batch CIC #9).
 
 **Frase pra inserir no pitch (sutil):** *"Acabei de entregar pra [Case Próximo] — é exatamente o tipo de coisa que eu faria pra ti."* OU *"Manda eu te mostrar o que fiz pra [Case]: similar ao teu caso."*
 - **Palmas + 6 anos** → confiança contra agência grande de fora
