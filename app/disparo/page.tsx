@@ -219,24 +219,43 @@ export default function DisparoPage() {
 
                       {/* Ações */}
                       <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                        <a
-                          href={lead.linkWhatsApp}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          style={{
-                            padding: '4px 10px',
-                            background: '#16A34A',
-                            borderRadius: '5px',
-                            color: '#fff',
-                            fontSize: '11px',
-                            fontWeight: 700,
-                            textDecoration: 'none',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          💬 WA
-                        </a>
+                        {lead.linkWhatsApp ? (
+                          <a
+                            href={lead.linkWhatsApp}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            style={{
+                              padding: '4px 10px',
+                              background: '#16A34A',
+                              borderRadius: '5px',
+                              color: '#fff',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              textDecoration: 'none',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            💬 WA
+                          </a>
+                        ) : (
+                          <span
+                            onClick={(e) => e.stopPropagation()}
+                            title="Sem telefone — pegar via DM Insta primeiro"
+                            style={{
+                              padding: '4px 10px',
+                              background: '#374151',
+                              borderRadius: '5px',
+                              color: '#9CA3AF',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              whiteSpace: 'nowrap',
+                              cursor: 'not-allowed',
+                            }}
+                          >
+                            📋 Pegar tel
+                          </span>
+                        )}
                         <span style={{ color: muted, fontSize: '14px' }}>{aberto ? '▲' : '▼'}</span>
                       </div>
                     </div>
@@ -262,10 +281,18 @@ export default function DisparoPage() {
                               🌐 Site atual
                             </a>
                           )}
-                          <a href={lead.linkWhatsApp} target="_blank" rel="noopener noreferrer"
-                            style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#4ADE80', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}>
-                            💬 WhatsApp
-                          </a>
+                          {lead.linkWhatsApp ? (
+                            <a href={lead.linkWhatsApp} target="_blank" rel="noopener noreferrer"
+                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#4ADE80', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}>
+                              💬 WhatsApp
+                            </a>
+                          ) : (
+                            <span
+                              title="Sem telefone — pegar via DM Insta primeiro"
+                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#9CA3AF', fontSize: '12px', fontWeight: 600, cursor: 'not-allowed' }}>
+                              📋 Pegar telefone primeiro
+                            </span>
+                          )}
                         </div>
 
                         {/* Banner: playbook pré-calibrado */}
@@ -373,25 +400,45 @@ export default function DisparoPage() {
                           onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fup3`]: !(p[`${lead.id}:fup3`] !== false) }))}
                         >
                           <Msg keyId={`${lead.id}-fup3`} texto={lead.scripts.followupD3} cor="#F59E0B" copiar={copiar} copiado={copiado} />
-                          <a
-                            href={lead.linksFollowup.d3}
-                            target="_blank"
-                            rel="noopener"
-                            style={{
-                              alignSelf: 'flex-start',
-                              padding: '4px 10px',
-                              background: '#16A34A22',
-                              border: '1px solid #16A34A',
-                              borderRadius: '5px',
-                              color: '#86EFAC',
-                              fontSize: '11px',
-                              fontWeight: 700,
-                              textDecoration: 'none',
-                              marginTop: '4px',
-                            }}
-                          >
-                            💬 Abrir WhatsApp com follow-up D+3
-                          </a>
+                          {lead.linksFollowup.d3 ? (
+                            <a
+                              href={lead.linksFollowup.d3}
+                              target="_blank"
+                              rel="noopener"
+                              style={{
+                                alignSelf: 'flex-start',
+                                padding: '4px 10px',
+                                background: '#16A34A22',
+                                border: '1px solid #16A34A',
+                                borderRadius: '5px',
+                                color: '#86EFAC',
+                                fontSize: '11px',
+                                fontWeight: 700,
+                                textDecoration: 'none',
+                                marginTop: '4px',
+                              }}
+                            >
+                              💬 Abrir WhatsApp com follow-up D+3
+                            </a>
+                          ) : (
+                            <span
+                              title="Sem telefone — pegar via DM Insta primeiro"
+                              style={{
+                                alignSelf: 'flex-start',
+                                padding: '4px 10px',
+                                background: '#37415122',
+                                border: '1px solid #6B7280',
+                                borderRadius: '5px',
+                                color: '#9CA3AF',
+                                fontSize: '11px',
+                                fontWeight: 700,
+                                marginTop: '4px',
+                                cursor: 'not-allowed',
+                              }}
+                            >
+                              📋 Pegar telefone primeiro (D+3)
+                            </span>
+                          )}
                           <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
                             42% das respostas vêm em follow-up. 48% dos vendedores NUNCA mandam segundo toque.
                           </p>
@@ -405,25 +452,45 @@ export default function DisparoPage() {
                           onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fup7`]: !(p[`${lead.id}:fup7`] !== false) }))}
                         >
                           <Msg keyId={`${lead.id}-fup7`} texto={lead.scripts.followupD7} cor="#DC2626" copiar={copiar} copiado={copiado} />
-                          <a
-                            href={lead.linksFollowup.d7}
-                            target="_blank"
-                            rel="noopener"
-                            style={{
-                              alignSelf: 'flex-start',
-                              padding: '4px 10px',
-                              background: '#16A34A22',
-                              border: '1px solid #16A34A',
-                              borderRadius: '5px',
-                              color: '#86EFAC',
-                              fontSize: '11px',
-                              fontWeight: 700,
-                              textDecoration: 'none',
-                              marginTop: '4px',
-                            }}
-                          >
-                            💬 Abrir WhatsApp com breakup D+7
-                          </a>
+                          {lead.linksFollowup.d7 ? (
+                            <a
+                              href={lead.linksFollowup.d7}
+                              target="_blank"
+                              rel="noopener"
+                              style={{
+                                alignSelf: 'flex-start',
+                                padding: '4px 10px',
+                                background: '#16A34A22',
+                                border: '1px solid #16A34A',
+                                borderRadius: '5px',
+                                color: '#86EFAC',
+                                fontSize: '11px',
+                                fontWeight: 700,
+                                textDecoration: 'none',
+                                marginTop: '4px',
+                              }}
+                            >
+                              💬 Abrir WhatsApp com breakup D+7
+                            </a>
+                          ) : (
+                            <span
+                              title="Sem telefone — pegar via DM Insta primeiro"
+                              style={{
+                                alignSelf: 'flex-start',
+                                padding: '4px 10px',
+                                background: '#37415122',
+                                border: '1px solid #6B7280',
+                                borderRadius: '5px',
+                                color: '#9CA3AF',
+                                fontSize: '11px',
+                                fontWeight: 700,
+                                marginTop: '4px',
+                                cursor: 'not-allowed',
+                              }}
+                            >
+                              📋 Pegar telefone primeiro (D+7)
+                            </span>
+                          )}
                           <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
                             Breakup tem 15-20% reply rate (mais alto da sequência). Depois disso, lead sai da lista ativa por 90 dias.
                           </p>
