@@ -19,7 +19,7 @@ type LeadDisparo = {
   id: number
   nome: string
   categoria: string
-  telefone: string
+  telefone: string | null
   telefoneFormatado: string
   instagram: string | null
   site: string
@@ -108,9 +108,9 @@ export default function DisparoPage() {
       <main style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {/* Hero */}
         <div style={{ padding: '20px 32px 8px' }}>
-          <h1 style={{ fontSize: '22px', fontWeight: 800, margin: 0 }}>Playbook de disparo — top 14 leads</h1>
+          <h1 style={{ fontSize: '22px', fontWeight: 800, margin: 0 }}>Playbook de disparo</h1>
           <p style={{ color: muted, fontSize: '12px', marginTop: '6px' }}>
-            14 leads priorizados (7 LP + 7 Shopify) com playbook pré-calibrado pelos 5 livros (Voss, Klaff, Hormozi, Cialdini, Hill).
+            Leads priorizados (LP + Shopify) com playbook customizado pelos 5 livros + market intelligence Brasil 2026 + persona-clone Erlane/Irsnayra/GB Nutrition. Atacar Tier A pos 1 primeiro. Mensagens prontas pra copiar.
             Atacar Tier A primeiro. Mensagens prontas pra copiar — Eduardo só ajusta o que o lead disser.
           </p>
         </div>

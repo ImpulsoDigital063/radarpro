@@ -330,10 +330,10 @@ export function escolherScriptAbordagem(params: {
 // Mesmo lead cai sempre na mesma variante — permite A/B/C tracking real
 export function pickDiagnostico(
   script: ScriptAbordagem,
-  telefone: string,
+  telefone: string | null,
 ): { texto: string; variante: 'A' | 'B' | 'C' } {
-  const digits = telefone.replace(/\D/g, '')
-  const hash = digits.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0)
+  const digits = (telefone ?? '').replace(/\D/g, '')
+  const hash = digits.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) || 1
   const idx = hash % 3
   return {
     texto: script.diagnosticos[idx],
@@ -407,8 +407,10 @@ export const FOLLOWUP_TIMELINE = [
 ]
 
 // Link direto pro WhatsApp com mensagem pré-preenchida
-export function gerarLinkWhatsApp(telefone: string, mensagem: string): string {
+export function gerarLinkWhatsApp(telefone: string | null, mensagem: string): string {
+  if (!telefone) return ''
   const numero = telefone.replace(/\D/g, '')
+  if (!numero) return ''
   const numeroCompleto = numero.startsWith('55') ? numero : `55${numero}`
   const mensagemEncoded = encodeURIComponent(mensagem)
   return `https://wa.me/${numeroCompleto}?text=${mensagemEncoded}`

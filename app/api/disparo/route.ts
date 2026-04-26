@@ -14,7 +14,7 @@ type LeadRow = {
   id: number
   nome: string
   categoria: string
-  telefone: string
+  telefone: string | null
   instagram: string | null
   instagram_url: string | null
   site: string | null
@@ -26,7 +26,7 @@ export type LeadDisparo = {
   id: number
   nome: string
   categoria: string
-  telefone: string
+  telefone: string | null
   telefoneFormatado: string
   instagram: string | null
   site: string
@@ -61,8 +61,10 @@ function resolverSite(siteRaw: string | null): string {
   return siteRaw
 }
 
-function formatarTelefone(tel: string): string {
+function formatarTelefone(tel: string | null): string {
+  if (!tel) return 'Pegar via link bio'
   const d = tel.replace(/\D/g, '')
+  if (!d) return 'Pegar via link bio'
   if (d.length === 13 && d.startsWith('55')) {
     return `(${d.slice(2, 4)}) ${d.slice(4, 9)}-${d.slice(9)}`
   }
