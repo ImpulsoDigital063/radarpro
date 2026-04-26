@@ -323,6 +323,96 @@ Quantos desses tu acha que perde por mês?`,
     razao_ranking: 'OCEANO AZUL — única perfumaria importada de luxo em Palmas + entorno. Ticket altíssimo (R$300-1.500) = ROI Shopify rápido. Dor de AUTENTICIDADE escancarada (clássica de importado). Shopify resolve cirurgicamente. Pitch Premium provável na call (R$1.297+) — branding luxo + NF-e + selo institucional justificam.',
   },
 
+  // ── TIER A (CIC #3 — 25/04 saúde estética/Erlane) — 4 leads LP ──────
+  // Hashtags varridas: 6 (soroterapia, harmonização, emagrecimento, drip,
+  // vitaminas, biomédica/farmacêutica esteta). 25 perfis abertos, 4 aprovados
+  // nos 8 filtros duros + 1 borderline pra qualificar manual.
+  // Case-clone Erlane confirmado em @veronicalima.enf.
+
+  1108: {
+    tier: 'A',
+    posicao_no_tier: 15,
+    dor: 'Verônica é o CASE-CLONE EXATO da Erlane (EV Suplementos Injetáveis): enfermeira esteta autônoma (sufixo .enf indica COREN), habilitada em Ozonioterapia, atende suplementação injetável + soroterapia + ozonioterapia + Coenzima Q10 + B12 em Palmas-TO. 1.315 seguidores no sweet spot, 137 posts, último há 18 dias. Operação inteira gira no DM/wa.me — quem vai pagar R$200-400 numa sessão de injetável quer ver site profissional com protocolos, antes/depois, biografia técnica e agendamento estruturado, não link tree.',
+    gancho: 'PITCH ESPELHO da Erlane: "Verônica, vi tua operação e ela é praticamente idêntica à da Erlane Vieira (@evsuplementosinjetaveis). Mesmo serviço-âncora (suplementação injetável + soroterapia), mesma identidade visual, mesmo gargalo wa.me. Ela construiu uma LP profissional — evsuplementosinjetaveis.com — que parou de depender só do DM e capturou paciente novo do Google. Posso te mostrar o que mudou na operação dela?". Case real ESPECÍFICO + persona-clone = pitch zero genérico.',
+    objecao: '"Meu paciente vem por indicação, não preciso de site" — clássico de profissional autônoma de saúde.',
+    resposta_objecao: 'Faz total sentido — paciente de injetável vem MUITO por indicação, é como o nicho funciona. Mas pensa: a paciente que ouviu falar de ti pela amiga e vai pesquisar "Verônica Lima enfermeira Palmas" antes de marcar — ela hoje cai no teu Insta. Vê 1.315 seguidores, posts misturados, link wa.me sem contexto. Comparar com a Erlane: paciente cai numa LP profissional com biografia, lista de protocolos, antes/depois categorizado, formulário de pré-anamnese. Mesma indicação, conversão diferente. Topa eu te mostrar a diferença em 1 print?',
+    nota_interna: 'CASE-CLONE da Erlane (EV Suplementos Injetáveis) = pitch de venda mais forte do batch CIC. USAR evsuplementosinjetaveis.com como referência DIRETA na primeira mensagem. Telefone NÃO veio direto (wa.me/message/R3QWJIHAGS6CF1) — abrir o link wa.me, capturar número e validar antes de disparar. Pre-engajamento OBRIGATÓRIO via Insta D-1.',
+    abertura: `Oi Verônica, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando enfermeiras estetas autônomas em Palmas essa semana e o teu perfil chamou atenção forte — operação igualzinha a uma profissional que eu acompanho há um tempo, a Erlane (EV Suplementos Injetáveis).
+
+Me parece que a tua operação inteira hoje gira pelo DM e wa.me. Funciona, mas a paciente nova que ouviu falar de ti pesquisa "Verônica Lima enfermeira Palmas" antes de marcar — e cai no Insta sem contexto.
+
+Posso te mostrar o que a Erlane mudou na operação dela quando saiu do mesmo lugar?`,
+    followup_d3: `Oi Verônica, voltei. Pensando no teu caso vs Erlane: ela tinha exatamente o teu setup (sessão R$200-400, soroterapia + injetável, COREN, atendimento por horário marcado). Quando lançou evsuplementosinjetaveis.com, parou de explicar protocolo no DM 50x por dia — paciente novo já chegava informado. Topa eu te mostrar 1 print da diferença?`,
+    followup_d7: `Oi Verônica, última mensagem. Sei que rotina de enfermeira esteta autônoma é puxada — atender + protocolar + responder DM + pegar material. Vou parar de mandar. Só registro: a Erlane está atendendo praticamente full há 6 meses por causa da LP — não foi mágica, foi infraestrutura. Se um dia isso fizer sentido pra ti, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2-3 posts técnicos (protocolos de soroterapia, vitaminas específicas — não foto pessoal). Comentar 1 com algo do tipo "vitamina B12 injetável tem feito diferença grande nesses protocolos mesmo" ou referência ao protocolo específico. Profissional de saúde valoriza pre-engajamento técnico, não emoji elogio.',
+    razao_ranking: 'CASE-CLONE EXATO da Erlane (LEAD-ÂNCORA do Prompt #3 CIC). Perfil que MAIS se aproxima do nosso case real (EV Suplementos Injetáveis): mesma profissão, mesmo serviço, mesmo gargalo wa.me, mesma identidade visual (cor coral, nome.enf). Ticket recorrente (R$200-400 sessão mensal). LP a partir de R$499 paga com 2-3 sessões. Pitch ESPELHO = zero objeção de relevância.',
+  },
+
+  1109: {
+    tier: 'A',
+    posicao_no_tier: 16,
+    dor: 'Dra. Christiana é endocrinologista solo CRM-TO 8510 RQE 3994 com endereço explícito (Av. Teotônio Segurado Q401 Lote 01 Sala 905). Conteúdo técnico altíssima qualidade (postou há 3 dias sobre Wegovy/Rybelsus). 2.595 seg, 191 posts, autoridade médica máxima visível em bio + posts. Tem linktr.ee mas falta LP DEDICADA às canetas emagrecedoras (Mounjaro/Ozempic/Wegovy/Tirzepatida) — esse subnicho é o NICHO MAIS QUENTE em saúde estética Palmas hoje, e o paciente que pesquisa "Mounjaro Palmas TO" cai num linktr.ee genérico sem contexto.',
+    gancho: 'LP dedicada às CANETAS EMAGRECEDORAS: explicação técnica de cada análogo GLP-1 (semaglutida vs tirzepatida), critérios de elegibilidade, FAQ ("preciso usar pra sempre?", "convênio cobre?", "diferença Ozempic vs Wegovy"), antes/depois categorizado, agendamento estruturado, biografia médica com CRM+RQE em destaque. Captura Google + tráfego pago do "Mounjaro Palmas". Linktr.ee continua, mas a LP vira o destino oficial pro paciente que quer protocolo, não lista de links.',
+    objecao: '"Meu Insta tá indo bem, paciente já me acha" — operação ativa que sente que tá no controle.',
+    resposta_objecao: 'Tu tem MUITO conteúdo técnico bom no Insta, raríssimo de ver — concordo que gera autoridade. Mas pensa: o paciente que ouviu falar de Mounjaro semana passada e abriu Google às 23h pra pesquisar "Mounjaro Palmas TO segura?" — esse cai no linktr.ee teu, vê 4 links sem hierarquia e sai pesquisando outra coisa. Hoje o linktr.ee é "tá tudo aqui", mas pra paciente novo é "qual desses é meu próximo passo?". LP dedicada vira "AQUI ESTÁ TUDO SOBRE CANETAS EMAGRECEDORAS COMIGO" — captura exatamente esse momento de pesquisa intensa.',
+    nota_interna: 'NICHO MAIS QUENTE de saúde estética Palmas (canetas GLP-1). Endereço explícito + CRM+RQE + atividade alta = perfil de altíssima conversão se LP for específica e técnica. Tem linktr.ee — pegar o número via lá antes de disparar (telefone da bio (63)99426-6093 confirmado mas validar se é WhatsApp). Pitch técnico sério (não "promessa de emagrecimento") — médica não compra fluffy.',
+    abertura: `Oi Dra. Christiana, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando endocrinologistas autônomos em Palmas essa semana e o teu perfil chamou atenção forte — conteúdo técnico de canetas emagrecedoras é dos mais sólidos que vi (vi teu post de 3 dias atrás sobre Wegovy/Rybelsus oral vs injetável).
+
+Me parece que tu sente que o Insta capta paciente novo. Mas o que pesquisa "Mounjaro Palmas TO" no Google às 23h cai no teu linktr.ee — vê 4 links sem hierarquia e some.
+
+Quanto desse paciente novo tu acha que perde por mês?`,
+    followup_d3: `Oi Dra. Christiana, voltei. Pensando: canetas GLP-1 é o nicho que mais cresce em endocrino agora. Quem pesquisa Mounjaro/Wegovy gasta 30-60 min lendo antes de marcar consulta. LP dedicada com explicação técnica de cada análogo, critérios de elegibilidade, FAQ específico = vira destino oficial pra esse paciente em vez de linktr.ee. Posso te mostrar 1 LP médica que ranqueia em "Mounjaro [cidade]"?`,
+    followup_d7: `Oi Dra. Christiana, última mensagem da minha parte. Sei que rotina de endocrino solo é apertada. Vou parar de mandar. Só registro: o paciente de Palmas que vai usar caneta emagrecedora nos próximos 5 anos pesquisa MUITO antes — quem aparecer primeiro com LP técnica fica com o nicho. Hoje essa busca em Palmas é dominada por linktr.ees e Insta — espaço enorme de SEO local. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos recentes (priorizar os de Wegovy/Rybelsus/Tirzepatida — não estilo de vida). NÃO comentar — médica recebe muito comentário genérico de paciente. Pre-warming via consumo do conteúdo, não interação. Mensagem WhatsApp já chega quente porque ela vai ver "Eduardo Barros começou a seguir você" no painel.',
+    razao_ranking: 'NICHO MAIS QUENTE em saúde estética Palmas (canetas GLP-1). Autoridade máxima visível (CRM+RQE), endereço explícito, conteúdo técnico ativo, 191 posts. Tem linktr.ee = sinaliza que reconhece necessidade de "lugar único" mas usa solução amadora. Upgrade pra LP profissional = pitch claro de evolução, não criação. Ticket alto recorrente (consulta R$300-500 + acompanhamento mensal). LP a partir de R$499.',
+  },
+
+  1110: {
+    tier: 'A',
+    posicao_no_tier: 17,
+    dor: 'Dra. Thais é endocrinologista hiperativa: 358 posts, postou ONTEM (Tirzepatida + musculação), CRM-TO 4746 + RQE 2691 + RQE 3067 (especialização dupla), atende Porto Nacional + Palmas. JÁ TEM contate.me/thaismahassem mas é LP GENÉRICA (linktr.ee renomeado, sem identidade médica nem foco de serviço). Volume de conteúdo + autoridade dupla + operação cross-cidade = perfil que precisa de LP estruturada PRA SE DIFERENCIAR — endocrinologista padrão tem linktr.ee, ela precisa de diferencial digital tão técnico quanto o conteúdo dela.',
+    gancho: 'LP UPGRADE — não criação. Pitch é "tu já tem contate.me, ele cumpre função básica mas não converte como o conteúdo merece. Eu monto LP profissional dedicada com biografia médica completa, lista de serviços categorizada (emagrecimento Mounjaro / menopausa / reposição hormonal), antes/depois com cuidado ético, agendamento integrado, integração WhatsApp Business, 3 artigos SEO sobre Tirzepatida pra rankear no Google". Mantém o contate.me (não desligar) e posiciona LP como página principal.',
+    objecao: '"Já tenho contate.me, tá funcionando" — operação ativa defendendo solução existente.',
+    resposta_objecao: 'Faz total sentido — contate.me cumpre o básico (link bio + cards de contato). Mas teu CONTEÚDO médico é técnico, ativo (postou ontem!), e teu posicionamento é endocrino com Tirzepatida + reposição hormonal. Cliente novo que vê teu post sobre Mounjaro chega no contate.me e vê só "AGENDAR" sem contexto. LP profissional pega esse momento e converte: explicação do serviço, biografia médica com CRM+RQE em destaque, FAQ por procedimento, formulário de pré-anamnese pra qualificar paciente antes da consulta. Mesma porta, conversão diferente. Topa ver?',
+    nota_interna: 'JÁ TEM contate.me — pitch é UPGRADE, não criação (não soar "cria do zero"). Atende Palmas + Porto Nacional, então LP precisa de geo-segmentação clara (qual paciente atendido onde). Telefones que vieram no JSON CIC são FIXOS ((63)33631333, (63)32286093) — pegar celular WhatsApp via contate.me/thaismahassem antes de disparar.',
+    abertura: `Oi Dra. Thais, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando endocrinologistas autônomos em Palmas/Porto Nacional essa semana e o teu perfil chamou atenção — 358 posts, postou ontem sobre Tirzepatida + musculação, CRM+RQE em destaque. Conteúdo técnico ativo desse nível é raro de ver.
+
+Me parece que teu contate.me cumpre função básica de "agendar" — mas teu conteúdo médico é nível bem acima disso. O paciente novo que vê teu post sobre Mounjaro chega num "AGENDAR" sem contexto, e desiste.
+
+Quanto vale, em paciente perdido por mês, esse buraco entre conteúdo técnico e LP genérica?`,
+    followup_d3: `Oi Dra. Thais, voltei. Pensando: contate.me não desliga — continua útil. Mas LP profissional dedicada vira destino principal quando paciente novo pesquisa "endocrinologista Palmas Tirzepatida". Inclui biografia médica completa, FAQ por procedimento, agendamento integrado, 3 artigos SEO. Captura tráfego que hoje cai em "AGENDAR" vazio. Posso te mostrar 1 caso real disso?`,
+    followup_d7: `Oi Dra. Thais, última mensagem. Sei que rotina de endocrino com 2 cidades é apertada. Vou parar de mandar. Só registro: teu posicionamento de Tirzepatida + reposição hormonal é nicho que cresce muito agora — LP profissional dedicada captura essa janela de busca antes de saturar. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos recentes (Tirzepatida, reposição hormonal — não foto pessoal). NÃO comentar (médica hiperativa recebe muitos comentários genéricos, queima). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'OPERAÇÃO HIPERATIVA com autoridade dupla (RQE 2691 + RQE 3067) e cross-cidade. Já tem contate.me = reconheceu necessidade de hub digital. UPGRADE pra LP profissional dedicada vira pitch de evolução, não criação. NICHO QUENTE (endocrino + Tirzepatida + reposição). LP a partir de R$499.',
+  },
+
+  1111: {
+    tier: 'A',
+    posicao_no_tier: 18,
+    dor: 'Dra. Mariella é médica nutróloga ativa em DUAS CIDADES (Palmas-TO no Health Plennus + Goiânia-GO no Núcleo Dr. Paulo Fernando). 5.518 seguidores, 122 posts, último há 5 dias. Operação dividida entre cidades = paciente confuso "ela atende em Palmas mesmo? Em qual dia? Como agendar?". Linktr.ee funciona como "tá tudo aqui" mas DILUI o público de Palmas com o de Goiânia. Quem mora em Palmas e pesquisa "nutrólogo emagrecimento Palmas" cai numa página que mistura agenda das duas cidades.',
+    gancho: 'LP GEO-SEGMENTADA Palmas. Página dedicada ao público palmense com endereço Health Plennus em destaque, dias de atendimento Palmas explícitos, agendamento direto, biografia médica + CRM, FAQ específico de Palmas (convênios locais, integrações com clínicas parceiras). Goiânia continua via linktr.ee ou LP separada futura. Cliente palmense vira o foco — não compete com agenda Goiânia pela atenção.',
+    objecao: '"Meu linktr.ee tem tudo, paciente vê e agenda" — solução genérica funcional.',
+    resposta_objecao: 'Faz sentido — linktr.ee centraliza tudo, e é prático. Mas pensa pelo lado da paciente palmense: ela pesquisa "nutrólogo Palmas emagrecimento", chega no linktr.ee teu e vê 5 links — agenda Palmas, agenda Goiânia, Insta, WhatsApp, blog. Ela tem que adivinhar qual é dela. LP geo-segmentada Palmas vira "AQUI É O TEU LUGAR SE TU ESTÁ EM PALMAS" — endereço Health Plennus em destaque, dias de atendimento, formulário pré-anamnese. Goiânia continua intacta no linktr.ee. Mesma operação, conversão melhor pro público de Palmas.',
+    nota_interna: 'CRM NÃO FOI VALIDADO no scrape CIC (campo null por rigor). Pre-checar manualmente o perfil antes de disparar — confirmar registro médico explícito. Telefone via linktr.ee/mariellazanchett — pegar celular WhatsApp Palmas antes de disparar. Ângulo geo-segmentação é o diferencial: ela JÁ tem solução, pitch é OTIMIZAÇÃO PARA PALMAS, não criação do zero.',
+    abertura: `Oi Dra. Mariella, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando médicas nutrólogas que atendem em Palmas essa semana e o teu perfil chamou atenção — atendimento Palmas (Health Plennus) + Goiânia (Núcleo Paulo Fernando), 5.500+ seg, conteúdo técnico ativo.
+
+Me parece que teu linktr.ee centraliza tudo. Funciona pra paciente que já te conhece. Mas a paciente NOVA palmense que pesquisa "nutróloga Palmas emagrecimento" cai num linktr.ee dividido entre 2 cidades e tem que adivinhar qual link é dela.
+
+Quanto desse paciente novo de Palmas tu acha que perde por mês?`,
+    followup_d3: `Oi Dra. Mariella, voltei. Pensando: linktr.ee não desliga (Goiânia continua precisando). Mas LP geo-segmentada Palmas — endereço Health Plennus em destaque, dias palmas explícitos, agendamento direto, formulário pré-anamnese local — captura a paciente palmense sem competir com Goiânia. Topa eu te mostrar 1 caso de médico que tem 2 cidades e fez LP por geo?`,
+    followup_d7: `Oi Dra. Mariella, última mensagem. Operação cross-cidade é normal pra médico que cresce — mas paciente decide por geografia, não por linktr.ee unificado. Se em algum momento isso fizer sentido como otimização local, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos (saúde hormonal feminina, emagrecimento metabólico — priorizar conteúdo Palmas se conseguir identificar). NÃO comentar (médica recebe muitos genéricos).',
+    razao_ranking: 'DOR DE GEO-SEGMENTAÇÃO clara (atende 2 cidades com 1 hub digital). Pitch de OTIMIZAÇÃO PARA PALMAS, não criação. Médica nutróloga = nicho com paciente que pesquisa muito. LP Palmas-only captura busca local sem disputa Goiânia. LP a partir de R$499. CRM não validado no scrape — pre-checar.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {
