@@ -570,6 +570,116 @@ Quanto dessa filha tu acha que recua nesse momento da pesquisa?`,
     razao_ranking: 'TIER A score 8. CASE-CLONE EV Suplementos. Nicho B2C com decisor diferente do paciente (família) = LP com prova social específica vence. Daily posting 365 posts = disciplina sinaliza profissional sério. Pitch "complexo" R$899-1.197.',
   },
 
+  // ── TIER A (CIC #6 — 26/04 médicos RQE + dentistas + advogados) — 5 leads ──
+  // Batch RECORDE: 7 Tier S num único round (validação do filtro Tier S
+  // automático aplicado no SYSTEM_PROMPT pós-market intelligence).
+  // 5 análises pros Tier S com case-clone direto + maior potencial.
+
+  1131: {
+    tier: 'A',
+    posicao_no_tier: 26,
+    dor: 'Douglas Pimentel é o LEAD MAIS GRITANTE do pipeline inteiro: advogado solo trabalhista OAB-TO, Maps 5.0/294 reviews — número ABSURDO, é literalmente top 1 trabalhista de Palmas no Maps. ZERO domínio próprio, ZERO presença web, bio Insta só com DDD 63 99202-4803. 294 paciente satisfeito que JÁ deixou review e o próximo cliente que pesquisa "advogado trabalhista Palmas" cai num WhatsApp sem ver biografia, casos, especialidade, conformidade OAB. É OURO LOCAL não capturado — Hormozi diria "deixar dinheiro na mesa em escala industrial".',
+    gancho: 'PITCH ESPELHO direto via locajv.com.br (case Impulso, perfil masculino formal-jurídico) + ângulo OAB. LP profissional vira destino oficial pra busca "advogado trabalhista Palmas" (que Douglas já domina no Maps): biografia + OAB-TO em destaque + áreas de especialidade trabalhista (rescisão, CLT, INSS) + FAQ ("como funciona 1ª consulta?", "quanto custa orientação?", "OAB permite cobrar honorários assim?") + formulário de pré-análise da causa + 3 artigos SEO ("rescisão CLT em Palmas", "como entrar com ação trabalhista TO", "verbas rescisórias Tocantins") + integração ética com OAB (sem captação ostensiva, info regulamentar). 294 reviews + LP profissional = autoridade triplicada.',
+    objecao: '"OAB tem regra contra propaganda agressiva" — clássica do advogado preocupado com Provimento 205/2021.',
+    resposta_objecao: 'Total razão — Provimento 205/2021 da OAB proíbe captação ostensiva, MAS permite (e até encoraja) LP informativa sem preço, sem promessa de resultado, sem "ganhe sua causa". O que eu monto é o oposto da propaganda agressiva: informação sóbria, áreas de atuação, biografia profissional, FAQ regulamentar, formulário de contato. É exatamente o que a Resolução prevê — presença digital regulamentar. Tem caso real disso aqui em Palmas (te mostro). 294 reviews 5★ no Maps + LP que respeita OAB = posicionamento que nenhum trabalhista da cidade tem.',
+    nota_interna: 'LEAD MAIS GRITANTE DO PIPELINE INTEIRO. 294 reviews é número absurdo (mais que 90% das clínicas grandes!). Telefone (63)99202-4803 confirmado bio. Pre-engajamento Insta D-1 obrigatório (1.655 seg, intimista — comentar pode funcionar bem se for específico). Pitch tem que ser ESPECIAL — Douglas é caso showcase, vale propor ele como case real ("posso te entregar a LP e quando ficar boa, virar caso de prova social pra outros advogados de Palmas — desconto de R$200 em troca?"). Pitch "complexo" pelo conteúdo OAB-compliant, R$799-999.',
+    abertura: `Oi Douglas, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando advogados autônomos de Palmas e o teu perfil chamou atenção MUITO forte — 294 reviews 5★ no Maps em trabalhista é número absurdo (mais que 90% das clínicas grandes da cidade). Tu é literalmente top 1 trabalhista de Palmas pra quem pesquisa.
+
+Mas olhei tua bio: 294 paciente satisfeito que recomenda o cliente novo cai num WhatsApp sem ver biografia, áreas de atuação, FAQ regulamentar.
+
+Quanto desse cliente novo (que vê review e pesquisa antes de ligar) tu acha que perde no caminho?`,
+    followup_d3: `Oi Douglas, voltei. Pensando: Provimento 205/2021 da OAB permite LP informativa sem preço nem promessa — exatamente o que advogado consolidado precisa pra capturar busca local. Tu tem 294 reviews que valem ouro online. Posso te mostrar 2 LPs de advogado trabalhista que respeitam OAB e ranqueiam? E uma proposta: posso te entregar a LP e quando ficar boa, virar caso real de prova social pra outros advogados de Palmas — desconto de R$200 em troca. Topa?`,
+    followup_d7: `Oi Douglas, última mensagem. 294 reviews é capital social que muito advogado vai levar 10 anos pra construir. Tu tá deixando esse capital invisível pra cliente novo que pesquisa antes de ligar. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts (priorizar conteúdo técnico de direito trabalhista, não foto pessoal). Comentar 1 com algo específico ("conteúdo sobre rescisão CLT é raro de ver com esse rigor mesmo" ou referência ao caso mostrado). Advogado valoriza pre-engajamento técnico — comentário "show!" queima.',
+    razao_ranking: 'TIER S puríssimo (score 9). LEAD MAIS GRITANTE DO PIPELINE — 294 reviews 5★ é número absurdo (recorde do banco). Conversão LP advocacia >4% (maior do mercado nacional). Case-clone locajv. Pitch "complexo" R$799-999 pelo conteúdo OAB-compliant + proposta opcional de "case showcase com R$200 desconto" pra fechar mais rápido.',
+  },
+
+  1125: {
+    tier: 'A',
+    posicao_no_tier: 27,
+    dor: 'Dra. Ingrid Sales é endocrinologista RQE 3062, Maps 5.0/190 reviews (número RARÍSSIMO em endocrino), 7.540 seguidores Insta, endereço Centro Clínico Sara Q.108 Sul. Atende Diabetes + Obesidade + Tireoide + Hormônios. MAS o canal de captura é literalmente um BIT.LY (`bit.ly/atendimentodraingridsales`) — 190 reviews 5★ + 7.5k seguidores + bit.ly = DESPERDÍCIO COLOSSAL. Paciente que viu post sobre Mounjaro/Ozempic clica no link da bio e cai num bit.ly genérico, sem biografia, sem FAQ, sem formulário de pré-anamnese.',
+    gancho: 'LP profissional dedicada com biografia + RQE 3062 em destaque + 4 áreas (Diabetes, Obesidade c/ canetas GLP-1, Tireoide, Hormônios) + FAQ específico de cada (quanto custa consulta, plano cobre, como funciona acompanhamento canetas) + agendamento integrado + 3 artigos SEO ("Mounjaro Palmas TO", "tireoide Hashimoto", "obesidade tratamento médico"). Pega tráfego das buscas premium "endocrinologista Palmas Mounjaro". Mantém Insta + bit.ly opcional, mas LP vira destino oficial. Case-clone: dra-janaina.com.br (médica autônoma com LP profissional).',
+    objecao: '"Já tenho bit.ly e o Insta, paciente acha" — defesa do operacional atual.',
+    resposta_objecao: 'Faz sentido — bit.ly cumpre o básico de redirecionar pro WhatsApp. Mas pensa pelo lado da paciente NOVA com 60kg sobrando que viu teu post sobre canetas GLP-1, vai pesquisar "Dra Ingrid Sales endocrino Palmas" antes de marcar consulta de R$500. Cai no bit.ly, vê só "ABRIR WHATSAPP" sem biografia, sem FAQ de preço, sem explicação dos protocolos. 60% recua. LP profissional muda isso: ela chega no teu canal e vê biografia médica completa + RQE em destaque + áreas catalogadas + FAQ ("plano cobre?", "Wegovy vs Tirzepatida?", "tempo de acompanhamento?"). Mesma paciente, conversão diferente. Topa eu te mostrar?',
+    nota_interna: 'NICHO MAIS QUENTE em saúde estética Palmas (canetas GLP-1) — Ingrid tem 190 REVIEWS 5★ que é mais que 99% dos endocrinos do Brasil. Telefone NÃO veio direto (bit.ly) — abrir o link e capturar número antes de disparar. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts técnicos sobre canetas/tireoide). Pitch "complexo" provável pelo volume de conteúdo + 4 áreas, R$899-1.197 na call.',
+    abertura: `Oi Dra. Ingrid, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando endocrinologistas autônomos de Palmas essa semana e o teu perfil chamou atenção MUITO forte — 190 reviews 5★ é número que MUITO endocrino do Brasil inteiro vai levar 15 anos pra construir.
+
+Mas olhei tua bio: 7.500 seguidores qualificados que pesquisam canetas GLP-1 + tireoide + diabetes caem num bit.ly. Sem biografia, sem FAQ, sem catálogo de áreas.
+
+Quanto dessa paciente nova (que viu teu post sobre Mounjaro e foi pesquisar antes de marcar R$500 de consulta) tu acha que recua nesse momento?`,
+    followup_d3: `Oi Dra. Ingrid, voltei. Pensando: paciente de canetas GLP-1 pesquisa MUITO antes de marcar (decisão de longo prazo, R$1.200/mês de medicação). LP dedicada com biografia + RQE + FAQ específico de Wegovy/Tirzepatida/Mounjaro = vira destino oficial pra busca "Mounjaro Palmas TO" que hoje cai em linktr.ees genéricos. Topa ver caso de endocrina que fez essa transição?`,
+    followup_d7: `Oi Dra. Ingrid, última mensagem da minha parte. 190 reviews 5★ é capital que poucas endocrinas do Brasil tem. Tu tá deixando esse capital invisível pra paciente nova. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts técnicos recentes (priorizar canetas GLP-1, tireoide — não foto pessoal). NÃO comentar (médica recebe muito comentário genérico de paciente). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S puríssimo (score 9.5). 190 reviews 5★ em endocrino = recorde absoluto do nicho em Palmas. Nicho mais quente em saúde estética Palmas (canetas GLP-1). Case-clone Janaína. Pitch "complexo" R$899-1.197 (4 áreas + FAQ específico cada).',
+  },
+
+  1122: {
+    tier: 'A',
+    posicao_no_tier: 28,
+    dor: 'Dra. Hollana Correa é dentista solo CRO TO 3043 com 15.900 SEGUIDORES INSTA (a maior do batch dental), Maps 5.0/67 reviews, endereço Orla 14 Graciosa. Nicho: Rejuvenescimento Facial / Harmonização Orofacial. ZERO domínio próprio — link in bio é literalmente um wa.me/message direto. 15.9k seguidores qualificados (público que segue dentista de harmonização é cliente intencional, não casual) sem captura de lead — todos voltam pro DM. Paciente que vai gastar R$3.000+ em harmonização precisa ver biografia técnica, antes/depois ético, processo, FAQ de preço — não cai direto em "olá!".',
+    gancho: 'Pitch DUPLO ESPELHO: irsnayra.com.br (autoridade feminina + estética) + dra-janaina.com.br (médica solo com LP profissional). LP de procedimentos estéticos com biografia + CRO em destaque + catálogo (rejuvenescimento facial, harmonização orofacial, lifting facial, bichectomia) + galeria antes/depois (com cuidado ético dental) + FAQ ("quanto custa harmonização?", "quanto dura?", "dói?", "tempo de recuperação?") + agendamento integrado + 3 artigos SEO ("harmonização orofacial Palmas", "rejuvenescimento facial seguro", "bichectomia indicação"). 15.9k seguidores → LP que captura → conversão dramática.',
+    objecao: '"Já tenho 15k seguidores, cliente vem do Insta mesmo" — operação ativa defendendo o que funciona.',
+    resposta_objecao: 'Concordo — 15.9k seguidores é AUTORIDADE construída de verdade, e o Insta capta cliente que JÁ te conhece. Mas pensa: a paciente que viu uma harmonização tua num story compartilhado por amiga e vai gastar R$3.000 na decisão estética — ela pesquisa MUITO antes de marcar. Cai no link bio (wa.me direto), vê "olá!" sem biografia, sem antes/depois categorizado, sem FAQ de preço. 60% recua nesse momento. LP profissional pega exatamente esse momento: ela chega no link bio e vê biografia + CRO + casos + FAQ. Mesma paciente, conversão diferente. Topa ver caso real?',
+    nota_interna: '15.9k seguidores é o MAIOR do batch dental — autoridade Insta gigante. Telefone NÃO veio direto (wa.me/message) — abrir o link, capturar número antes de disparar. Pre-engajamento Insta D-1 obrigatório (curtir 2 procedimentos finalizados, NÃO foto pessoal). Pitch "complexo" R$899-1.197 (volume de conteúdo + galeria antes/depois ética + integração agendamento).',
+    abertura: `Oi Dra. Hollana, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando dentistas autônomas de harmonização em Palmas e o teu perfil chamou atenção forte — 15.900 seguidores qualificados é nível raríssimo aqui (dentista da cidade mediana com 5k já é considerada consolidada).
+
+Mas olhei o link da tua bio: 15.9k seguidores caem num wa.me/message direto. Sem biografia, sem antes/depois categorizado, sem FAQ de preço.
+
+Quanto dessa paciente nova de harmonização (que vai gastar R$3k+ e pesquisa MUITO antes) tu acha que recua nesse momento do "olá!"?`,
+    followup_d3: `Oi Dra. Hollana, voltei. Pensando: harmonização orofacial é decisão estética séria — paciente compara 4-5 dentistas antes de marcar. Quem aparece com LP profissional + galeria antes/depois ética + FAQ de preço fica com a venda. Tu tem 15.9k seguidores que valem MUITO online — só falta o canal converter. Topa ver caso real de dentista estética que fez essa transição?`,
+    followup_d7: `Oi Dra. Hollana, última mensagem. 15.9k seguidores é capital social que merece vitrine adequada. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 procedimentos finalizados (harmonização, rejuvenescimento — NÃO foto pessoal). NÃO comentar (dentista com 15k recebe muito genérico). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S (score 9.5). MAIOR INSTA do batch dental (15.9k). Nicho mais quente em saúde estética + dentista solo. Case-clone duplo (Irsnayra + Janaína). Pitch "complexo" R$899-1.197 pelo volume de conteúdo + branding premium.',
+  },
+
+  1124: {
+    tier: 'A',
+    posicao_no_tier: 29,
+    dor: 'Dra. Ioana Leobas é ginecologista CRM 4282 + RQE com ULTRA-NICHO técnico: Colposcopia + Tratamento HPV + Microscopia + Histeroscopia. Endereço Clínica Mater Vitta Q.602 Sul, Maps 5.0/23 reviews, 2.207 seguidores. ZERO site profissional — só wa.me + Threads. Nicho HPV/colposcopia tem busca paga ALTÍSSIMA (mulher diagnosticada com HPV faz busca desesperada por especialista). Quem aparecer com LP técnica explicando colposcopia + protocolos HPV + FAQ ("HPV tem cura?", "como é a colposcopia?", "quanto custa tratamento?") fica com TODO o nicho regional.',
+    gancho: 'LP profissional ULTRA-NICHO: biografia + CRM+RQE + 4 procedimentos (colposcopia, tratamento HPV, microscopia, histeroscopia) + FAQ técnico de cada + agendamento + 3 artigos SEO premium ("colposcopia em Palmas: como é o procedimento", "HPV tratamento conservador 2026", "histeroscopia diagnóstica indicação"). Captura busca premium "colposcopia Palmas TO" que hoje não tem dono. Case-clone: dra-janaina.com.br (match 1:1 — médica especialista + nicho técnico).',
+    objecao: '"Tenho clínica fixa (Mater Vitta), paciente é encaminhada" — modelo via convênio/encaminhamento.',
+    resposta_objecao: 'Faz sentido — encaminhamento é canal forte de gineco especialista. Mas pensa: a paciente que recebeu diagnóstico de HPV ontem, está angustiada, vai pesquisar "tratamento HPV Palmas" no Google às 23h ANTES de aceitar encaminhamento. Hoje ela cai em ginecologista geral. Tu tem subespecialização raríssima (colposcopia + HPV + histeroscopia) que poucos médicos do Brasil tem — e o canal não comunica isso. LP técnica vira destino oficial pra busca "HPV Palmas" e captura essa paciente premium ANTES da concorrência. Topa ver?',
+    nota_interna: 'ULTRA-NICHO TÉCNICO (HPV + colposcopia + histeroscopia) = busca paga premium + concorrência regional zero. Telefone Maps é fixo (63)3142-0410 — VALIDAR celular WhatsApp via Insta antes. Pre-engajamento Insta D-1 obrigatório (curtir 2 posts técnicos — gineco especialista valoriza pre-engajamento técnico, não emoji). Pitch "complexo" R$899-1.197 (conteúdo técnico HPV + FAQ específico + 3 artigos SEO premium).',
+    abertura: `Oi Dra. Ioana, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando ginecologistas especialistas autônomos em Palmas essa semana e o teu perfil chamou atenção forte — colposcopia + tratamento HPV + histeroscopia é subespecialização raríssima (poucos médicos do Brasil têm essa combinação).
+
+Mas olhei o teu canal de captura: paciente que recebeu diagnóstico de HPV vai pesquisar "tratamento HPV Palmas" no Google às 23h ANTES de aceitar encaminhamento. Cai num wa.me sem biografia, sem FAQ técnico, sem explicação dos protocolos.
+
+Quanto dessa paciente premium tu acha que perde antes mesmo do encaminhamento chegar?`,
+    followup_d3: `Oi Dra. Ioana, voltei. Pensando: tu tem subespecialização que MUITO ginecologista do Brasil não tem. SEO pra "colposcopia Palmas" + "HPV Palmas" provavelmente tem concorrência regional zero. Quem ranquear primeiro com LP técnica fica com o nicho por anos. Topa eu te mostrar 1 LP médica que ranqueia em buscas técnicas similares?`,
+    followup_d7: `Oi Dra. Ioana, última mensagem. Nicho HPV/colposcopia só vai ficar mais quente (cresce a procura por diagnóstico precoce). Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts técnicos sobre HPV ou colposcopia (NÃO foto pessoal). Comentar 1 com algo específico técnico ("informação sobre colposcopia com esse rigor é raro de ver mesmo" ou referência ao protocolo). Médica especialista valoriza pre-engajamento técnico.',
+    razao_ranking: 'TIER S (score 9.5). ULTRA-NICHO TÉCNICO (HPV + colposcopia + histeroscopia) = concorrência regional zero. Case-clone Janaína 1:1. Busca paga premium. Pitch "complexo" R$899-1.197 (3 artigos SEO premium + FAQ técnico).',
+  },
+
+  1127: {
+    tier: 'A',
+    posicao_no_tier: 30,
+    dor: 'Dr. Ricardo Mendonça é ortopedista cirurgião RQE 3540 e 3770 + TEOT (UFPR) com ULTRA-NICHO técnico: Cirurgia da Mão e Microcirurgia. Endereço COT Q.902 Sul, Maps 5.0/90 reviews, 2.141 seguidores Insta. INSIGHT CRÍTICO descoberto pelo CIC #6: ELE JÁ TEM DOMÍNIO PRÓPRIO (`ricardomendonca.com.br`) — MAS o subdomínio `bio.ricardomendonca.com.br` é apenas link-in-bio custom. O domínio raiz não tem site indexado. Ele JÁ INVESTIU em domínio profissional, mas parou no link-in-bio. É EXATAMENTE o perfil que migra de bio→LP em 1 conversa.',
+    gancho: 'PITCH UPGRADE — não criação. "Vi que tu já investiu em ricardomendonca.com.br + bio.ricardomendonca.com.br — tu já entendeu que precisa de um lugar único online. O que falta é evoluir o link-in-bio pra LP profissional completa: biografia médica + RQE em destaque + procedimentos catalogados (cirurgia da mão, microcirurgia, lesões nervo periférico, síndrome do túnel do carpo) + galeria de casos com cuidado ético + FAQ técnico + agendamento integrado." Mesmo domínio, conversão profissional. Case-clone: dra-janaina.com.br + EV Suplementos.',
+    objecao: '"Já tenho meu site (bio.ricardomendonca.com.br), funciona" — defesa da solução amadora atual com falsa sensação de domínio próprio.',
+    resposta_objecao: 'Faz total sentido — tu já passou da fase de não ter nada online, e isso é importante. Mas pensa: bio.ricardomendonca.com.br é link-in-bio custom — basicamente Linktr.ee com tua marca. O domínio raiz (ricardomendonca.com.br) não tem site indexado no Google. Paciente que pesquisa "cirurgia da mão Palmas TO" não te acha pelo Google. Quem aparece é cirurgião geral. LP profissional no domínio raiz vira destino oficial pra busca "cirurgia da mão Palmas" + "microcirurgia Palmas" — nicho com concorrência regional zero. Mesmo domínio que tu já tem, conversão diferente. Topa ver?',
+    nota_interna: 'INSIGHT NOVO do batch CIC #6: TEM DOMÍNIO ricardomendonca.com.br MAS é link-in-bio custom. Pitch UPGRADE explícito (ele já investiu, só falta evoluir). Telefone NÃO veio direto — pegar via bio link. ULTRA-NICHO (cirurgia da mão + microcirurgia) = concorrência regional zero. Pitch "complexo" R$899-1.197 (LP profissional + 3 artigos SEO técnicos + integração com domínio existente).',
+    abertura: `Oi Dr. Ricardo, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando cirurgiões ortopedistas autônomos em Palmas e o teu perfil chamou atenção forte — cirurgia da mão + microcirurgia é subespecialização raríssima (poucos cirurgiões da região fazem).
+
+Vi que tu já investiu em ricardomendonca.com.br — tu já passou da fase de não ter presença web, isso é importante. Mas o subdomínio bio. é só link-in-bio custom (basicamente Linktr.ee com tua marca). O domínio raiz não tem site indexado no Google.
+
+Paciente que pesquisa "cirurgia da mão Palmas" hoje cai em cirurgião geral. Quanto desse paciente especialista tu acha que perde por mês?`,
+    followup_d3: `Oi Dr. Ricardo, voltei. Pensando: tu tem nicho TÉCNICO de altíssimo valor (microcirurgia, cirurgia da mão) e domínio próprio já comprado. Falta só evoluir o link-in-bio pra LP profissional completa no domínio raiz — biografia + RQE + procedimentos + FAQ. Mesmo domínio, conversão profissional. Topa ver como ficaria?`,
+    followup_d7: `Oi Dr. Ricardo, última mensagem. Microcirurgia em Palmas não tem dono no Google — quem chegar primeiro com LP técnica fica com o nicho por anos. Tu já tem o domínio, falta o conteúdo. Se em algum momento bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos (priorizar conteúdo cirúrgico, casos de mão — NÃO foto pessoal). NÃO comentar (médica especialista recebe muito genérico). Pre-warming via consumo do conteúdo.',
+    razao_ranking: 'TIER S (score 9). PITCH UPGRADE puríssimo — ele já tem domínio próprio (ricardomendonca.com.br) mas só link-in-bio. ULTRA-NICHO técnico (cirurgia mão + microcirurgia) = concorrência regional zero. Case-clone Janaína. Pitch "complexo" R$899-1.197 (LP profissional + integração com domínio existente).',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {
