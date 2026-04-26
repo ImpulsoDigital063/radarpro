@@ -460,6 +460,116 @@ Tu já ouviu falar do TikTok Shop?`,
     razao_ranking: 'ÚNICO lead do banco com PERFIL TIKTOK ATIVO (validado batch #4). Diferencial pesado — Shopify + TikTok Shop integration é pitch que ninguém mais oferece em Palmas. Marca masculina autoral + presença dupla canal social + ticket médio = case ideal de e-commerce com canal social integrado. Provável Premium na call.',
   },
 
+  // ── TIER A (CIC #5 — 26/04 caça LP multi-fonte calibrada) — 5 leads ──
+  // Batch #5 com lições acumuladas dos 4 anteriores. Multi-fonte
+  // (Maps + Google search + Insta) varrida em 7 nichos. 5 análises pros
+  // top com case-clone direto (3 Tier S + 2 Tier A com match forte).
+
+  1118: {
+    tier: 'A',
+    posicao_no_tier: 21,
+    dor: 'Dra. Monnaliza Cabral é dentista solo CRO TO 1727 com Instagram VERIFIED azul (raríssimo em Palmas — sinal de operação consolidada de verdade), Maps 5.0/33, endereço Q. 1006 Sul Alameda 16 Lote 01 Sala 8, ATIVÍSSIMA (post há 3 dias). Catálogo de 6 serviços (facetas, harmonização facial, etc) com TICKET ALTO (faceta R$1.000+/dente, harmonização R$3.000+, consultas R$200-400). MAS: ZERO domínio próprio, ZERO link na bio Insta — agendamento 100% via direct. Pinned post "Agenda aberta" lista os serviços + telefone direto, sem link de marcação. DOR DM ABSOLUTA num nicho onde paciente pesquisa MUITO antes de fechar (faceta + harmonização = decisão estética séria).',
+    gancho: 'PITCH ESPELHO direto: dra-janaina.com.br é case-clone PERFEITO — médica solo com LP profissional de procedimentos estéticos. Mesma estrutura: biografia + CRO em destaque + 6 serviços catalogados com FAQ ("quanto custa faceta?", "harmonização dura quanto?") + galeria antes/depois (com cuidado ético dental) + agendamento integrado + 3 artigos SEO ("faceta de porcelana em Palmas", "harmonização facial CRO-TO segura"). Conta verificada Insta + 5★/33 Maps + LP profissional = autoridade triplicada. Cliente que vai gastar R$3-5k em harmonização pesquisa MUITO; quem aparecer com LP profissional fica com a venda.',
+    objecao: '"Já tenho fluxo no consultório, paciente vem por indicação" — dentista solo consolidada defendendo o status quo.',
+    resposta_objecao: 'Faz total sentido — 33 reviews 5★ + Insta verified mostra que o boca-a-boca funciona. Mas pensa pelo lado da paciente NOVA que ouviu falar de ti pela amiga e vai pesquisar "Dra. Monnaliza Cabral facetas Palmas" antes de marcar (decisão estética é assim — paciente pesquisa MUITO). Ela cai no teu Insta, vê 6 serviços no pinned post, mas tem que mandar DM pra perguntar preço, prazo, processo. 60% desistem aí mesmo. LP profissional pega esse momento: catálogo de procedimentos com FAQ de preço, antes/depois ético, agendamento integrado. Mesma indicação, paciente chegando QUALIFICADA. Topa eu te mostrar 1 caso de dentista solo que fez essa transição?',
+    nota_interna: 'CASE-CLONE PERFEITO da Dra. Janaína (dra-janaina.com.br) — pitch ESPELHO direto na primeira mensagem. Insta VERIFIED azul = sinal de operação consolidada (raro em Palmas). Telefone (63)99258-6520 confirmado pinned post. Pre-engajamento OBRIGATÓRIO via Insta D-1 (curtir 2 posts de procedimento, NÃO comentar — dentista verified recebe MUITOS genéricos). Pitch "complexo" provável (catálogo procedimentos + galeria antes/depois ética + integração agendamento), valor R$899-1.297 na call.',
+    abertura: `Oi Dra. Monnaliza, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando dentistas autônomos consolidados em Palmas e o teu perfil chamou atenção forte — Insta verified (raro aqui), 33 reviews 5★ no Maps, post recente. Operação que claramente já roda.
+
+Olhei teu pinned post sobre "Agenda aberta" com 6 serviços. Me parece que paciente nova que vai pesquisar "Dra. Monnaliza facetas" cai no teu Insta, vê o catálogo, mas tem que mandar DM pra perguntar preço, prazo, processo.
+
+Quanto dessa paciente nova tu acha que desiste no caminho do "ah, vou ter que conversar"?`,
+    followup_d3: `Oi Dra. Monnaliza, voltei. Pensando: tem uma médica de Palmas que tava no teu lugar (consultório consolidado, agendamento por DM) e fez transição pra LP profissional — dra-janaina.com.br. Hoje paciente chega informada sobre procedimento, preço estimado, processo. Ela parou de explicar protocolo no DM 50x por dia. Topa eu te mostrar 1 print da diferença?`,
+    followup_d7: `Oi Dra. Monnaliza, última mensagem da minha parte. Sei que rotina de dentista solo é puxada — atender + protocolar + responder DM. Vou parar de mandar. Só registro: 5★/33 + verified azul é capital social que muita clínica nova vai levar 5 anos pra construir. Falta apresentar online com a mesma seriedade. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts dos últimos 7 dias (priorizar procedimentos finalizados, NÃO foto pessoal). NÃO comentar — Insta verified recebe MUITOS comentários genéricos, queima rápido. Pre-warming via consumo do conteúdo. Mensagem WhatsApp já chega quente porque ela vê "Eduardo Barros começou a seguir você" no painel.',
+    razao_ranking: 'TIER S puríssimo (score 9). CASE-CLONE EXATO da Dra. Janaína. Insta verified + 5★/33 + ZERO web + ZERO link bio = perfil ideal pra LP profissional. Ticket altíssimo (facetas+harmonização R$1k-3k+) = LP a partir de R$499 paga com 1 procedimento. Provável pitch "complexo" (R$899-1.297) na call.',
+  },
+
+  1119: {
+    tier: 'A',
+    posicao_no_tier: 22,
+    dor: 'Dr. Ricardo Linares é cirurgião-dentista solo, conta Insta verified, 8.4k seguidores, Maps 4.9/66, endereço 1106 sul av lo 27 lote 25 sala 3. CASO EXTREMO de DOR DM: o "Site" listado no Google Maps NÃO é um site — é um link literal pra api.whatsapp.com/send (cliente clica em "Site" no Maps e vai direto pro WhatsApp dele). É a ferramenta mais primitiva de captação possível, mas funciona porque ele tem reputação Maps de 4.9/66. Feed Insta inativo 11 sem MAS Maps com reviews recentes = paciente continua chegando via boca-a-boca + Maps, sem canal digital próprio captando o paciente NOVO que pesquisa "cirurgião dentista Palmas" antes de agendar.',
+    gancho: 'LP profissional vira o destino oficial pra paciente novo que pesquisa cirurgião-dentista em Palmas. Biografia + procedimentos catalogados (cirurgia, implante, exodontia complexa, etc) + galeria de casos com cuidado ético + depoimentos + FAQ ("quanto custa implante?", "tempo de recuperação cirurgia?", "quem cobre plano?") + agendamento integrado. Substitui o "wa.me como Site" do Maps por LP institucional sem desligar o WhatsApp. Mesma operação, captura paciente novo que hoje some no caminho.',
+    objecao: '"Tô bem com o que tenho, paciente continua chegando" — defesa do que funciona.',
+    resposta_objecao: 'Concordo — 4.9/66 é reputação que poucas clínicas em Palmas têm. O que funciona não vai mexer. Mas pensa: o paciente que vai pagar R$5-8k num implante PESQUISA antes de marcar — compara 4-5 cirurgiões. Hoje, quando ele clica em "Site" do teu Maps e cai direto no WhatsApp, sem ver biografia, sem ver caso similar, sem ver depoimento... ele recua. "Vou pesquisar mais", e some. LP profissional pega esse momento: ele clica em Site, vê tua biografia + casos + FAQ de preço + agendamento. Mesmo paciente, conversão diferente. Topa eu te mostrar como ficaria?',
+    nota_interna: 'CASE-CLONE da Dra. Janaína (médica/dentista solo com LP profissional). Conta verified + 4.9/66 = autoridade alta apesar do feed Insta inativo. Pre-engajamento via Insta vai ser fraco (feed inativo) — focar em pre-warming via Google Maps (não tem como, mas curtir posts antigos do Insta funciona pra notificar ele). Telefone (63)99211-4547 confirmado wa.me direto. Pitch "complexo" provável (catálogo cirúrgico + galeria casos + agendamento), R$899-1.297.',
+    abertura: `Oi Dr. Ricardo, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando cirurgiões-dentistas autônomos em Palmas essa semana e o teu perfil chamou atenção forte — 4.9 com 66 reviews no Maps + Insta verified é nível raríssimo aqui. Operação que claramente roda.
+
+Olhei teu Maps: o "Site" listado lá vai DIRETO pro WhatsApp. Funciona porque tu tem reputação. Mas o paciente que vai gastar R$5-8k num implante pesquisa MUITO antes — compara 4-5 cirurgiões. Quando ele cai no teu WhatsApp sem ver biografia + casos + FAQ, recua.
+
+Quanto desse paciente novo de implante tu acha que perde por mês?`,
+    followup_d3: `Oi Dr. Ricardo, voltei. Pensando: tu tem ATIVO raro (4.9/66 + verified) que cliente novo de cirurgia ainda não vê. LP profissional vira a "casa digital" — biografia + procedimentos + FAQ de preço + galeria de casos. Substitui o WhatsApp como porta de entrada SEM desligar ele. Mesmo paciente que hoje some, chega informado. Topa ver caso real disso?`,
+    followup_d7: `Oi Dr. Ricardo, última mensagem. Cirurgia dentária é alto-ticket e ciclo de pesquisa longo. Janela de SEO local não fecha — quem chegar primeiro com LP profissional fica com a busca "cirurgião dentista Palmas" por anos. Se fizer sentido em algum momento, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts antigos (feed Insta inativo desde 6 fev — não tem material recente). Pre-warming fraco via Insta — abordagem WhatsApp tem que ser ainda mais forte. NÃO comentar (verified recebe muito genérico).',
+    razao_ranking: 'TIER S (score 9). CASE-CLONE Janaína. Cirurgião-dentista verified + 4.9/66 = autoridade máxima. "Site" do Maps = wa.me direto = caso EXTREMO de DOR DM (raro). Ticket altíssimo (cirurgia/implante R$5-8k) justifica LP a partir de R$499 facilmente. Pitch "complexo" R$899-1.297.',
+  },
+
+  1115: {
+    tier: 'A',
+    posicao_no_tier: 23,
+    dor: 'Pedro Maciel é nutricionista esportivo solo CRN 27994, ATIVÍSSIMO no Insta (post há 1 dia), Maps 5.0/10 (poucas mas todas positivas), endereço 204 Sul Alameda Jandaia Lote 27. Pós-graduando em ESPORTIVA + CLÍNICA + LIPEDEMA — lipedema é nicho ESCASSO em Palmas (paciente pesquisa muito, encontra pouco). ZERO domínio próprio, "Site" do Maps aponta pro próprio Insta, bio com wa.me/+5563992314603. DOR DM CLÁSSICA + nicho de especialização raro = receita escapando porque cliente não acha quem trata lipedema na cidade.',
+    gancho: 'Pitch DUPLO: (a) LP profissional padrão (biografia + CRN + serviços + agendamento), MAS (b) com PÁGINA DEDICADA AO LIPEDEMA — porque é o nicho onde ele tem diferenciação real e onde ranquear no Google "nutricionista lipedema Palmas" vira destino único. Cliente de lipedema gasta MUITO tempo pesquisando, e quem aparece com LP técnica explicando "o que é lipedema, como funciona o protocolo nutricional, fases do tratamento, quanto custa" fica com TODO o nicho regional. Match exato com EV Suplementos (profissional saúde habilitado + sessão recorrente + nicho premium).',
+    objecao: '"Já vendo bem pelo Insta, post há 1 dia, atendo cheio" — operação ativa defendendo o que funciona.',
+    resposta_objecao: 'Concordo — atividade Insta de 1 dia + 5★ no Maps mostra operação que funciona. O Insta capta quem JÁ te segue. Mas o paciente NOVO de lipedema que ouviu falar do diagnóstico semana passada e pesquisa "nutricionista lipedema Palmas" no Google às 23h — esse cai em nutri esportivo geral que não trata lipedema. Tu tem o conhecimento técnico (pós-graduando) + a especialização rara, falta o canal. LP com página dedicada ao lipedema vira destino único pra essa busca em todo Tocantins. Topa eu te mostrar caso de nutri que fez isso e dominou um nicho?',
+    nota_interna: 'NICHO LIPEDEMA é ESCASSO em Palmas — diferenciação ENORME pra ranquear. CASE-CLONE da EV Suplementos (mesmo perfil de profissional saúde habilitado com sessão recorrente). ATIVÍSSIMO Insta (post há 1 dia) facilita pre-engajamento. Telefone (63)99231-4603 confirmado bio. Pitch "complexo" (LP padrão + página dedicada lipedema com FAQ técnico + 3 artigos SEO sobre lipedema), R$899-1.197.',
+    abertura: `Oi Pedro, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando nutricionistas esportivos autônomos em Palmas essa semana e teu perfil chamou atenção — CRN + pós em esportiva + clínica + LIPEDEMA. Postou ontem, atende presencial, 5★ no Maps. Operação ativa.
+
+Mas o que me fez parar foi o LIPEDEMA — esse é nicho RARO em Palmas. Paciente diagnosticada pesquisa "nutricionista lipedema Palmas" no Google e cai em nutri esportivo geral que não trata especificamente. Tu tem o conhecimento técnico, falta o canal.
+
+Quantas dessas tu acha que perde por mês pra Goiânia ou Brasília?`,
+    followup_d3: `Oi Pedro, voltei. Pensando: lipedema é busca premium (paciente gasta semanas pesquisando antes de marcar). Quem aparecer no Google com LP técnica explicando "o que é lipedema, fases, protocolo nutricional, FAQ de preço" fica com TODO o nicho regional. Tu já tem a especialização — falta o canal. Topa ver 1 caso de nutri que dominou nicho assim?`,
+    followup_d7: `Oi Pedro, última mensagem. Nicho lipedema só vai ficar mais quente (cresce a procura por diagnóstico). Quem chegar primeiro com LP especializada fica com a busca por anos. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts técnicos recentes (priorizar conteúdo de lipedema OU esportiva — não foto pessoal). Comentar 1 com algo específico técnico ("conteúdo sobre lipedema é raro de ver com esse rigor mesmo" ou referência ao caso clínico mostrado). Profissional saúde valoriza pre-engajamento técnico.',
+    razao_ranking: 'TIER S (score 8.5). CASE-CLONE EV Suplementos. Nicho LIPEDEMA = diferenciação rara e premium. ATIVÍSSIMO Insta (vai responder DM). Ticket recorrente (consulta R$300-500 + retornos R$150-200). LP com página dedicada lipedema = pitch complexo R$899-1.197 (vale o aumento — ele vai dominar nicho regional).',
+  },
+
+  1114: {
+    tier: 'A',
+    posicao_no_tier: 24,
+    dor: 'Marina Clara Borges é psicóloga solo CRP 23/1936, 7.100 seguidores, 332 posts, ativa há 18 dias. Endereço explícito (501 sul Av. Teotônio Segurado, Edifício Amazônia Center 3° andar, em frente ao Fórum). Maps 5.0/15. Diferencial PESADO: PODCASTER do "Duas no Divã" + Psicóloga na Junta Médica TO = autoridade construída acima da média do nicho. MAS: tem `marinaclarapsi-kb7vfrf.gamma.site` — gamma.site é ferramenta amadora de geração de página (similar a Linktr.ee mas com cara de site). O site existe mas não é profissional, sem CTA estruturado, sem agendamento integrado, sem captura de lead.',
+    gancho: 'PITCH UPGRADE de gamma.site pra LP profissional. Aproveita autoridade que ela JÁ tem (podcast + Junta Médica TO + 7.1k seg + 5★ Maps) e monta LP com biografia profissional + CRP em destaque + áreas de atuação (psicanálise, terapia) + FAQ ("primeira sessão", "atende online?", "quanto dura tratamento?") + integração com podcast (link episódios pra prova social) + agendamento profissional. Caso-clone: irsnayra.com.br (psicóloga solo com presença digital profissional) — match alto.',
+    objecao: '"Já tenho o gamma.site, funciona pro que preciso" — defesa da solução amadora atual.',
+    resposta_objecao: 'Faz sentido — gamma.site cumpre o básico (link bio com mais informação que linktr.ee). Mas pensa pelo lado da paciente nova que vai pesquisar "Marina Clara Borges psicóloga Palmas" antes de marcar primeira sessão (decisão emocional, ela pesquisa MUITO). Cai no gamma.site, vê layout genérico, sem teu rosto profissional em destaque, sem CRP visível, sem episódios do podcast linkados como prova social. LP profissional muda isso: tua marca pessoal (que tu construiu com podcast + Junta Médica) ganha vitrine adequada. Topa ver como ficaria?',
+    nota_interna: 'AUTORIDADE CONSTRUÍDA ALTA (podcast + Junta Médica) — pitch é UPGRADE da solução gamma.site, não criação. Telefone (63)99245-0641 confirmado Maps. Pre-engajamento Insta D-1 obrigatório (curtir 1-2 posts do podcast OU psicanálise). Pitch padrão R$499 ou complexo R$799-899 (integração podcast pra prova social + biografia profissional).',
+    abertura: `Oi Marina, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando psicólogas autônomas em Palmas essa semana e o teu perfil chamou atenção — Junta Médica TO + podcast Duas no Divã + 5★ no Maps + 7k seg. Marca pessoal construída de verdade.
+
+Olhei teu link da bio (gamma.site). Cumpre o básico, mas me parece que cliente novo que vai pesquisar "Marina Clara psicóloga Palmas" antes de marcar primeira sessão cai num layout genérico, sem teu rosto profissional em destaque, sem episódios do podcast linkados.
+
+Quanto dessa paciente nova tu acha que perde porque o canal não comunica a autoridade que tu construiu?`,
+    followup_d3: `Oi Marina, voltei. Pensando: tem uma psicóloga solo que tava no teu lugar (autoridade construída + solução amadora de página) e fez transição pra LP profissional — irsnayra.com.br. Hoje paciente nova chega na primeira sessão já informada, com prova social do podcast, biografia profissional. Topa ver 1 print da diferença?`,
+    followup_d7: `Oi Marina, última mensagem. Sei que rotina de psicóloga + podcast é puxada. Vou parar. Só registro: tua autoridade do podcast + Junta Médica é capital que merece vitrine adequada. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar trechos do podcast OU conteúdo psicanalítico técnico). NÃO comentar. Pre-warming via consumo. Mensagem WhatsApp chega já com pre-aviso ("Eduardo começou a seguir").',
+    razao_ranking: 'TIER A score 7.5. CASE-CLONE Irsnayra (psicóloga solo). Autoridade construída ALTA (podcast + Junta Médica TO + 5★ Maps). Pitch UPGRADE de gamma.site = argumento mais barato de defender. Ticket recorrente psicanálise. LP padrão R$499 ou complexo R$799-899 com integração podcast.',
+  },
+
+  1117: {
+    tier: 'A',
+    posicao_no_tier: 25,
+    dor: 'Darcianne Cavalcante é fisioterapeuta domiciliar solo, Pós Graduada em Fisioterapia GERONTOLÓGICA CEULP/ULBRA. Maps 5.0/46, endereço 303 Sul Av. LO-01, 9, Lote 24, Plano Diretor Sul. 365 posts (DAILY POSTING há 1 ano — disciplina rara), ativa há 10 dias. Tem `sandwiche.me/darcianne.fisio` — sandwiche.me é ferramenta amadora similar a Linktr.ee. NICHO ÚNICO: fisio domiciliar pra IDOSO. Cliente final é a FAMÍLIA do idoso (filhos pesquisam por pais), e família pesquisa MUITO antes de confiar profissional na casa de mãe/pai. Autoridade vende, mas hoje tem só sandwiche.me amador.',
+    gancho: 'LP profissional pra fisio domiciliar gerontológica — biografia + Pós CEULP/ULBRA em destaque + lista de serviços (avaliação domiciliar, reabilitação pós-AVC, fisio respiratória, gerontologia) + DEPOIMENTOS DE FAMÍLIA (não do idoso — do filho/filha que contratou) + FAQ específico ("primeira sessão", "tipos de patologia atendidos", "quantos atendimentos por semana") + agendamento profissional. Substitui sandwiche.me sem desligar Insta. Caso-clone: EV Suplementos (sessão recorrente + ferramenta amadora atual + cliente que pesquisa antes).',
+    objecao: '"Já tenho sandwiche.me, e cliente vem por indicação mesmo" — defesa do operacional atual.',
+    resposta_objecao: 'Faz total sentido — fisio domiciliar é muito de indicação, e tu tem 5★/46 no Maps construído. Mas pensa: a indicação geralmente é "tem uma fisio domiciliar boa, deixa eu te mandar o contato dela" — e a filha que vai contratar pesquisa antes ("Darcianne Cavalcante fisioterapeuta Palmas"). Cai no sandwiche.me, vê layout genérico, sem depoimentos de outras famílias que contrataram, sem catálogo de patologias atendidas. LP profissional muda isso: depoimentos de FILHOS (não pacientes), catálogo gerontológico estruturado, biografia com pós em destaque. Mesma indicação, contratação mais rápida. Topa ver como ficaria?',
+    nota_interna: 'NICHO RARO (fisio domiciliar gerontológica) com cliente B2C que pesquisa MUITO (família do idoso). DAILY POSTING 365 posts = disciplina rara, sinaliza profissional sério. Telefone (63)98103-3045 confirmado Maps. Pitch "complexo" (LP + depoimentos de família + catálogo gerontológico estruturado) R$899-1.197.',
+    abertura: `Oi Darcianne, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando fisioterapeutas autônomas em Palmas essa semana e o teu perfil chamou atenção forte — Pós em Gerontologia CEULP + 5★ com 46 reviews + 365 posts (DAILY há 1 ano). Disciplina + nicho específico que poucos têm.
+
+Me parece que tua indicação chega muito por boca-a-boca de família que confiou e indicou. Mas a filha que vai contratar pra mãe pesquisa "Darcianne Cavalcante fisio domiciliar Palmas" antes — e cai no teu sandwiche.me, sem ver depoimentos de OUTRAS famílias que contrataram.
+
+Quanto dessa filha tu acha que recua nesse momento da pesquisa?`,
+    followup_d3: `Oi Darcianne, voltei. Pensando: fisio domiciliar gerontológica é nicho onde a CLIENTE que contrata é a família, não o paciente. Família pesquisa muito antes de confiar profissional dentro de casa. LP profissional com depoimentos de FILHOS (não idosos) + biografia com Pós CEULP em destaque + catálogo gerontológico = vira o destino que essa filha procura. Topa ver caso similar?`,
+    followup_d7: `Oi Darcianne, última mensagem. Disciplina de 365 posts em 1 ano é coisa de quem leva trabalho a sério. Mas o canal precisa transmitir essa seriedade pra família que pesquisa. Se em algum momento isso bater, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts recentes (priorizar conteúdo gerontológico técnico OU caso de paciente — daily posting tem catálogo grande pra escolher). Comentar 1 com algo específico ("trabalho domiciliar com idoso pós-AVC é nicho raro de ver com esse rigor" ou referência à patologia mostrada).',
+    razao_ranking: 'TIER A score 8. CASE-CLONE EV Suplementos. Nicho B2C com decisor diferente do paciente (família) = LP com prova social específica vence. Daily posting 365 posts = disciplina sinaliza profissional sério. Pitch "complexo" R$899-1.197.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {

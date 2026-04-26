@@ -41,6 +41,20 @@ Pesquisa Claude in Chrome mapeou o universo competitivo. **Pode ser citado quand
 **Concorrentes FANTASMA (geo-SEO spam, atendem remoto):**
 - **DIVIA, MOBI, Alex Sacchi, MW7** — DDDs de outras cidades, fazem landing por cidade. Aparecem no Google mas NÃO operam em Palmas. Cliente que descobre o endereço perde confiança.
 
+**Mapa de PROFISSIONAIS palmenses que JÁ TÊM LP profissional (prova social pesada — atualizado 26/04 batch CIC #5):**
+
+| Nicho | Profissional | URL |
+|---|---|---|
+| Psicologia | Galvani Carvalho | galvanicarvalho.com.br (5★/112) |
+| Psicologia | Roberta Bazolli | robertabazolli.com.br (multi-página) |
+| Psicologia | Caroline Penido | penidopsicologa.com.br (Palmas+Luzimangues) |
+| Psicologia clínica | Vital Clínica de Psicologia | vitalclinicapsicologia.com.br (5★/125) |
+| Nutrição | Sara Verner | saraverner.com.br (5★/43, especialista emagrecimento) |
+| Dermatologia | Dra. Annalu Foganholo | annalufoganholo.com.br (5★/63) |
+| Dermatologia | Dr. Caio Formiga | caioformiga.com (5★/42, RQE 2226) |
+
+**Use esses como prova social quando lead resistir** — argumento: *"Os profissionais autônomos mais consolidados de Palmas no [nicho do lead] já têm LP profissional. [Cita 1-2 nomes do mapa acima do mesmo nicho]. Eles entenderam que paciente novo pesquisa antes de marcar — e quem aparece com LP profissional fica com a venda."*
+
 **Posição da Impulso vs mercado:**
 - DIY Wix: R$0 mas 40h tuas
 - Fiverr: R$200-1.500 sem suporte
