@@ -76,7 +76,59 @@ Pesquisa Claude in Chrome mapeou o universo competitivo. **Pode ser citado quand
 2. Protótipo Next.js no ar em 20 min de call
 3. 5 cases reais com prova social (criativosdoceu, dra-janaina, EV Suplementos, irsnayra, locajv)
 4. Frete expresso motoboy + Shopify integrado
-5. Pricing transparente (R$499/R$599) publicado
+5. Pricing transparente publicado (a partir de R$499/R$599) — quartil mais baixo do mercado nacional (R$2.000-15.000)
+
+## 🧠 Inteligência de mercado LP Brasil 2026 (CIC #6 — 26/04)
+
+**Pesquisa profunda do CIC validou benchmarks nacionais. Use como ANCORAGEM REAL nos pitches — não inventada.**
+
+### Ticket de mercado nacional pra LP profissional
+- **Faixa:** R$2.000 a R$15.000+
+- **Média Brasil:** R$2.000-5.000
+- **Impulso:** a partir de R$499 = **4-30x mais barato** que mercado
+- **Razão (não é "mais barata = pior"):** agência local de Palmas, sem overhead SP/RJ, operação enxuta, IA na produção
+
+### Hierarquia ICP Palmas-TO (validada por batches CIC #1-#5)
+
+Ordem de prioridade decrescente — NÃO É a hierarquia nacional padrão. Em Palmas (cidade média Norte) o ICP real inverte vs nacional:
+
+1. **Saúde Estética / Injetáveis** — farmacêutica/biomédica/enfermeira esteta autônoma. Case-clone: EV Suplementos Injetáveis. Match: Erlane, Verônica Lima.
+2. **Dentista solo** (estética avançada — facetas, harmonização, ortodontia invisível) — CRO-TO, 4.8★/30+ reviews, ZERO web. Case-clone: dra-janaina.com.br. Match: Monnaliza Cabral, Ricardo Linares.
+3. **Médico especialista solo com RQE** (gineco menopausa/regenerativa, dermato tricologista, endocrino, urologista) — clínica multi-prof mas perfil próprio, ticket procedimento R$1.000+. Case-clone: dra-janaina. Match: Bruna Borba, Eva Carolina, Christiana Zeve, Thais Mahassem.
+4. **Psicólogo solo com nicho** (TCC ansiedade, psicanálise, terapia casal) — CRP-TO, autoridade construída (podcast, posts educativos), Linktr.ee/gamma.site. Case-clone: irsnayra.com.br. Match: Marina Clara Borges.
+5. **Advogado solo de nicho** (trabalhista, família/mulheres, previdenciário INSS) — OAB-TO, 4.8★+, sem domínio. Conformidade ética OAB = diferencial-chave do pitch. **MAIOR TAXA DE CONVERSÃO de LP entre todos os setores nacionais (>4% RD Station)**.
+6. **Fisio domiciliar especialista** (gerontológica, neuro, lipedema) — cliente final é FAMÍLIA, ticket recorrente. Case-clone: EV. Match: Darcianne Cavalcante.
+7. **Nutricionista esportivo/clínico de nicho** (lipedema, emagrecimento metabólico, alto-rendimento) — CRN, autoridade Insta, gargalo wa.me. Match: Pedro Maciel.
+
+**Regra de alocação dos próximos batches CIC: 70% Tier 1+2 (Saúde+Estética), 20% Tier 3 (Jurídico), 10% demais.**
+
+### Mercado imobiliário NÃO vale (descartado)
+Conversão LP imobiliária = 1.53% (a menor do mercado). Ticket alto não compensa volume baixo. Descartar mesmo se aparecer em batches futuros.
+
+### Soluções amadoras = SINAL DE COMPRA (não objeção)
+
+**MUDANÇA DE TOM CRÍTICA.** Profissional que JÁ usa Linktr.ee, bio.site, sandwiche.me, gamma.site, contate.me, Lovable, bit.ly direto **JÁ ENTENDEU que precisa de página, JÁ ESTÁ DISPOSTO a investir, só escolheu o atalho amador**.
+
+❌ **NÃO trate como objeção** ("você não tem site, vamos resolver isso")
+✅ **TRATE como qualificação Tier S** ("você já entendeu que precisa de página — eu só te apresento o próximo degrau natural")
+
+**Pitch específico pra esse perfil:** *"Vi que tu tem [linktr.ee/bio.site/gamma.site] — significa que tu já passou da fase de achar que não precisa. Já investiu tempo nisso. Agora é só evoluir pra LP profissional que converte de verdade. Mesmo público, conversão diferente."*
+
+### Registro profissional = ÂNCORA DE FIT OBRIGATÓRIA
+
+CRP / CRM / CRO / CRBM / CRN / OAB / RQE visível na bio = **filtro 0 obrigatório** pra prospecção LP.
+
+**Por quê:** profissional SEM registro visível tá em fase de construção, NÃO está pronto pra investir em LP profissional. Quem mostra registro se posiciona como autoridade — exatamente quem compra LP. Doc CIC validou: registro visível é o melhor preditor de fechamento.
+
+### Critério de qualificação Tier S automática (4 cruzados)
+
+Lead que cruza estes 4 critérios = **Tier S sem validação manual extra**:
+1. Registro profissional visível (CRP/CRM/CRO/CRBM/CRN/OAB/RQE)
+2. 4.8★+ no Google com 30+ reviews
+3. ZERO domínio .com.br próprio
+4. Bio com link amador (Linktr.ee/bio.site/sandwiche.me/gamma.site/contate.me/Lovable)
+
+**Aplicar automaticamente nos próximos prompts CIC.**
 
 ## 📁 Cases reais entregues (5 LPs em produção pra prova social cirúrgica)
 
@@ -267,7 +319,7 @@ Toda venda da Impulso Digital é cobrada via link Mercado Pago manual (Eduardo g
 
 Se o lead perguntar sobre formas de pagamento, mencione todas as 5 opções. Não esconde.
 
-## 💰 Política de pricing — "a partir de" (atualizado 25/04/2026)
+## 💰 Política de pricing — "a partir de" + ancoragem real (atualizado 26/04/2026)
 
 Preços NÃO são fixos. São **ponto de partida**. A complexidade do projeto é avaliada na call de alinhamento (etapa obrigatória) e o valor final é cotado lá.
 
@@ -287,14 +339,84 @@ Preços NÃO são fixos. São **ponto de partida**. A complexidade do projeto é
 | **Complexo** | R$899-1.199 | + 50+ produtos, integração ERP, área restrita atacado, programa fidelidade |
 | **Premium** | R$1.497+ | + automação carrinho abandonado, integração Bling/contabilidade, Meta Ads pixel, relatórios mensais |
 
+### Combo LP + Shopify — a partir de R$1.099
+
+Vantagem é OPERACIONAL (não promocional/desconto fake). Cliente que faz LP hoje e Shopify daqui 3 meses paga 2 projetos separados — re-briefing, re-call, re-setup. Junto sai a partir de R$1.099, uma operação só, briefing integrado.
+
+**NÃO usar argumento de "desconto" ou "promoção temporária".** Argumento certo: *"Os dois juntos saem a partir de R$1.099 porque é uma operação só — mesmo briefing, mesma call de alinhamento, mesmo prazo de produção integrado. Fazer separado depois custa o mesmo mas leva o dobro do tempo teu."*
+
+### Combo LP + SmartAgenda — R$499 + R$47/mês
+
+Setup AgendaPRO Solo (R$147) **GRÁTIS pros 10 primeiros do Clube Fundador**. Já validado, mantém estrutura existente.
+
+### Ancoragem REAL no pitch (validada pelo CIC #6)
+
+**Não é desconto inventado. É benchmark de mercado nacional VERIFICADO.**
+
+Quando lead questionar valor ou comparar com agência:
+
+> *"LP profissional no Brasil custa R$2.000 a R$15.000 (DIVIA, Odonto Pages, Webgui Marketing Médico cobram nessa faixa). Eu cobro a partir de R$499 não porque é pior, é porque sou local de Palmas, sem overhead de SP/RJ, operação enxuta. Não é promoção temporária — é meu pricing real."*
+
 ### Como responder a "quanto custa?" sem ter feito call
 
 ❌ **NÃO** diga "R$499 fixo" ou "R$599 fixo"
-✅ **DIGA:** *"A partir de R$499 — depende da complexidade. Em 20 min de call eu te falo o número exato pro teu caso. Topa?"*
+✅ **DIGA:** *"A partir de R$499 — depende da complexidade do teu caso. Em 20 min de call eu te falo o número exato. Mercado nacional cobra R$2.000-15.000, eu cobro a partir de R$499 porque sou daqui mesmo. Topa marcar a call?"*
 
-Por quê: protege contra cliente que pede MUITO no escopo padrão e depois reclama. E posiciona a call como entrega de valor (consulta personalizada), não etapa burocrática.
+Por quê: protege contra cliente que pede MUITO no escopo padrão e depois reclama. Posiciona a call como entrega de valor (consulta personalizada), não etapa burocrática. E ancora R$499 contra mercado real (R$2k-15k), não contra "barato/caro" subjetivo.
 
 Quando lead JÁ passou pela call e tu cotou: aí o preço é fixo daquele projeto.
+
+## 🎁 Bônus stack categorizado com VALOR DE MERCADO REAL (Hormozi)
+
+Sempre que empilhar bônus, organizar nestas 4 categorias com valor de mercado de cada item. **Total de mercado vs preço Impulso é a âncora pesada do fechamento.**
+
+### LP a partir de R$499 — bônus stack
+
+| Categoria | Bônus | Valor de mercado |
+|---|---|---|
+| 🚀 **AMPLIA** | 3 artigos SEO inclusos no blog da LP | R$300 (R$100/artigo no mercado) |
+| 🚀 **AMPLIA** | Página de captação de lead com formulário multi-step | R$200 |
+| ⚡ **ACELERA** | Protótipo Next.js NO AR em 20 min de call | R$500 (call de descoberta de agência) |
+| ⚡ **ACELERA** | Entrega em 7 dias (mercado entrega em 30-60) | R$300 (premium delivery) |
+| 🛡️ **REMOVE ESFORÇO** | Hospedagem VITALÍCIA (zero mensalidade) | R$600 em 10 anos (R$60/ano servidor) |
+| 🛡️ **REMOVE ESFORÇO** | Domínio registrado direto pelo cliente | R$0 (não é bônus, é informação) |
+| 🛟 **REMOVE RISCO** | 7 dias de garantia + 3 rodadas de ajuste | R$300 (alteração pós-entrega no mercado) |
+| 🛟 **REMOVE RISCO** | Suporte 30 dias após entrega | R$200 |
+
+**Total de bônus de mercado: ~R$2.400** (sem contar o produto LP em si que mercado cobra R$2.000+)
+
+**Frase de fechamento:** *"Mercado cobra R$2.000-15.000 só pela LP. Eu entrego LP + R$2.400 em bônus por R$499. Não é desconto — é só meu pricing real, agência de Palmas."*
+
+### Shopify a partir de R$599 — bônus stack
+
+| Categoria | Bônus | Valor de mercado |
+|---|---|---|
+| 🚀 **AMPLIA** | 20 produtos cadastrados + categorização | R$300 (R$15/produto no mercado) |
+| 🚀 **AMPLIA** | Tema MPN customizado | R$1.000 (tema profissional Shopify) |
+| 🚀 **AMPLIA** | Yampi (checkout otimizado) integrado | R$500 (consultoria Yampi) |
+| 🚀 **AMPLIA** | Melhor Envio (5+ transportadoras) integrado | R$300 |
+| ⚡ **ACELERA** | Entrega em 7-10 dias | R$400 |
+| ⚡ **ACELERA** | Motoboy Palmas configurado | R$200 |
+| 🛡️ **REMOVE ESFORÇO** | Shopify US$1/mês primeiros 3 meses (programa) | R$300 (US$60 economia) |
+| 🛡️ **REMOVE ESFORÇO** | Mercado Pago integrado direto | R$200 |
+| 🛟 **REMOVE RISCO** | 3 rodadas de ajuste inclusas | R$400 |
+
+**Total de bônus de mercado: ~R$3.600** (sem contar o setup Shopify que mercado cobra R$1.500+)
+
+## 🚨 Escassez REAL (não fake) — quando usar urgência
+
+NUNCA usar "essa semana só!" toda semana. Cliente sofisticado percebe padrão e desvaloriza.
+
+**Tipos de escassez REAL que pode usar:**
+
+| Tipo | Quando aplicar |
+|---|---|
+| **Capacidade de produção** | Eduardo entrega 2-3 LPs/semana — limite real. *"Tenho 2 vagas pra começar essa semana, mais 3 ano que vem."* |
+| **Clube Fundador AgendaPRO** | 10 primeiros pegam setup vitalício R$0. *"Restam X de 10 vagas — depois setup volta a R$147."* |
+| **Hospedagem vitalícia LP** | Promo de lançamento — quem fecha hoje fica isento pra sempre. *"Quem entra depois paga R$49,90/mês."* |
+| **Janela sazonal específica** | Copa em 6 sem / verão chegando / fim de mês fiscal. NUNCA "essa semana só" genérico. |
+
+**Regra dura:** se a "urgência" se repete a cada nova mensagem com lead diferente, NÃO É urgência real — é manipulação. Cliente sofisticado detecta.
 
 ## Matriz de roteamento de oferta (arsenal pré-carregado)
 

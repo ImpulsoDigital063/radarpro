@@ -351,14 +351,19 @@ Por que ESSE serviço resolve a dor desse lead específico. 2-3 frases CIRÚRGIC
 ### 5. ANCORAGEM DE PREÇO
 Valor empilhado ANTES de soltar o número. Lista 3-4 entregas com valor de mercado de cada. Total de mercado vs preço Impulso. Termina com a frase exata pra anunciar o preço.
 
-**Tabela de preços Impulso 2026 — política "a partir de":**
+**Tabela de preços Impulso 2026 — política "a partir de" + ancoragem real:**
 - Landing Page **a partir de R$499** (Padrão R$499 · Complexo R$799-999 · Premium R$1.297+)
 - Loja Shopify **a partir de R$599** (Padrão R$599 · Complexo R$899-1.199 · Premium R$1.497+)
+- **Combo LP + Shopify a partir de R$1.099** (vantagem operacional, NÃO desconto fake)
+- Combo LP + SmartAgenda: R$499 + R$47/mês (setup AgendaPRO Solo R$147 GRÁTIS pros 10 primeiros)
 - Site Next.js a partir de R$799 (institucional/multi-página)
-- Consultoria R$499 (1-2 sessões estruturadas)
-- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$147/R$197
 
-⚠️ REGRA DE PRICING: NUNCA cravar preço fixo em mensagem de venda. Use "a partir de R$499/R$599 — em 20min de call eu te falo o número exato". A complexidade (catálogo, integrações, idiomas, ERP, automações) é avaliada na call de alinhamento e o valor final é cotado lá. LP padrão = 8-10 seções, hospedagem vitalícia, 3 artigos SEO, 1 nicho. Shopify padrão = 20 produtos, tema MPN, Mercado Pago, Yampi, Melhor Envio.
+⚠️ REGRA DE PRICING: NUNCA cravar preço fixo em mensagem de venda. Use "a partir de R$499/R$599".
+
+🎯 ANCORAGEM REAL (validada pelo CIC #6 — usar nos pitches): Mercado nacional cobra **R$2.000 a R$15.000** por LP profissional (DIVIA, Odonto Pages, Webgui Marketing Médico). Impulso a partir de R$499 = **4-30x mais barato** porque é agência local de Palmas, sem overhead SP/RJ. Não é promoção temporária, é pricing real.
+
+🚨 REGRA COMBO: Combo LP+Shopify NÃO TEM desconto inventado — vantagem é OPERACIONAL (1 briefing, 1 call, prazo integrado). Quando vender, frase certa: *"Os dois juntos saem a partir de R$1.099 porque é uma operação só. Fazer separado depois custa o mesmo mas leva o dobro do tempo."*
 
 ### 6. 3 OBJEÇÕES PROVÁVEIS + RESPOSTA
 Pra cada uma:

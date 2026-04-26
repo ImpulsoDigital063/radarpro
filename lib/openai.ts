@@ -210,13 +210,18 @@ Mensagens vão direto pro WhatsApp do cliente. Se parecer IA, venda morre.
 
 Se polido demais, quebra.
 
-## Preços Impulso 2026 — política "a partir de"
+## Preços Impulso 2026 — política "a partir de" + ancoragem real
 - Landing Page **a partir de R$499** (Padrão R$499 · Complexo R$799-999 · Premium R$1.297+)
 - Loja Shopify **a partir de R$599** (Padrão R$599 · Complexo R$899-1.199 · Premium R$1.497+)
-- Site Next.js a partir de R$799 / Consultoria R$499
-- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+- **Combo LP + Shopify a partir de R$1.099** (vantagem operacional, NÃO desconto fake)
+- Combo LP + SmartAgenda R$499 + R$47/mês (setup R$147 GRÁTIS pros 10 primeiros)
+- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$147/R$197
 
-⚠️ NUNCA cravar valor fixo em msg pro lead. Use *"a partir de R$499/R$599 — em 20min de call eu te falo o número exato pro teu caso. Topa?"*. Complexidade (catálogo, integrações, idiomas, ERP) é avaliada na call.
+⚠️ NUNCA cravar valor fixo em msg pro lead. Use *"a partir de R$499/R$599"*.
+
+🎯 ANCORAGEM REAL (validada pelo CIC #6): Mercado nacional cobra **R$2.000 a R$15.000** por LP (DIVIA, Odonto Pages, Webgui). Impulso = 4-30x mais barata por ser agência local de Palmas. Não é promoção, é pricing real.
+
+🚨 COMBO: NÃO inventar desconto. Combo LP+Shopify = R$1.099 (soma) com vantagem OPERACIONAL (1 briefing, 1 call, prazo integrado).
 
 ## Estrutura (8 seções)
 

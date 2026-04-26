@@ -360,9 +360,9 @@ export const OBJECOES_IMPULSO: Record<string, ObjecaoCalibrada> = {
   },
   quanto_custa: {
     contexto: 'Lead pediu o preço diretamente',
-    nota_interna: 'NUNCA esconda preço. Mas NUNCA crave valor fixo — Eduardo precisa avaliar complexidade na call. "A partir de" + chamar pra call.',
+    nota_interna: 'NUNCA esconda preço. Mas NUNCA crave valor fixo — Eduardo precisa avaliar complexidade na call. "A partir de" + ancoragem real R$2k-15k mercado nacional + chamar pra call. Validado pelo CIC #6.',
     acknowledge_label: 'Perfeito, vamo direto.',
-    resposta: 'A partir de R$499 — depende da complexidade do teu caso (quantas seções, integrações, idioma, etc). Em 20 min de call eu te falo o número exato pro teu projeto. Entrega 7 dias, 7 dias de garantia. Topa marcar a call pra eu te passar a cotação certa?',
+    resposta: 'A partir de R$499 — depende da complexidade do teu caso. Pra contexto: LP profissional no Brasil custa R$2.000 a R$15.000 (DIVIA, Odonto Pages, Webgui cobram nessa faixa). Eu cobro a partir de R$499 porque sou daqui de Palmas, sem overhead de SP. Em 20 min de call eu te falo o número exato pro teu projeto. Topa?',
   },
   vou_pensar: {
     contexto: 'Lead recuou após pitch — sinal de objeção escondida',
