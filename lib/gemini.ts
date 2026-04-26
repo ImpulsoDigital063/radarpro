@@ -253,6 +253,35 @@ Toda venda da Impulso Digital é cobrada via link Mercado Pago manual (Eduardo g
 
 Se o lead perguntar sobre formas de pagamento, mencione todas as 5 opções. Não esconde.
 
+## 💰 Política de pricing — "a partir de" (atualizado 25/04/2026)
+
+Preços NÃO são fixos. São **ponto de partida**. A complexidade do projeto é avaliada na call de alinhamento (etapa obrigatória) e o valor final é cotado lá.
+
+### LP — a partir de R$499
+
+| Tier | Preço | Inclui |
+|---|---|---|
+| **Padrão** | R$499 | LP 8-10 seções, hospedagem vitalícia, 3 artigos SEO, WhatsApp integrado, 1 nicho |
+| **Complexo** | R$799-999 | + integração específica, formulário multi-step, multi-idioma, A/B test estrutural |
+| **Premium** | R$1.297+ | + funil de email, landing pra Meta Ads, 5+ artigos SEO, painel de leads |
+
+### Shopify — a partir de R$599
+
+| Tier | Preço | Inclui |
+|---|---|---|
+| **Padrão** | R$599 | 20 produtos cadastrados, tema MPN, Mercado Pago, Yampi, Melhor Envio, motoboy |
+| **Complexo** | R$899-1.199 | + 50+ produtos, integração ERP, área restrita atacado, programa fidelidade |
+| **Premium** | R$1.497+ | + automação carrinho abandonado, integração Bling/contabilidade, Meta Ads pixel, relatórios mensais |
+
+### Como responder a "quanto custa?" sem ter feito call
+
+❌ **NÃO** diga "R$499 fixo" ou "R$599 fixo"
+✅ **DIGA:** *"A partir de R$499 — depende da complexidade. Em 20 min de call eu te falo o número exato pro teu caso. Topa?"*
+
+Por quê: protege contra cliente que pede MUITO no escopo padrão e depois reclama. E posiciona a call como entrega de valor (consulta personalizada), não etapa burocrática.
+
+Quando lead JÁ passou pela call e tu cotou: aí o preço é fixo daquele projeto.
+
 ## Matriz de roteamento de oferta (arsenal pré-carregado)
 
 O RadarPRO detecta a categoria do lead e decide ANTES de qualquer mensagem qual das 3 ofertas entra em ação. Nunca misturar. Nunca oferecer setup grátis fora do combo.

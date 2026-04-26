@@ -150,6 +150,112 @@ Como esse paciente novo te acharia hoje?`,
     razao_ranking: 'Nicho raro = concorrência zero em SEO = LP domina rápido. Cliente renal é recorrente (consulta mensal por anos) e paga qualquer preço. Nota 5 confirma que quem chega fica. R$499 paga com 2 pacientes novos.',
   },
 
+  // ── TIER A (CIC 25/04) — 5 leads IG-only verificados via Claude in Chrome ──
+  // Hashtags varridas: #modafemininapalmas, #modafestapalmas, #brechopalmas
+  // Filtros duros aplicados (handle real do post + bio + engajamento + ticket).
+
+  1096: {
+    tier: 'A',
+    posicao_no_tier: 7,
+    dor: 'Brechó moderno com 13.7k seguidores, 14% engajamento (anomalia positiva — média do varejo IG é 1-3%), 5 categorias (roupas, bolsas, acessórios, sapatos, artesanato) e "frete pra todo Brasil" JÁ rodando via DM. Volume gigante invisível: cada peça = 8-15 mensagens trocadas (foto, medida, frete, pix, comprovante, código de envio). Ela já vende como uma loja — só não TEM uma.',
+    gancho: 'Shopify pega o catálogo dela das 5 categorias, monta vitrine navegável + checkout MP (parcelamento 12x) + cálculo de frete automático Correios + rastreio. Ela responde DM pra dúvida real, não pra processar pedido. Mesmo volume, 1/4 do trabalho.',
+    objecao: '"Já vendo muito bem assim, pra que mexer?" — base sólida (13.7k + 14% engaj) é argumento forte dela.',
+    resposta_objecao: 'Faz total sentido — tu vende muito bem mesmo, é raro ver 14% engajamento em varejo. Mas pensa: se hoje tu fatura X respondendo DM o dia inteiro, quanto tu poderia faturar SEM responder DM de pagamento e frete? Shopify não substitui o teu Insta. Substitui só a parte burocrática. Cliente paga sozinho, escolhe frete sozinho, recebe rastreio automático. Tu fica livre pra postar mais achadinho — que é o que faz a magia funcionar.',
+    nota_interna: 'TELEFONE TRUNCADO no JSON CIC ("(63) 92112-019" — só 8 dígitos). VALIDAR antes de mandar WhatsApp. Endereço confirmado: Quadra 404 Sul Alameda 2 Lote 20 QI 13, Palmas-TO 77021600. LEAD #1 do batch CIC — mais perfeito da semana. Pre-engajamento OBRIGATÓRIO via DM Instagram (não WhatsApp direto).',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando os brechós mais fortes de Palmas essa semana e o teu chamou atenção pesado: 13.7k seguidores e 14% de engajamento (varejo bom fica em 1-3%, então tu tá num outro patamar).
+
+Me parece que esse engajamento todo se traduz em DM. Muita DM. Cliente perguntando medida, frete, pix, comprovante.
+
+Quanto da tua semana vai só pra responder essas mensagens hoje?`,
+    followup_d3: `Oi, voltei. Pensando no teu caso: tu tem o ATIVO mais raro do varejo digital — 14% de engajamento. Esse é o motor. O Shopify não mexe nele, só desafoga o operacional. Tu tem 5 categorias prontas (roupa, bolsa, acessório, sapato, artesanato) — basicamente o esqueleto de uma loja. Topa eu te montar um protótipo da vitrine pra tu olhar?`,
+    followup_d7: `Oi, última mensagem da minha parte. Sei que brechó vive de feeling de garimpo, e Insta serve isso bem. Mas todo brechó top que escalou (Maracujás Vintage SP, Brechó da Ju, Renovo Acervo) começou exatamente nesse ponto: virou Shopify pra parar de afogar em DM. Se um dia tu sentir que tá empacando em volume operacional, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 (24h antes): seguir, curtir 3 posts dos últimos 7 dias (priorizar achadinhos com muito comentário), comentar 1 com algo genuíno tipo "essa peça é incrível" ou referência ao item específico. Brechó vive de comunidade — engajamento real importa MUITO mais que pra outros nichos.',
+    razao_ranking: 'LEAD #1 do batch CIC. 13.7k seg + 14% engajamento (anomalia positiva forte) + frete Brasil já operando = dor de operação invisível mas real. 5 categorias = vitrine pronta. Ticket médio brechó moderno (R$50-200/peça) com volume justifica Shopify (a partir de R$599). Pré-engajamento Insta obrigatório porque comunidade brechó valoriza relacionamento.',
+  },
+
+  1093: {
+    tier: 'A',
+    posicao_no_tier: 8,
+    dor: 'Carpe Diem tem story FIXO chamado "Shop On-line" no perfil — sinal escancarado de que a Mirian (dona ativa, @mirian.pereiraa) JÁ SABE que precisa de loja online. Ou tentou e travou, ou tá em fila esperando alguém pra montar. 1.893 seg + 2.7% engajamento real (alto pra varejo) + 447 posts = catálogo robusto, base sólida. Falta o canal.',
+    gancho: 'Não precisa convencer da NECESSIDADE — ela já sabe. O pitch é: "vi que tu tem story Shop On-line há um tempo e provavelmente travou em alguma coisa (preço, complexidade, achar quem fizesse). Eu monto em 7-10 dias, a partir de R$599, com 20 produtos cadastrados e treinamento". Pulo o convencimento, vou direto pra cotação.',
+    objecao: '"Quanto custa?" — provável PRIMEIRA pergunta dela, porque ela já tá pesquisando.',
+    resposta_objecao: 'A partir de R$599 — depende do tamanho do catálogo (tu tem 447 posts, então provavelmente é catálogo médio-grande, mas a gente fecha o número certo na call). Setup uma vez, sem mensalidade Impulso. Shopify cobra US$1/mês nos 3 primeiros meses, depois US$19/mês — direto com eles. Em 20 min de call eu te falo o número exato pro teu caso.',
+    abertura: `Oi Mirian, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando lojas de moda feminina fortes em Palmas essa semana e a Carpe Diem chamou atenção. Mas o que me fez parar foi o story fixo "Shop On-line" no teu perfil.
+
+Me parece que tu já tentou montar a loja online pelo menos uma vez e travou em alguma coisa — preço, complexidade ou esperando aparecer alguém pra fazer.
+
+Em qual desses tu travou?`,
+    followup_d3: `Oi Mirian, voltei. Pensando: tu tem 447 posts e 2.7% engajamento (alto pra varejo), ou seja, base pronta. O que falta é o canal. Eu monto Shopify em 7-10 dias, com 20 produtos cadastrados, treinamento de uso e tu vira pra Mercado Pago (parcelamento 12x). Topa eu te mostrar o protótipo antes mesmo de tu decidir?`,
+    followup_d7: `Oi Mirian, última mensagem. Story "Shop On-line" parado no perfil é um custo silencioso — toda cliente que abre teu perfil vê que a loja "tá vindo". Quanto mais tempo passa, menos credibilidade. Se em algum momento tu quiser destravar isso, tu sabe onde me achar.`,
+    pre_engajamento_ig: PRE_IG_PADRAO,
+    razao_ranking: 'INTENT-AWARE LEAD. Story "Shop On-line" = sinal explícito de necessidade reconhecida. Pula etapa de convencimento — vai direto pra cotação. 447 posts = catálogo pronto. Mirian (dona) ativa visível. Ticket médio bom. Provável fechamento rápido.',
+  },
+
+  1087: {
+    tier: 'A',
+    posicao_no_tier: 9,
+    dor: 'Mary Fashion tem 2.140 posts no Instagram — 5+ anos de catálogo acumulado. Quando cliente quer ver "o que tem em vermelho tamanho M", precisa rolar feed infinito. Volume de catálogo virou problema, não solução. Sem filtro, sem busca, sem categoria — Shopify resolve em 1 dia.',
+    gancho: 'Shopify pega esses 2.140 posts e organiza nas peças que ainda estão em estoque (provavelmente 100-200 produtos ativos), com filtro por categoria, cor, tamanho, preço. O catálogo de 5 anos vira loja navegável em horas, não em rolagem.',
+    objecao: '"Meu cliente já me conhece e vê pelo Insta" — argumento clássico de loja com base fiel.',
+    resposta_objecao: 'Cliente fiel continua no Insta — perfeito, não mexe. Mas a CLIENTE NOVA, que viu uma referência tua num story compartilhado por amiga, ela abre teu Insta e vê 2.140 posts. Como ela acha o conjunto que viu? Ela não acha. Vai pra concorrência. Shopify pega esses 2.140 posts e vira "filtro por cor, tamanho, ocasião" — cliente nova compra sozinha, cliente fiel continua no DM.',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, falo de Palmas.
+
+Tô olhando lojas de moda feminina mais consolidadas de Palmas essa semana. 2.140 posts no Insta é nível de catálogo que poucas lojas em Palmas tem.
+
+Me parece que cliente fiel já te encontra rapidinho. Mas a cliente nova que abre teu perfil pela primeira vez vê 2.140 posts e... não sabe por onde começar.
+
+Como ela acha hoje a peça que ela quer?`,
+    followup_d3: `Oi, voltei. Pensando: 2.140 posts é ATIVO gigante, não problema — só precisa virar buscável. Shopify pega tua coleção atual (provavelmente 100-200 peças ativas), monta vitrine com filtro por cor/tamanho/ocasião e checkout direto. Cliente nova compra sem te mandar DM. Topa ver caso de outra loja com volume parecido que fez essa migração?`,
+    followup_d7: `Oi, última mensagem. Loja com 5+ anos de feed tem ouro escondido — só precisa de organização pra cliente nova achar. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: PRE_IG_PADRAO,
+    razao_ranking: 'Volume de catálogo (2.140 posts) é ativo subutilizado. Loja consolidada com base fiel — argumento de cliente nova é o gancho. Provavelmente já fatura bem, então o pitch é ESCALA, não SEO.',
+  },
+
+  1092: {
+    tier: 'A',
+    posicao_no_tier: 10,
+    dor: 'Lorenn parcela 3x cartão VIA DIRECT MESSAGE — cliente manda print do cartão pelo WhatsApp/DM, ela registra manualmente, processa em maquininha física. Pesadelo operacional + risco de fraude + chargeback fácil. Cada venda parcelada = 15-20 mensagens. Volume baixo (1.391 seg) mas conjunto R$195 = ticket médio decente. Mercado Pago integrado no Shopify resolve em 1 clique.',
+    gancho: 'Shopify + Mercado Pago = parcelamento 12x automático, antifraude da plataforma, repasse direto na conta. Ela para de mandar cliente conferir 3x se vai cair certo, para de digitar dado de cartão de outra pessoa. Cliente paga, ela recebe notificação "pagamento aprovado", pronto.',
+    objecao: '"Faço já há tempo, dá certo, cliente confia" — defesa do processo manual existente.',
+    resposta_objecao: 'Faz sentido — tu construiu confiança forte com tua cliente. Mas cliente NOVA que nunca te conheceu não manda print do cartão dela pra estranha no WhatsApp — ela some. Mercado Pago resolve confiança da cliente nova (selo de plataforma conhecida), enquanto pra cliente fiel é ainda mais cômodo. E tu para de carregar a operação de cobrança nas costas.',
+    nota_interna: 'TELEFONE TRUNCADO no JSON CIC ("(63) 92689-659" — só 8 dígitos no número, deveria ter 9). VALIDAR antes de disparar WhatsApp. Pre-engajamento via DM Instagram primeiro.',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando lojas de moda feminina em Palmas essa semana e o teu chamou atenção: bio fala em parcelar 3x cartão via DM.
+
+Me parece que cada cliente que parcela toma uns 15-20 minutos teus — print do cartão, conferência, máquina, comprovante. E cliente nova trava em "vou mandar dado do meu cartão por DM mesmo?" e some.
+
+Quantas dessas tu acha que perde por mês?`,
+    followup_d3: `Oi, voltei. Pensando: Mercado Pago integrado ao Shopify resolve essa parte em 1 clique. Cliente paga em ambiente seguro (com o selo "Pague com Mercado Pago" que todo brasileiro reconhece), tu recebe notificação automática, sem digitar dado de cartão de ninguém. Tu volta a postar e atender — não a operar maquininha. Quer ver?`,
+    followup_d7: `Oi, última mensagem. Parcelamento via DM é gargalo silencioso — tu não sente quando perde a cliente que travou ali. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: PRE_IG_PADRAO,
+    razao_ranking: 'Dor MUITO clara e visível na bio (parcelamento DM). Ticket médio decente (conjunto R$195). Pequena (1.391 seg) mas com tração real. Shopify a partir de R$599 paga com 3-4 vendas. Probabilidade alta de fechar pelo argumento de operacional.',
+  },
+
+  1089: {
+    tier: 'A',
+    posicao_no_tier: 11,
+    dor: 'Dborah Closet tem PROCESSO MADURO mas escala via DM: posta caption com preço E parcelamento ("vestido R$440 em 3x R$146 ou 6x R$73"), bio diz "Enviamos pra todo Brasil", 1.105 posts no catálogo. Ela já estruturou a oferta como uma loja real — só falta o checkout. Cliente que viu o caption pronto não pode clicar e comprar. Tem que mandar DM pra confirmar disponibilidade, pedido, frete, pix.',
+    gancho: 'Shopify pega o que ela já faz manualmente (preço fixo + parcelamento + frete Brasil) e automatiza. Caption no Insta linka pra produto direto na loja. Cliente lê caption, clica, vê o tamanho dela, paga em 12x, escolhe frete Correios, pronto. Sem DM.',
+    objecao: '"Já tenho fluxo, todo mundo me manda DM, dá certo" — operação consolidada.',
+    resposta_objecao: 'Tu já criou metade da loja sem perceber: preço, parcelamento e frete Brasil já estão na tua bio e nos teus captions. Falta só o último click. Hoje a cliente lê o caption, vê que o vestido custa R$440 em 3x — mas pra fechar, tem que mandar DM, esperar tu responder, mandar foto da peça, perguntar tamanho, mandar pix... 30 min de jornada. Shopify reduz isso pra 2 min, sem te tirar do meio.',
+    abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando lojas de moda feminina em Palmas essa semana e o teu chamou atenção. Caption com preço E parcelamento ("3x R$146 ou 6x R$73"), bio dizendo "enviamos pra todo Brasil" — tu já fez metade do trabalho de uma loja online sem ter loja online.
+
+Me parece que cliente que lê caption tem que mandar DM pra fechar — o que mata 50% das vendas no caminho.
+
+Tu sente esse buraco?`,
+    followup_d3: `Oi, voltei. Pensando: tu já tem preço fixo + parcelamento + frete Brasil — basicamente o checkout estruturado, só sem o botão. Shopify pega tudo isso e vira clique direto. Caption do Insta linka pro produto, cliente paga em 12x sem DM. 1.105 posts viram catálogo navegável. Topa ver o protótipo?`,
+    followup_d7: `Oi, última mensagem. Tu já é uma loja online — só falta a infraestrutura. Em algum momento essa transição vai fazer sentido. Tu sabe onde me achar.`,
+    pre_engajamento_ig: PRE_IG_PADRAO,
+    razao_ranking: 'PROCESSO MADURO sem ferramenta. Preço + parcelamento + frete Brasil já no caption = ela pensa como dona de loja online, só não tem o checkout. 1.105 posts = catálogo. Loja física + envio Brasil = volume real. Shopify cabe perfeito.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {
@@ -300,7 +406,7 @@ Pergunto porque vi vocês no Google com 161 avaliações nota 4.8 — número fo
     dor: 'RACCO é marca nacional de cosméticos vendida via REVENDEDORA/consultora (MMN, tipo Avon/Natura). Essa "loja" provavelmente é uma consultora autorizada, não dona de negócio próprio. Revendedora não pode montar loja online própria — regra da matriz.',
     gancho: 'Possível ângulo: LP pessoal de consultora (NÃO Shopify com produtos Racco) mostrando "encontre sua consultora Racco em Palmas". Mas isso é LP, não Shopify — mudou a oferta.',
     objecao: 'Provável: "não posso, a Racco não deixa" ou "só posso vender via catálogo deles".',
-    resposta_objecao: 'Faz total sentido — a Racco tem regra apertada pra revendedora. Mas o que eu te ofereço NÃO é loja de produto Racco. É LP pessoal TUA, vendendo o teu SERVIÇO de consultora (atendimento, consultoria, visita domiciliar) com "pegue sua consultora de confiança em Palmas". Isso a matriz permite. R$499. Topa eu te mostrar 1 caso de consultora que faz isso?',
+    resposta_objecao: 'Faz total sentido — a Racco tem regra apertada pra revendedora. Mas o que eu te ofereço NÃO é loja de produto Racco. É LP pessoal TUA, vendendo o teu SERVIÇO de consultora (atendimento, consultoria, visita domiciliar) com "pegue sua consultora de confiança em Palmas". Isso a matriz permite. A partir de R$499 (cotação exata na call). Topa eu te mostrar 1 caso de consultora que faz isso?',
     nota_interna: 'IMPORTANTE: NÃO oferecer Shopify (vai contra regra Racco). REPOSICIONAR pra LP pessoal R$499 (serviço, não produto). Confirmar antes de pitchar se ela é consultora autorizada ou ponto físico independente — muda tudo.',
     abertura: `Oi, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
 

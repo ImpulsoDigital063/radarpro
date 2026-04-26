@@ -210,9 +210,13 @@ Mensagens vão direto pro WhatsApp do cliente. Se parecer IA, venda morre.
 
 Se polido demais, quebra.
 
-## Preços Impulso 2026
-- Landing Page R$499 / Loja Shopify R$599 / Site Next.js R$799 / Consultoria R$499
+## Preços Impulso 2026 — política "a partir de"
+- Landing Page **a partir de R$499** (Padrão R$499 · Complexo R$799-999 · Premium R$1.297+)
+- Loja Shopify **a partir de R$599** (Padrão R$599 · Complexo R$899-1.199 · Premium R$1.497+)
+- Site Next.js a partir de R$799 / Consultoria R$499
 - AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+
+⚠️ NUNCA cravar valor fixo em msg pro lead. Use *"a partir de R$499/R$599 — em 20min de call eu te falo o número exato pro teu caso. Topa?"*. Complexidade (catálogo, integrações, idiomas, ERP) é avaliada na call.
 
 ## Estrutura (8 seções)
 

@@ -351,12 +351,14 @@ Por que ESSE serviço resolve a dor desse lead específico. 2-3 frases CIRÚRGIC
 ### 5. ANCORAGEM DE PREÇO
 Valor empilhado ANTES de soltar o número. Lista 3-4 entregas com valor de mercado de cada. Total de mercado vs preço Impulso. Termina com a frase exata pra anunciar o preço.
 
-**Tabela de preços Impulso 2026 (use os reais):**
-- Landing Page R$499 (hospedagem vitalícia + 3 artigos SEO inclusos)
-- Loja Shopify R$599 (setup + 20 produtos cadastrados + tema MPN + Yampi/Melhor Envio)
-- Site Next.js R$799 (institucional/multi-página)
+**Tabela de preços Impulso 2026 — política "a partir de":**
+- Landing Page **a partir de R$499** (Padrão R$499 · Complexo R$799-999 · Premium R$1.297+)
+- Loja Shopify **a partir de R$599** (Padrão R$599 · Complexo R$899-1.199 · Premium R$1.497+)
+- Site Next.js a partir de R$799 (institucional/multi-página)
 - Consultoria R$499 (1-2 sessões estruturadas)
 - AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$800
+
+⚠️ REGRA DE PRICING: NUNCA cravar preço fixo em mensagem de venda. Use "a partir de R$499/R$599 — em 20min de call eu te falo o número exato". A complexidade (catálogo, integrações, idiomas, ERP, automações) é avaliada na call de alinhamento e o valor final é cotado lá. LP padrão = 8-10 seções, hospedagem vitalícia, 3 artigos SEO, 1 nicho. Shopify padrão = 20 produtos, tema MPN, Mercado Pago, Yampi, Melhor Envio.
 
 ### 6. 3 OBJEÇÕES PROVÁVEIS + RESPOSTA
 Pra cada uma:

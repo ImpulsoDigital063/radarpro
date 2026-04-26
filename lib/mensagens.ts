@@ -76,7 +76,7 @@ LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de
 • Fiverr: R$800-1.200 sem SEO/blog/hospedagem
 • Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
 
-*Meu preço: R$499 uma vez.* Topa ver o protótipo da TUA LP antes de decidir?`,
+*Meu preço: a partir de R$499* (depende da complexidade — cotação exata na call). Topa ver o protótipo da TUA LP antes de decidir?`,
     pitch_se_tem_site: `Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando de fazer por você.`,
     pitch_se_tem_site_resposta: `Vi aqui. 3 pontos honestos pra ti:
 
@@ -129,7 +129,7 @@ Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio
 • Fiverr: R$1.200-2.000 sem motoboy/integração local
 • Shopify DIY: R$0 mas 60h tuas + zero suporte
 
-*Meu preço: R$599 uma vez.* Em Palmas, cliente paga 10h, recebe 14h por motoboy.
+*Meu preço: a partir de R$599* (depende do tamanho do catálogo e integrações — cotação exata na call). Em Palmas, cliente paga 10h, recebe 14h por motoboy.
 
 Topa ver o protótipo da TUA loja antes de decidir?`,
     pitch_se_tem_site: `Que legal! Qual é o link? Quero dar uma olhada.`,
@@ -287,7 +287,7 @@ export function scriptAbordagemCombo(nome: string, categoria: string): ScriptAbo
     ],
     pitch_se_so_ig: `Então é perfeito o que eu faço — monto duas coisas que trabalham juntas:
 
-*1. LP profissional* — você aparece no Google quando alguém pesquisa "${esp} em Palmas". Hospedagem vitalícia + 3 artigos SEO. R$499.
+*1. LP profissional* — você aparece no Google quando alguém pesquisa "${esp} em Palmas". Hospedagem vitalícia + 3 artigos SEO. A partir de R$499 (cotação exata na call).
 
 *2. SmartAgenda* — cliente agenda sozinho pelo link. Dashboard financeiro em tempo real. Lista de espera preenche cancelamento sozinha. R$47/mês.
 
@@ -360,9 +360,9 @@ export const OBJECOES_IMPULSO: Record<string, ObjecaoCalibrada> = {
   },
   quanto_custa: {
     contexto: 'Lead pediu o preço diretamente',
-    nota_interna: 'NUNCA esconda preço. Manda o número claro e oferece ver o protótipo.',
+    nota_interna: 'NUNCA esconda preço. Mas NUNCA crave valor fixo — Eduardo precisa avaliar complexidade na call. "A partir de" + chamar pra call.',
     acknowledge_label: 'Perfeito, vamo direto.',
-    resposta: 'R$499 uma vez. 7 dias de entrega. 7 dias de garantia. Em 20 min eu te mostro o protótipo da TUA LP rodando antes de tu decidir.',
+    resposta: 'A partir de R$499 — depende da complexidade do teu caso (quantas seções, integrações, idioma, etc). Em 20 min de call eu te falo o número exato pro teu projeto. Entrega 7 dias, 7 dias de garantia. Topa marcar a call pra eu te passar a cotação certa?',
   },
   vou_pensar: {
     contexto: 'Lead recuou após pitch — sinal de objeção escondida',
