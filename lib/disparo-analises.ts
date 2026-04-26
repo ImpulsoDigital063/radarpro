@@ -1022,6 +1022,53 @@ Pergunto: cada novo seguidor teu hoje vê post + esquece, ou cai num funil que c
     razao_ranking: 'TIER A (score 7.5). Entry-level com alto potencial de upgrade. Pitch econômico R$499 + R$79-99/mês. CREF GO-TO + network Gabriel-mãe. Aluno em fase de construção é momento ÚNICO de montar funil.',
   },
 
+  // ── TIER A (CIC #11 — 26/04 ed. física via Google IA Overview CREF) — 2 leads ──
+  // Round usou método NOVO descoberto: Google IA Overview com query
+  // "CREF GO-TO" entregou 7 personal trainers pré-validados em 1 query.
+  // Mais eficiente que /following/. Atila Santos = SÓSIA PERFEITO Gabriel.
+
+  1155: {
+    tier: 'A',
+    posicao_no_tier: 46,
+    dor: 'Átila Santos é SÓSIA PERFEITO do Gabriel Barros (case-mãe ATIVO Impulso): Atleta Fisiculturista + Personal Trainer + Consultoria Online + Palmas-TO + CREF G/TO 0001962. 5.840 seguidores Insta + 354 posts. Bio com mesma estrutura do Gabriel ("Atleta + Personal + Consultoria Online"). DESTAQUE Insta "Relatos Online" = depoimentos de consultoria JÁ PRONTOS pra virar prova social na LP. Site atual: wa.me/5563984451564 direto (ZERO LP — sinal de compra puríssimo). 354 posts + 5.8k seg + Relatos Online cheio = DEMANDA COMPROVADA + zero infraestrutura de captura. Diferença vs Gabriel: nicho COMPLEMENTAR (Gabriel vende método/transformação corporal; Átila vende performance fisiculturismo/preparação palco), mercados não-competitivos.',
+    gancho: 'PITCH ESPELHO direto via Gabriel-mãe: "Átila, vi que tu segue o Gabriel Barros (@gbnutritionn) — ele é meu cliente. Tu é o ÚNICO sósia perfeito dele que mapeei em Palmas: mesma estrutura de bio, mesmo nicho atleta-personal, mesmo modelo consultoria online. Diferença é que ele tem LP profissional captando aluno fora do horário, e tu tá com 354 posts + Relatos Online cheio caindo num wa.me direto." Pitch tem 2 alavancas:  (1) PROVA SOCIAL READY-TO-USE — "Relatos Online" vira galeria scrollable de transformações na LP, não precisa criar conteúdo novo; (2) NICHO COMPETIÇÃO/PALCO = ticket premium (R$300-800/mês) — LP com formulário "qual seu objetivo" (definição/hipertrofia/preparação palco) + checkout 3 planos + área de membros com vídeos posados/dieta/periodização.',
+    objecao: '"Eu já vendo direto pelo wa.me, alunos chegam por indicação" — operação ativa defendendo o que funciona.',
+    resposta_objecao: 'Concordo — 354 posts + 5.8k seg + Relatos Online cheio mostra que tu construiu autoridade e indicação real. Mas pensa: cada post teu de competição chega em 1.000-2.000 pessoas. Quantas dessas pensam "tô interessada nessa preparação de palco" e somem na fricção do "vou mandar mensagem depois"? Sem LP, esse aluno potencial perde ti por inércia — ele esqueceu de mandar DM no momento certo. LP não substitui Insta — captura quem viu post e teria perdido. E olha — vi que tu tem destaque "Relatos Online" cheio: isso vira galeria scrollable na LP em 1 dia de produção. Tu já tem o conteúdo, falta só a infraestrutura. Topa eu te mostrar o que mudou pro Gabriel quando ele montou a LP?',
+    nota_interna: 'SÓSIA PERFEITO do Gabriel — case-mãe ATIVO Impulso. ANTES DE DISPARAR: falar com Gabriel pra (1) pedir permissão usar nome dele, (2) checar se eles se conhecem pessoalmente (provável — networking fitness Palmas é fluido), (3) possível indicação direta. Telefone (63)98445-1564 confirmado wa.me. CREF G/TO 0001962 confirmado bio. Pre-engajamento Insta D-1 OBRIGATÓRIO (curtir 2 posts de competição/palco — NÃO foto pessoal genérica). Pitch "complexo" provável (R$799-999) — Plano LP Consultoria com área de membros + checkout 3 planos + galeria Relatos Online scrollable.',
+    abertura: `Oi Átila, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Vi que tu segue o Gabriel Barros (@gbnutritionn) — ele é meu cliente. Tô olhando atletas-personal autônomos em Palmas e o teu perfil chamou atenção MUITO forte: tu é o ÚNICO sósia perfeito do Gabriel que mapeei aqui. Mesma estrutura — Atleta + Personal + Consultoria Online + CREF G/TO + faixa 5k seg.
+
+Mas vi que teu link da bio é wa.me direto. 354 posts + destaque "Relatos Online" cheio — tu já tem prova social pronta, falta só a infraestrutura de captura.
+
+Topa eu te mostrar o que mudou na operação do Gabriel quando ele montou a LP?`,
+    followup_d3: `Oi Átila, voltei. Pensando: tu tem 354 posts (3+ anos de conteúdo consistente!) + Relatos Online já cheio = capital social raríssimo. Mas cada novo aluno potencial precisa caçar tua DM no escuro. LP com formulário "qual teu objetivo" (definição/hipertrofia/preparação palco) + checkout 3 planos + galeria scrollable dos teus Relatos Online = aluno chega informado. Topa ver caso real? E olha, vi que tu segue o Gabriel — vocês se conhecem pessoalmente?`,
+    followup_d7: `Oi Átila, última mensagem da minha parte. Sei que rotina de atleta competidor + personal solo é puxada (vi a preparação de palco). Vou parar. Só registro: tu é o ÚNICO sósia perfeito do Gabriel em Palmas — esse posicionamento merece infraestrutura de captura. Tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1 OBRIGATÓRIO: seguir, curtir 2 posts (priorizar conteúdo de COMPETIÇÃO/PALCO ou Relato Online de aluno transformado — NÃO foto pessoal genérica). Comentar 1 com algo específico técnico ("a periodização pra preparação de palco com volume + cutting é raro de ver com esse rigor mesmo"). Atleta competidor valoriza pre-engajamento técnico.',
+    razao_ranking: 'TIER S RECORD (score 10!). SÓSIA PERFEITO do Gabriel (único do banco com essa caracterização). "Relatos Online" cheio = prova social READY-TO-USE. Nicho COMPLEMENTAR (não compete com Gabriel-mãe). Pitch ESPELHO via Gabriel + pedir indicação. Plano LP Consultoria R$799-999 (galeria + área membros + checkout 3 planos).',
+  },
+
+  1156: {
+    tier: 'A',
+    posicao_no_tier: 47,
+    dor: 'Adria Mota é Personal Trainer feminina solo Palmas-TO com CREF 002460 GO/TO. Bio EXPLÍCITA "Personal Trainer e Consultoria Online" — match PERFEITO com a direção que Eduardo apontou (sub-persona consultor online recorrente). 1.414 seg + 93 posts. SEGUIDA por @gabribarros10 (network direta Gabriel). PROBLEMA CRÍTICO identificado: link in bio redireciona pra @tebasconceito01 (academia/parceiro) — diluição de marca + ZERO captura própria. Aluno potencial cai no perfil do parceiro, não nela. Ela tem CREF próprio, declarou consultoria online em bio, mas o canal não comunica isso — vai pro parceiro.',
+    gancho: 'PITCH ESPECIAL "saída da diluição": "Adria, vi que tu tem CREF próprio + bio declarando Consultoria Online + segue o Gabriel Barros. Mas o link da tua bio redireciona pra @tebasconceito01. O que isso significa pro aluno potencial: ele clica esperando achar TUA página, cai na do parceiro, e Tu perde a captura. LP profissional Adria Mota Consultoria Online resolve isso: domínio próprio + galeria de transformações + formulário triagem (objetivo/restrições/disponibilidade) + checkout planos online + área de membros simples. Tu mantém a parceria com Tebas Conceito (não desliga), mas separa TUA marca."',
+    objecao: '"Tô tranquila com o link da Tebas, é parceria, dá certo" — defesa do operacional atual.',
+    resposta_objecao: 'Faz sentido — parceria com academia é canal forte, e tu não precisa desligar isso. Mas pensa: tu DECLAROU "Consultoria Online" na tua bio. Aluno potencial que viu teu post e quer fechar consultoria online clica no link, esperando ver TEU método, TEUS planos, TUA galeria de transformações. Cai no perfil do Tebas Conceito (academia presencial). Recua. Ele queria TI, não a academia. LP profissional tua resolve isso sem desligar a parceria: link bio aponta pra adriamota.com.br (ou similar), tu vende consultoria online ali, e a Tebas Conceito continua sendo parceria de espaço físico. Mesma operação, marca separada. Topa ver?',
+    nota_interna: 'CASO ÚNICO no banco — lead com bio explícita de consultoria online MAS link diluído em parceiro. Pitch RADICAL é "saída da diluição de marca". CREF 002460 GO/TO confirmado. Telefone NÃO veio direto — pegar via DM Insta. SEGUIDA POR Gabriel = mencionar Gabriel é vetor (eles podem se conhecer — feminino fitness Palmas é nicho menor). Pre-engajamento Insta D-1 obrigatório. Pitch padrão R$499 + R$99/mês ou complexo R$799 + R$199/mês com área de membros se ela topar plano premium.',
+    abertura: `Oi Adria, beleza? Eduardo aqui, Impulso Digital, sou de Palmas.
+
+Tô olhando personal trainers consolidados em Palmas e o teu perfil chamou atenção forte — CREF 002460 GO/TO + bio EXPLÍCITA "Personal Trainer e Consultoria Online". Tu já posicionou bem.
+
+Mas vi o link da tua bio: redireciona pra @tebasconceito01. Aluno potencial que viu teu post sobre consultoria online clica esperando TUA página, cai na do parceiro, recua. Ele queria TI, não a academia.
+
+E olha — vi que tu segue o Gabriel Barros (@gbnutritionn). Ele é meu cliente. Vocês se conhecem?`,
+    followup_d3: `Oi Adria, voltei. Pensando: tu tem CREF próprio + bio com consultoria online declarada. Mas o canal tá diluído na Tebas. LP profissional adriamota.com.br separa TUA marca sem desligar a parceria — Tebas continua sendo parceira de espaço físico, tu vende consultoria online em domínio próprio. Topa ver caso real?`,
+    followup_d7: `Oi Adria, última mensagem da minha parte. Tu tem CREF próprio e merece marca própria. Se em algum momento isso bater como prioridade, tu sabe onde me achar.`,
+    pre_engajamento_ig: 'D-1: seguir, curtir 2 posts (priorizar conteúdo de transformação de aluna OU método dela — NÃO foto pessoal). Comentar 1 com algo específico ("ver Personal feminina com CREF GO/TO consistente em Palmas é raro mesmo" ou referência ao método dela).',
+    razao_ranking: 'TIER S (score 8). Match PERFEITO direção Eduardo (sub-persona consultor online declarado). Diluição de marca com Tebas Conceito = pitch ÚNICO de "saída da diluição". Network direta Gabriel-mãe. CREF GO/TO confirmado. Pitch padrão R$499 + R$99/mês ou complexo R$799 + R$199/mês.',
+  },
+
   // ── TIER B — 6 prováveis com mais fricção ─────────────────────────────
 
   108: {

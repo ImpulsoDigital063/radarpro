@@ -216,9 +216,34 @@ Em cidade média, network do dono CASE ATIVO é canal direto de prospecção. Sa
 - #marmitafitpalmas (válida)
 - #soroterapiapalmas, #emagrecimentopalmas, #suplementospalmas (com qualificador)
 
-## 🔬 MÉTODO-OURO descoberto no batch CIC #10: vetor /following/ do case ATIVO
+## 🔬 MÉTODO-OURO #1 (descoberto no batch CIC #11): Google IA Overview por REGISTRO PROFISSIONAL
+
+**O VETOR DE PROSPECÇÃO MAIS PODEROSO já testado.** 1 query no Google entregou 7 personal trainers pré-validados em 90 segundos (handle IG + número CREF + categoria + bio). Comparar:
+- Maps: ~5 min por candidato
+- /following/: 4.2% densidade
+- IA Overview por CREF: **100% pré-validados** (7/7)
+
+**Query padrão pra qualquer vertical regulamentado:**
+
+    "[REGISTRO]" "[REGIONAL]" [profissão] [cidade] instagram
+
+Exemplos validados:
+- "CREF" "GO-TO" personal Palmas instagram → 7 personal trainers (batch #11)
+
+Aplicar IMEDIATAMENTE em verticals futuros:
+- "CRM-TO" "RQE" [especialidade] Palmas instagram (médicos)
+- "CRO-TO" dentista Palmas instagram
+- "CRP-TO" psicólogo Palmas instagram
+- "OAB-TO" [área] advogado Palmas instagram
+- "CRBM-TO" biomédica Palmas instagram
+- "CRFa-TO" fonoaudióloga Palmas instagram
+- "CREFITO" fisioterapeuta Palmas instagram
+
+## 🔬 MÉTODO-OURO #2 (descoberto no batch CIC #10): vetor /following/ do case ATIVO
 
 **Insight crítico operacional:** vasculhar a lista /following/ do dono de um case Impulso ATIVO descobriu 6 leads qualificados em 35 minutos (densidade 2x maior que Maps). Toda nova vertical/case-mãe Impulso (locajv, urbanfeet, GB Nutrition, futuros) deve começar por essa fonte.
+
+**Combinação ideal:** começar por /following/ do case ATIVO (rede curada) + complementar com IA Overview por registro (volume pré-validado). Os 2 juntos rendem 10-15 leads qualificados em 60-90 min.
 
 **Ferramentas amador BR mapeadas (todas = SINAL DE COMPRA):**
 - linktr.ee, bio.site, sandwiche.me, contate.me, lovable.app, gamma.site, bit.ly direto
@@ -230,6 +255,33 @@ Em cidade média, network do dono CASE ATIVO é canal direto de prospecção. Sa
 - Canva site (sabordaterra.my.canva.site)
 
 Adicionar todas como sinal de compra automático no filtro Tier S.
+
+## 🎭 SUB-PERSONAS LP FITNESS — Apresentador vs Consultor Online (insight batch CIC #11)
+
+LP fitness tem 2 sub-personas distintas com pricing e estrutura DIFERENTES. Identificar qual é o lead ANTES da call:
+
+### Sub-persona A — "Apresentador / Portfolio" (LP institucional)
+**Perfil:** profissional sólido, autoridade construída, mas SEM site profissional. Quer presença Google + galeria de transformações + formulário contato simples.
+**Plano Impulso:** R$499 setup + R$99/mês manutenção (Padrão)
+**Estrutura:** hero + biografia + método + galeria antes/depois + FAQ + formulário simples + CTA WhatsApp
+**Match típico:** Rodolpho Margonari (entry-level), Matheus Teixeira (perfil novo)
+
+### Sub-persona B — "Consultor Online Recorrente" (LP + funil)
+**Perfil:** já vende consultoria online via wa.me/linktr.ee, mas perde escala. Tem destaque "Relatos Online" / "Alunos Transformados" cheio = demanda comprovada.
+**Plano Impulso:** R$799 setup + R$199/mês manutenção (Complexo) — INCLUI:
+- Formulário de triagem (objetivo / restrições / disponibilidade)
+- Checkout 3 planos com pagamento recorrente Mercado Pago
+- Área de membros simples (login + biblioteca treinos/dieta)
+- Integração WhatsApp Business + Calendly
+- 5 artigos SEO específicos do nicho
+
+**Match típico:** Átila Santos (sósia Gabriel), Dafne Sixel (nutri funcional Integral Clinic), Júnior Sá (Medicina do Exercício), José Wilker (teamJW), Adria Mota (consultoria online declarada)
+
+**Diferença crítica:** Sub-B tem ticket recorrente 3x maior (R$199/mês × 50 alunos = R$10k/mês recorrente) → ROI da LP paga em 1 mês operacional. Priorizar sempre Sub-B quando lead tem destaque "alunos transformados" / "depoimentos" / "consultoria online".
+
+### Como identificar Sub-A vs Sub-B na primeira mensagem
+
+Pergunta calibrada: *"Hoje tu vende mais consultoria online ou atendimento presencial?"* OU *"Tu cobra por hora, por mês ou por pacote?"*. Resposta determina qual oferta apresentar na call.
 
 ## 🥋 PITCH LP FITNESS — clones-Gabriel-LP (faceta personal/coach)
 
