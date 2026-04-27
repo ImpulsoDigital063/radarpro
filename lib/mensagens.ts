@@ -1,38 +1,31 @@
 // Gerador de mensagens personalizadas para cada tipo de prospect
 //
-// Calibração 25/04/2026 baseada em pesquisa de benchmarks 2025-2026:
-// - Pitch <80 palavras (Instantly 2026: short bate long em reply rate)
-// - Bônus stack categorizado em 4 tipos Hormozi (AMPLIA/ACELERA/REMOVE ESFORÇO/REMOVE RISCO)
-// - 3 pontos de ancoragem (agência + Fiverr + DIY) — não 2
-// - Fechamento com Risk-Mitigation Close (Klaff) — "protótipo da TUA loja no ar"
-// - Follow-up automático pra "tenho site" (script depois do link)
-// - UrbanFeet preservado SÓ em Shopify (não cabe em LP de psicólogo/advogado)
+// Calibração 27/04/2026 — REWRITE TOTAL baseado em diagnóstico GPT:
+// "RadarPRO sabe muito sobre o lead mas fala como quem não sabe nada"
+//
+// Regras NOVAS (substituem as antigas):
+// - Máximo 3 linhas (observação real → consequência simples → pergunta direta)
+// - PROIBIDO: "Olá [nome]!", "Vi seu perfil", "Posso te fazer uma pergunta", emoji 👋
+// - PROIBIDO: elogio genérico, linguagem de vendedor
+// - SEMPRE usar dado real do lead (categoria, especialidade, ausência de site, contexto local)
+// - Se a mensagem servir pra qualquer lead, está ERRADA
+//
+// Estes templates são FALLBACK genérico — leads do playbook customizado
+// (lib/disparo-analises.ts) têm aberturas próprias mais cirúrgicas
 
-export function gerarMensagemLP(nome: string, especialidade: string): string {
-  const primeiroNome = nome.split(' ')[0]
-  return `Olá ${primeiroNome}! 👋
-
-Vi seu perfil no Instagram — você tem um trabalho incrível com ${especialidade} aqui em Palmas.
-
-Posso te fazer uma pergunta rápida?`
+export function gerarMensagemLP(_nome: string, especialidade: string): string {
+  return `Vi que você atende ${especialidade} aqui em Palmas
+hoje quem pesquisa isso no Google te acha direto ou cai em concorrente?`
 }
 
-export function gerarMensagemShopify(nome: string, categoria: string): string {
-  const primeiroNome = nome.split(' ')[0]
-  return `Olá ${primeiroNome}! 👋
-
-Vi que você tem uma ${categoria} bem legal aqui em Palmas.
-
-Posso te fazer uma pergunta rápida?`
+export function gerarMensagemShopify(_nome: string, categoria: string): string {
+  return `Vi que você tem uma ${categoria} aqui em Palmas
+cliente nova que abre teu Insta consegue comprar direto ou precisa mandar mensagem?`
 }
 
-export function gerarMensagemAgendaPRO(nome: string, categoria: string): string {
-  const primeiroNome = nome.split(' ')[0]
-  return `Olá ${primeiroNome}! 👋
-
-Vi que você tem uma ${categoria} aqui em Palmas.
-
-Posso te fazer uma pergunta rápida?`
+export function gerarMensagemAgendaPRO(_nome: string, categoria: string): string {
+  return `Vi que você atende com hora marcada aqui em Palmas (${categoria})
+hoje você organiza tudo na mão pelo WhatsApp ou tem sistema?`
 }
 
 // ── Script de abordagem WhatsApp (4 mensagens em sequência) ──────────────────
