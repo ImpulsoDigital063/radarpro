@@ -28,6 +28,7 @@ type LeadDisparo = {
   oferta: string
   tier: 'A' | 'B' | 'C'
   posicao: number
+  selecionado: boolean
   analise: Analise
   scripts: {
     abertura: string
@@ -93,6 +94,18 @@ export default function DisparoPage() {
       setCopiado(key)
       setTimeout(() => setCopiado(null), 1500)
     })
+  }
+
+  async function toggleSel(id: number) {
+    const r = await fetch('/api/leads', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, action: 'toggle_selecionado' }),
+    })
+    const j = await r.json()
+    if (j.ok) {
+      setLeads(curr => curr.map(l => l.id === id ? { ...l, selecionado: !!j.selecionado } : l))
+    }
   }
 
   const leadsFiltrados = tierF === 'todos' ? leads : leads.filter((l) => l.tier === tierF)
@@ -258,6 +271,21 @@ export default function DisparoPage() {
                             📋 Pegar tel
                           </span>
                         )}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); toggleSel(lead.id) }}
+                          title={lead.selecionado ? 'Tirar de "Em estudo"' : 'Mandar pra "Em estudo"'}
+                          style={{
+                            padding: '4px 9px',
+                            background: lead.selecionado ? '#F59E0B' : '#1F2937',
+                            border: `1px solid ${lead.selecionado ? '#F59E0B' : '#374151'}`,
+                            borderRadius: '5px',
+                            color: lead.selecionado ? '#0B0F19' : '#F59E0B',
+                            fontSize: '12px',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                          }}>
+                          ⭐
+                        </button>
                         <span style={{ color: muted, fontSize: '14px' }}>{aberto ? '▲' : '▼'}</span>
                       </div>
                     </div>

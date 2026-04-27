@@ -22,6 +22,7 @@ type LeadRow = {
   site: string | null
   nota: number | null
   num_avaliacoes: number | null
+  selecionado: number | null
 }
 
 export type LeadDisparo = {
@@ -37,6 +38,7 @@ export type LeadDisparo = {
   oferta: string
   tier: 'A' | 'B' | 'C'
   posicao: number
+  selecionado: boolean
   analise: Analise
   scripts: {
     abertura: string
@@ -87,7 +89,7 @@ export async function GET() {
   const placeholders = ids.map(() => '?').join(',')
 
   const res = await db.execute({
-    sql: `SELECT id, nome, categoria, telefone, instagram, instagram_url, site, nota, num_avaliacoes
+    sql: `SELECT id, nome, categoria, telefone, instagram, instagram_url, site, nota, num_avaliacoes, selecionado
             FROM leads
            WHERE id IN (${placeholders})`,
     args: ids,
@@ -118,6 +120,7 @@ export async function GET() {
         oferta,
         tier: a.tier,
         posicao: a.posicao_no_tier,
+        selecionado: Number(r.selecionado ?? 0) === 1,
         analise: a,
         scripts: {
           abertura: a.abertura,
