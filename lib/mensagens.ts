@@ -53,45 +53,21 @@ export function scriptAbordagemLP(nome: string, especialidade: string): ScriptAb
       // C — Autoridade: dói onde o ego mora
       `Quando o cliente pede "me manda seu site", o que você responde hoje?\n\nPorque eu vejo muito ${esp} perder cliente só por não ter um link profissional pra mandar.`,
     ],
-    // PITCH "SÓ INSTAGRAM" — calibrado <80 palavras + 4 bônus + 3 ancoragens
-    pitch_se_so_ig: `Entendi. Vou direto ao ponto.
-
-LP profissional + SEO local + 3 artigos no blog + WhatsApp em 1 clique. Valor de mercado: R$2.500.
-
-*Bônus stack:*
-🔥 AMPLIA — 3 artigos SEO ranqueando "${especialidade} em Palmas"
-⚡ ACELERA — entrega em 7 dias (mercado faz em 30-60)
-🪶 REMOVE ESFORÇO — call de 20 min e tu sai com protótipo Next.js no ar
-🛡 REMOVE RISCO — hospedagem vitalícia + garantia de 7 dias
-
-*Mercado:*
-• Agência Palmas: R$1.500-3.000 + mensalidade
-• Fiverr: R$800-1.200 sem SEO/blog/hospedagem
-• Wix DIY: R$0 mas tu paga 40h tuas + zero suporte
-
-*Meu preço: a partir de R$499* (depende da complexidade — cotação exata na call). Topa ver o protótipo da TUA LP antes de decidir?`,
-    pitch_se_tem_site: `Que legal! Me manda o link — em 2 minutos eu te mostro o que ele tá deixando de fazer por você.`,
-    pitch_se_tem_site_resposta: `Vi aqui. 3 pontos honestos pra ti:
-
-1. Mobile carrega em [X]s — Google penaliza acima de 2.5s
-2. Aparece pra "${especialidade} em Palmas" no Google?
-3. WhatsApp em 1 clique de qualquer página?
-
-Se algum desses tá ruim, em 5 min eu te mostro como ficaria — tela compartilhada. Topa?`,
-    // FECHAMENTO calibrado — Risk-Mitigation Close (Klaff): cliente VÊ antes de pagar
-    fechamento: `Em 20 minutos eu te mostro o protótipo da TUA LP já no ar — não é mockup, é Next.js funcionando — pra tu sentir antes de decidir.
-
-Qual horário é melhor:
-- Quinta (15h)?
-- Sexta (14h)?
-- Segunda (10h)?`,
-    call_alinhamento: `Antes da gente fechar, tem uma etapa do processo: *call de alinhamento* (20 min) com a equipe Impulso.
-
-Não é venda. É um briefing de 8 perguntas pra eu captar sua visão, valores e essência do trabalho com ${esp}.
-
-Você sai da call com um *protótipo funcional* da sua LP rodando — não mockup estático, é Next.js no ar. *Técnica que fecha 10x mais do que quem mostra só mockup.*
-
-Essa call faz parte do processo — não começo a produção sem ela. É o que garante que a LP sai com a SUA cara, não genérica.`,
+    // PITCH curto (CORE_SYSTEM_V2): conectar com dor → solução → preço → CTA
+    pitch_se_so_ig: `pelo que você falou, hoje quem te procura no Google não te acha
+eu resolvo isso com uma página simples que já começa a trazer cliente
+começa em R$499 e entrego em 7 dias
+quer ver um exemplo no teu caso?`,
+    pitch_se_tem_site: `manda o link, dou uma olhada rápida`,
+    pitch_se_tem_site_resposta: `vi aqui — 3 coisas que tão segurando ele:
+mobile lento, invisível no Google e WhatsApp escondido
+posso te mostrar como ficaria em 5 min — topa?`,
+    // FECHAMENTO curto + 3 horários (Risk-Mitigation Klaff)
+    fechamento: `em 20 min eu te mostro o protótipo da TUA LP rodando — não é mockup, é Next.js no ar
+qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+    call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento de 20min
+não é pitch — é briefing pra LP sair com a TUA cara, não genérica
+você sai da call com protótipo funcional rodando. sem essa call eu não começo`,
   }
 }
 
@@ -99,51 +75,30 @@ export function scriptAbordagemShopify(nome: string, categoria: string): ScriptA
   return {
     abertura: gerarMensagemShopify(nome, categoria),
     diagnosticos: [
-      // A — entrega rápida: cliente palmense compra de fora (dói)
-      `Deixa eu te perguntar: cliente de Palmas que quer receber HOJE — ele compra de você, ou compra de loja de SP/RJ que vende aqui pela internet?`,
-      // B — gargalo WhatsApp + PIX
-      `Hoje, quando cai um pedido, como funciona? Negocia frete, manda PIX, confirma recebimento tudo no WhatsApp na mão?\n\nQuanto tempo isso come por semana?`,
-      // C — madrugada / domingo
-      `Sábado de noite, domingo de manhã — cliente vê seu produto e quer comprar. Você tá lá pra responder, ou o pedido some até segunda?`,
+      // A — concorrência fora vence local
+      `cliente de Palmas que quer receber hoje
+compra de ti ou compra de loja de SP que entrega aqui?`,
+      // B — gargalo WhatsApp+PIX
+      `quando cai pedido, é tudo no WhatsApp na mão? frete, pix, confirmação?
+quanto tempo isso come por semana?`,
+      // C — madrugada/domingo
+      `sábado à noite, domingo de manhã — cliente vê produto e quer comprar
+tu tá pra responder ou o pedido some até segunda?`,
     ],
-    // PITCH SHOPIFY "SÓ INSTAGRAM" — calibrado <80 palavras + 4 bônus + 3 ancoragens
-    pitch_se_so_ig: `Entendi. Vou direto ao ponto.
-
-Loja Shopify completa + tema customizado + Mercado Pago (PIX/12x) + Melhor Envio + 20 produtos cadastrados. Valor de mercado: R$3.200.
-
-*Bônus stack:*
-🔥 AMPLIA — lista de fornecedores do nicho que mapeei
-⚡ ACELERA — Shopify $1/mês nos 3 primeiros meses (testa quase de graça)
-🪶 REMOVE ESFORÇO — call de entrega gravada (assiste quando precisar)
-🛡 REMOVE RISCO — aprova prévia ou devolvo 100%
-
-*Mercado:*
-• Agência Palmas: R$1.500-4.000 + mensalidade
-• Fiverr: R$1.200-2.000 sem motoboy/integração local
-• Shopify DIY: R$0 mas 60h tuas + zero suporte
-
-*Meu preço: a partir de R$599* (depende do tamanho do catálogo e integrações — cotação exata na call). Em Palmas, cliente paga 10h, recebe 14h por motoboy.
-
-Topa ver o protótipo da TUA loja antes de decidir?`,
-    pitch_se_tem_site: `Que legal! Qual é o link? Quero dar uma olhada.`,
-    pitch_se_tem_site_resposta: `Vi aqui. 3 pontos honestos pra ti:
-
-1. Checkout tem [X] etapas — cada etapa extra = 15-20% de carrinho abandonado
-2. Tem motoboy mesmo dia pra Palmas configurado?
-3. Mobile carrega em [X]s — acima de 2.5s, cliente desiste
-
-Se algum desses tá ruim, em 5 min eu te mostro como ficaria 30% mais limpo. Tela compartilhada, topa?`,
-    fechamento: `Em 20 minutos eu te mostro o protótipo da TUA loja já no ar — não é mockup, é Shopify funcionando — pra tu sentir antes de decidir.
-
-Qual horário é melhor:
-- Quinta (15h)?
-- Sexta (14h)?
-- Segunda (10h)?`,
-    call_alinhamento: `Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhamento* (30 min) com a equipe Impulso.
-
-Não é venda. É *diagnóstico operacional ao vivo* — a gente senta e mapeia: motoboy parceiro ou app, quais horários de corte, Mercado Pago no seu CNPJ, regra de frete grátis por ticket, fornecedores do seu nicho.
-
-Você sai da call com a loja já alinhada pra rodar: *não é mockup, é Shopify no ar com a sua cara.* A GB Nutrition do Gabriel só ficou única porque a gente sentou antes de codar. *Não começo a produção sem essa call.*`,
+    // PITCH curto (CORE_SYSTEM_V2)
+    pitch_se_so_ig: `pelo que você falou, hoje toda venda depende de conversa no direct
+a loja resolve isso e o cliente compra sozinho
+começa em R$599 com Mercado Pago, frete e motoboy Palmas integrados
+quer ver como ficaria no teu caso?`,
+    pitch_se_tem_site: `manda o link, dou uma olhada rápida`,
+    pitch_se_tem_site_resposta: `vi aqui — 3 coisas que tão segurando:
+checkout muito longo, sem motoboy Palmas e mobile lento
+posso te mostrar como ficaria 30% mais limpo em 5 min — topa?`,
+    fechamento: `em 20 min eu te mostro o protótipo da TUA loja rodando — não é mockup, é Shopify no ar
+qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+    call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento de 30min
+é diagnóstico operacional — motoboy, Mercado Pago, frete grátis, fornecedores
+você sai da call com a loja alinhada pra rodar. sem essa call eu não começo`,
   }
 }
 
@@ -151,27 +106,24 @@ export function scriptAbordagemAgendaPRO(nome: string, categoria: string): Scrip
   return {
     abertura: gerarMensagemAgendaPRO(nome, categoria),
     diagnosticos: [
-      // A — gargalo de marcação + comissão
-      `Como funciona a agenda aí hoje? Cliente marca pelo WhatsApp ou você já tem algum sistema?\n\nE no fim do mês — você consegue ver quanto cada profissional te deve de comissão, ou ainda faz na mão?`,
-      // B — buraco de cancelamento
-      `Deixa eu te perguntar: quando alguém cancela em cima da hora, o que acontece aí?\n\nFica buraco na agenda ou você consegue preencher rápido?`,
-      // C — financeiro em tempo real
-      `Uma coisa que sempre pergunto: você consegue ver em tempo real quanto cada cadeira faturou no dia?\n\nOu o financeiro só fecha no fim do mês, em planilha na mão?`,
+      // A — gargalo marcação + comissão
+      `como funciona a agenda aí — cliente marca pelo WhatsApp ou tem sistema?
+e no fim do mês, vê quanto cada profissional te deve de comissão ou ainda faz na mão?`,
+      // B — buraco cancelamento
+      `quando alguém cancela em cima da hora, o que acontece?
+fica buraco na agenda ou tu preenche rápido?`,
+      // C — financeiro tempo real
+      `tu vê em tempo real quanto cada cadeira faturou no dia
+ou financeiro só fecha no fim do mês em planilha?`,
     ],
-    pitch_se_so_ig: `Então é exatamente onde a SmartAgenda resolve.
-
-Cliente agenda sozinho pelo link, sem baixar app. Dashboard financeiro em tempo real (cadeira × cadeira). Lista de espera notifica a fila quando cancela — agenda se recompõe sozinha. QR code A5 pro balcão.
-
-*R$47/mês (Plano Solo) + setup R$147.* 7 dias de garantia.
-
-Os 10 primeiros travam esse preço pra sempre (Clube Fundador).`,
-    pitch_se_tem_site: `Você já tem sistema de agendamento ou o cliente ainda marca no WhatsApp?\n\nE o financeiro/comissão — o sistema atual te mostra em tempo real quanto cada profissional te deve?`,
-    fechamento: `Em 15 minutos eu te mostro a SmartAgenda configurada pro TEU caso — tu testa marcando como cliente, vê dashboard, vê cancelamento na prática.
-
-Qual horário é melhor:
-- Quinta (15h)?
-- Sexta (14h)?
-- Segunda (10h)?`,
+    pitch_se_so_ig: `pelo que você falou, hoje você ainda organiza tudo na mão
+isso aqui automatiza e o cliente agenda sozinho
+fica R$67/mês (ou R$97 com equipe até 5)
+os 10 primeiros entram sem setup de R$197 — quer testar?`,
+    pitch_se_tem_site: `tu já tem sistema de agendamento ou cliente ainda marca no WhatsApp?
+e o financeiro — vê quanto cada profissional te deve em tempo real?`,
+    fechamento: `em 15 min eu te mostro a SmartAgenda configurada pro TEU caso — tu testa como cliente, vê dashboard, vê cancelamento
+qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
   }
 }
 
@@ -271,34 +223,28 @@ export function scriptAbordagemCombo(nome: string, categoria: string): ScriptAbo
   return {
     abertura: gerarMensagemLP(nome, categoria),
     diagnosticos: [
-      // A — duplo ataque: Google + agenda
-      `Posso te perguntar duas coisas rápidas?\n\n1. Se alguém digitar "${esp} em Palmas" no Google agora, você aparece?\n2. E cliente novo — marca horário pelo WhatsApp ou você já tem algum sistema?`,
+      // A — Google + agenda
+      `duas coisas rápidas:
+quem pesquisa "${esp} em Palmas" no Google — te acha ou cai no concorrente?
+e cliente novo — marca pelo WhatsApp ou tem sistema?`,
       // B — indicação + gargalo
-      `Último cliente novo veio de indicação ou te achou sozinho no Google?\n\nE pra marcar horário — é tudo pelo WhatsApp ainda?`,
+      `último cliente novo veio de indicação ou te achou no Google?
+e pra marcar horário, é tudo pelo WhatsApp ainda?`,
       // C — site + agenda
-      `Quando cliente pede "me manda seu site pra ver os horários", o que você responde?\n\nResponde cada horário na mão no WhatsApp, ou tem um link onde ele marca sozinho?`,
+      `quando cliente pede "me manda teu site pra ver horários", o que tu responde?
+responde cada horário na mão ou tem link onde ele marca sozinho?`,
     ],
-    pitch_se_so_ig: `Então é perfeito o que eu faço — monto duas coisas que trabalham juntas:
-
-*1. LP profissional* — você aparece no Google quando alguém pesquisa "${esp} em Palmas". Hospedagem vitalícia + 3 artigos SEO. A partir de R$499 (cotação exata na call).
-
-*2. SmartAgenda* — cliente agenda sozinho pelo link. Dashboard financeiro em tempo real. Lista de espera preenche cancelamento sozinha. R$47/mês.
-
-*Promoção do combo:* o setup do AgendaPRO (R$147) sai de graça pros 10 primeiros que fecham a LP comigo.
-
-Topa ver os dois rodando antes de decidir?`,
-    pitch_se_tem_site: `Que legal! Qual é o link? Quero dar uma olhada.\n\nE pra agenda — você já tem algum sistema onde cliente marca sozinho, ou ainda é tudo pelo WhatsApp?`,
-    fechamento: `Em 20 minutos eu te mostro a TUA LP no ar + a SmartAgenda configurada — tu vê os dois funcionando antes de decidir.
-
-Qual horário é melhor:
-- Quinta (15h)?
-- Sexta (14h)?
-- Segunda (10h)?`,
-    call_alinhamento: `Antes da gente fechar, tem uma etapa obrigatória do processo: *call de alinhamento* com a equipe Impulso.
-
-Não é pitch — é pra te conhecer. Sua visão, seus valores, o que te move como ${esp}. É daí que sai o projeto único: LP com a SUA cara, SmartAgenda configurada pro SEU jeito de trabalhar.
-
-Essa call é o que separa entrega Impulso de agência qualquer. *Sem ela eu não começo.*`,
+    pitch_se_so_ig: `pelo que você falou, são duas dores juntas — Google e agenda
+LP que aparece no Google + SmartAgenda que cliente marca sozinho. trabalham juntas
+LP a partir de R$499 + SmartAgenda R$67/mês (ou R$97 equipe). os 10 primeiros entram sem setup de R$197
+topa ver os dois rodando antes de decidir?`,
+    pitch_se_tem_site: `manda o link, dou uma olhada
+e pra agenda — tem sistema onde cliente marca sozinho ou ainda é WhatsApp?`,
+    fechamento: `em 20 min eu te mostro a TUA LP no ar + SmartAgenda configurada — tu vê os dois funcionando antes de decidir
+qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+    call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento
+não é pitch — é briefing pra projeto sair com a TUA cara, não genérico
+sem essa call eu não começo`,
   }
 }
 
@@ -348,44 +294,52 @@ export const OBJECOES_IMPULSO: Record<string, ObjecaoCalibrada> = {
   ja_tenho_instagram: {
     contexto: 'Lead diz que vende/atende pelo Insta e não precisa de site',
     nota_interna: 'NÃO ataca o Insta. Reconhece que funciona pra quem já segue. Reframe: site capta cliente NOVO que NUNCA ouviu falar.',
-    acknowledge_label: 'Faz sentido. Me parece que tu tá vendo o Insta como o canal completo — e ele realmente capta quem já te conhece.',
-    resposta: 'Site capta quem ainda NÃO te conhece — quem tá pesquisando "[especialidade] em Palmas" no Google agora e nunca ouviu falar de ti. São dois funis diferentes. Link da bio do Insta apontando pra LP = converte quem veio do Insta também. Soma, não substitui.',
+    acknowledge_label: 'faz sentido — Insta capta quem já te conhece',
+    resposta: `mas e quem pesquisa "[especialidade] em Palmas" no Google agora e nunca ouviu falar?
+são dois funis diferentes — Insta + site soma, não substitui`,
   },
   quanto_custa: {
     contexto: 'Lead pediu o preço diretamente',
-    nota_interna: 'NUNCA esconda preço. Mas NUNCA crave valor fixo — Eduardo precisa avaliar complexidade na call. "A partir de" + ancoragem real R$2k-15k mercado nacional + chamar pra call. Validado pelo CIC #6.',
-    acknowledge_label: 'Perfeito, vamo direto.',
-    resposta: 'A partir de R$499 — depende da complexidade do teu caso. Pra contexto: LP profissional no Brasil custa R$2.000 a R$15.000 (DIVIA, Odonto Pages, Webgui cobram nessa faixa). Eu cobro a partir de R$499 porque sou daqui de Palmas, sem overhead de SP. Em 20 min de call eu te falo o número exato pro teu projeto. Topa?',
+    nota_interna: 'NUNCA esconda preço. Mas NUNCA crave valor fixo — Eduardo precisa avaliar complexidade na call. "A partir de" + ancoragem real R$2k-15k mercado nacional + chamar pra call.',
+    acknowledge_label: 'vamo direto',
+    resposta: `a partir de R$499 — depende da complexidade
+mercado nacional cobra R$2-15k. eu tô abaixo porque sou de Palmas, sem overhead
+em 20min de call te falo o número exato — topa?`,
   },
   vou_pensar: {
     contexto: 'Lead recuou após pitch — sinal de objeção escondida',
     nota_interna: 'NÃO pressiona. Pergunta calibrada que descobre o que ele precisa pensar.',
-    acknowledge_label: 'Faz sentido. Decisão de site não é compra de impulso.',
-    resposta: 'Posso te perguntar uma coisa? O que tu precisa pensar especificamente — preço, prazo, escopo, ou tu quer ver mais um case real antes? Pergunto pra te mandar a coisa certa, não te encher.',
+    acknowledge_label: 'tranquilo, decisão de site não é impulso',
+    resposta: `o que tu precisa pensar — preço, prazo, escopo ou ver mais um case?
+pergunto pra te mandar a coisa certa, não te encher`,
   },
   sem_dinheiro: {
     contexto: 'Lead diz que tá apertado financeiramente',
     nota_interna: 'NÃO insiste. Respeita. Mas mantém porta aberta pra retomar.',
-    acknowledge_label: 'Tranquilo. Me parece que esse não é o momento certo pra investir.',
-    resposta: 'Sem stress. Fica com meu contato — quando virar prioridade, me chama. Posso te mandar 1 conteúdo grátis sobre [especialidade] no Google enquanto isso, se quiser. Sem pitch.',
+    acknowledge_label: 'tranquilo, esse não é o momento',
+    resposta: `fica com meu contato — quando virar prioridade, me chama
+sem pitch`,
   },
   ja_tentei_antes: {
-    contexto: 'Lead já tentou site/agência antes e não deu certo (case Jeane / Manisha 25/04)',
+    contexto: 'Lead já tentou site/agência antes e não deu certo',
     nota_interna: 'NÃO defenda. NUNCA diga "comigo é diferente". Mirror + investigar o que aconteceu antes.',
-    acknowledge_label: 'Já tentou e não rolou? Me parece que tu tá com a sensação de que isso não é pra ti — ou foi específico daquele caso?',
-    resposta: 'Me conta o que aconteceu da última vez. Quem fez? O que entregaram? Onde travou? Pergunto porque a maioria que me diz isso testou agência genérica que não entendeu o nicho. Se for o teu caso, eu te mostro como evito esse buraco específico — sem prometer nada antes de tu me contar.',
+    acknowledge_label: 'já tentou e não rolou — qual foi o caso específico?',
+    resposta: `me conta: quem fez, o que entregaram, onde travou?
+maioria que diz isso testou agência genérica que não entendeu o nicho — se for o teu caso, te mostro como evito esse buraco`,
   },
   preciso_falar_com_socio: {
     contexto: 'Decisão envolve outra pessoa (sócio, marido/esposa, gestor)',
     nota_interna: 'Decisão multi-stakeholder = Consensus-Based Close. Facilita reunião com os 2.',
-    acknowledge_label: 'Faz total sentido — decisão de R$500+ não se fecha solo.',
-    resposta: 'Posso te ajudar a montar a conversa? Posso te apresentar a proposta em 20 min com vocês 2 juntos no WhatsApp ou call — aí ninguém precisa explicar pro outro depois. Quinta às 15h, sexta às 14h ou segunda 10h?',
+    acknowledge_label: 'faz sentido, decisão de R$500+ não fecha solo',
+    resposta: `posso te apresentar a proposta em 20min com vocês 2 juntos
+quinta 15h, sexta 14h ou segunda 10h?`,
   },
   agora_nao_da_tempo: {
     contexto: 'Lead alega que tá ocupado / não é hora',
-    nota_interna: 'Calibrated question pra descobrir o REAL motivo — "não é prioridade" geralmente é "não vejo valor ainda".',
-    acknowledge_label: 'Entendi. Me parece que tu tá numa fase apertada de tempo.',
-    resposta: 'Quando tu acha que faria sentido a gente conversar de novo? Pergunto pra eu te chamar no momento certo, não desperdiçar teu tempo agora.',
+    nota_interna: 'Calibrated question pra descobrir o REAL motivo.',
+    acknowledge_label: 'entendi, fase apertada',
+    resposta: `quando tu acha que faria sentido conversar de novo?
+pergunto pra te chamar no momento certo, sem desperdiçar tempo`,
   },
 }
 
@@ -394,8 +348,8 @@ export const OBJECOES_IMPULSO: Record<string, ObjecaoCalibrada> = {
 // Esses aqui são templates GENÉRICOS pra leads SEM análise customizada
 
 export const FOLLOWUP_TIMELINE = [
-  { dia: 3,  mensagem: 'Oi, voltei rapidinho. Pensando: o que eu te mostrei faz sentido pra teu caso, ou é coisa diferente que tu precisa? Sem stress se tu quiser ajustar a direção.' },
-  { dia: 7,  mensagem: 'Última mensagem da minha parte. Vou parar de incomodar. Se em algum momento isso te bater, tu sabe onde me achar.' },
+  { dia: 3,  mensagem: 'uma coisa que vejo aqui em Palmas\nquem aparece no Google leva o cliente — hoje tá assim contigo?' },
+  { dia: 7,  mensagem: 'vou parar por aqui pra não encher\nse fizer sentido depois, me chama' },
   { dia: 30, mensagem: '[reabordagem após mute de 30 dias — usar trigger event ou novidade real]' },
 ]
 
