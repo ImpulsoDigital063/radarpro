@@ -107,6 +107,10 @@ export async function initDb() {
     `ALTER TABLE leads ADD COLUMN script_venda_gerado_em TEXT`,
     `ALTER TABLE leads ADD COLUMN script_venda_modelo_ia TEXT`,
     `ALTER TABLE leads ADD COLUMN script_venda_revisado_em TEXT`,
+
+    // Curadoria manual (27/04/2026) — Eduardo escolhe leads pra estudar antes de disparar
+    `ALTER TABLE leads ADD COLUMN selecionado INTEGER DEFAULT 0`,    // 0/1 — marcado pra estudo
+    `ALTER TABLE leads ADD COLUMN selecionado_em TEXT`,              // timestamp da seleção (ordena fila de estudo)
   ]) {
     try { await db.execute(col) } catch { /* coluna já existe */ }
   }
@@ -301,6 +305,24 @@ export async function atualizarFollowup(id: number, data: string) {
     sql: `UPDATE leads SET proximo_followup = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
     args: [data, id],
   })
+}
+
+// Toggle do flag "selecionado" — manda lead pra/tira da aba "Em estudo".
+export async function toggleSelecionado(id: number): Promise<{ selecionado: boolean }> {
+  await ready()
+  const db = getClient()
+  const cur = await db.execute({
+    sql: `SELECT selecionado FROM leads WHERE id = ?`,
+    args: [id],
+  })
+  if (cur.rows.length === 0) return { selecionado: false }
+  const atual = Number((cur.rows[0] as unknown as { selecionado: number | null }).selecionado ?? 0)
+  const novo = atual === 1 ? 0 : 1
+  await db.execute({
+    sql: `UPDATE leads SET selecionado = ?, selecionado_em = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+    args: [novo, novo === 1 ? new Date().toISOString().replace('T', ' ').slice(0, 19) : null, id],
+  })
+  return { selecionado: novo === 1 }
 }
 
 export async function registrarBusca(busca: {

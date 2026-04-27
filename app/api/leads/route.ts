@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { listarLeads, atualizarStatus, atualizarNotas, atualizarFollowup, atualizarMensagem, estatisticas } from '@/lib/db'
+import { listarLeads, atualizarStatus, atualizarNotas, atualizarFollowup, atualizarMensagem, estatisticas, toggleSelecionado } from '@/lib/db'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -31,6 +31,11 @@ export async function PATCH(req: NextRequest) {
   if (action === 'notas')    await atualizarNotas(id, body.notas)
   if (action === 'followup') await atualizarFollowup(id, body.data)
   if (action === 'mensagem') await atualizarMensagem(id, body.mensagem)
+
+  if (action === 'toggle_selecionado') {
+    const r = await toggleSelecionado(id)
+    return NextResponse.json({ ok: true, ...r })
+  }
 
   if (!action && body.status) await atualizarStatus(id, body.status)
 

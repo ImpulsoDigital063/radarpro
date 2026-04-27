@@ -26,6 +26,10 @@ type Lead = {
   tempo_resposta_horas: number | null
   objecao_tipo: string | null
   fase_travou: string | null
+  selecionado: number | null
+  selecionado_em: string | null
+  instagram_bio: string | null
+  endereco: string | null
 }
 
 type Stats = {
@@ -140,7 +144,7 @@ export default function RadarPRO() {
   const [secaoAberta, setSecaoAberta]               = useState<Record<string, boolean>>({})
   const [waStatus, setWaStatus]                     = useState<'desconectado' | 'conectando' | 'aguardando_qr' | 'conectado'>('desconectado')
   const [enviandoDireto, setEnviandoDireto]         = useState<number | null>(null)
-  const [aba, setAba]             = useState<'leads' | 'analisar' | 'hoje'>('leads')
+  const [aba, setAba]             = useState<'leads' | 'analisar' | 'hoje' | 'estudo'>('leads')
   const [planoHoje, setPlanoHoje]   = useState<{ lead: Lead; prioridade: number; motivo: string; acao: string }[] | null>(null)
   const [gerandoHoje, setGerandoHoje] = useState(false)
 
@@ -233,6 +237,15 @@ export default function RadarPRO() {
     })
     const data = await r.json()
     if (data.ok) setBuscando(data.chave)
+  }
+
+  async function toggleSel(id: number) {
+    await fetch('/api/leads', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, action: 'toggle_selecionado' }),
+    })
+    carregar()
   }
 
   async function setStatus(id: number, status: string, motivo?: {
@@ -654,7 +667,12 @@ export default function RadarPRO() {
 
       {/* ── Abas ── */}
       <div style={{ display: 'flex', gap: '0', borderBottom: `1px solid ${brd}` }}>
-        {[{ id: 'leads', label: '📋 Leads' }, { id: 'hoje', label: '🎯 Prospectar hoje' }, { id: 'analisar', label: '🔍 Analisar link' }].map(a => (
+        {[
+          { id: 'leads', label: '📋 Leads' },
+          { id: 'estudo', label: `📚 Em estudo${leads.filter(l => l.selecionado === 1).length > 0 ? ` (${leads.filter(l => l.selecionado === 1).length})` : ''}` },
+          { id: 'hoje', label: '🎯 Prospectar hoje' },
+          { id: 'analisar', label: '🔍 Analisar link' },
+        ].map(a => (
           <button key={a.id} onClick={() => setAba(a.id as any)} style={{
             padding: '12px 24px', background: 'transparent', border: 'none',
             borderBottom: aba === a.id ? '2px solid #2563EB' : '2px solid transparent',
@@ -776,6 +794,150 @@ export default function RadarPRO() {
           )}
         </div>
       )}
+
+      {/* ══════════════════════════════════════════════════════════
+          ABA EM ESTUDO — leads curados manualmente, expandidos pra estudo
+      ══════════════════════════════════════════════════════════ */}
+      {aba === 'estudo' && (() => {
+        const selecionados = leads
+          .filter(l => l.selecionado === 1)
+          .sort((a, b) => (b.selecionado_em ?? '').localeCompare(a.selecionado_em ?? ''))
+
+        if (selecionados.length === 0) {
+          return (
+            <div style={{ padding: '60px 32px', textAlign: 'center', color: muted }}>
+              <p style={{ fontSize: '40px', margin: '0 0 12px' }}>📚</p>
+              <p style={{ fontSize: '15px', fontWeight: 600 }}>Nenhum lead em estudo</p>
+              <p style={{ fontSize: '12px', marginTop: '8px' }}>
+                Vai na aba <strong>📋 Leads</strong> e clica no <strong>⭐</strong> ao lado do botão WA pra mandar leads pra cá.
+              </p>
+            </div>
+          )
+        }
+
+        return (
+          <div style={{ padding: '24px 32px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <h2 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 6px' }}>📚 Em estudo</h2>
+              <p style={{ color: muted, fontSize: '12px', margin: 0 }}>
+                {selecionados.length} lead{selecionados.length !== 1 ? 's' : ''} curado{selecionados.length !== 1 ? 's' : ''} aguardando análise antes do disparo.
+                Estuda o site/Insta de cada um, monta a copy específica, dispara.
+              </p>
+            </div>
+
+            {selecionados.map(lead => {
+              const ti = TIPO[lead.tipo]
+              const si = scoreInfo(lead.score ?? 0)
+              const wLink = lead.telefone && lead.mensagem ? whatsappLink(lead.telefone, lead.mensagem) : null
+
+              return (
+                <div key={lead.id} style={{ background: card, border: `1px solid ${brd}`, borderRadius: '12px', overflow: 'hidden' }}>
+                  {/* Header */}
+                  <div style={{ padding: '16px', display: 'flex', alignItems: 'center', gap: '12px', borderBottom: `1px solid ${brd}`, flexWrap: 'wrap' }}>
+                    <span style={{ padding: '3px 8px', borderRadius: '5px', fontSize: '11px', fontWeight: 700, background: ti.cor + '25', color: ti.cor }}>
+                      {ti.emoji} {ti.label}
+                    </span>
+                    <span style={{ fontSize: '15px', fontWeight: 800, color: txt }}>{lead.nome}</span>
+                    <span style={{ fontSize: '11px', color: si.cor, fontWeight: 700 }}>{si.emoji} {lead.score}/10</span>
+                    {lead.proximo_followup && (
+                      <span style={{ fontSize: '10px', color: '#F59E0B', background: '#F59E0B15', padding: '2px 7px', borderRadius: '4px' }}>
+                        📅 Follow-up: {lead.proximo_followup}
+                      </span>
+                    )}
+                    <div style={{ marginLeft: 'auto', display: 'flex', gap: '6px' }}>
+                      {wLink && (
+                        <a href={wLink} target="_blank" rel="noopener noreferrer"
+                          onClick={() => setStatus(lead.id, 'abordado')}
+                          style={{ padding: '6px 14px', background: '#16A34A', borderRadius: '6px', color: '#fff', fontSize: '12px', fontWeight: 700, textDecoration: 'none' }}>
+                          ✅ Disparei
+                        </a>
+                      )}
+                      <button onClick={() => toggleSel(lead.id)}
+                        style={{ padding: '6px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: muted, fontSize: '11px', fontWeight: 600, cursor: 'pointer' }}>
+                        ❌ Tirar
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Dados pra estudo */}
+                  <div style={{ padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
+                    <div>
+                      <p style={{ fontSize: '10px', fontWeight: 700, color: muted, margin: '0 0 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Identificação</p>
+                      <p style={{ fontSize: '12px', color: txt, margin: '2px 0' }}><strong>Categoria:</strong> {lead.categoria}</p>
+                      {lead.endereco && <p style={{ fontSize: '12px', color: txt, margin: '2px 0' }}><strong>Endereço:</strong> {lead.endereco}</p>}
+                      {lead.nota != null && <p style={{ fontSize: '12px', color: txt, margin: '2px 0' }}><strong>Maps:</strong> ⭐ {lead.nota} ({lead.num_avaliacoes ?? 0} avaliações)</p>}
+                      {lead.telefone && <p style={{ fontSize: '12px', color: txt, margin: '2px 0' }}><strong>Telefone:</strong> 📱 {lead.telefone}</p>}
+                    </div>
+
+                    <div>
+                      <p style={{ fontSize: '10px', fontWeight: 700, color: muted, margin: '0 0 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Presença online</p>
+                      {lead.instagram_url ? (
+                        <p style={{ fontSize: '12px', color: txt, margin: '2px 0' }}>
+                          <strong>Instagram:</strong>{' '}
+                          <a href={lead.instagram_url} target="_blank" rel="noopener noreferrer" style={{ color: '#E1306C', textDecoration: 'none' }}>
+                            {lead.instagram} ↗
+                          </a>
+                          {lead.instagram_seguidores && <span style={{ color: muted }}> · {lead.instagram_seguidores} seguidores</span>}
+                        </p>
+                      ) : (
+                        <p style={{ fontSize: '12px', color: muted, margin: '2px 0' }}>Sem Instagram mapeado</p>
+                      )}
+                      {lead.site ? (
+                        <p style={{ fontSize: '12px', color: txt, margin: '2px 0' }}>
+                          <strong>Site:</strong>{' '}
+                          <a href={lead.site} target="_blank" rel="noopener noreferrer" style={{ color: '#60A5FA', textDecoration: 'none' }}>
+                            {lead.site} ↗
+                          </a>
+                        </p>
+                      ) : (
+                        <p style={{ fontSize: '12px', color: muted, margin: '2px 0' }}>Sem site próprio</p>
+                      )}
+                    </div>
+
+                    {lead.instagram_bio && (
+                      <div style={{ gridColumn: '1 / -1' }}>
+                        <p style={{ fontSize: '10px', fontWeight: 700, color: muted, margin: '0 0 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Bio Instagram</p>
+                        <p style={{ fontSize: '12px', color: txt, margin: 0, whiteSpace: 'pre-wrap', lineHeight: 1.5, background: '#0B0F19', padding: '10px 12px', borderRadius: '6px', border: `1px solid ${brd}` }}>
+                          {lead.instagram_bio}
+                        </p>
+                      </div>
+                    )}
+
+                    {lead.mensagem && (
+                      <div style={{ gridColumn: '1 / -1' }}>
+                        <p style={{ fontSize: '10px', fontWeight: 700, color: muted, margin: '0 0 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Mensagem atual (revisar antes de disparar)</p>
+                        <pre style={{ fontSize: '12px', color: txt, margin: 0, whiteSpace: 'pre-wrap', lineHeight: 1.5, background: '#0B0F19', padding: '12px 14px', borderRadius: '6px', border: `1px solid ${brd}`, fontFamily: 'inherit' }}>
+                          {lead.mensagem}
+                        </pre>
+                      </div>
+                    )}
+
+                    {lead.notas && (
+                      <div style={{ gridColumn: '1 / -1' }}>
+                        <p style={{ fontSize: '10px', fontWeight: 700, color: muted, margin: '0 0 6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Tuas notas</p>
+                        <p style={{ fontSize: '12px', color: '#FCD34D', margin: 0, lineHeight: 1.5, background: '#FCD34D10', padding: '10px 12px', borderRadius: '6px', border: '1px solid #FCD34D30' }}>
+                          {lead.notas}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Link pra abrir detalhe completo */}
+                  <div style={{ padding: '10px 16px', borderTop: `1px solid ${brd}`, background: `${card}80`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{ fontSize: '11px', color: muted, margin: 0 }}>
+                      Selecionado em: {lead.selecionado_em ?? '—'}
+                    </p>
+                    <a href={`/abordar/${lead.id}`}
+                      style={{ fontSize: '11px', color: '#60A5FA', textDecoration: 'none', fontWeight: 600 }}>
+                      Abrir análise completa →
+                    </a>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )
+      })()}
 
       {/* ══════════════════════════════════════════════════════════
           ABA ANALISAR LINK
@@ -1155,6 +1317,22 @@ export default function RadarPRO() {
                               💬 WA
                             </a>
                           )}
+
+                          <button
+                            onClick={e => { e.stopPropagation(); toggleSel(lead.id) }}
+                            title={lead.selecionado === 1 ? 'Tirar de "Em estudo"' : 'Mandar pra "Em estudo"'}
+                            style={{
+                              padding: '4px 9px',
+                              background: lead.selecionado === 1 ? '#F59E0B' : '#1F2937',
+                              border: `1px solid ${lead.selecionado === 1 ? '#F59E0B' : '#374151'}`,
+                              borderRadius: '5px',
+                              color: lead.selecionado === 1 ? '#0B0F19' : '#F59E0B',
+                              fontSize: '12px',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                            }}>
+                            ⭐
+                          </button>
 
                           <span style={{ color: muted, fontSize: '14px' }}>{aberto ? '▲' : '▼'}</span>
                         </div>
