@@ -226,12 +226,53 @@ export async function listarLeads(filtros?: {
   return result.rows as any[]
 }
 
-export async function atualizarStatus(id: number, status: string, observacao?: string) {
+// Status que indicam que o lead respondeu (pra setar respondeu_em automático).
+const STATUS_POS_RESPOSTA = new Set([
+  'respondeu', 'consultoria_marcada', 'consultoria_feita', 'proposta_enviada', 'fechado',
+])
+
+export async function atualizarStatus(id: number, status: string, opts?: {
+  objecao_tipo?: string
+  fase_travou?: string
+  motivo_perdido?: string
+}) {
   await ready()
   const db = getClient()
+
+  // Lê estado atual pra decidir quais timestamps já foram setados (não sobrescreve).
+  const cur = await db.execute({
+    sql: `SELECT disparado_em, respondeu_em FROM leads WHERE id = ?`,
+    args: [id],
+  })
+  if (cur.rows.length === 0) return
+  const row = cur.rows[0] as unknown as { disparado_em: string | null; respondeu_em: string | null }
+
+  const sets: string[] = [`status = ?`, `atualizado_em = datetime('now','localtime')`]
+  const args: any[] = [status]
+
+  if (status === 'abordado' && !row.disparado_em) {
+    sets.push(`disparado_em = datetime('now','localtime')`)
+  }
+
+  // Considera que o lead respondeu se: (a) status indica resposta, ou
+  // (b) tem objeção registrada (objeção pressupõe que o lead falou algo).
+  const respondeu = STATUS_POS_RESPOSTA.has(status) || !!opts?.objecao_tipo
+  if (respondeu && !row.respondeu_em) {
+    sets.push(`respondeu_em = datetime('now','localtime')`)
+    if (row.disparado_em) {
+      sets.push(`tempo_resposta_horas = (julianday('now','localtime') - julianday(disparado_em)) * 24`)
+    }
+  }
+  if (status === 'fechado') sets.push(`fechou = 1`)
+
+  if (opts?.objecao_tipo)   { sets.push(`objecao_tipo = ?`);   args.push(opts.objecao_tipo) }
+  if (opts?.fase_travou)    { sets.push(`fase_travou = ?`);    args.push(opts.fase_travou) }
+  if (opts?.motivo_perdido) { sets.push(`motivo_perdido = ?`); args.push(opts.motivo_perdido) }
+
+  args.push(id)
   await db.execute({
-    sql: `UPDATE leads SET status = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
-    args: [status, id],
+    sql: `UPDATE leads SET ${sets.join(', ')} WHERE id = ?`,
+    args,
   })
 }
 

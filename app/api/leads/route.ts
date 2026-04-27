@@ -23,12 +23,16 @@ export async function PATCH(req: NextRequest) {
 
   if (!id) return NextResponse.json({ error: 'id obrigatório' }, { status: 400 })
 
-  if (action === 'status')   await atualizarStatus(id, body.status, body.observacao)
+  if (action === 'status')   await atualizarStatus(id, body.status, {
+    objecao_tipo:   body.objecao_tipo,
+    fase_travou:    body.fase_travou,
+    motivo_perdido: body.motivo_perdido,
+  })
   if (action === 'notas')    await atualizarNotas(id, body.notas)
   if (action === 'followup') await atualizarFollowup(id, body.data)
   if (action === 'mensagem') await atualizarMensagem(id, body.mensagem)
 
-  if (!action && body.status) await atualizarStatus(id, body.status, body.observacao)
+  if (!action && body.status) await atualizarStatus(id, body.status)
 
   return NextResponse.json({ ok: true })
 }

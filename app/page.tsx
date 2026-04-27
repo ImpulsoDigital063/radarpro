@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, type CSSProperties } from 'react'
 
 type Lead = {
   id: number
@@ -21,6 +21,11 @@ type Lead = {
   proximo_followup: string | null
   fonte: string
   criado_em: string
+  disparado_em: string | null
+  respondeu_em: string | null
+  tempo_resposta_horas: number | null
+  objecao_tipo: string | null
+  fase_travou: string | null
 }
 
 type Stats = {
@@ -65,6 +70,45 @@ function scoreInfo(s: number) {
 function whatsappLink(tel: string, msg: string) {
   const n = tel.replace(/\D/g, '')
   return `https://wa.me/${n.startsWith('55') ? n : '55' + n}?text=${encodeURIComponent(msg)}`
+}
+
+// Diferença em horas entre uma data ISO/SQLite ('YYYY-MM-DD HH:MM:SS') e agora.
+function horasDesde(iso: string | null): number | null {
+  if (!iso) return null
+  const ts = new Date(iso.replace(' ', 'T')).getTime()
+  if (Number.isNaN(ts)) return null
+  return (Date.now() - ts) / (1000 * 60 * 60)
+}
+
+function formatarTempo(horas: number | null): string {
+  if (horas == null) return '—'
+  if (horas < 1)   return `${Math.round(horas * 60)}min`
+  if (horas < 24)  return `${Math.round(horas)}h`
+  const dias = Math.floor(horas / 24)
+  return `${dias}d`
+}
+
+// Retorna true se proximo_followup ('YYYY-MM-DD' ou ISO) já passou.
+function followupVencido(data: string | null): boolean {
+  if (!data) return false
+  const hoje = new Date().toISOString().slice(0, 10)
+  return data.slice(0, 10) < hoje
+}
+
+const STATUS_EM_PROSPECCAO = ['abordado', 'respondeu', 'consultoria_marcada', 'consultoria_feita', 'proposta_enviada']
+
+function btnRap(cor: string): CSSProperties {
+  return {
+    padding: '5px 9px',
+    background: cor + '20',
+    border: `1px solid ${cor}40`,
+    borderRadius: '5px',
+    color: cor,
+    fontSize: '10px',
+    fontWeight: 700,
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+  }
 }
 
 export default function RadarPRO() {
@@ -191,8 +235,16 @@ export default function RadarPRO() {
     if (data.ok) setBuscando(data.chave)
   }
 
-  async function setStatus(id: number, status: string) {
-    await fetch('/api/leads', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, action: 'status', status }) })
+  async function setStatus(id: number, status: string, motivo?: {
+    objecao_tipo?: string
+    fase_travou?: string
+    motivo_perdido?: string
+  }) {
+    await fetch('/api/leads', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, action: 'status', status, ...motivo }),
+    })
     carregar()
   }
 
@@ -891,6 +943,116 @@ export default function RadarPRO() {
       ══════════════════════════════════════════════════════════ */}
       {aba === 'leads' && (
         <>
+          {/* Seção: Em prospecção ativa */}
+          {(() => {
+            const ativos = leads
+              .filter(l => STATUS_EM_PROSPECCAO.includes(l.status))
+              .sort((a, b) => {
+                const va = followupVencido(a.proximo_followup) ? 0 : 1
+                const vb = followupVencido(b.proximo_followup) ? 0 : 1
+                if (va !== vb) return va - vb
+                const ha = horasDesde(a.disparado_em) ?? 0
+                const hb = horasDesde(b.disparado_em) ?? 0
+                return hb - ha
+              })
+
+            if (ativos.length === 0) return null
+
+            return (
+              <div style={{ padding: '16px 32px 20px', borderBottom: `1px solid ${brd}`, background: `${card}80` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                  <h2 style={{ fontSize: '14px', fontWeight: 800, margin: 0, color: '#F59E0B' }}>🔥 Em prospecção ativa</h2>
+                  <span style={{ fontSize: '11px', color: muted }}>
+                    {ativos.length} lead{ativos.length !== 1 ? 's' : ''} aguardando movimento
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {ativos.map(lead => {
+                    const ti = TIPO[lead.tipo]
+                    const st = STATUS[lead.status] ?? STATUS.abordado
+                    const horasDisp = horasDesde(lead.disparado_em)
+                    const horasResp = horasDesde(lead.respondeu_em)
+                    const venceu = followupVencido(lead.proximo_followup)
+                    const semRespostaCritico = lead.status === 'abordado' && (horasDisp ?? 0) > 24 * 5
+
+                    return (
+                      <div key={lead.id} style={{
+                        background: card,
+                        border: `1px solid ${venceu ? '#DC2626' : brd}`,
+                        borderRadius: '8px',
+                        padding: '10px 12px',
+                        display: 'grid',
+                        gridTemplateColumns: '1fr auto',
+                        gap: '12px',
+                        alignItems: 'center',
+                      }}>
+                        <div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '4px' }}>
+                            <span style={{ padding: '2px 6px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: ti.cor + '25', color: ti.cor }}>
+                              {ti.emoji} {ti.label}
+                            </span>
+                            <span style={{ padding: '2px 7px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: st.cor + '25', color: st.cor }}>
+                              {st.label}
+                            </span>
+                            <span style={{ fontSize: '13px', fontWeight: 700, color: txt }}>{lead.nome}</span>
+                            {venceu && (
+                              <span style={{ fontSize: '10px', fontWeight: 700, color: '#DC2626', background: '#DC262620', padding: '2px 6px', borderRadius: '4px' }}>
+                                ⚠️ Follow-up venceu {lead.proximo_followup}
+                              </span>
+                            )}
+                          </div>
+                          <p style={{ fontSize: '11px', color: muted, margin: 0 }}>
+                            Disparado: <span style={{ color: semRespostaCritico ? '#DC2626' : txt, fontWeight: 600 }}>{formatarTempo(horasDisp)}</span>
+                            {lead.respondeu_em && <> · Respondeu: <span style={{ color: '#7C3AED', fontWeight: 600 }}>{formatarTempo(horasResp)} atrás</span></>}
+                            {lead.tempo_resposta_horas != null && <> · Levou {formatarTempo(lead.tempo_resposta_horas)} pra responder</>}
+                            {lead.objecao_tipo && <> · Objeção: <span style={{ color: '#F59E0B' }}>{lead.objecao_tipo}</span></>}
+                          </p>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                          {lead.status === 'abordado' && (
+                            <>
+                              <button onClick={() => setStatus(lead.id, 'respondeu')} title="Lead respondeu" style={btnRap('#7C3AED')}>✅ Respondeu</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { objecao_tipo: 'preco', fase_travou: 'pitch' })} title="Objeção: preço" style={btnRap('#F59E0B')}>💸 Caro</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { objecao_tipo: 'depois', fase_travou: 'abertura' })} title="Pediu pra falar depois" style={btnRap('#F59E0B')}>⏸️ Depois</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { motivo_perdido: 'sem_resposta', fase_travou: 'abertura' })} title="Não respondeu" style={btnRap('#6B7280')}>💤 Sem resposta</button>
+                            </>
+                          )}
+                          {lead.status === 'respondeu' && (
+                            <>
+                              <button onClick={() => setStatus(lead.id, 'consultoria_marcada')} style={btnRap('#D97706')}>📞 Marcou call</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { fase_travou: 'pitch' })} style={btnRap('#6B7280')}>💀 Perdido</button>
+                            </>
+                          )}
+                          {lead.status === 'consultoria_marcada' && (
+                            <>
+                              <button onClick={() => setStatus(lead.id, 'consultoria_feita')} style={btnRap('#0891B2')}>✔ Call feita</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { motivo_perdido: 'no_show', fase_travou: 'call' })} style={btnRap('#6B7280')}>🚫 No-show</button>
+                            </>
+                          )}
+                          {lead.status === 'consultoria_feita' && (
+                            <>
+                              <button onClick={() => setStatus(lead.id, 'proposta_enviada')} style={btnRap('#EA580C')}>📨 Proposta</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { fase_travou: 'call' })} style={btnRap('#6B7280')}>💀 Perdido</button>
+                            </>
+                          )}
+                          {lead.status === 'proposta_enviada' && (
+                            <>
+                              <button onClick={() => setStatus(lead.id, 'fechado')} style={btnRap('#16A34A')}>🤝 Fechou</button>
+                              <button onClick={() => setStatus(lead.id, 'sem_interesse', { fase_travou: 'fechamento' })} style={btnRap('#6B7280')}>💀 Perdido</button>
+                            </>
+                          )}
+                          <button onClick={() => setExpandido(expandido === lead.id ? null : lead.id)} style={btnRap('#374151')}>✏️</button>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })()}
+
           {/* Filtros */}
           <div style={{ padding: '12px 32px', display: 'flex', gap: '10px', borderBottom: `1px solid ${brd}`, flexWrap: 'wrap', alignItems: 'center' }}>
             <div style={{ display: 'flex', gap: '5px' }}>
