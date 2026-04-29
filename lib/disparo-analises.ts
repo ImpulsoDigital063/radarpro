@@ -31,7 +31,7 @@ export const ANALISES: Record<number, Analise> = {
 
   55: {
     tier: 'A',
-    posicao_no_tier: 3,
+    posicao_no_tier: 21,
     dor: 'Psicólogo em Palmas compete por confiança. Paciente que busca "psicólogo Palmas" no Google hoje encontra o Gilson no Maps, mas clica e vê só endereço e telefone — zero contexto, zero cara, zero abordagem. Insta não transmite sigilo/seriedade do consultório. 4.9 com 135 avaliações prova autoridade, mas ele não está capitalizando esse ativo.',
     gancho: 'LP dedicada mostra linha de abordagem, especialidades, primeira consulta, FAQ ("sigilo é garantido?", "atende online?"). O "aparece no Google quando alguém pesquisa psicólogo em Palmas" é literal — Gilson já tem a reputação pra estourar SEO local.',
     objecao: 'Psicólogo tem escrúpulo com marketing agressivo. Provável: "não quero algo que pareça venda".',
@@ -51,7 +51,7 @@ Minha porta tá aberta quando fizer sentido, doutor`,
 
   24: {
     tier: 'A',
-    posicao_no_tier: 15,
+    posicao_no_tier: 27,
     dor: 'Advocacia em Palmas: cliente pesquisa "advogado trabalhista Palmas" (ou família, ou previdenciário) ANTES de ligar. Se não tem site, cliente liga primeiro pro concorrente que tem. Nota 5 com 120 avaliações é escandalosa — Guilherme tá sentado numa mina de autoridade sem LP pra capturar essa intenção de busca.',
     gancho: 'LP de escritório de advocacia converte violento: áreas de atuação, foto do escritório, biografia, casos (sem expor cliente), FAQ ("quanto custa consulta?", "atende OAB-TO?"). SEO local + 3 artigos ("como entrar com ação trabalhista em Palmas", etc) = tráfego orgânico pra vida toda.',
     objecao: 'OAB tem regra contra marketing "chamativo". Provável: "não posso fazer propaganda de advogado".',
@@ -71,7 +71,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   146: {
     tier: 'A',
-    posicao_no_tier: 35,
+    posicao_no_tier: 9,
     dor: 'Perfumaria de importado em Palmas: a DOR é PROVA DE AUTENTICIDADE. Cliente que vai gastar R$400-800 num perfume importado quer site profissional, notas fiscais visíveis, política de troca, garantia. Vender perfume importado só pelo Instagram é assinar atestado de "pode ser falso". Nota 5 com 109 aval prova que os clientes já confiam — mas quem não conhece ainda, desconfia.',
     gancho: 'Shopify com checkout MP (parcelamento 12x) + cadastro organizado por marca (Dior, Carolina Herrera, Chanel, etc) + vitrine com estoque real + selo "Perfumaria autorizada" + entrega Palmas no dia. Ticket médio do setor é alto, Shopify paga com 1-2 vendas.',
     objecao: '"Já vendo bem pelo WhatsApp, pra que site?" — Don Parfum provavelmente já fatura bem.',
@@ -91,7 +91,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   116: {
     tier: 'A',
-    posicao_no_tier: 43,
+    posicao_no_tier: 15,
     dor: 'Moda executiva feminina em Palmas: cliente é advogada, servidora pública concursada, executiva. Ticket médio alto (R$300-800 por peça). Essa cliente NÃO compra roupa de trabalho pelo WhatsApp — ela quer ver vitrine organizada, filtrar por tamanho, pagar no cartão corporativo, receber em casa. "Moda executiva" sem site é contraste: vende sofisticação num canal informal.',
     gancho: 'Shopify com filtro por tamanho + ocasião (trabalho, evento, reunião) + parcelamento 12x + retirada na loja OU entrega em casa. Tema da loja com paleta sóbria/premium. 20 produtos cadastrados no entregável já cobre a coleção atual.',
     objecao: '"Minha cliente é fiel, compra pessoalmente" — vai defender o relacionamento.',
@@ -131,7 +131,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   11: {
     tier: 'A',
-    posicao_no_tier: 10,
+    posicao_no_tier: 22,
     dor: 'NUTRI NEFRO — ou seja, nutricionista especializada em doença renal. Nicho raríssimo. Paciente renal busca desesperado por esse perfil (alimentação correta faz diferença entre diálise ou não). Não ter LP com "nutri nefro" escrito explícito é DEIXAR DINHEIRO NA MESA — SEO pra "nutricionista renal Palmas" deve ter concorrência zero.',
     gancho: 'LP + 3 artigos SEO ("dieta pra paciente com insuficiência renal", "nutri nefro em Palmas", "alimentação pré-diálise") = domínio absoluto dessa busca em Palmas e região.',
     objecao: 'IG é @draanacarolinaalmeida (nome próprio, não @nutrinefro-algo) — provável que o nicho nefro ainda não esteja no posicionamento público dela.',
@@ -155,7 +155,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1096: {
     tier: 'A',
-    posicao_no_tier: 26,
+    posicao_no_tier: 1,
     dor: 'Brechó moderno com 13.7k seguidores, 14% engajamento (anomalia positiva — média do varejo IG é 1-3%), 5 categorias (roupas, bolsas, acessórios, sapatos, artesanato) e "frete pra todo Brasil" JÁ rodando via DM. Volume gigante invisível: cada peça = 8-15 mensagens trocadas (foto, medida, frete, pix, comprovante, código de envio). Ela já vende como uma loja — só não TEM uma.',
     gancho: 'Shopify pega o catálogo dela das 5 categorias, monta vitrine navegável + checkout MP (parcelamento 12x) + cálculo de frete automático Correios + rastreio. Ela responde DM pra dúvida real, não pra processar pedido. Mesmo volume, 1/4 do trabalho.',
     objecao: '"Já vendo muito bem assim, pra que mexer?" — base sólida (13.7k + 14% engaj) é argumento forte dela.',
@@ -176,7 +176,7 @@ se fizer sentido depois, me chama`,
 
   1093: {
     tier: 'A',
-    posicao_no_tier: 27,
+    posicao_no_tier: 2,
     dor: 'Carpe Diem tem story FIXO chamado "Shop On-line" no perfil — sinal escancarado de que a Mirian (dona ativa, @mirian.pereiraa) JÁ SABE que precisa de loja online. Ou tentou e travou, ou tá em fila esperando alguém pra montar. 1.893 seg + 2.7% engajamento real (alto pra varejo) + 447 posts = catálogo robusto, base sólida. Falta o canal.',
     gancho: 'Não precisa convencer da NECESSIDADE — ela já sabe. O pitch é: "vi que tu tem story Shop On-line há um tempo e provavelmente travou em alguma coisa (preço, complexidade, achar quem fizesse). Eu monto em 7-10 dias, a partir de R$599, com 20 produtos cadastrados e treinamento". Pulo o convencimento, vou direto pra cotação.',
     objecao: '"Quanto custa?" — provável PRIMEIRA pergunta dela, porque ela já tá pesquisando.',
@@ -195,7 +195,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1087: {
     tier: 'A',
-    posicao_no_tier: 39,
+    posicao_no_tier: 13,
     dor: 'Mary Fashion tem 2.140 posts no Instagram — 5+ anos de catálogo acumulado. Quando cliente quer ver "o que tem em vermelho tamanho M", precisa rolar feed infinito. Volume de catálogo virou problema, não solução. Sem filtro, sem busca, sem categoria — Shopify resolve em 1 dia.',
     gancho: 'Shopify pega esses 2.140 posts e organiza nas peças que ainda estão em estoque (provavelmente 100-200 produtos ativos), com filtro por categoria, cor, tamanho, preço. O catálogo de 5 anos vira loja navegável em horas, não em rolagem.',
     objecao: '"Meu cliente já me conhece e vê pelo Insta" — argumento clássico de loja com base fiel.',
@@ -215,7 +215,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1092: {
     tier: 'A',
-    posicao_no_tier: 31,
+    posicao_no_tier: 6,
     dor: 'Lorenn parcela 3x cartão VIA DIRECT MESSAGE — cliente manda print do cartão pelo WhatsApp/DM, ela registra manualmente, processa em maquininha física. Pesadelo operacional + risco de fraude + chargeback fácil. Cada venda parcelada = 15-20 mensagens. Volume baixo (1.391 seg) mas conjunto R$195 = ticket médio decente. Mercado Pago integrado no Shopify resolve em 1 clique.',
     gancho: 'Shopify + Mercado Pago = parcelamento 12x automático, antifraude da plataforma, repasse direto na conta. Ela para de mandar cliente conferir 3x se vai cair certo, para de digitar dado de cartão de outra pessoa. Cliente paga, ela recebe notificação "pagamento aprovado", pronto.',
     objecao: '"Faço já há tempo, dá certo, cliente confia" — defesa do processo manual existente.',
@@ -236,7 +236,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1089: {
     tier: 'A',
-    posicao_no_tier: 32,
+    posicao_no_tier: 7,
     dor: 'Dborah Closet tem PROCESSO MADURO mas escala via DM: posta caption com preço E parcelamento ("vestido R$440 em 3x R$146 ou 6x R$73"), bio diz "Enviamos pra todo Brasil", 1.105 posts no catálogo. Ela já estruturou a oferta como uma loja real — só falta o checkout. Cliente que viu o caption pronto não pode clicar e comprar. Tem que mandar DM pra confirmar disponibilidade, pedido, frete, pix.',
     gancho: 'Shopify pega o que ela já faz manualmente (preço fixo + parcelamento + frete Brasil) e automatiza. Caption no Insta linka pra produto direto na loja. Cliente lê caption, clica, vê o tamanho dela, paga em 12x, escolhe frete Correios, pronto. Sem DM.',
     objecao: '"Já tenho fluxo, todo mundo me manda DM, dá certo" — operação consolidada.',
@@ -260,7 +260,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1103: {
     tier: 'A',
-    posicao_no_tier: 30,
+    posicao_no_tier: 5,
     dor: 'Mara Camargo Semijoias tem 16 ANOS de curadoria, ticket alto (semijoia premium R$200-1.500), 3.047 posts no Instagram (catálogo gigantesco) e dona-marca que aparece em vídeos (decisão direta, sem comitê). DUAS DORES SOBREPOSTAS: (1) foco 100% LOCAL — atendimento seg-sex 9h30-18h30 na 208 Sul; cliente de fora não consegue comprar. (2) DOR INVISÍVEL DESCOBERTA NO BATCH CIC #4: ela vende em "site de plataforma multi-vendedor" (provável joalheria multi-marca) — ou seja, ELA JÁ ENTENDEU que precisa de canal online, mas tá pagando comissão pra plataforma de terceiro hospedar peças dela junto com de outras lojistas. Marca premium dividindo vitrine = perde força de identidade.',
     gancho: 'Shopify pega o catálogo dela (3.047 posts = ~800 peças únicas em rotação) e monta vitrine premium PRÓPRIA com filtro por categoria (anel, brinco, colar, pulseira) + parcelamento 12x + frete Brasil. DOIS argumentos sobrepostos: (a) destrava cliente de fora de Palmas, (b) ELA SAI DA PLATAFORMA MULTI-VENDEDOR — para de pagar comissão e de dividir vitrine com concorrente. Domínio próprio = "maracamargo.com.br" (não "plataformaX.com.br/maracamargo"). Mara continua atendimento exclusivo no físico, só agora também tem CASA digital própria.',
     objecao: '"Meu negócio é atendimento exclusivo, presencial. Online tira a alma da marca." OU "Já vendo no [site da plataforma], ali já é online, pra que outro?"',
@@ -281,7 +281,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1102: {
     tier: 'A',
-    posicao_no_tier: 29,
+    posicao_no_tier: 4,
     dor: 'One Suplementos tem 5 LOJAS FÍSICAS em Palmas, 12.300 seguidores, 437 posts, "envia para todo Brasil" declarado na bio, frete grátis Tocantins R$199,90+, conta verificada e link tree no perfil. Operação grande já vendendo nacional via DM/link tree. Cada pedido de fora = pedido por mensagem (estoque, frete, pix), 5 lojas pra coordenar inventário, link tree em vez de checkout real. É EV Suplementos Injetáveis em escala maior — exatamente o caso GB Nutrition pronto pra Shopify.',
     gancho: 'Shopify resolve 3 dores em 1: (a) checkout único com cálculo de frete automático (cliente paga sozinho, escolhe motoboy ou Correios), (b) catálogo unificado com estoque por loja (cliente vê o que tem perto e retira), (c) substitui link tree por loja real (legitimidade pra cliente novo). Mesma operação, 1/3 do trabalho de DM, 3x o ticket médio porque cliente compra cesta em vez de 1 item.',
     objecao: '"Já vendemos pelo Brasil, dá certo. Por que mexer?" — operação madura defendendo o status quo.',
@@ -302,7 +302,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1104: {
     tier: 'A',
-    posicao_no_tier: 28,
+    posicao_no_tier: 3,
     dor: 'L\'Essence é a ÚNICA perfumaria de luxo importada do Capim Dourado Shopping (maior shopping de Palmas). Ticket altíssimo (Bad Boy Carolina Herrera, importados árabes, faixa R$300-1.500), 1.085 posts (catálogo robusto), foto editorial. Mas opera 100% LOCAL — quem mora fora de Palmas e quer importado original (não falsificado de marketplace) não tem onde comprar com selo de autenticidade. Oceano azul: Shopify abre mercado nacional pra perfume importado palmense.',
     gancho: 'Shopify com selo "Perfumaria autorizada do Capim Dourado" + nota fiscal eletrônica visível + política de troca clara + parcelamento 12x = resolve a DOR DE AUTENTICIDADE que perfume importado tem. Cliente que vai gastar R$800 num Bad Boy não compra de Insta sem CNPJ — mas compra de Shopify com selo institucional. Mesma loja, alcance nacional. Ticket R$500-1.500 paga Shopify com 1-2 vendas.',
     objecao: '"Já tenho clientela fiel no shopping, vendo bem" — operação física consolidada.',
@@ -329,7 +329,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1108: {
     tier: 'A',
-    posicao_no_tier: 2,
+    posicao_no_tier: 16,
     dor: 'Verônica é o CASE-CLONE EXATO da Erlane (EV Suplementos Injetáveis): enfermeira esteta autônoma (sufixo .enf indica COREN), habilitada em Ozonioterapia, atende suplementação injetável + soroterapia + ozonioterapia + Coenzima Q10 + B12 em Palmas-TO. 1.315 seguidores no sweet spot, 137 posts, último há 18 dias. Operação inteira gira no DM/wa.me — quem vai pagar R$200-400 numa sessão de injetável quer ver site profissional com protocolos, antes/depois, biografia técnica e agendamento estruturado, não link tree.',
     gancho: 'PITCH ESPELHO da Erlane: "Verônica, vi tua operação e ela é praticamente idêntica à da Erlane Vieira (@evsuplementosinjetaveis). Mesmo serviço-âncora (suplementação injetável + soroterapia), mesma identidade visual, mesmo gargalo wa.me. Ela construiu uma LP profissional — evsuplementosinjetaveis.com — que parou de depender só do DM e capturou paciente novo do Google. Posso te mostrar o que mudou na operação dela?". Case real ESPECÍFICO + persona-clone = pitch zero genérico.',
     objecao: '"Meu paciente vem por indicação, não preciso de site" — clássico de profissional autônoma de saúde.',
@@ -350,7 +350,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1109: {
     tier: 'A',
-    posicao_no_tier: 12,
+    posicao_no_tier: 33,
     dor: 'Dra. Christiana é endocrinologista solo CRM-TO 8510 RQE 3994 com endereço explícito (Av. Teotônio Segurado Q401 Lote 01 Sala 905). Conteúdo técnico altíssima qualidade (postou há 3 dias sobre Wegovy/Rybelsus). 2.595 seg, 191 posts, autoridade médica máxima visível em bio + posts. Tem linktr.ee mas falta LP DEDICADA às canetas emagrecedoras (Mounjaro/Ozempic/Wegovy/Tirzepatida) — esse subnicho é o NICHO MAIS QUENTE em saúde estética Palmas hoje, e o paciente que pesquisa "Mounjaro Palmas TO" cai num linktr.ee genérico sem contexto.',
     gancho: 'LP dedicada às CANETAS EMAGRECEDORAS: explicação técnica de cada análogo GLP-1 (semaglutida vs tirzepatida), critérios de elegibilidade, FAQ ("preciso usar pra sempre?", "convênio cobre?", "diferença Ozempic vs Wegovy"), antes/depois categorizado, agendamento estruturado, biografia médica com CRM+RQE em destaque. Captura Google + tráfego pago do "Mounjaro Palmas". Linktr.ee continua, mas a LP vira o destino oficial pro paciente que quer protocolo, não lista de links.',
     objecao: '"Meu Insta tá indo bem, paciente já me acha" — operação ativa que sente que tá no controle.',
@@ -371,7 +371,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1110: {
     tier: 'A',
-    posicao_no_tier: 21,
+    posicao_no_tier: 34,
     dor: 'Dra. Thais é endocrinologista hiperativa: 358 posts, postou ONTEM (Tirzepatida + musculação), CRM-TO 4746 + RQE 2691 + RQE 3067 (especialização dupla), atende Porto Nacional + Palmas. JÁ TEM contate.me/thaismahassem mas é LP GENÉRICA (linktr.ee renomeado, sem identidade médica nem foco de serviço). Volume de conteúdo + autoridade dupla + operação cross-cidade = perfil que precisa de LP estruturada PRA SE DIFERENCIAR — endocrinologista padrão tem linktr.ee, ela precisa de diferencial digital tão técnico quanto o conteúdo dela.',
     gancho: 'LP UPGRADE — não criação. Pitch é "tu já tem contate.me, ele cumpre função básica mas não converte como o conteúdo merece. Eu monto LP profissional dedicada com biografia médica completa, lista de serviços categorizada (emagrecimento Mounjaro / menopausa / reposição hormonal), antes/depois com cuidado ético, agendamento integrado, integração WhatsApp Business, 3 artigos SEO sobre Tirzepatida pra rankear no Google". Mantém o contate.me (não desligar) e posiciona LP como página principal.',
     objecao: '"Já tenho contate.me, tá funcionando" — operação ativa defendendo solução existente.',
@@ -392,7 +392,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1111: {
     tier: 'A',
-    posicao_no_tier: 42,
+    posicao_no_tier: 43,
     dor: 'Dra. Mariella é médica nutróloga ativa em DUAS CIDADES (Palmas-TO no Health Plennus + Goiânia-GO no Núcleo Dr. Paulo Fernando). 5.518 seguidores, 122 posts, último há 5 dias. Operação dividida entre cidades = paciente confuso "ela atende em Palmas mesmo? Em qual dia? Como agendar?". Linktr.ee funciona como "tá tudo aqui" mas DILUI o público de Palmas com o de Goiânia. Quem mora em Palmas e pesquisa "nutrólogo emagrecimento Palmas" cai numa página que mistura agenda das duas cidades.',
     gancho: 'LP GEO-SEGMENTADA Palmas. Página dedicada ao público palmense com endereço Health Plennus em destaque, dias de atendimento Palmas explícitos, agendamento direto, biografia médica + CRM, FAQ específico de Palmas (convênios locais, integrações com clínicas parceiras). Goiânia continua via linktr.ee ou LP separada futura. Cliente palmense vira o foco — não compete com agenda Goiânia pela atenção.',
     objecao: '"Meu linktr.ee tem tudo, paciente vê e agenda" — solução genérica funcional.',
@@ -418,7 +418,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1107: {
     tier: 'A',
-    posicao_no_tier: 33,
+    posicao_no_tier: 12,
     dor: 'Mobiliare Móveis tem 14 anos no mercado, móveis design autoral (mesa madeira maciça, ticket R$1.500-15.000 por peça), 10.300 seguidores no Insta, 335 posts editorial, fotos sofisticadas. ENDEREÇO confirmado: 104 Sul Rua SE 5 Lote 37 Palmas-TO. INSIGHT CRÍTICO descoberto no batch CIC #4: ELA JÁ TEM DOMÍNIO PRÓPRIO — `mobiliaremoveis.com.br`. MAS o site é APENAS LP INSTITUCIONAL (apresentação + contato) — NÃO é e-commerce. Operação inteira de venda continua via DM ("chame no direct"). Cliente que vai gastar R$8.000 numa mesa sob medida visita o site, vê foto + telefone, mas não tem orçamento online, não tem catálogo navegável, não tem pedido formalizado. Funil quebra exatamente onde mais dói (ticket alto).',
     gancho: 'PITCH UPGRADE — não criação. Aproveita o domínio que ela JÁ tem (mobiliaremoveis.com.br) e transforma a LP institucional em e-commerce/orçamento online. Catálogo navegável por categoria (sala, jantar, quarto, escritório), filtro por estilo, sistema de orçamento online (pré-cotação automática + cliente fornece medidas + envio pra ela formalizar), galeria de cases com cliente real, integração WhatsApp Business. Mantém a estética editorial atual, só adiciona o canal de conversão. Mesma marca, conversão 5-10x.',
     objecao: '"Móveis sob medida não vende online — cliente precisa ver, tocar, conversar antes" — defesa do modelo consultivo.',
@@ -439,7 +439,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1113: {
     tier: 'A',
-    posicao_no_tier: 40,
+    posicao_no_tier: 14,
     dor: 'Owen Loja é marca masculina autoral em Palmas-TO (jeans New Slim, camisetas, conjuntos), loja física + 7.900 seguidores Insta + perfil TikTok ATIVO. Ticket R$80-250. SEM domínio próprio confirmado pelo batch CIC #4. DIFERENCIAL ÚNICO entre os leads do banco: ela TEM PRESENÇA TIKTOK ativa — quase nenhum lead nosso tem isso. Hoje Insta + TikTok = 2 canais separados, cada um com público diferente, e a venda em ambos cai num gargalo de DM/wa.me. Se Owen entrasse na onda de TikTok Shop (loja integrada nativa do TikTok, lançada 2024 no Brasil), o público que assiste live tinha checkout direto sem sair do app.',
     gancho: 'Pitch DUPLO: (a) Shopify pega o catálogo (jeans, conjuntos, camisetas), monta vitrine masculina com filtro por estilo, parcelamento 12x, motoboy Palmas + Correios Brasil; (b) INTEGRAÇÃO TIKTOK SHOP com Shopify — produtos do Shopify aparecem direto nos posts/lives TikTok com botão de compra nativo. Cliente assiste live, clica, compra sem sair do TikTok. ÚNICO LEAD do banco com esse ângulo natural — moda masculina jovem é o nicho ideal pra TikTok Shop.',
     objecao: '"TikTok eu uso pra divulgar, não pra vender — venda fecha no DM mesmo" — visão tradicional do funil.',
@@ -465,7 +465,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1118: {
     tier: 'A',
-    posicao_no_tier: 4,
+    posicao_no_tier: 28,
     dor: 'Dra. Monnaliza Cabral é dentista solo CRO TO 1727 com Instagram VERIFIED azul (raríssimo em Palmas — sinal de operação consolidada de verdade), Maps 5.0/33, endereço Q. 1006 Sul Alameda 16 Lote 01 Sala 8, ATIVÍSSIMA (post há 3 dias). Catálogo de 6 serviços (facetas, harmonização facial, etc) com TICKET ALTO (faceta R$1.000+/dente, harmonização R$3.000+, consultas R$200-400). MAS: ZERO domínio próprio, ZERO link na bio Insta — agendamento 100% via direct. Pinned post "Agenda aberta" lista os serviços + telefone direto, sem link de marcação. DOR DM ABSOLUTA num nicho onde paciente pesquisa MUITO antes de fechar (faceta + harmonização = decisão estética séria).',
     gancho: 'ARGUMENTO ESTRUTURAL — dentista solo verified com 5★/33 Maps + ZERO web é exatamente o perfil que paciente busca pra harmonização premium e não acha. LP profissional resolve: biografia + CRO em destaque + 6 serviços catalogados com FAQ ("quanto custa faceta?", "harmonização dura quanto?") + galeria antes/depois (com cuidado ético dental) + agendamento integrado + 3 artigos SEO ("faceta de porcelana em Palmas", "harmonização facial CRO-TO segura"). Conta verificada Insta + 5★/33 Maps + LP profissional = autoridade triplicada. Cliente que vai gastar R$3-5k em harmonização pesquisa MUITO; quem aparecer com LP profissional fica com a venda. PROPOSTA OPCIONAL: Monnaliza pode virar PRIMEIRO CASE DENTAL da Impulso (R$200 desconto pra fechar mais rápido + virar prova social pra próximos dentistas).',
     objecao: '"Já tenho fluxo no consultório, paciente vem por indicação" — dentista solo consolidada defendendo o status quo.',
@@ -486,7 +486,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1119: {
     tier: 'A',
-    posicao_no_tier: 9,
+    posicao_no_tier: 29,
     dor: 'Dr. Ricardo Linares é cirurgião-dentista solo, conta Insta verified, 8.4k seguidores, Maps 4.9/66, endereço 1106 sul av lo 27 lote 25 sala 3. CASO EXTREMO de DOR DM: o "Site" listado no Google Maps NÃO é um site — é um link literal pra api.whatsapp.com/send (cliente clica em "Site" no Maps e vai direto pro WhatsApp dele). É a ferramenta mais primitiva de captação possível, mas funciona porque ele tem reputação Maps de 4.9/66. Feed Insta inativo 11 sem MAS Maps com reviews recentes = paciente continua chegando via boca-a-boca + Maps, sem canal digital próprio captando o paciente NOVO que pesquisa "cirurgião dentista Palmas" antes de agendar.',
     gancho: 'LP profissional vira o destino oficial pra paciente novo que pesquisa cirurgião-dentista em Palmas. Biografia + procedimentos catalogados (cirurgia, implante, exodontia complexa, etc) + galeria de casos com cuidado ético + depoimentos + FAQ ("quanto custa implante?", "tempo de recuperação cirurgia?", "quem cobre plano?") + agendamento integrado. Substitui o "wa.me como Site" do Maps por LP institucional sem desligar o WhatsApp. Mesma operação, captura paciente novo que hoje some no caminho.',
     objecao: '"Tô bem com o que tenho, paciente continua chegando" — defesa do que funciona.',
@@ -507,7 +507,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1115: {
     tier: 'A',
-    posicao_no_tier: 17,
+    posicao_no_tier: 23,
     dor: 'Pedro Maciel é nutricionista esportivo solo CRN 27994, ATIVÍSSIMO no Insta (post há 1 dia), Maps 5.0/10 (poucas mas todas positivas), endereço 204 Sul Alameda Jandaia Lote 27. Pós-graduando em ESPORTIVA + CLÍNICA + LIPEDEMA — lipedema é nicho ESCASSO em Palmas (paciente pesquisa muito, encontra pouco). ZERO domínio próprio, "Site" do Maps aponta pro próprio Insta, bio com wa.me/+5563992314603. DOR DM CLÁSSICA + nicho de especialização raro = receita escapando porque cliente não acha quem trata lipedema na cidade.',
     gancho: 'Pitch DUPLO: (a) LP profissional padrão (biografia + CRN + serviços + agendamento), MAS (b) com PÁGINA DEDICADA AO LIPEDEMA — porque é o nicho onde ele tem diferenciação real e onde ranquear no Google "nutricionista lipedema Palmas" vira destino único. Cliente de lipedema gasta MUITO tempo pesquisando, e quem aparece com LP técnica explicando "o que é lipedema, como funciona o protocolo nutricional, fases do tratamento, quanto custa" fica com TODO o nicho regional. Match exato com EV Suplementos (profissional saúde habilitado + sessão recorrente + nicho premium).',
     objecao: '"Já vendo bem pelo Insta, post há 1 dia, atendo cheio" — operação ativa defendendo o que funciona.',
@@ -528,7 +528,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1114: {
     tier: 'A',
-    posicao_no_tier: 41,
+    posicao_no_tier: 42,
     dor: 'Marina Clara Borges é psicóloga solo CRP 23/1936, 7.100 seguidores, 332 posts, ativa há 18 dias. Endereço explícito (501 sul Av. Teotônio Segurado, Edifício Amazônia Center 3° andar, em frente ao Fórum). Maps 5.0/15. Diferencial PESADO: PODCASTER do "Duas no Divã" + Psicóloga na Junta Médica TO = autoridade construída acima da média do nicho. MAS: tem `marinaclarapsi-kb7vfrf.gamma.site` — gamma.site é ferramenta amadora de geração de página (similar a Linktr.ee mas com cara de site). O site existe mas não é profissional, sem CTA estruturado, sem agendamento integrado, sem captura de lead.',
     gancho: 'PITCH UPGRADE de gamma.site pra LP profissional. Aproveita autoridade que ela JÁ tem (podcast + Junta Médica TO + 7.1k seg + 5★ Maps) e monta LP com biografia profissional + CRP em destaque + áreas de atuação (psicanálise, terapia) + FAQ ("primeira sessão", "atende online?", "quanto dura tratamento?") + integração com podcast (link episódios pra prova social) + agendamento profissional. Argumento estrutural — autoridade construída via podcast + Junta Médica TO precisa de vitrine adequada, gamma.site amador queima a marca pessoal.',
     objecao: '"Já tenho o gamma.site, funciona pro que preciso" — defesa da solução amadora atual.',
@@ -575,7 +575,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1131: {
     tier: 'A',
-    posicao_no_tier: 1,
+    posicao_no_tier: 26,
     dor: 'Douglas Pimentel é o LEAD MAIS GRITANTE do pipeline inteiro: advogado solo trabalhista OAB-TO, Maps 5.0/294 reviews — número ABSURDO, é literalmente top 1 trabalhista de Palmas no Maps. ZERO domínio próprio, ZERO presença web, bio Insta só com DDD 63 99202-4803. 294 paciente satisfeito que JÁ deixou review e o próximo cliente que pesquisa "advogado trabalhista Palmas" cai num WhatsApp sem ver biografia, casos, especialidade, conformidade OAB. É OURO LOCAL não capturado — Hormozi diria "deixar dinheiro na mesa em escala industrial".',
     gancho: 'ARGUMENTO ESTRUTURAL OAB-COMPLIANT — Provimento 205/2021 PERMITE LP informativa sem preço/promessa. LP profissional vira destino oficial pra busca "advogado trabalhista Palmas" (que Douglas já domina no Maps): biografia + OAB-TO em destaque + áreas de especialidade trabalhista (rescisão, CLT, INSS) + FAQ ("como funciona 1ª consulta?", "quanto custa orientação?", "OAB permite cobrar honorários assim?") + formulário de pré-análise da causa + 3 artigos SEO ("rescisão CLT em Palmas", "como entrar com ação trabalhista TO", "verbas rescisórias Tocantins") + integração ética com OAB. 294 reviews + LP profissional = autoridade triplicada. PROPOSTA: Douglas pode virar PRIMEIRO CASE ADVOGADO da Impulso (R$200 desconto + showcase pra outros advogados Palmas).',
     objecao: '"OAB tem regra contra propaganda agressiva" — clássica do advogado preocupado com Provimento 205/2021.',
@@ -596,7 +596,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1125: {
     tier: 'A',
-    posicao_no_tier: 8,
+    posicao_no_tier: 35,
     dor: 'Dra. Ingrid Sales é endocrinologista RQE 3062, Maps 5.0/190 reviews (número RARÍSSIMO em endocrino), 7.540 seguidores Insta, endereço Centro Clínico Sara Q.108 Sul. Atende Diabetes + Obesidade + Tireoide + Hormônios. MAS o canal de captura é literalmente um BIT.LY (`bit.ly/atendimentodraingridsales`) — 190 reviews 5★ + 7.5k seguidores + bit.ly = DESPERDÍCIO COLOSSAL. Paciente que viu post sobre Mounjaro/Ozempic clica no link da bio e cai num bit.ly genérico, sem biografia, sem FAQ, sem formulário de pré-anamnese.',
     gancho: 'LP profissional dedicada com biografia + RQE 3062 em destaque + 4 áreas (Diabetes, Obesidade c/ canetas GLP-1, Tireoide, Hormônios) + FAQ específico de cada (quanto custa consulta, plano cobre, como funciona acompanhamento canetas) + agendamento integrado + 3 artigos SEO ("Mounjaro Palmas TO", "tireoide Hashimoto", "obesidade tratamento médico"). Pega tráfego das buscas premium "endocrinologista Palmas Mounjaro". Mantém Insta + bit.ly opcional, mas LP vira destino oficial. Argumento estrutural — médica autônoma RQE com 190 reviews 5★ + canal de captura amador (bit.ly) = oportunidade clara de upgrade.',
     objecao: '"Já tenho bit.ly e o Insta, paciente acha" — defesa do operacional atual.',
@@ -617,7 +617,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1122: {
     tier: 'A',
-    posicao_no_tier: 14,
+    posicao_no_tier: 30,
     dor: 'Dra. Hollana Correa é dentista solo CRO TO 3043 com 15.900 SEGUIDORES INSTA (a maior do batch dental), Maps 5.0/67 reviews, endereço Orla 14 Graciosa. Nicho: Rejuvenescimento Facial / Harmonização Orofacial. ZERO domínio próprio — link in bio é literalmente um wa.me/message direto. 15.9k seguidores qualificados (público que segue dentista de harmonização é cliente intencional, não casual) sem captura de lead — todos voltam pro DM. Paciente que vai gastar R$3.000+ em harmonização precisa ver biografia técnica, antes/depois ético, processo, FAQ de preço — não cai direto em "olá!".',
     gancho: 'ARGUMENTO ESTRUTURAL — dentista solo com 15.9k seg qualificados em harmonização + ZERO captura = receita massiva escapando. LP de procedimentos estéticos com biografia + CRO em destaque + catálogo (rejuvenescimento facial, harmonização orofacial, lifting facial, bichectomia) + galeria antes/depois (com cuidado ético dental) + FAQ ("quanto custa harmonização?", "quanto dura?", "dói?", "tempo de recuperação?") + agendamento integrado + 3 artigos SEO ("harmonização orofacial Palmas", "rejuvenescimento facial seguro", "bichectomia indicação"). 15.9k seguidores → LP que captura → conversão dramática.',
     objecao: '"Já tenho 15k seguidores, cliente vem do Insta mesmo" — operação ativa defendendo o que funciona.',
@@ -638,7 +638,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1124: {
     tier: 'A',
-    posicao_no_tier: 5,
+    posicao_no_tier: 32,
     dor: 'Dra. Ioana Leobas é ginecologista CRM 4282 + RQE com ULTRA-NICHO técnico: Colposcopia + Tratamento HPV + Microscopia + Histeroscopia. Endereço Clínica Mater Vitta Q.602 Sul, Maps 5.0/23 reviews, 2.207 seguidores. ZERO site profissional — só wa.me + Threads. Nicho HPV/colposcopia tem busca paga ALTÍSSIMA (mulher diagnosticada com HPV faz busca desesperada por especialista). Quem aparecer com LP técnica explicando colposcopia + protocolos HPV + FAQ ("HPV tem cura?", "como é a colposcopia?", "quanto custa tratamento?") fica com TODO o nicho regional.',
     gancho: 'LP profissional ULTRA-NICHO: biografia + CRM+RQE + 4 procedimentos (colposcopia, tratamento HPV, microscopia, histeroscopia) + FAQ técnico de cada + agendamento + 3 artigos SEO premium ("colposcopia em Palmas: como é o procedimento", "HPV tratamento conservador 2026", "histeroscopia diagnóstica indicação"). Captura busca premium "colposcopia Palmas TO" que hoje não tem dono. Argumento estrutural — médica especialista solo com autoridade construída + ZERO web profissional + nicho técnico raro = combinação que converte.',
     objecao: '"Tenho clínica fixa (Mater Vitta), paciente é encaminhada" — modelo via convênio/encaminhamento.',
@@ -659,7 +659,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1127: {
     tier: 'A',
-    posicao_no_tier: 16,
+    posicao_no_tier: 36,
     dor: 'Dr. Ricardo Mendonça é ortopedista cirurgião RQE 3540 e 3770 + TEOT (UFPR) com ULTRA-NICHO técnico: Cirurgia da Mão e Microcirurgia. Endereço COT Q.902 Sul, Maps 5.0/90 reviews, 2.141 seguidores Insta. INSIGHT CRÍTICO descoberto pelo CIC #6: ELE JÁ TEM DOMÍNIO PRÓPRIO (`ricardomendonca.com.br`) — MAS o subdomínio `bio.ricardomendonca.com.br` é apenas link-in-bio custom. O domínio raiz não tem site indexado. Ele JÁ INVESTIU em domínio profissional, mas parou no link-in-bio. É EXATAMENTE o perfil que migra de bio→LP em 1 conversa.',
     gancho: 'PITCH UPGRADE — não criação. "Vi que tu já investiu em ricardomendonca.com.br + bio.ricardomendonca.com.br — tu já entendeu que precisa de um lugar único online. O que falta é evoluir o link-in-bio pra LP profissional completa: biografia médica + RQE em destaque + procedimentos catalogados (cirurgia da mão, microcirurgia, lesões nervo periférico, síndrome do túnel do carpo) + galeria de casos com cuidado ético + FAQ técnico + agendamento integrado." Mesmo domínio, conversão profissional. Argumento estrutural ULTRA-NICHO técnico (microcirurgia + cirurgia da mão) + domínio dormente já comprado.',
     objecao: '"Já tenho meu site (bio.ricardomendonca.com.br), funciona" — defesa da solução amadora atual com falsa sensação de domínio próprio.',
@@ -686,7 +686,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1133: {
     tier: 'A',
-    posicao_no_tier: 6,
+    posicao_no_tier: 17,
     dor: 'Amanda Silveira é enfermeira especialista (COREN — não exibido na bio, validar) que opera "Estética e Terapias Injetáveis" em Palmas-TO. Maps 5.0/10 reviews, endereço Q.104 Sul Rua SE 05 N 33 AP 01 (opera home-office em apartamento). Profissional goiana de 33 anos atendendo em Palmas. Nicho: Estética + Saúde Funcional Integrativa (terapias injetáveis, bioestimuladores, soroterapia). 1.360 seguidores Insta, ZERO link in bio visível — tudo no DM. CLONE 1:1 da Erlane (EV Suplementos Injetáveis): mesma profissão paramédica, mesmo serviço, mesma cidade, mesmo gargalo de captura.',
     gancho: 'PITCH ESPECIAL — único do banco onde o case-clone é da MESMA cidade (Erlane mora em Palmas, Eduardo conhece pessoalmente). Abertura: *"A Erlane (@ev.suplementosinjetaveis) é nossa cliente em Palmas e tinha exatamente o seu setup — enfermeira, terapias injetáveis, saúde funcional, atendimento por horário marcado. Construímos a LP dela (evsuplementosinjetaveis.com), parou de explicar protocolo no DM 50x por dia. Posso te mostrar o que mudou na operação dela?"*. Em cidade média, indicação cruzada da própria persona-mãe é o atalho de fechamento mais rápido — pedir permissão da Erlane antes de disparar.',
     objecao: '"Atendo em casa, fluxo pequeno, não preciso de site agora" — defesa do operacional home-office.',
@@ -714,7 +714,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1135: {
     tier: 'A',
-    posicao_no_tier: 7,
+    posicao_no_tier: 18,
     dor: 'Dra. Juliana Resende é biomédica esteta solo em Palmas-TO com 5.260 seguidores Insta — clone-caso anterior não-fechado MAIS FORTE em volume (5x mais seguidores que caso anterior não-fechado). Bio com geo Palmas-TO explícito. Nicho: Rejuvenescimento Facial + Harmonização Full Face + Glútea (ticket R$1.000-3.000 por protocolo, premium corporal). Site atual: wa.me/message/ZN5OKCNAH35EN1 + Threads (sem site profissional, só DM). 5.260 seguidores qualificados (público de protocolos premium não é casual) + serviço alto-ticket + canal único wa.me = leads frios escapam constantemente.',
     gancho: 'PITCH AJUSTADO pro cluster clone-caso anterior não-fechado (lição aprendida do não-fechamento da caso anterior não-fechado): NÃO posicionar como "site barato", posicionar como "LP que te coloca no nível de quem cobra R$3k". Foco em UM produto-âncora (escolher Glútea OU Full Face — não os dois ao mesmo tempo na LP), com FAQ específico daquele protocolo, antes/depois categorizado, agendamento. Caso-clone visual: (referência visual interna) é a referência ESTÉTICA (mesmo padrão de carrossel-cápsula com produtos nomeados tipo PILL FOOD/PROTOCOLO/MÉTODO).',
     objecao: '"Já vendo bem assim, ticket alto, paciente fiel" — defesa do operacional premium.',
@@ -735,7 +735,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1136: {
     tier: 'A',
-    posicao_no_tier: 13,
+    posicao_no_tier: 19,
     dor: 'Dra. Tuany Rifer é farmacêutica esteta solo em Palmas-TO — CLONE-IRSNAYRA EXATO (mesma profissão literal: Farmacêutica Esteta). 2.079 seguidores Insta, geo Palmas-TO explícito na bio. Nicho: Harmonização Facial — slogan "Beleza com Naturalidade". Site atual: linktr.ee/tuanyrf1. Parceria com @franconerobucar mostra ecossistema profissional sem hub central. Linktr.ee é o sintoma EXATO do gap LP — ela já entendeu que precisa de "lugar único" mas escolheu o atalho amador.',
     gancho: 'PITCH AJUSTADO clone-caso anterior não-fechado + reforço: o link in bio que ela tem hoje (linktr.ee) é SINAL DE COMPRA segundo o market intelligence — ela JÁ está disposta a investir em presença online, só escolheu o atalho amador. LP profissional vira o próximo degrau natural. Foco em UM protocolo-âncora (Harmonização Facial — beleza com naturalidade) com FAQ + antes/depois ético + agendamento integrado + integração com parceria @franconerobucar (link cruzado, ecossistema). Caso-clone visual: (referência visual interna) como referência estética.',
     objecao: '"Tenho linktr.ee, funciona, parceiros sabem do meu trabalho" — defesa da solução amadora atual + ecossistema de indicação.',
@@ -756,7 +756,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1137: {
     tier: 'A',
-    posicao_no_tier: 18,
+    posicao_no_tier: 20,
     dor: 'Dra. Adriane Garcia é esteta solo Palmas-TO — PERFIL MAIS PARECIDO COM IRSNAYRA do banco inteiro: 1.065 seguidores Insta (vs 1.183 da caso anterior não-fechado), bio dispersa em múltiplas áreas (Estética Injetável + Manchas + Poros + Envelhecimento + Soroterapia + PEIM + Botox + Preenchimento), site atual linktr.ee/adriane.esteta. ALTO RISCO de mesma objeção que matou o fechamento da caso anterior não-fechado: ticket alto vs preço LP percebido como "barato demais", bio dispersa sem produto-âncora único, sem urgência clara.',
     gancho: 'PITCH PREVENTIVAMENTE AJUSTADO (vacina ativa) pra evitar repetir erro caso anterior não-fechado. NÃO argumentar preço LP (R$499 pode soar barato demais pro nível dela). Argumentar (1) ROI por paciente — "1 paciente nova de R$1k que tu captura paga 2x a LP", (2) UM produto-âncora bem definido (escolher PEIM OU Soroterapia OU Botox — NÃO tentar caber 7 áreas), (3) gatilho sazonal concreto (verão, BBB, casamentos), (4) caso-clone visual (referência visual interna) como referência estética + caso-clone Erlane LOCAL como prova social. Bem estruturado, 4 vetores juntos.',
     objecao: '"Já vendo bem, paciente fiel, ticket alto" + (provável objeção caso anterior não-fechado) "site é barato demais pro meu nível" — combinação que matou o fechamento caso anterior não-fechado.',
@@ -777,7 +777,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1140: {
     tier: 'A',
-    posicao_no_tier: 23,
+    posicao_no_tier: 31,
     dor: 'Dra. Ana Luíza Duarte é DENTISTA CRO TO 3556 (categoria Dentista Estético). 16.500 seguidores Insta (volume gigante), Maps 5.0/99 reviews, método PROTAGONIZE — Harmonização Facial. CASO ÚNICO no banco: ELA TEM SITE — `dra-analuizaduarte.vizzoone.com`. MAS Vizzoone é plataforma odonto genérica de subdomínio compartilhado (similar a Trinks/Booksy mas pra dentista) — site dela é template padronizado, sem identidade autoral, com URL feia (subdomínio.vizzoone.com não é .com.br próprio). Pitch radicalmente diferente: "MIGRAR DA PLATAFORMA GENÉRICA pra LP autoral com domínio próprio".',
     gancho: 'PITCH ESPECIAL — único do banco onde lead JÁ PAGA POR plataforma profissional MAS é compartilhada/genérica. Argumento: "Tu já entendeu que precisa de site profissional (e parabéns por isso, raro em Palmas). Mas dra-analuizaduarte.vizzoone.com é subdomínio de plataforma — toda dentista do Vizzoone tem site igual ao teu, só com nome trocado. O que eu monto é diferente: domínio próprio (analuizaduarte.com.br ou similar), identidade visual TUA, método PROTAGONIZE em destaque, biografia + CRO + galeria antes/depois ÚNICA. Tu sai da plataforma, vira marca." Argumento estrutural — diferenciação contra padronização Vizzoone.',
     objecao: '"Já tenho site Vizzoone, pago mensalidade, funciona" — defesa do investimento atual.',
@@ -848,7 +848,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1143: {
     tier: 'A',
-    posicao_no_tier: 37,
+    posicao_no_tier: 11,
     dor: 'B K Moda Fitness é loja de varejo fitness em Taquaralto-Palmas com 20.100 seguidores Insta + 1.075 posts + LIVE COMO DESTAQUE PRINCIPAL no perfil. Endereço: Rua P4 frente feira Maria das Dores. Catálogo: LIVE, Bolha (calça), Micro canelado, Blusas tule, Flare Premium, ALO Yoga. Site atual: wa.me direto + Threads (ZERO web). Modelo de venda: Lives semanais. Problema: Live SÓ vende pra quem está online no momento exato. Cliente que viu story do produto 3 horas depois ou viu uma referência do produto numa amiga não consegue comprar — tem que mandar DM, esperar resposta, esperar próxima Live, etc.',
     gancho: 'PITCH ESPECIAL — "A LIVE VENDE, O SHOPIFY FECHA". Lives BK acontecem semanalmente. Shopify resolve a fila pós-Live: cliente assiste Live, separa peça mentalmente, finaliza checkout 24/7 (mesmo às 3h da manhã). Loja vende ENQUANTO ELA DORME. Não substitui Live (que é o motor de vendas), complementa: Live → demanda → fila no Shopify → conversão automática. Case-clone GB Nutrition (varejo + envio + Lives recorrentes).',
     objecao: '"As Lives já vendem demais, não preciso de site" — defesa do operacional atual que funciona.',
@@ -868,7 +868,7 @@ Deixa eu te perguntar: quantas desistem antes de fechar?`,
 
   1144: {
     tier: 'A',
-    posicao_no_tier: 34,
+    posicao_no_tier: 8,
     dor: 'DeLótus Moda Fitness é loja de varejo Palmas com NICHO ESPECÍFICO RARÍSSIMO: moda fitness pra mulheres reais (numeração 34 ao 60). Endereço Q.307 Sul Rua 5, 468. Maps 5.0/46 reviews. 4.866 seguidores Insta. CEO visível: @deisedadelotus (dona-marca, decisão direta). Envio nacional declarado. Site atual: bio.site/delotus (genérico — mesmo padrão amador, sem filtro por tamanho, sem destaque pro nicho 34-60). NICHO 34-60 é OURO (mulher 44-60 quase nunca encontra moda fitness premium na cidade dela), MAS o canal não comunica isso — bio.site mostra só links genéricos, sem destaque pra inclusão dimensional.',
     gancho: 'PITCH NICHO-ESPECÍFICO: Shopify com filtro de tamanho 34-60 explícito como categoria de primeira página + galeria de mulheres reais (NÃO modelos magras) + FAQ de medida + marca curada. Hoje a maior queixa da mulher 44+ é "tamanho não tem". A LP/Shopify da DeLótus pode ser a ÚNICA do Tocantins que abre com "Aqui tem do 34 ao 60, sem você precisar perguntar". Case-clone duplo: GB Nutrition (envio + marca + dona visível) + criativosdoceu (nicho específico + dona-marca pessoa pública).',
     objecao: '"Já tenho bio.site, cliente acha tudo lá" — defesa da solução amadora atual.',
@@ -889,7 +889,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1146: {
     tier: 'A',
-    posicao_no_tier: 36,
+    posicao_no_tier: 10,
     dor: 'Sousa Fitness é loja de equipamentos esportivos em Palmas com TICKET ALTÍSSIMO (R$200-2.500 por equipamento — kettlebell, banco musculação, halteres, ergometria, esteiras, equipamentos Pilates/Yoga/Boxe/Muay Thai/Crossfit) + assistência técnica. Endereço 1503 sul Alameda 23, 02. Maps 5.0/39 reviews. 504 posts Insta + 3.264 seguidores. Site atual: abre.ai/hdl7 (canal amador — basicamente Linktr.ee renomeado). PROBLEMA CRÍTICO: ticket alto SEM checkout estruturado = gargalo MASSIVO de venda. Cliente que vai gastar R$1.500 num banco musculação precisa ver: ficha técnica completa, dimensões, peso, garantia, foto multi-ângulo, frete real calculado, parcelamento. abre.ai não entrega NADA disso.',
     gancho: 'PITCH TICKET ALTO: Shopify com ficha técnica visual de cada equipamento (especificações, peso, dimensões), galeria multi-ângulo, cálculo de frete automático (peso/volume importam pra equipamento), parcelamento 12x sem juros. Adicionar "ASSISTÊNCIA TÉCNICA AUTORIZADA" como prova social — diferencial que NENHUMA loja online de equipamento entrega. Case-clone duplo: GB Nutrition (loja Palmas + envio) + Mobiliare Móveis (ticket alto físico + galeria editorial).',
     objecao: '"Equipamento o cliente precisa ver antes, conversar, pegar entrega presencial" — defesa do modelo consultivo presencial.',
@@ -939,7 +939,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1149: {
     tier: 'A',
-    posicao_no_tier: 38,
+    posicao_no_tier: 24,
     dor: 'Dafne Sixel é nutricionista funcional vinculada à Integral Clinic Palmas-TO (Q.104 Sul Av LO 1, N.10 - Plano Diretor Sul - clínica 4.8/731 reviews validada via Google Knowledge Panel). 4.805 seguidores Insta + 1.143 POSTS (consistência editorial MONUMENTAL — uma das maiores produções de conteúdo nutri em Palmas). Bio: "Flexibilidade metabólica, saúde intestinal e autonomia. Nutrição centrada em você – não em protocolos!". Site atual: msha.ke/dafneqnutri (ferramenta amador BR). 1.143 posts publicados + ALTA DEMANDA REPRIMIDA + canal de captura amador = receita massiva escapando. Atendimento online declarado.',
     gancho: 'PITCH UPGRADE pra LP nutri funcional co-branded com Integral Clinic. Estrutura: biografia + CRN em destaque + vínculo Integral Clinic (autoridade médica gigantesca — 731 reviews 4.8★) + 4 áreas (flexibilidade metabólica, saúde intestinal, autonomia, paciente "centrada em você") + formulário avaliação metabólica (objetivos / restrições alimentares / histórico) + escolha pacote (3/6/12 meses) + biblioteca de receitas exclusiva pra alunos + integração Calendly/WhatsApp Business + 3 artigos SEO ("dieta flexível", "saúde intestinal", "nutrição funcional Palmas"). Mantém msha.ke como redirect, LP vira destino oficial.',
     objecao: '"Tenho msha.ke + Integral Clinic, paciente acha" — defesa do operacional atual.',
@@ -1097,7 +1097,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1158: {
     tier: 'A',
-    posicao_no_tier: 11,
+    posicao_no_tier: 37,
     dor: 'Dr. Rudinei Brunetto é urologista CRM-TO 4856 + RQE 2183 com sub-especialização em Uro-oncologia + Cirurgia Robótica. Endereço Qd. 401 Sul Av Lo 11, Clínica Salus Palmas-TO. 293 posts + 1.000+ pacientes atendidos + 5 destaques cirúrgicos estruturados (Enuc.Próstata / Cir.Robótica / Hérnia VL / CA Próstata / Mídia). 2.644 seguidores. Site atual: linktr.ee/dr.rudineibrunetto. CASO PERFEITO de "autoridade clínica + still uses linktr.ee" = ponto IDEAL de upgrade. Ticket altíssimo: cirurgia robótica R$8.000-25.000 + consultas R$400-700 + acompanhamento pré/pós-cirúrgico.',
     gancho: 'ARGUMENTO ESTRUTURAL — urologista solo com 1.000+ pacientes operados + 5 destaques cirúrgicos estruturados + ZERO domínio profissional = combinação que paga LP profissional com 1 cirurgia robótica fechada. LP Dr. Rudinei Brunetto Uro-oncologia: hero com 1.000+ pacientes + galeria casos cirúrgicos (com cuidado ético CFM) + biblioteca orientações pré-cirúrgicas + formulário triagem (CA próstata / hérnia / incontinência / vasectomia / robótica) + agendamento integrado + área de pacientes pós-cirúrgicos com follow-up + 3 artigos SEO ("cirurgia robótica próstata Palmas", "vasectomia segura", "uro-oncologia Tocantins"). Pitch: "a cirurgia robótica de Palmas merece a primeira LP médica robótica do estado".',
     objecao: '"Já tenho linktr.ee, paciente do hospital me indica, tá funcionando" — defesa da indicação como canal principal.',
@@ -1118,7 +1118,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1159: {
     tier: 'A',
-    posicao_no_tier: 24,
+    posicao_no_tier: 38,
     dor: 'Dr. Tarcísio Andrade é urologista CRM-TO 7893 + RQE 3686 com sub-especialização Uro-oncologia + Robótica + Vasectomia. 116 posts + 1.403 seg. BIO COMEÇA COM "Empreendedor" — mindset de venda já pronto (raro em médico, geralmente é elemento de identidade). Membro Titular Sociedade Brasileira de Urologia. Destaques estruturados (Orientações / Robótica / TCG / Vasectomia / Próstata) já formam funil informacional. Site atual: linktr.ee/drtarcisioandrade.uro. Volume médio (em construção, recente) mas posicionamento já maduro — falta a página que CONVERTE essa autoridade.',
     gancho: 'ARGUMENTO DIRETO via mindset empreendedor explícito — "vi tua bio começa com EMPREENDEDOR. Urologistas que se posicionam como empreendedores faturam 3-5x mais que urologistas que se posicionam como médicos puros". LP Dr. Tarcísio Empreendedor: formulário "qual procedimento te interessa?" (vasectomia/cirurgia robótica/uro-oncologia/orientação) + checkout vasectomia online (procedimento de ticket previsível) + área pacientes pré/pós + integração SBU credibilidade + 3 artigos SEO ("vasectomia Palmas TO segura", "cirurgia robótica urológica", "uro-oncologia tratamento"). Diferencial vs Rudinei: foco em VASECTOMIA como produto-âncora de funil (procedimento de ticket previsível, decisão masculina racional, conversão alta com LP).',
     objecao: '"Tô construindo agora, prefiro investir em mais conteúdo Insta primeiro" — defesa do estágio inicial.',
@@ -1139,7 +1139,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1160: {
     tier: 'A',
-    posicao_no_tier: 20,
+    posicao_no_tier: 39,
     dor: 'Dr. Hugo Rossoni é reumatologista CRM-TO 3873 + RQE 1688 e PROFESSOR Afya & UNIRG (autoridade ACADÊMICA além da clínica). 6.626 seguidores + 1.139 posts = autoridade máxima editorial. Atende em CERTO + CERTO Prime (clínica multi-prof, perfil próprio mantém solo). Site atual: wa.me/message/R74WM4PL7SOXH1 — WHATSAPP DIRETO ZERO web profissional. CASO ABSURDO: professor universitário de medicina perdendo TODO lead novo de paciente que pesquisa autoridade antes de marcar. Destaques formam biblioteca SEO pronta (fibromialgia / lupus / artrite / osteoporose / cisto sinovial) — basta extrair pra LP.',
     gancho: 'PITCH AUTORIDADE ACADÊMICA: "Professor da Afya e UNIRG perdendo paciente premium em wa.me direto é desperdício de capital social". LP Dr. Hugo Rossoni Reumatologia Palmas: biblioteca SEO de 5-10 artigos técnicos (fibromialgia / lupus / artrite / osteoporose / cisto sinovial — TODOS seus destaques!) + formulário avaliação inicial + agendamento clínica CERTO + área de pacientes com plano de acompanhamento crônico + Prof. Afya autoridade em destaque. Pitch específico: "professor de medicina da Afya merece SEO médico que canaliza pacientes em vez de wa.me direto".',
     objecao: '"Tô na clínica CERTO, eles divulgam, tô tranquilo" — defesa do canal institucional.',
@@ -1160,7 +1160,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1161: {
     tier: 'A',
-    posicao_no_tier: 19,
+    posicao_no_tier: 40,
     dor: 'Dr. Daniel Janczuk é cardiologista CRM-TO 4081 + RQE 1763 e EX-PRESIDENTE da Sociedade Brasileira de Cardiologia Tocantins 2024-2025 (autoridade MÁXIMA da cardiologia no estado — top 1-2). 1.955 posts + 10.300 seguidores. Atende Particular Prime - Certo Prime + Convênios. Telefone (63)99977-1541 confirmado bio. Site atual: linktr.ee/CardiologistaDanielJanczuk. CASO DESPROPORCIONAL: ex-presidente SBC-TO usando linktree é como Mercedes em estacionamento de bicicleta. Pacientes de classe A/B que pesquisam autoridade cardiológica antes de marcar consulta de R$500-700 NÃO encontram a página que ele merece.',
     gancho: 'PITCH PREMIUM AUTORIDADE-MÁXIMA: "Ex-Presidente SBC-TO 2024-2025 é autoridade RARÍSSIMA — pacientes premium pesquisam autoridade ANTES de qualquer marca/clínica. Linktree é desproporcional ao calibre". LP Dr. Daniel Janczuk Premium Cardiologia: hero com selo Ex-Presidente SBC-TO em destaque + biografia médica completa + biblioteca SEO técnica (HAS / dislipidemia / IAM prevenção / check-up cardiológico / risco cardiovascular) + agendamento Particular/Convênios diferenciado + área pacientes com exames + teleconsulta para retorno + tele-laudo. Pitch ESPECIAL: "autoridade SBC merece a primeira LP cardiologia premium do estado".',
     objecao: '"10k seguidores + linktree dá conta, paciente acha" — defesa de quem já tem volume.',
@@ -1181,7 +1181,7 @@ Minha porta fica aberta quando fizer sentido`,
 
   1162: {
     tier: 'A',
-    posicao_no_tier: 22,
+    posicao_no_tier: 41,
     dor: 'Dr. Edson Pedroza é reumatologista CRM-TO 2799 com RQE 2054 TRIPLO (Reumatologia + Clínica Médica + Medicina do Trabalho). 2.342 POSTS — RECORDE editorial absoluto da rodada de prospecção (consistência monumental). 4.775 seguidores. Posicionamento humanizado "escuta e cuidado". Centro de Reumatologia Tocantins. Site atual: linktr.ee/Dredsonpedroza.reumato. OPORTUNIDADE DUPLA RARA: triplo RQE permite estratégia HIBRIDIZADA — (B2C) reumatologia humanizada + (B2B) Medicina do Trabalho com laudos PCMSO/PPRA pra empresas. Hoje tudo cai num linktr.ee linear que não capitaliza essa diferença.',
     gancho: 'LP DUPLA — explorar o RQE TRIPLO como vantagem competitiva única. (a) LP B2C reumatologia humanizada com calculadora de fibromialgia + biblioteca de orientações + agendamento + área pacientes crônicos; (b) Mini-site B2B Medicina do Trabalho com formulário PCMSO/PPRA empresas + casos corporativos + cotação online. Pitch único: "transformar 2.342 posts em 2 funis de receita simultâneos — paciente individual + empresa contratante". Diferencial vs outro reumato: ninguém em Palmas explora B2B Medicina do Trabalho por LP profissional ainda.',
     objecao: '"Linktree me serve, atendo direto, não preciso de complicação" — defesa do simples atual.',
