@@ -23,6 +23,8 @@ function hashNome(s: string): number {
 }
 
 // Rotação de verbos de abertura — variedade orgânica > template fixo
+// Regra (29/04/2026 Eduardo): primeira letra do verbo SEMPRE maiúscula
+// (eles aparecem como início de linha após a saudação cirúrgica)
 const VERBOS_ABERTURA = [
   'Vi que',
   'Reparei que',
@@ -53,15 +55,16 @@ function ehFormal(categoria: string): boolean {
 }
 
 function saudacao(nome: string, categoria: string): string {
-  if (!ehFormal(categoria)) return 'ei' // informal
+  // Regra (29/04/2026 Eduardo): toda saudação começa com letra maiúscula
+  if (!ehFormal(categoria)) return 'Ei' // informal
   // Formal: tenta inferir tratamento; default doutor(a) genérico se não bater
   const cat = categoria.toLowerCase()
   if (cat.includes('dra') || cat.includes('médica') || cat.includes('medica') ||
       cat.includes('psicóloga') || cat.includes('psicologa') ||
       cat.includes('nutricionista') || cat.includes('dentista')) {
-    return 'doutora, boa noite'
+    return 'Doutora, boa noite'
   }
-  return 'doutor, boa noite'
+  return 'Doutor, boa noite'
 }
 
 // ── Helper: gera 3 horários nos próximos 3 dias úteis ───────────────────────

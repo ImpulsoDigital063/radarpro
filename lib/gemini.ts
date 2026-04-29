@@ -49,6 +49,13 @@ A regra antiga cortava TODA cortesia humana — virou outro extremo, frio-clíni
 - ✅ Com validação: "reparei que tu tem 135 avaliações no Google — base sólida pra quem ainda chega novo"
 - A validação humaniza: passa de scraper-bot pra pessoa que reconhece a conquista
 
+**Regra dura de capitalização (29/04/2026 — Eduardo):**
+- TODA mensagem começa com letra MAIÚSCULA
+- Saudação capitalizada: "Ei", "Doutor, boa noite", "Doutora, boa noite", "Boa noite, doutor"
+- Após quebra de linha, se for início de novo bloco (parágrafo) — também maiúscula
+- Continuação de frase no meio do texto pode usar minúscula natural
+- Justificativa: começar com minúscula sinaliza descuido, não casual — Eduardo NUNCA escreve assim
+
 **Princípio-âncora:**
 > "O lead tem que ler a mensagem e sentir que Eduardo se importou em escrever especificamente pra ele.
 > Hoje muitas leem como sistema observou um dado e mandou observação.
