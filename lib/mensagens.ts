@@ -13,19 +13,112 @@
 // Estes templates são FALLBACK genérico — leads do playbook customizado
 // (lib/disparo-analises.ts) têm aberturas próprias mais cirúrgicas
 
-export function gerarMensagemLP(_nome: string, especialidade: string): string {
-  return `Vi que você atende ${especialidade} aqui em Palmas
-hoje quem pesquisa isso no Google te acha direto ou cai em concorrente?`
+// ── Helpers de cortesia cirúrgica (calibração 29/04/2026 — Verbo s01) ────────
+// Hash determinístico por nome → mesma pessoa cai SEMPRE na mesma variante.
+// Permite A/B tracking real e evita parecer template quando 2 leads comparam.
+
+function hashNome(s: string): number {
+  const clean = (s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '')
+  return clean.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) || 1
 }
 
-export function gerarMensagemShopify(_nome: string, categoria: string): string {
-  return `Vi que você tem uma ${categoria} aqui em Palmas
-cliente nova que abre teu Insta consegue comprar direto ou precisa mandar mensagem?`
+// Rotação de verbos de abertura — variedade orgânica > template fixo
+const VERBOS_ABERTURA = [
+  'Vi que',
+  'Reparei que',
+  'Olhei aqui rapidinho e vi que',
+  'Tava passando pelo teu perfil e percebi que',
+  'Cheguei no teu Google Business agora e vi que',
+] as const
+
+function pickVerbo(seed: string): string {
+  return VERBOS_ABERTURA[hashNome(seed) % VERBOS_ABERTURA.length]
 }
 
-export function gerarMensagemAgendaPRO(_nome: string, categoria: string): string {
-  return `Vi que você atende com hora marcada aqui em Palmas (${categoria})
-hoje você organiza tudo na mão pelo WhatsApp ou tem sistema?`
+// Categorias FORMAIS — saúde com registro profissional + jurídico
+// Lead formal recebe saudação cirúrgica curta declarativa (não interrogativa)
+const CATEGORIAS_FORMAIS = [
+  'médico', 'medico', 'dentista', 'dr.', 'dra.',
+  'advogado', 'advocacia',
+  'psicólogo', 'psicologo', 'psicóloga', 'psicologa',
+  'fonoaudiólogo', 'fonoaudiologo', 'fonoaudióloga', 'fonoaudiologa',
+  'fisioterapeuta', 'nutricionista', 'nutróloga', 'nutrologa',
+  'endocrinologista', 'dermatologista', 'cardiologista',
+  'ginecologista', 'urologista', 'oftalmologista', 'mastologista',
+]
+
+function ehFormal(categoria: string): boolean {
+  const cat = (categoria ?? '').toLowerCase()
+  return CATEGORIAS_FORMAIS.some(c => cat.includes(c))
+}
+
+function saudacao(nome: string, categoria: string): string {
+  if (!ehFormal(categoria)) return 'ei' // informal
+  // Formal: tenta inferir tratamento; default doutor(a) genérico se não bater
+  const cat = categoria.toLowerCase()
+  if (cat.includes('dra') || cat.includes('médica') || cat.includes('medica') ||
+      cat.includes('psicóloga') || cat.includes('psicologa') ||
+      cat.includes('nutricionista') || cat.includes('dentista')) {
+    return 'doutora, boa noite'
+  }
+  return 'doutor, boa noite'
+}
+
+// ── Helper: gera 3 horários nos próximos 3 dias úteis ───────────────────────
+// Usado nos `fechamento` pra evitar dias hardcoded ("quinta 15h, sexta 14h")
+// que ficam estranhos quando hoje é sexta ou quinta. Pula fim de semana.
+//
+// Formato de saída: "quinta 10h, sexta 14h ou segunda 15h"
+
+export function gerar3Horarios(hoje: Date = new Date()): string {
+  const diasNomes = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
+  const horarios = ['10h', '14h', '15h']
+  const dias: string[] = []
+  let offset = 1
+  while (dias.length < 3 && offset < 14) {
+    const d = new Date(hoje.getTime())
+    d.setDate(d.getDate() + offset)
+    const dow = d.getDay()
+    if (dow !== 0 && dow !== 6) {
+      dias.push(`${diasNomes[dow]} ${horarios[dias.length]}`)
+    }
+    offset++
+  }
+  return `${dias[0]}, ${dias[1]} ou ${dias[2]}`
+}
+
+// ── Funções de abertura genérica (fallback quando lead não tem playbook custom)
+// Estrutura nova (29/04/2026):
+//   1. Saudação cirúrgica (informal "ei" / formal "doutor, boa noite")
+//   2. Verbo rotacionado + observação real (não SEMPRE "Vi que...")
+//   3. Conector de convite antes da pergunta ("queria te perguntar...")
+//   4. Pergunta direta com texto humanizado (não só impositiva)
+
+export function gerarMensagemLP(nome: string, especialidade: string): string {
+  const sd = saudacao(nome, especialidade)
+  const v = pickVerbo(nome)
+  return `${sd}
+
+${v} tu atende ${especialidade} aqui em Palmas
+queria te perguntar uma coisa rápida: quem pesquisa "${especialidade} em Palmas" no Google hoje, te acha direto ou cai em concorrente?`
+}
+
+export function gerarMensagemShopify(nome: string, categoria: string): string {
+  const sd = saudacao(nome, categoria)
+  const v = pickVerbo(nome)
+  return `${sd}
+
+${v} tu tem uma ${categoria} aqui em Palmas
+se tu puder me dizer rapidinho — cliente nova que abre teu Insta consegue comprar direto, ou precisa mandar mensagem e esperar resposta?`
+}
+
+export function gerarMensagemAgendaPRO(nome: string, categoria: string): string {
+  const sd = saudacao(nome, categoria)
+  const v = pickVerbo(nome)
+  return `${sd}
+
+${v} tu atende com hora marcada aqui em Palmas (${categoria})
+deixa eu te perguntar uma coisa: hoje tu organiza a agenda na mão pelo WhatsApp, ou tem sistema que cliente marca sozinho?`
 }
 
 // ── Script de abordagem WhatsApp (4 mensagens em sequência) ──────────────────
@@ -50,24 +143,23 @@ export function scriptAbordagemLP(nome: string, especialidade: string): ScriptAb
       `Posso te perguntar uma coisa?\n\nAgora, se alguém digitar "${especialidade} em Palmas" no Google, você aparece?\n\nOu só seu Insta, que o Google nem indexa direito?`,
       // B — Indicação vs Google (calibrated question OURO)
       `Último cliente novo que apareceu — veio de indicação, ou foi alguém que te achou sozinho pesquisando?\n\nPergunto porque a diferença aí é tudo.`,
-      // C — Autoridade: dói onde o ego mora
-      `Quando o cliente pede "me manda seu site", o que você responde hoje?\n\nPorque eu vejo muito ${esp} perder cliente só por não ter um link profissional pra mandar.`,
+      // C — Autoridade: a dor é a DÚVIDA do cliente, não a competência do lead
+      `Quando o cliente pede "me manda seu site", o que você responde hoje?\n\nPergunto porque pra ${esp} com tua autoridade, o cliente já decidiu que quer — só falta o link pra confirmar. Sem isso, dúvida cresce e ele desiste no caminho.`,
     ],
     // PITCH curto (CORE_SYSTEM_V2): conectar com dor → solução → preço → CTA
     pitch_se_so_ig: `pelo que você falou, hoje quem te procura no Google não te acha
 eu resolvo isso com uma página simples que já começa a trazer cliente
 começa em R$499 e entrego em 7 dias
 quer ver um exemplo no teu caso?`,
-    pitch_se_tem_site: `manda o link, dou uma olhada rápida`,
-    pitch_se_tem_site_resposta: `vi aqui — 3 coisas que tão segurando ele:
-mobile lento, invisível no Google e WhatsApp escondido
-posso te mostrar como ficaria em 5 min — topa?`,
-    // FECHAMENTO curto + 3 horários (Risk-Mitigation Klaff)
+    pitch_se_tem_site: `se já tem, manda o link que dou uma olhada rápida — só pra entender o ponto de partida`,
+    pitch_se_tem_site_resposta: `vi aqui — deixa eu olhar com calma 2-3 min e te volto com 3 pontos específicos que tão segurando o teu
+posso te mostrar também como ficaria mais limpo — topa?`,
+    // FECHAMENTO curto + 3 horários (Risk-Mitigation Klaff) — horários gerados dinamicamente
     fechamento: `em 20 min eu te mostro o protótipo da TUA LP rodando — não é mockup, é Next.js no ar
-qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+qual horário fecha: ${gerar3Horarios()}?`,
     call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento de 20min
 não é pitch — é briefing pra LP sair com a TUA cara, não genérica
-você sai da call com protótipo funcional rodando. sem essa call eu não começo`,
+você sai da call com protótipo funcional rodando — é o que me garante entregar na qualidade que prometo`,
   }
 }
 
@@ -90,15 +182,14 @@ tu tá pra responder ou o pedido some até segunda?`,
 a loja resolve isso e o cliente compra sozinho
 começa em R$599 com Mercado Pago, frete e motoboy Palmas integrados
 quer ver como ficaria no teu caso?`,
-    pitch_se_tem_site: `manda o link, dou uma olhada rápida`,
-    pitch_se_tem_site_resposta: `vi aqui — 3 coisas que tão segurando:
-checkout muito longo, sem motoboy Palmas e mobile lento
-posso te mostrar como ficaria 30% mais limpo em 5 min — topa?`,
+    pitch_se_tem_site: `se já tem, manda o link que dou uma olhada rápida — só pra entender o ponto de partida`,
+    pitch_se_tem_site_resposta: `vi aqui — deixa eu olhar com calma 2-3 min e te volto com 3 pontos específicos que tão segurando a tua
+posso te mostrar também como ficaria mais limpo — topa?`,
     fechamento: `em 20 min eu te mostro o protótipo da TUA loja rodando — não é mockup, é Shopify no ar
-qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+qual horário fecha: ${gerar3Horarios()}?`,
     call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento de 30min
 é diagnóstico operacional — motoboy, Mercado Pago, frete grátis, fornecedores
-você sai da call com a loja alinhada pra rodar. sem essa call eu não começo`,
+você sai da call com a loja alinhada pra rodar — é o que me garante entregar a estrutura certa`,
   }
 }
 
@@ -123,7 +214,7 @@ os 10 primeiros entram sem setup de R$197 — quer testar?`,
     pitch_se_tem_site: `tu já tem sistema de agendamento ou cliente ainda marca no WhatsApp?
 e o financeiro — vê quanto cada profissional te deve em tempo real?`,
     fechamento: `em 15 min eu te mostro a SmartAgenda configurada pro TEU caso — tu testa como cliente, vê dashboard, vê cancelamento
-qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+qual horário fecha: ${gerar3Horarios()}?`,
   }
 }
 
@@ -238,13 +329,13 @@ responde cada horário na mão ou tem link onde ele marca sozinho?`,
 LP que aparece no Google + SmartAgenda que cliente marca sozinho. trabalham juntas
 LP a partir de R$499 + SmartAgenda R$67/mês (ou R$97 equipe). os 10 primeiros entram sem setup de R$197
 topa ver os dois rodando antes de decidir?`,
-    pitch_se_tem_site: `manda o link, dou uma olhada
+    pitch_se_tem_site: `se já tem, manda o link que dou uma olhada — só pra entender o ponto de partida
 e pra agenda — tem sistema onde cliente marca sozinho ou ainda é WhatsApp?`,
     fechamento: `em 20 min eu te mostro a TUA LP no ar + SmartAgenda configurada — tu vê os dois funcionando antes de decidir
-qual horário fecha: quinta 15h, sexta 14h ou segunda 10h?`,
+qual horário fecha: ${gerar3Horarios()}?`,
     call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento
 não é pitch — é briefing pra projeto sair com a TUA cara, não genérico
-sem essa call eu não começo`,
+é o que me garante entregar com a qualidade que prometo`,
   }
 }
 

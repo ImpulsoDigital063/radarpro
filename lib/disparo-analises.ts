@@ -35,15 +35,16 @@ export const ANALISES: Record<number, Analise> = {
     dor: 'Psicólogo em Palmas compete por confiança. Paciente que busca "psicólogo Palmas" no Google hoje encontra o Gilson no Maps, mas clica e vê só endereço e telefone — zero contexto, zero cara, zero abordagem. Insta não transmite sigilo/seriedade do consultório. 4.9 com 135 avaliações prova autoridade, mas ele não está capitalizando esse ativo.',
     gancho: 'LP dedicada mostra linha de abordagem, especialidades, primeira consulta, FAQ ("sigilo é garantido?", "atende online?"). O "aparece no Google quando alguém pesquisa psicólogo em Palmas" é literal — Gilson já tem a reputação pra estourar SEO local.',
     objecao: 'Psicólogo tem escrúpulo com marketing agressivo. Provável: "não quero algo que pareça venda".',
-    resposta_objecao: 'Faz sentido — tu tem ética profissional alta. A LP que eu monto pra psicólogo é o oposto de copy agressiva: paleta clara, foto profissional, linguagem ética. A autoridade dos teus 135 avaliações 4.9 fala por si. Não vende "promessa de cura" — vende presença digital regulamentar. Pode te mostrar 2 LPs de psi que ranqueiam sem soar comercial?',
+    resposta_objecao: 'Faz sentido — tu tem ética profissional alta. A LP que eu monto pra psicólogo é o oposto de copy agressiva: paleta clara, foto profissional, linguagem ética. A autoridade dos teus 135 avaliações 4.9 fala por si — ela vende sozinha. Não vende "promessa de cura" — vende presença digital regulamentar. Posso te mostrar como ficaria a TUA — já com o tom certo de psicologia, paleta sóbria, sem soar comercial?',
     nota_interna: 'Se ele fechar e a LP virar boa, propor o caso Gilson Afonso como prova social na pasta de trabalhos — virou um dos cases mais elegantes pra mostrar pra outros profissionais de saúde.',
-    abertura: `Vi que você tem 135 avaliações no Google aí em Palmas
-isso já mostra que você construiu uma base forte
-quem te acha ali hoje agenda direto ou ainda fica em dúvida?`,
-    followup_d3: `voltei rapidinho — uma coisa que rola muito em psi
-paciente novo pesquisa, vê só endereço no Maps e some sem mandar mensagem. tá rolando isso no seu consultório?`,
-    followup_d7: `vou parar por aqui pra não encher
-se fizer sentido depois, me chama`,
+    abertura: `doutor, boa noite
+
+reparei que tu tem 135 avaliações no Google aí em Palmas — base sólida pra quem ainda tá chegando
+queria te perguntar uma coisa: quem te acha ali hoje agenda direto, ou tu sente que muita gente fica em dúvida e some?`,
+    followup_d3: `ei doutor, voltei rapidinho — uma coisa que vejo bastante em psi
+paciente novo pesquisa, vê só endereço no Maps e desaparece sem nem mandar mensagem. tá acontecendo aí no teu consultório?`,
+    followup_d7: `tô parando por aqui pra não te incomodar
+minha porta tá aberta quando fizer sentido, doutor`,
     pre_engajamento_ig: PRE_IG_PADRAO,
     razao_ranking: 'Autônomo (decide sozinho), ticket alto (R$150-250/sessão), 135 avaliações = reputação já construída (não precisa provar nada), dor de credibilidade digital é clássica do psicólogo. R$499 paga com 3 sessões.',
   },
@@ -150,11 +151,13 @@ se fizer sentido depois, me chama`,
     objecao: '"Já vendo muito bem assim, pra que mexer?" — base sólida (13.7k + 14% engaj) é argumento forte dela.',
     resposta_objecao: 'Faz total sentido — tu vende muito bem mesmo, é raro ver 14% engajamento em varejo. Mas pensa: se hoje tu fatura X respondendo DM o dia inteiro, quanto tu poderia faturar SEM responder DM de pagamento e frete? Shopify não substitui o teu Insta. Substitui só a parte burocrática. Cliente paga sozinho, escolhe frete sozinho, recebe rastreio automático. Tu fica livre pra postar mais achadinho — que é o que faz a magia funcionar.',
     nota_interna: 'TELEFONE TRUNCADO no JSON CIC ("(63) 92112-019" — só 8 dígitos). VALIDAR antes de mandar WhatsApp. Endereço confirmado: Quadra 404 Sul Alameda 2 Lote 20 QI 13, Palmas-TO 77021600. LEAD #1 do batch CIC — mais perfeito da semana. Pre-engajamento OBRIGATÓRIO via DM Instagram (não WhatsApp direto).',
-    abertura: `Vi que tu tem 13.7k seguidores no Insta com 14% de engajamento — varejo bom fica em 1-3%
-isso é volume gigante que vira DM (medida, frete, pix, comprovante)
-quanto da tua semana vai só pra responder essas mensagens?`,
-    followup_d3: `uma coisa que vejo em brechó de volume alto
-o engajamento é o motor, mas o operacional sufoca — Shopify desafoga sem mexer no ativo. tá rolando isso contigo?`,
+    abertura: `ei, passei pelo teu Insta agora
+
+tu tem 13.7k seguidores com 14% de engajamento — varejo bom fica em 1-3%, isso é absurdamente alto
+o lado B desse engajamento todo é o DM virando call center: medida, frete, pix, comprovante
+deixa eu te perguntar uma coisa: quanto da tua semana vai só pra isso?`,
+    followup_d3: `ei, voltei aqui rapidinho — uma coisa que vejo em brechó com volume alto
+o engajamento é o motor, mas o operacional sufoca — Shopify desafoga sem mexer no Insta. tá acontecendo isso contigo?`,
     followup_d7: `vou parar por aqui pra não encher
 se fizer sentido depois, me chama`,
     pre_engajamento_ig: 'D-1 (24h antes): seguir, curtir 3 posts dos últimos 7 dias (priorizar achadinhos com muito comentário), comentar 1 com algo genuíno tipo "essa peça é incrível" ou referência ao item específico. Brechó vive de comunidade — engajamento real importa MUITO mais que pra outros nichos.',

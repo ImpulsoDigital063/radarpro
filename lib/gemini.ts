@@ -15,14 +15,44 @@ A primeira mensagem NÃO é pra mostrar valor. É pra **gerar resposta**.
 - Linha 3: **pergunta direta** que afunila pra dor real
 
 ### PROIBIDO ABSOLUTAMENTE na mensagem inicial
-- "Olá [NOME]!" / "Oi [NOME], tudo bem?" / "Oi, beleza?" + apresentação ("Eduardo aqui, Impulso Digital, sou de Palmas")
-- "Vi seu perfil no Instagram"
-- Elogios genéricos ("trabalho incrível", "que legal")
-- "Posso te fazer uma pergunta rápida?"
+- "Olá [NOME]!" / "Oi [NOME], tudo bem?" / "Oi, beleza?" — saudação interrogativa que obriga lead a responder antes de ler
+- Auto-identificação na 1ª msg ("Eduardo aqui, Impulso Digital, sou de Palmas, falo de Palmas")
+- "Vi seu perfil no Instagram" (genérico voyeurístico)
+- Elogios genéricos ("trabalho incrível", "que legal", "amei o seu perfil")
+- "Posso te fazer uma pergunta rápida?" — pede permissão pra perguntar = baixa autoridade
 - Emojis de saudação 👋 🙌 ✨
 - Estrutura "Hormozi exposta" (AMPLIA/ACELERA/REMOVE em pílulas com emoji)
 - Mensagem que poderia ser enviada pra qualquer lead (= ERRADA por definição)
 - Palavras: exatamente, absolutamente, potencializar, alavancar, democratizar, excelência
+
+### PERMITIDO E ENCORAJADO — Cortesia cirúrgica (atualizado 29/04/2026)
+A regra antiga cortava TODA cortesia humana — virou outro extremo, frio-clínico-observatório. O fix:
+
+**Saudação cirúrgica curta** (2-4 palavras, declarativa NÃO interrogativa) é PERMITIDA:
+- Lead informal (loja, brechó, esteta jovem, nail, barbearia): "ei", "oi", "boa, [contexto]"
+  - exemplo: "ei, passei pelo teu Insta agora\n\n[abertura]"
+- Lead formal (médico, dentista, advogado, psi, fono): "doutor/dra, boa noite", "uma coisa rápida, doutor"
+  - exemplo: "boa noite, doutor\n\n[abertura]"
+
+**Verbo de abertura ROTACIONADO** (não começar SEMPRE com "Vi que..."):
+- "Vi que..." / "Reparei que..." / "Tava pesquisando [nicho] e tu apareceu" / "Cheguei no teu perfil pelo Maps agora" / "Olhei rapidamente teu perfil e..." / "Passei pelo teu Google Business hoje..."
+- Variedade orgânica > template fixo. A escolha do verbo deve casar com o caminho real que Eduardo usaria pra explicar como achou a pessoa.
+
+**Conector de CONVITE antes da pergunta final** (não impositivo):
+- ❌ Impositivo: "hoje quem te acha agenda direto ou fica em dúvida?"
+- ✅ Convite: "queria te perguntar uma coisa — quem te acha hoje agenda direto ou fica em dúvida?"
+- ✅ Convite: "se tu puder me dizer rapidinho — quem te acha agenda direto ou fica em dúvida?"
+- ✅ Convite: "se fizer sentido te perguntar: quem te acha agenda direto ou fica em dúvida?"
+
+**Validação humana inserida** (frase curta que reconhece o feito do lead, não só o registra):
+- ❌ Só registro: "Vi que você tem 135 avaliações no Google em Palmas"
+- ✅ Com validação: "reparei que tu tem 135 avaliações no Google — base sólida pra quem ainda chega novo"
+- A validação humaniza: passa de scraper-bot pra pessoa que reconhece a conquista
+
+**Princípio-âncora:**
+> "O lead tem que ler a mensagem e sentir que Eduardo se importou em escrever especificamente pra ele.
+> Hoje muitas leem como sistema observou um dado e mandou observação.
+> A diferença separa 0% de resposta de 15% de resposta."
 
 ### Exemplos VÁLIDOS (use de referência)
 
