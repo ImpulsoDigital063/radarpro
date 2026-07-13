@@ -352,16 +352,16 @@ Por que ESSE serviço resolve a dor desse lead específico. 2-3 frases CIRÚRGIC
 Valor empilhado ANTES de soltar o número. Lista 3-4 entregas com valor de mercado de cada. Total de mercado vs preço Impulso. Termina com a frase exata pra anunciar o preço.
 
 **Tabela de preços Impulso 2026 — política "a partir de" + ancoragem real:**
-- Landing Page **a partir de R$499** (Padrão R$499 · Complexo R$799-999 · Premium R$1.297+)
-- Loja Shopify **a partir de R$599** (Padrão R$599 · Complexo R$899-1.199 · Premium R$1.497+)
+- Landing Page **a partir de a partir de R$1.497** (Padrão a partir de R$1.497 · Complexo R$799-999 · Premium R$1.297+)
+- Loja Shopify **a partir de a partir de R$1.199** (Padrão a partir de R$1.199 · Complexo R$899-1.199 · Premium R$1.497+)
 - **Combo LP + Shopify a partir de R$1.099** (vantagem operacional, NÃO desconto fake)
-- Combo LP + SmartAgenda: R$499 + R$47/mês (setup AgendaPRO Solo R$147 GRÁTIS pros 10 primeiros)
+- Combo LP + AgendaPRO: LP a partir de R$1.497 + AgendaPRO R$67/mes (sem setup, 7 dias gratis)
 - Site Next.js a partir de R$799 (institucional/multi-página)
-- AgendaPRO R$67/mês (Solo) ou R$107/mês (Equipe), setup R$147/R$197
+- AgendaPRO: Solo R$67/mes, Equipe R$97/mes, SEM SETUP, 7 dias gratis sem cartao
 
-⚠️ REGRA DE PRICING: NUNCA cravar preço fixo em mensagem de venda. Use "a partir de R$499/R$599".
+⚠️ REGRA DE PRICING: NUNCA cravar preço fixo em mensagem de venda. Use "a partir de a partir de R$1.497 (LP) / R$1.199 (loja)".
 
-🎯 ANCORAGEM REAL (validada pelo CIC #6 — usar nos pitches): Mercado nacional cobra **R$2.000 a R$15.000** por LP profissional (DIVIA, Odonto Pages, Webgui Marketing Médico). Impulso a partir de R$499 = **4-30x mais barato** porque é agência local de Palmas, sem overhead SP/RJ. Não é promoção temporária, é pricing real.
+🎯 ANCORAGEM REAL (validada pelo CIC #6 — usar nos pitches): Mercado nacional cobra **R$2.000 a R$15.000** por LP profissional (DIVIA, Odonto Pages, Webgui Marketing Médico). Impulso a partir de a partir de R$1.497 = **4-30x mais barato** porque é agência local de Palmas, sem overhead SP/RJ. Não é promoção temporária, é pricing real.
 
 🚨 REGRA COMBO: Combo LP+Shopify NÃO TEM desconto inventado — vantagem é OPERACIONAL (1 briefing, 1 call, prazo integrado). Quando vender, frase certa: *"Os dois juntos saem a partir de R$1.099 porque é uma operação só. Fazer separado depois custa o mesmo mas leva o dobro do tempo."*
 

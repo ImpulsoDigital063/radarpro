@@ -152,7 +152,7 @@ export function scriptAbordagemLP(nome: string, especialidade: string): ScriptAb
     // PITCH curto (CORE_SYSTEM_V2): conectar com dor → solução → preço → CTA
     pitch_se_so_ig: `pelo que você falou, hoje quem te procura no Google não te acha
 eu resolvo isso com uma página simples que já começa a trazer cliente
-começa em R$499 e entrego em 7 dias
+começa em a partir de R$1.497 e entrego em 7 dias
 quer ver um exemplo no teu caso?`,
     pitch_se_tem_site: `se já tem, manda o link que dou uma olhada rápida — só pra entender o ponto de partida`,
     pitch_se_tem_site_resposta: `vi aqui — deixa eu olhar com calma 2-3 min e te volto com 3 pontos específicos que tão segurando o teu
@@ -183,7 +183,7 @@ tu tá pra responder ou o pedido some até segunda?`,
     // PITCH curto (CORE_SYSTEM_V2)
     pitch_se_so_ig: `pelo que você falou, hoje toda venda depende de conversa no direct
 a loja resolve isso e o cliente compra sozinho
-começa em R$599 com Mercado Pago, frete e motoboy Palmas integrados
+começa em a partir de R$1.199 com Mercado Pago, frete e motoboy Palmas integrados
 quer ver como ficaria no teu caso?`,
     pitch_se_tem_site: `se já tem, manda o link que dou uma olhada rápida — só pra entender o ponto de partida`,
     pitch_se_tem_site_resposta: `vi aqui — deixa eu olhar com calma 2-3 min e te volto com 3 pontos específicos que tão segurando a tua
@@ -216,7 +216,7 @@ fica R$67/mês (ou R$97 com equipe até 5)
 os 10 primeiros entram sem setup de R$197 — quer testar?`,
     pitch_se_tem_site: `tu já tem sistema de agendamento ou cliente ainda marca no WhatsApp?
 e o financeiro — vê quanto cada profissional te deve em tempo real?`,
-    fechamento: `em 15 min eu te mostro a SmartAgenda configurada pro TEU caso — tu testa como cliente, vê dashboard, vê cancelamento
+    fechamento: `em 15 min eu te mostro a AgendaPRO configurada pro TEU caso — tu testa como cliente, vê dashboard, vê cancelamento
 qual horário fecha: ${gerar3Horarios()}?`,
   }
 }
@@ -286,21 +286,56 @@ const CATEGORIAS_NAO_FIT = [
   'loja de bebida', 'distribuidora de bebida',
 ]
 
+/**
+ * Nicho do AgendaPRO — o ICP cravado no estudo de 13/07/2026.
+ *
+ * Antes esta função tinha o comentário "AgendaPRO fora do foco de prospecção
+ * atual" e mandava TODA barbearia, salão e nail pro pitch de landing page de
+ * a partir de R$1.497. As funções que escrevem a abordagem de AgendaPRO existiam, estavam
+ * escritas — e estavam órfãs. O sistema capturava o lead certo e oferecia o
+ * produto errado. É a razão nº1 de 1.161 leads e zero venda.
+ *
+ * Quem entra aqui (os 3 trilhos que têm pagante provando):
+ *   · balcão de beleza — barbearia, salão, nail (Olímpio, K'F Beauty, Guia Lopes)
+ *   · beleza técnica   — lash, cílios, sobrancelha, estética (Rosy paga; a ficha
+ *                        de anamnese do sistema é a ficha de papel dela)
+ *   · química/tranças  — o caso da Izanara (Studio MOOD, R$97/mês)
+ */
+const NICHO_BELEZA_AGENDAPRO = [
+  // balcão de beleza
+  'barbearia', 'barbeiro', 'salão de beleza', 'salao de beleza', 'cabeleireiro',
+  'salão', 'salao', 'beleza',
+  // unhas
+  'nail designer', 'nail', 'manicure', 'pedicure', 'esmalteria',
+  // beleza técnica (onde a ficha de anamnese é a arma)
+  'lash', 'cílios', 'cilios', 'extensão de cílios', 'extensao de cilios',
+  'sobrancelha', 'designer de sobrancelhas', 'micropigmentação', 'micropigmentacao',
+  'clínica estética', 'clinica estetica', 'estética', 'estetica', 'esteticista',
+  'spa', 'depilação', 'depilacao',
+  // tranças / química
+  'trança', 'tranca', 'braids', 'cacheados',
+  // afins que operam igual (agenda + comissão + produto no balcão)
+  'massoterapeuta', 'massagem', 'maquiadora', 'centro de saúde e beleza',
+]
+
 export function detectarTipoOferta(categoria: string): TipoOferta {
   const cat = categoria.toLowerCase()
 
-  // Filtro NÃO-FIT primeiro — categorias descartadas em auditoria 25/04
-  // (papelaria, açaí, café, floricultora, etc) ainda recebem 'lp-solo'
-  // como fallback técnico, mas top-20-perfeitos.ts vai filtrar elas.
-  // (Não retornamos 'no-fit' como tipo pra não quebrar contratos
-  // existentes — quem usa a função espera um TipoOferta válido.)
-
+  // 1) Loja / produto físico → Shopify (oferta de e-commerce)
   if (CATEGORIAS_SHOPIFY_MATCH.some(c => cat.includes(c))) return 'shopify-solo'
 
-  // AgendaPRO fora do foco de prospecção atual: tudo que não é
-  // loja/produto físico vira LP. CATEGORIAS_PURO_AGENDA e CATEGORIAS_COMBO
-  // seguem exportadas pra uso em outras telas, mas não roteiam mais.
+  // 2) BELEZA → AgendaPRO. É o foco da prospecção desde 13/07/2026.
+  if (NICHO_BELEZA_AGENDAPRO.some(c => cat.includes(c))) return 'agendapro-solo'
+
+  // 3) Resto (advogado, dentista, psicólogo, pet, etc): não é nosso ICP hoje.
+  //    Cai em LP como fallback técnico — mas não deveria ser prospectado.
+  //    Use leadEhNoFit() pra filtrar antes de disparar.
   return 'lp-solo'
+}
+
+/** O lead é do nicho que a gente quer caçar (AgendaPRO)? */
+export function ehNichoAgendaPRO(categoria: string): boolean {
+  return detectarTipoOferta(categoria) === 'agendapro-solo'
 }
 
 // Helper: lead deve ser ignorado na prospecção?
@@ -329,12 +364,12 @@ e pra marcar horário, é tudo pelo WhatsApp ainda?`,
 responde cada horário na mão ou tem link onde ele marca sozinho?`,
     ],
     pitch_se_so_ig: `pelo que você falou, são duas dores juntas — Google e agenda
-LP que aparece no Google + SmartAgenda que cliente marca sozinho. trabalham juntas
-LP a partir de R$499 + SmartAgenda R$67/mês (ou R$97 equipe). os 10 primeiros entram sem setup de R$197
+LP que aparece no Google + AgendaPRO que cliente marca sozinho. trabalham juntas
+LP a partir de a partir de R$1.497 + AgendaPRO R$67/mês (ou R$97 equipe). os 10 primeiros entram sem setup de R$197
 topa ver os dois rodando antes de decidir?`,
     pitch_se_tem_site: `se já tem, manda o link que dou uma olhada — só pra entender o ponto de partida
 e pra agenda — tem sistema onde cliente marca sozinho ou ainda é WhatsApp?`,
-    fechamento: `em 20 min eu te mostro a TUA LP no ar + SmartAgenda configurada — tu vê os dois funcionando antes de decidir
+    fechamento: `em 20 min eu te mostro a TUA LP no ar + AgendaPRO configurada — tu vê os dois funcionando antes de decidir
 qual horário fecha: ${gerar3Horarios()}?`,
     call_alinhamento: `antes da gente fechar, tem uma etapa: call de alinhamento
 não é pitch — é briefing pra projeto sair com a TUA cara, não genérico
@@ -396,7 +431,7 @@ são dois funis diferentes — Insta + site soma, não substitui`,
     contexto: 'Lead pediu o preço diretamente',
     nota_interna: 'NUNCA esconda preço. Mas NUNCA crave valor fixo — Eduardo precisa avaliar complexidade na call. "A partir de" + ancoragem real R$2k-15k mercado nacional + chamar pra call.',
     acknowledge_label: 'vamo direto',
-    resposta: `a partir de R$499 — depende da complexidade
+    resposta: `a partir de a partir de R$1.497 — depende da complexidade
 mercado nacional cobra R$2-15k. eu tô abaixo porque sou de Palmas, sem overhead
 em 20min de call te falo o número exato — topa?`,
   },
