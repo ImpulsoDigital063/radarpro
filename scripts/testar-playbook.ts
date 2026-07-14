@@ -60,7 +60,7 @@ async function main() {
     console.log(`  ${p.se_disser_ja_tenho_sistema.replace(/\n/g, '\n  ')}`)
     console.log('\n▸ SE DISSER "NÃO TENHO TEMPO"')
     console.log(`  ${p.se_disser_nao_tenho_tempo.replace(/\n/g, '\n  ')}`)
-    console.log('\n▸ SE PERGUNTAR DO WHATSAPP AUTOMÁTICO (não temos)')
+    console.log('\n▸ SE PERGUNTAR DO WHATSAPP (semi-automático: sistema monta, ela toca 1x)')
     console.log(`  ${p.se_perguntar_whatsapp_automatico.replace(/\n/g, '\n  ')}`)
     console.log('\n▸ BREAKUP (D+7)')
     console.log(`  ${p.se_sumir_d7.replace(/\n/g, '\n  ')}`)

@@ -85,14 +85,36 @@ TEM (o arsenal completo — cada linha é um argumento):
 · **Mobile é o principal** — o dono opera no celular. (A reclamação clássica contra
   o Trinks é "o sistema é bom, o aplicativo é horrível".)
 
+💬 **WHATSAPP — LEIA COM ATENÇÃO. NÃO É "NÃO TEMOS".**
+
+O AgendaPRO **MONTA A MENSAGEM PRONTA** e o dono envia com **1 TOQUE**.
+É SEMI-AUTOMÁTICO: o sistema escreve, ele só aperta o botão.
+
+Funciona pra: confirmação de horário · lembrete · aniversariante · cliente que
+cancelou · **cupom de retorno pra quem sumiu** · ficha de anamnese em PDF · comanda.
+Os textos são editáveis (ele muda do jeito dele).
+
+✅ **E ISSO É VANTAGEM, NÃO LIMITAÇÃO. O argumento:**
+   "Disparo automático em massa é o que faz o WhatsApp BANIR NÚMERO. Aqui a
+   mensagem sai do SEU número, com você apertando o botão. Um toque por cliente.
+   Ela responde pra você, não pra um robô."
+
+❌ **O QUE NÃO EXISTE:** disparo AUTOMÁTICO sozinho, sem você tocar (o sistema não
+manda nada por conta própria pelo WhatsApp — lembrete automático mesmo é por E-MAIL).
+
+**Como responder quando ela perguntar "manda no WhatsApp?":**
+> "Manda, mas você aperta o botão. O sistema escreve a mensagem com o nome e o
+>  horário dela, e você toca uma vez. Não dispara sozinho de propósito — disparo
+>  automático em massa é o que derruba número de WhatsApp."
+
 ❌ NÃO TEM — NUNCA PROMETA:
-· lembrete/disparo automático no WhatsApp (é o pedido nº1 do mercado — e não temos)
+· **disparo automático sem clique** (o sistema não manda sozinho — veja acima)
 · nota fiscal
 · Google Calendar
 · multi-unidade
 
-Se a sua mensagem depende de qualquer uma dessas 4, APAGUE e comece de novo. O produto
-entrega o contrário no dia 1 do teste e o Eduardo vira "o cara que mentiu".
+Se a sua mensagem depende dessas, APAGUE e comece de novo. O produto entrega o
+contrário no dia 1 do teste e o Eduardo vira "o cara que mentiu".
 
 ═══════════════════════════════════════════
 3. DIAGNOSTIQUE O LEAD ANTES DE ESCREVER

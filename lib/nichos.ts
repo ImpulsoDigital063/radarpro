@@ -175,6 +175,24 @@ export const NICHOS: Record<string, PerfilNicho> = {
   },
 }
 
+/**
+ * ARMA UNIVERSAL — vale pra TODO nicho, inclusive os que não identificamos.
+ * O WhatsApp semi-automático é a função mais pedida do mercado e a que eu mais
+ * estava vendendo mal (dizendo "não temos"). Temos. Só não dispara sozinho.
+ */
+export const ARMA_WHATSAPP = [
+  'WHATSAPP SEMI-AUTOMÁTICO (vale pra todo nicho):',
+  '  · O sistema MONTA a mensagem pronta — com o nome, o horário e o serviço da cliente.',
+  '    Ela envia com 1 TOQUE. Não precisa digitar nada.',
+  '  · Funciona pra: confirmação de horário · lembrete · aniversariante · cliente que',
+  '    cancelou · CUPOM DE RETORNO pra quem sumiu · ficha de anamnese em PDF · comanda.',
+  '  · Os textos são editáveis — ela escreve do jeito dela.',
+  '  · A VANTAGEM (use como argumento): disparo automático em massa é o que faz o',
+  '    WhatsApp BANIR número. Aqui a mensagem sai do número DELA, no toque DELA.',
+  '    A cliente responde pra ela, não pra um robô.',
+  '  · O que NÃO existe: envio sozinho, sem clique. NUNCA prometa isso.',
+].join('\n')
+
 /** Descobre o nicho pela categoria e pelo nome do negócio. */
 export function detectarNicho(categoria: string, nome: string): keyof typeof NICHOS | null {
   const t = `${categoria} ${nome}`.toLowerCase()
@@ -194,7 +212,11 @@ export function detectarNicho(categoria: string, nome: string): keyof typeof NIC
 export function contextoDoNicho(categoria: string, nome: string): string {
   const chave = detectarNicho(categoria, nome)
   if (!chave) {
-    return 'NICHO: não identificado com precisão. Use a pergunta de diagnóstico e NÃO chute a dor dela.'
+    return [
+      'NICHO: não identificado com precisão. Use a pergunta de diagnóstico e NÃO chute a dor dela.',
+      '',
+      ARMA_WHATSAPP,
+    ].join('\n')
   }
 
   const n = NICHOS[chave]
@@ -207,6 +229,8 @@ export function contextoDoNicho(categoria: string, nome: string): string {
     '',
     'AS ARMAS DO AGENDAPRO PRA ESSE NICHO (fale destas, não de "gestão"):',
     ...n.armas.map((a) => `  · ${a}`),
+    '',
+    ARMA_WHATSAPP,
     ...(n.naoServe.length
       ? ['', 'NÃO OFEREÇA (não serve pra esse nicho):', ...n.naoServe.map((x) => `  ✗ ${x}`)]
       : []),
