@@ -1,710 +1,476 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+/**
+ * FILA DE HOJE — a tela de trabalho do dia.
+ *
+ * A versão antiga lia uma lista de IDs CHUMBADA em lib/disparo-analises.ts (abril,
+ * era das LPs/Shopify): os leads novos nunca apareciam e o cabeçalho ainda dizia
+ * "Leads priorizados (LP + Shopify)". Pior: clicar no wa.me NÃO marcava nada no
+ * banco — o teto diário não contava, o anti-duplicata não enxergava, e não dava
+ * pra saber quem já tinha recebido.
+ *
+ * Agora: um lead por vez, mensagem pronta, 1 toque abre o WhatsApp E marca.
+ *
+ * Por que wa.me e não envio automático: o Baileys não roda na Vercel (serverless
+ * não segura sessão de WhatsApp), e — mais importante — disparo automático em
+ * massa é o que faz o WhatsApp BANIR número. É o mesmo argumento que a gente
+ * vende pro cliente. Vale aqui.
+ */
+
+import { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
 import HeaderRadarPRO from '@/components/HeaderRadarPRO'
 
-type Analise = {
-  tier: 'A' | 'B' | 'C'
-  posicao_no_tier: number
-  dor: string
-  gancho: string
-  objecao: string
-  resposta_objecao: string
-  abertura: string
-  razao_ranking: string
-  nota_interna?: string
-}
-
-type LeadDisparo = {
+type LeadFila = {
   id: number
   nome: string
   categoria: string
   telefone: string | null
-  telefoneFormatado: string
-  instagram: string | null
-  site: string
-  nota: number | null
-  numAvaliacoes: number | null
-  oferta: string
-  tier: 'A' | 'B' | 'C'
-  posicao: number
-  selecionado: boolean
-  analise: Analise
-  scripts: {
-    abertura: string
-    followupD3: string
-    followupD7: string
-    preEngajamentoIg: string
-    diagnostico: { variante: string; texto: string }
-    pitchSeSoIG: string
-    pitchSeTemSite: string
-    pitchSeTemSiteResposta?: string
-    fechamento: string
-    callAlinhamento?: string
-  }
-  linkWhatsApp: string
-  linkDmInsta: string
-  mensagemDm: string
-  linksFollowup: {
-    d3: string
-    d7: string
-  }
+  nicho: string
+  situacao: string
+  sistema_detectado: string | null
+  estudado: boolean
+  gancho: string | null
+  negativas: number
+  dorEscrita: string | null
+  mensagem: string | null
+  link: string | null
+  playbook: any
 }
 
-const card = '#111827'
-const brd = '#1F2937'
-const txt = '#F9FAFB'
-const muted = '#6B7280'
-
-const TIPO: Record<string, { label: string; emoji: string; cor: string }> = {
-  'lp-solo':       { label: 'Landing Page', emoji: '📄', cor: '#2563EB' },
-  'shopify-solo':  { label: 'Shopify',       emoji: '🛒', cor: '#10B981' },
-  'agendapro-solo':{ label: 'AgendaPRO',     emoji: '📅', cor: '#7C3AED' },
-  'consultoria':   { label: 'Consultoria',   emoji: '🎓', cor: '#F59E0B' },
+type Followup = {
+  id: number
+  nome: string
+  telefone: string | null
+  dias: number
+  qual: 'd3' | 'd7'
+  mensagem: string | null
+  link: string | null
 }
 
-const TIER: Record<'A' | 'B' | 'C', { label: string; cor: string; fundo: string }> = {
-  A: { label: 'Tier A — atacar primeiro', cor: '#EF4444', fundo: '#1A0A0A' },
-  B: { label: 'Tier B — atacar depois',   cor: '#F59E0B', fundo: '#1A1500' },
-  C: { label: 'Tier C — qualificar antes', cor: '#6B7280', fundo: '#1F2937' },
+type Respondido = {
+  id: number
+  nome: string
+  telefone: string | null
+  respondeu_em: string
+  termometro: string | null
+  playbook: any
 }
 
-export default function DisparoPage() {
-  const [leads, setLeads]       = useState<LeadDisparo[]>([])
-  const [loading, setLoading]   = useState(true)
-  const [erro, setErro]         = useState<string | null>(null)
-  const [tierF, setTierF]       = useState<'todos' | 'A' | 'B' | 'C'>('todos')
-  const [expandido, setExpandido] = useState<number | null>(null)
-  const [secaoAberta, setSecaoAberta] = useState<Record<string, boolean>>({})
-  const [copiado, setCopiado]   = useState<string | null>(null)
+type Dados = {
+  hoje: { enviadas: number; teto: number; restam: number; janela: string; dentroDaJanela: boolean }
+  fila: LeadFila[]
+  followups: Followup[]
+  respondidos: Respondido[]
+}
 
-  useEffect(() => {
-    fetch('/api/disparo')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.ok) setLeads(data.leads ?? [])
-        else setErro(data.erro ?? 'Erro desconhecido')
-      })
-      .catch((e) => setErro(String(e)))
-      .finally(() => setLoading(false))
+const NICHO_LABEL: Record<string, string> = {
+  barbearia: 'Barbearia', lash: 'Lash', estetica: 'Estética', salao: 'Salão',
+  nail: 'Nail', sobrancelha: 'Sobrancelha', trancas: 'Tranças', outro: '—',
+}
+
+const SITUACAO_LABEL: Record<string, { txt: string; cor: string }> = {
+  USA_SISTEMA:           { txt: 'já usa sistema', cor: '#F97316' },
+  MOVIMENTO_ALTO_MANUAL: { txt: 'movimento alto', cor: '#EAB308' },
+  AGENDA_PELA_DM:        { txt: 'agenda pela DM', cor: '#38BDF8' },
+  TEM_SITE_PROPRIO:      { txt: 'tem site',       cor: '#A78BFA' },
+  FRIO:                  { txt: 'frio',           cor: '#6B7280' },
+  DESCONHECIDO:          { txt: '—',              cor: '#6B7280' },
+}
+
+export default function FilaPage() {
+  const [d, setD] = useState<Dados | null>(null)
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
+  const [aba, setAba] = useState<'fila' | 'followup' | 'respondeu'>('fila')
+  const [i, setI] = useState(0)
+  const [ocupado, setOcupado] = useState(false)
+  const [copiado, setCopiado] = useState(false)
+  const [verPlaybook, setVerPlaybook] = useState(false)
+
+  const carregar = useCallback(async () => {
+    setCarregando(true)
+    try {
+      const r = await fetch('/api/fila', { cache: 'no-store' })
+      const j = await r.json()
+      if (j.error) throw new Error(j.error)
+      setD(j)
+      setErro('')
+    } catch (e: any) {
+      setErro(e.message)
+    } finally {
+      setCarregando(false)
+    }
   }, [])
 
-  function copiar(key: string, texto: string) {
-    navigator.clipboard.writeText(texto).then(() => {
-      setCopiado(key)
-      setTimeout(() => setCopiado(null), 1500)
-    })
-  }
+  useEffect(() => { carregar() }, [carregar])
 
-  async function toggleSel(id: number) {
-    const r = await fetch('/api/leads', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, action: 'toggle_selecionado' }),
-    })
-    const j = await r.json()
-    if (j.ok) {
-      setLeads(curr => curr.map(l => l.id === id ? { ...l, selecionado: !!j.selecionado } : l))
+  async function marcar(leadId: number, acao: string, motivo?: string) {
+    setOcupado(true)
+    try {
+      const r = await fetch('/api/fila/marcar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leadId, acao, motivo }),
+      })
+      const j = await r.json()
+      if (j.error) throw new Error(j.error)
+      return true
+    } catch (e: any) {
+      setErro(e.message)
+      return false
+    } finally {
+      setOcupado(false)
     }
   }
 
-  const leadsFiltrados = tierF === 'todos' ? leads : leads.filter((l) => l.tier === tierF)
-  const stats = {
-    total: leads.length,
-    A: leads.filter((l) => l.tier === 'A').length,
-    B: leads.filter((l) => l.tier === 'B').length,
-    C: leads.filter((l) => l.tier === 'C').length,
+  /** O botão principal: abre o WhatsApp com a msg pronta E marca o disparo. */
+  async function enviar(lead: LeadFila) {
+    if (!lead.link) { setErro('lead sem telefone'); return }
+    // abre ANTES do await — senão o navegador bloqueia o popup
+    window.open(lead.link, '_blank', 'noopener,noreferrer')
+    if (await marcar(lead.id, 'disparado')) {
+      setVerPlaybook(false)
+      await carregar()
+      setI(0)
+    }
   }
 
+  async function enviarFollowup(f: Followup) {
+    if (!f.link) return
+    window.open(f.link, '_blank', 'noopener,noreferrer')
+    if (await marcar(f.id, 'followup')) await carregar()
+  }
+
+  async function pular(lead: LeadFila) {
+    if (await marcar(lead.id, 'pular')) { setVerPlaybook(false); await carregar(); setI(0) }
+  }
+
+  if (carregando && !d) return <Tela><p style={{ color: '#9CA3AF' }}>Carregando a fila…</p></Tela>
+  if (!d) return <Tela><p style={{ color: '#F87171' }}>{erro || 'Falhou ao carregar.'}</p></Tela>
+
+  const { hoje } = d
+  const lead = d.fila[i]
+  const acabouOTeto = hoje.restam <= 0
+  const travado = acabouOTeto || !hoje.dentroDaJanela
+
   return (
-    <div style={{ minHeight: '100vh', background: '#0F1117', color: txt, fontFamily: 'system-ui, sans-serif' }}>
-      <HeaderRadarPRO activeTab="disparo" />
+    <Tela>
+      <div style={{ marginBottom: 16 }}>
+        <h1 style={{ fontSize: 22, fontWeight: 800, margin: 0, color: '#F9FAFB' }}>Fila de hoje</h1>
+        <p style={{ fontSize: 12, color: '#6B7280', margin: '4px 0 0' }}>
+          Um lead por vez. A mensagem já está escrita. Um toque abre o WhatsApp e marca o disparo.
+        </p>
+      </div>
 
-      <main style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        {/* Hero */}
-        <div style={{ padding: '20px 32px 8px' }}>
-          <h1 style={{ fontSize: '22px', fontWeight: 800, margin: 0 }}>Playbook de disparo</h1>
-          <p style={{ color: muted, fontSize: '12px', marginTop: '6px' }}>
-            Leads priorizados (LP + Shopify) com playbook customizado pelos 5 livros + market intelligence Brasil 2026 + persona-clone Erlane/Irsnayra/GB Nutrition. Atacar Tier A pos 1 primeiro. Mensagens prontas pra copiar.
-            Atacar Tier A primeiro. Mensagens prontas pra copiar — Eduardo só ajusta o que o lead disser.
-          </p>
-        </div>
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
+        <Placar rotulo="enviadas hoje" valor={`${hoje.enviadas}`} sub={`de ${hoje.teto}`} cor="#10B981" />
+        <Placar rotulo="ainda posso mandar" valor={`${hoje.restam}`} cor={acabouOTeto ? '#F87171' : '#60A5FA'} />
+        <Placar rotulo="na fila" valor={`${d.fila.length}`} sub="sem contato" cor="#A78BFA" />
+        <Placar rotulo="follow-up devendo" valor={`${d.followups.length}`} cor="#F59E0B" />
+        <Placar rotulo="responderam" valor={`${d.respondidos.length}`} cor="#34D399" />
+      </div>
 
-        {/* Stats */}
-        <div style={{ padding: '8px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '8px' }}>
-          <Stat label="Total"   valor={stats.total} cor={txt} />
-          <Stat label="Tier A"  valor={stats.A}     cor="#FCA5A5" />
-          <Stat label="Tier B"  valor={stats.B}     cor="#FCD34D" />
-          <Stat label="Tier C"  valor={stats.C}     cor="#9CA3AF" />
-        </div>
+      {!hoje.dentroDaJanela && (
+        <Aviso cor="#F59E0B">
+          Fora da janela de envio ({hoje.janela}). Mensagem de vendas às 6h ou às 23h queima o
+          número e irrita quem recebe. Volte no horário comercial.
+        </Aviso>
+      )}
+      {acabouOTeto && (
+        <Aviso cor="#F87171">
+          Teto do dia batido ({hoje.teto} mensagens). Parar aqui é o que protege o seu número — o
+          WhatsApp bane quem dispara muito, rápido demais.
+        </Aviso>
+      )}
+      {erro && <Aviso cor="#F87171">{erro}</Aviso>}
 
-        {/* Filtros — formato igual /Painel */}
-        <div style={{ padding: '12px 32px', borderBottom: `1px solid ${brd}`, display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
-          <span style={{ fontSize: '11px', color: muted, marginRight: '4px' }}>Tier:</span>
-          {(['todos', 'A', 'B', 'C'] as const).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTierF(t)}
-              style={{
-                padding: '4px 10px',
-                borderRadius: '5px',
-                fontSize: '11px',
-                fontWeight: 700,
-                border: 'none',
-                cursor: 'pointer',
-                background: tierF === t ? '#2563EB' : '#1F2937',
-                color: tierF === t ? '#fff' : muted,
-              }}
-            >
-              {t === 'todos' ? 'Todos' : `Tier ${t}`}
-            </button>
-          ))}
-        </div>
+      <div style={{ display: 'flex', gap: 6, marginBottom: 16, borderBottom: '1px solid #27272A' }}>
+        {([
+          ['fila', `Atacar (${d.fila.length})`],
+          ['followup', `Follow-up (${d.followups.length})`],
+          ['respondeu', `Responderam (${d.respondidos.length})`],
+        ] as const).map(([k, txt]) => (
+          <button key={k} onClick={() => setAba(k)}
+            style={{
+              padding: '8px 14px', background: 'none', border: 'none', cursor: 'pointer',
+              fontSize: 13, fontWeight: 700,
+              color: aba === k ? '#F9FAFB' : '#6B7280',
+              borderBottom: aba === k ? '2px solid #10B981' : '2px solid transparent',
+            }}>
+            {txt}
+          </button>
+        ))}
+      </div>
 
-        {/* Lista — mesmo estilo do /Painel */}
-        <div style={{ padding: '20px 32px 40px' }}>
-          {loading && (
-            <div style={{ textAlign: 'center', padding: '60px 0', color: muted }}>Carregando playbook…</div>
-          )}
+      {/* ── ATACAR ────────────────────────────────────────────────── */}
+      {aba === 'fila' && (
+        !lead ? (
+          <Vazio texto="Fila zerada. Todo mundo já foi abordado." />
+        ) : (
+          <div style={{ border: '1px solid #27272A', borderRadius: 14, background: '#0F1117', overflow: 'hidden' }}>
+            <div style={{ padding: '16px 18px', borderBottom: '1px solid #1F2937' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+                <div>
+                  <h2 style={{ fontSize: 19, fontWeight: 800, margin: 0, color: '#F9FAFB' }}>{lead.nome}</h2>
+                  <p style={{ fontSize: 12, color: '#6B7280', margin: '4px 0 0' }}>
+                    {lead.categoria} · {lead.telefone}
+                  </p>
+                </div>
+                <span style={{ fontSize: 11, color: '#4B5563', whiteSpace: 'nowrap' }}>
+                  {i + 1} de {d.fila.length}
+                </span>
+              </div>
 
-          {erro && (
-            <div style={{ background: '#7F1D1D33', border: '1px solid #DC2626', borderRadius: '8px', padding: '14px', color: '#FCA5A5' }}>
-              {erro}
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 10 }}>
+                <Etiqueta cor="#9CA3AF">{NICHO_LABEL[lead.nicho] ?? lead.nicho}</Etiqueta>
+                <Etiqueta cor={SITUACAO_LABEL[lead.situacao]?.cor ?? '#6B7280'}>
+                  {SITUACAO_LABEL[lead.situacao]?.txt ?? lead.situacao}
+                </Etiqueta>
+                {lead.sistema_detectado && <Etiqueta cor="#F97316">🔥 usa {lead.sistema_detectado}</Etiqueta>}
+                {lead.estudado && <Etiqueta cor="#34D399">✍️ estudado</Etiqueta>}
+                {lead.negativas > 0 && (
+                  <Etiqueta cor="#F87171">⚠️ {lead.negativas} negativa{lead.negativas > 1 ? 's' : ''}</Etiqueta>
+                )}
+              </div>
             </div>
-          )}
 
-          {!loading && !erro && leadsFiltrados.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '60px 0', color: '#4B5563', fontSize: '13px' }}>
-              Nenhum lead nesse filtro.
-            </div>
-          )}
-
-          {!loading && !erro && leadsFiltrados.length > 0 && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <p style={{ fontSize: '11px', color: muted, marginBottom: '8px' }}>
-                {leadsFiltrados.length} lead{leadsFiltrados.length !== 1 ? 's' : ''} · ordenado por tier
-              </p>
-
-              {leadsFiltrados.map((lead) => {
-                const ti = TIPO[lead.oferta] ?? { label: lead.oferta, emoji: '📦', cor: muted }
-                const tr = TIER[lead.tier]
-                const aberto = expandido === lead.id
-
-                return (
-                  <div key={lead.id} style={{ background: card, border: `1px solid ${aberto ? tr.cor + '55' : brd}`, borderRadius: '10px', overflow: 'hidden' }}>
-                    {/* Linha principal — mesmo formato /Painel */}
-                    <div
-                      style={{
-                        padding: '12px 16px',
-                        display: 'grid',
-                        gridTemplateColumns: 'auto 1fr auto',
-                        gap: '12px',
-                        alignItems: 'center',
-                        cursor: 'pointer',
-                      }}
-                      onClick={() => setExpandido(aberto ? null : lead.id)}
-                    >
-                      {/* Tier badge — substitui o score do /Painel */}
-                      <div style={{ textAlign: 'center', minWidth: '40px' }}>
-                        <p style={{ fontSize: '16px', margin: 0, color: tr.cor, fontWeight: 800 }}>
-                          {lead.tier}
-                          {lead.posicao}
-                        </p>
-                        <p style={{ fontSize: '9px', color: tr.cor, margin: 0, fontWeight: 700, letterSpacing: '0.05em' }}>
-                          TIER
-                        </p>
-                      </div>
-
-                      {/* Info */}
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px', flexWrap: 'wrap' }}>
-                          <span style={{ padding: '2px 7px', borderRadius: '4px', fontSize: '10px', fontWeight: 700, background: ti.cor + '25', color: ti.cor }}>
-                            {ti.emoji} {ti.label}
-                          </span>
-                          <span style={{ fontSize: '13px', fontWeight: 700, color: txt }}>{lead.nome}</span>
-                        </div>
-                        <p style={{ fontSize: '11px', color: muted, margin: 0 }}>
-                          {lead.categoria}
-                          {lead.telefone && ` · 📱 ${lead.telefoneFormatado}`}
-                          {lead.nota !== null && ` · ⭐ ${lead.nota}`}
-                          {lead.numAvaliacoes ? ` (${lead.numAvaliacoes} aval.)` : ''}
-                          {lead.instagram && ` · ${lead.instagram}`}
-                        </p>
-                      </div>
-
-                      {/* Ações */}
-                      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                        {lead.linkWhatsApp ? (
-                          <a
-                            href={lead.linkWhatsApp}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            style={{
-                              padding: '4px 10px',
-                              background: '#16A34A',
-                              borderRadius: '5px',
-                              color: '#fff',
-                              fontSize: '11px',
-                              fontWeight: 700,
-                              textDecoration: 'none',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            💬 WA
-                          </a>
-                        ) : (
-                          <span
-                            onClick={(e) => e.stopPropagation()}
-                            title="Sem telefone — pegar via DM Insta primeiro"
-                            style={{
-                              padding: '4px 10px',
-                              background: '#374151',
-                              borderRadius: '5px',
-                              color: '#9CA3AF',
-                              fontSize: '11px',
-                              fontWeight: 700,
-                              whiteSpace: 'nowrap',
-                              cursor: 'not-allowed',
-                            }}
-                          >
-                            📋 Pegar tel
-                          </span>
-                        )}
-                        <button
-                          onClick={(e) => { e.stopPropagation(); toggleSel(lead.id) }}
-                          title={lead.selecionado ? 'Tirar de "Em estudo"' : 'Mandar pra "Em estudo"'}
-                          style={{
-                            padding: '4px 9px',
-                            background: lead.selecionado ? '#F59E0B' : '#1F2937',
-                            border: `1px solid ${lead.selecionado ? '#F59E0B' : '#374151'}`,
-                            borderRadius: '5px',
-                            color: lead.selecionado ? '#0B0F19' : '#F59E0B',
-                            fontSize: '12px',
-                            fontWeight: 700,
-                            cursor: 'pointer',
-                          }}>
-                          ⭐
-                        </button>
-                        <span style={{ color: muted, fontSize: '14px' }}>{aberto ? '▲' : '▼'}</span>
-                      </div>
-                    </div>
-
-                    {/* Expansão — playbook pronto */}
-                    {aberto && (
-                      <div style={{ borderTop: `1px solid ${brd}`, padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        {/* Links rápidos */}
-                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                          {lead.instagram && (
-                            <a
-                              href={`https://instagram.com/${lead.instagram.replace(/^@/, '')}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#E1306C', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}
-                            >
-                              📸 {lead.instagram}
-                            </a>
-                          )}
-                          {lead.site !== 'NÃO TEM' && !lead.site.startsWith('NÃO TEM') && (
-                            <a href={lead.site} target="_blank" rel="noopener noreferrer"
-                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#60A5FA', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}>
-                              🌐 Site atual
-                            </a>
-                          )}
-                          {lead.linkWhatsApp ? (
-                            <a href={lead.linkWhatsApp} target="_blank" rel="noopener noreferrer"
-                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#4ADE80', fontSize: '12px', fontWeight: 600, textDecoration: 'none' }}>
-                              💬 WhatsApp
-                            </a>
-                          ) : (
-                            <span
-                              title="Sem telefone — usar DM Insta como alternativa"
-                              style={{ padding: '5px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '6px', color: '#9CA3AF', fontSize: '12px', fontWeight: 600, cursor: 'not-allowed' }}>
-                              📋 Pegar telefone primeiro
-                            </span>
-                          )}
-                          {lead.linkDmInsta && (
-                            <a
-                              href={lead.linkDmInsta}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => {
-                                if (lead.mensagemDm) {
-                                  navigator.clipboard.writeText(lead.mensagemDm).catch(() => {})
-                                }
-                              }}
-                              title="Abre conversa DM no Insta + copia mensagem adaptada (mais casual, sem assinatura formal)"
-                              style={{
-                                padding: '5px 12px',
-                                background: lead.linkWhatsApp ? '#1F2937' : 'linear-gradient(135deg, #C026D3 0%, #7C3AED 100%)',
-                                border: lead.linkWhatsApp ? `1px solid ${brd}` : 'none',
-                                borderRadius: '6px',
-                                color: lead.linkWhatsApp ? '#C084FC' : '#fff',
-                                fontSize: '12px',
-                                fontWeight: 600,
-                                textDecoration: 'none',
-                              }}>
-                              📱 DM Insta {!lead.linkWhatsApp && '(copia msg)'}
-                            </a>
-                          )}
-                        </div>
-                        {!lead.linkWhatsApp && lead.linkDmInsta && (
-                          <p style={{ fontSize: '10px', color: '#FBBF24', margin: '0', fontStyle: 'italic' }}>
-                            ⚠️ DM funciona melhor depois do pre-engajamento Insta D-1 (seguir + curtir + comentar 24h antes). Sem isso, mensagem pode cair em "Solicitações" e ser ignorada.
-                          </p>
-                        )}
-
-                        {/* Banner: playbook pré-calibrado */}
-                        <div
-                          style={{
-                            padding: '12px 14px',
-                            background: 'linear-gradient(135deg, #7C3AED 0%, #C026D3 100%)',
-                            borderRadius: '10px',
-                            color: '#fff',
-                            fontSize: '13px',
-                            fontWeight: 800,
-                            textAlign: 'center',
-                            letterSpacing: '0.02em',
-                          }}
-                        >
-                          🎯 Playbook calibrado pelos 5 livros — pronto pra disparar
-                        </div>
-
-                        {/* Razão do ranking — INFO INTERNA pro Eduardo (cor amarela = nota privada) */}
-                        <Secao
-                          keyId={`${lead.id}:razao`}
-                          titulo="💡 Razão do ranking (interno — não é pra mandar)"
-                          cor="#F59E0B"
-                          aberta={secaoAberta[`${lead.id}:razao`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:razao`]: !(p[`${lead.id}:razao`] !== false) }))}
-                        >
-                          <div style={{ padding: '10px 12px', background: '#1A1500', border: '1px solid #D97706', borderRadius: '7px', fontSize: '12px', color: '#FCD34D', lineHeight: 1.5 }}>
-                            {lead.analise.razao_ranking}
-                          </div>
-                        </Secao>
-
-                        {/* Nota interna específica — só aparece se a análise tem instrução privada */}
-                        {lead.analise.nota_interna && (
-                          <Secao
-                            keyId={`${lead.id}:notainterna`}
-                            titulo="📌 Nota interna (FAZER ANTES de disparar)"
-                            cor="#F59E0B"
-                            aberta={secaoAberta[`${lead.id}:notainterna`] !== false}
-                            onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:notainterna`]: !(p[`${lead.id}:notainterna`] !== false) }))}
-                          >
-                            <div style={{ padding: '10px 12px', background: '#1A1500', border: '1px solid #D97706', borderRadius: '7px', fontSize: '12px', color: '#FCD34D', lineHeight: 1.5, fontWeight: 600 }}>
-                              {lead.analise.nota_interna}
-                            </div>
-                            <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
-                              Esse texto é SÓ PRA TI — não copia/cola pro cliente. É instrução pré-abordagem.
-                            </p>
-                          </Secao>
-                        )}
-
-                        <Secao
-                          keyId={`${lead.id}:dor`}
-                          titulo="💥 Dor real do lead"
-                          cor="#EF4444"
-                          aberta={secaoAberta[`${lead.id}:dor`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:dor`]: !(p[`${lead.id}:dor`] !== false) }))}
-                        >
-                          <div style={{ padding: '10px 12px', background: '#1A0A0A', border: '1px solid #2D1515', borderRadius: '7px', fontSize: '12px', color: '#FCA5A5', lineHeight: 1.5 }}>
-                            {lead.analise.dor}
-                          </div>
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:gancho`}
-                          titulo="🎣 Gancho da oferta — como nossa solução resolve"
-                          cor="#10B981"
-                          aberta={secaoAberta[`${lead.id}:gancho`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:gancho`]: !(p[`${lead.id}:gancho`] !== false) }))}
-                        >
-                          <div style={{ padding: '10px 12px', background: '#0A1A14', border: '1px solid #10B98140', borderRadius: '7px', fontSize: '12px', color: '#86EFAC', lineHeight: 1.5 }}>
-                            {lead.analise.gancho}
-                          </div>
-                        </Secao>
-
-                        {/* Mensagens */}
-                        <Secao
-                          keyId={`${lead.id}:preig`}
-                          titulo="📸 D-1: Pré-engajamento Instagram (24h ANTES da Msg 1)"
-                          cor="#EC4899"
-                          aberta={secaoAberta[`${lead.id}:preig`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:preig`]: !(p[`${lead.id}:preig`] !== false) }))}
-                        >
-                          <div style={{ padding: '10px 12px', background: '#1A0A14', border: '1px solid #EC489940', borderRadius: '7px', fontSize: '12px', color: '#F9A8D4', lineHeight: 1.5 }}>
-                            {lead.scripts.preEngajamentoIg}
-                          </div>
-                          <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
-                            Multichannel = +287% respostas (Landbase 2025). Aquece o perfil antes do WhatsApp chegar.
-                          </p>
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:abord`}
-                          titulo="📍 D+0: Msg 1 — Abertura cirúrgica (timeline hook + Voss + <80 palavras)"
-                          cor="#60A5FA"
-                          aberta={secaoAberta[`${lead.id}:abord`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:abord`]: !(p[`${lead.id}:abord`] !== false) }))}
-                        >
-                          <Msg keyId={`${lead.id}-abord`} texto={lead.scripts.abertura} cor="#60A5FA" copiar={copiar} copiado={copiado} />
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:fup3`}
-                          titulo="🔁 D+3: Follow-up (se não respondeu — pivô diferente)"
-                          cor="#F59E0B"
-                          aberta={secaoAberta[`${lead.id}:fup3`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fup3`]: !(p[`${lead.id}:fup3`] !== false) }))}
-                        >
-                          <Msg keyId={`${lead.id}-fup3`} texto={lead.scripts.followupD3} cor="#F59E0B" copiar={copiar} copiado={copiado} />
-                          {lead.linksFollowup.d3 ? (
-                            <a
-                              href={lead.linksFollowup.d3}
-                              target="_blank"
-                              rel="noopener"
-                              style={{
-                                alignSelf: 'flex-start',
-                                padding: '4px 10px',
-                                background: '#16A34A22',
-                                border: '1px solid #16A34A',
-                                borderRadius: '5px',
-                                color: '#86EFAC',
-                                fontSize: '11px',
-                                fontWeight: 700,
-                                textDecoration: 'none',
-                                marginTop: '4px',
-                              }}
-                            >
-                              💬 Abrir WhatsApp com follow-up D+3
-                            </a>
-                          ) : (
-                            <span
-                              title="Sem telefone — pegar via DM Insta primeiro"
-                              style={{
-                                alignSelf: 'flex-start',
-                                padding: '4px 10px',
-                                background: '#37415122',
-                                border: '1px solid #6B7280',
-                                borderRadius: '5px',
-                                color: '#9CA3AF',
-                                fontSize: '11px',
-                                fontWeight: 700,
-                                marginTop: '4px',
-                                cursor: 'not-allowed',
-                              }}
-                            >
-                              📋 Pegar telefone primeiro (D+3)
-                            </span>
-                          )}
-                          <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
-                            42% das respostas vêm em follow-up. 48% dos vendedores NUNCA mandam segundo toque.
-                          </p>
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:fup7`}
-                          titulo="🚪 D+7: Breakup message (última tentativa)"
-                          cor="#DC2626"
-                          aberta={secaoAberta[`${lead.id}:fup7`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fup7`]: !(p[`${lead.id}:fup7`] !== false) }))}
-                        >
-                          <Msg keyId={`${lead.id}-fup7`} texto={lead.scripts.followupD7} cor="#DC2626" copiar={copiar} copiado={copiado} />
-                          {lead.linksFollowup.d7 ? (
-                            <a
-                              href={lead.linksFollowup.d7}
-                              target="_blank"
-                              rel="noopener"
-                              style={{
-                                alignSelf: 'flex-start',
-                                padding: '4px 10px',
-                                background: '#16A34A22',
-                                border: '1px solid #16A34A',
-                                borderRadius: '5px',
-                                color: '#86EFAC',
-                                fontSize: '11px',
-                                fontWeight: 700,
-                                textDecoration: 'none',
-                                marginTop: '4px',
-                              }}
-                            >
-                              💬 Abrir WhatsApp com breakup D+7
-                            </a>
-                          ) : (
-                            <span
-                              title="Sem telefone — pegar via DM Insta primeiro"
-                              style={{
-                                alignSelf: 'flex-start',
-                                padding: '4px 10px',
-                                background: '#37415122',
-                                border: '1px solid #6B7280',
-                                borderRadius: '5px',
-                                color: '#9CA3AF',
-                                fontSize: '11px',
-                                fontWeight: 700,
-                                marginTop: '4px',
-                                cursor: 'not-allowed',
-                              }}
-                            >
-                              📋 Pegar telefone primeiro (D+7)
-                            </span>
-                          )}
-                          <p style={{ fontSize: '10px', color: '#9CA3AF', margin: '4px 0 0', fontStyle: 'italic' }}>
-                            Breakup tem 15-20% reply rate (mais alto da sequência). Depois disso, lead sai da lista ativa por 90 dias.
-                          </p>
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:diag`}
-                          titulo={`💬 Msg 2 — Diagnóstico (variante ${lead.scripts.diagnostico.variante})`}
-                          cor="#818CF8"
-                          aberta={secaoAberta[`${lead.id}:diag`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:diag`]: !(p[`${lead.id}:diag`] !== false) }))}
-                        >
-                          <Msg keyId={`${lead.id}-diag`} texto={lead.scripts.diagnostico.texto} cor="#818CF8" copiar={copiar} copiado={copiado} />
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:apres`}
-                          titulo="🎯 Msg 3 — Apresentação (2 vias conforme resposta)"
-                          cor="#A78BFA"
-                          aberta={secaoAberta[`${lead.id}:apres`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:apres`]: !(p[`${lead.id}:apres`] !== false) }))}
-                        >
-                          <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "só Instagram / só indicação":</p>
-                          <Msg keyId={`${lead.id}-pitchIG`} texto={lead.scripts.pitchSeSoIG} cor="#A78BFA" copiar={copiar} copiado={copiado} />
-                          <p style={{ fontSize: '10px', color: '#A78BFA', margin: '6px 0 0', fontWeight: 700 }}>→ SE ele disser "tenho site" — primeiro pede o link:</p>
-                          <Msg keyId={`${lead.id}-pitchSite`} texto={lead.scripts.pitchSeTemSite} cor="#A78BFA" copiar={copiar} copiado={copiado} />
-                          {lead.scripts.pitchSeTemSiteResposta && (
-                            <>
-                              <p style={{ fontSize: '10px', color: '#A78BFA', margin: '6px 0 0', fontWeight: 700 }}>→ Depois que ele mandar o link (ajustar [X] com dado real):</p>
-                              <Msg keyId={`${lead.id}-pitchSiteResp`} texto={lead.scripts.pitchSeTemSiteResposta} cor="#A78BFA" copiar={copiar} copiado={copiado} />
-                            </>
-                          )}
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:obj`}
-                          titulo="🛡 Objeção esperada + como responder"
-                          cor="#DC2626"
-                          aberta={secaoAberta[`${lead.id}:obj`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:obj`]: !(p[`${lead.id}:obj`] !== false) }))}
-                        >
-                          <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 Objeção provável:</p>
-                          <div style={{ padding: '10px 12px', background: '#1A0A0A', border: '1px solid #DC262640', borderRadius: '7px', fontSize: '12px', color: '#FCA5A5', lineHeight: 1.5 }}>
-                            {lead.analise.objecao}
-                          </div>
-                          <p style={{ fontSize: '10px', color: '#86EFAC', margin: '6px 0 0', fontWeight: 700 }}>💡 Como responder (estratégia):</p>
-                          <div style={{ padding: '10px 12px', background: '#0A1A14', border: '1px solid #10B98140', borderRadius: '7px', fontSize: '12px', color: '#86EFAC', lineHeight: 1.5 }}>
-                            {lead.analise.resposta_objecao}
-                          </div>
-                        </Secao>
-
-                        <Secao
-                          keyId={`${lead.id}:fech`}
-                          titulo="🎣 Msg 4 — Fechamento"
-                          cor="#16A34A"
-                          aberta={secaoAberta[`${lead.id}:fech`] !== false}
-                          onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:fech`]: !(p[`${lead.id}:fech`] !== false) }))}
-                        >
-                          <Msg keyId={`${lead.id}-fech`} texto={lead.scripts.fechamento} cor="#16A34A" copiar={copiar} copiado={copiado} />
-                        </Secao>
-
-                        {lead.scripts.callAlinhamento && (
-                          <Secao
-                            keyId={`${lead.id}:call`}
-                            titulo="⚡ Arma de travamento — Call de alinhamento"
-                            cor="#F59E0B"
-                            aberta={secaoAberta[`${lead.id}:call`] !== false}
-                            onToggle={() => setSecaoAberta((p) => ({ ...p, [`${lead.id}:call`]: !(p[`${lead.id}:call`] !== false) }))}
-                          >
-                            <Msg keyId={`${lead.id}-call`} texto={lead.scripts.callAlinhamento} cor="#F59E0B" copiar={copiar} copiado={copiado} />
-                          </Secao>
-                        )}
-                      </div>
-                    )}
+            {(lead.gancho || lead.dorEscrita) && (
+              <div style={{ padding: '14px 18px', background: '#0B0D12', borderBottom: '1px solid #1F2937' }}>
+                {lead.gancho && (
+                  <>
+                    <Rotulo>O QUE EU DESCOBRI SOBRE ELE</Rotulo>
+                    <p style={{ fontSize: 12, color: '#D1D5DB', margin: 0, lineHeight: 1.6 }}>{lead.gancho}</p>
+                  </>
+                )}
+                {lead.dorEscrita && (
+                  <div style={{ marginTop: lead.gancho ? 10 : 0 }}>
+                    <Rotulo>O QUE UM CLIENTE DELE ESCREVEU — não repita isso pra ele</Rotulo>
+                    <p style={{ fontSize: 12, color: '#FCA5A5', margin: 0, lineHeight: 1.6, fontStyle: 'italic' }}>
+                      “{lead.dorEscrita}”
+                    </p>
                   </div>
-                )
-              })}
+                )}
+              </div>
+            )}
+
+            <div style={{ padding: '16px 18px' }}>
+              <Rotulo>A MENSAGEM QUE VAI SAIR</Rotulo>
+              <div style={{ padding: 14, background: '#000', border: '1px solid #1F2937', borderRadius: 10 }}>
+                <p style={{ fontSize: 13, color: '#E5E7EB', margin: 0, lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>
+                  {lead.mensagem ?? '— sem mensagem gerada —'}
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => enviar(lead)}
+                  disabled={ocupado || !lead.link || travado}
+                  style={{
+                    flex: 1, minWidth: 230, padding: '13px 18px', borderRadius: 10, border: 'none',
+                    background: travado ? '#1F2937' : '#10B981',
+                    color: travado ? '#6B7280' : '#04120C',
+                    fontSize: 14, fontWeight: 800,
+                    cursor: (ocupado || travado) ? 'not-allowed' : 'pointer',
+                  }}>
+                  {ocupado ? 'marcando…' : '📲 Abrir o WhatsApp e marcar como enviado'}
+                </button>
+
+                <button onClick={() => {
+                  navigator.clipboard.writeText(lead.mensagem ?? '')
+                  setCopiado(true); setTimeout(() => setCopiado(false), 1600)
+                }} style={btnSec}>
+                  {copiado ? '✅ copiado' : '📋 copiar'}
+                </button>
+
+                <button onClick={() => { setI((x) => x + 1); setVerPlaybook(false) }}
+                  disabled={i >= d.fila.length - 1} style={btnSec}>
+                  ⏭ depois
+                </button>
+
+                <button onClick={() => pular(lead)} disabled={ocupado} style={{ ...btnSec, color: '#F87171' }}>
+                  ✕ não serve
+                </button>
+              </div>
+
+              <button onClick={() => setVerPlaybook((v) => !v)}
+                style={{ ...btnSec, width: '100%', marginTop: 10, justifyContent: 'center' }}>
+                {verPlaybook ? '▲ esconder' : '▼ ver o playbook (objeções, follow-up, fechamento)'}
+              </button>
+
+              {verPlaybook && lead.playbook && (
+                <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <Bloco titulo="Se responder com interesse" texto={lead.playbook.se_responder_curioso} />
+                  <Bloco titulo="🚀 O motor de crescimento (traz cliente novo)" texto={lead.playbook.o_motor_de_crescimento} cor="#34D399" />
+                  <Bloco titulo='Se disser "já tenho sistema"' texto={lead.playbook.se_disser_ja_tenho_sistema} />
+                  <Bloco titulo='Se disser "não tenho tempo"' texto={lead.playbook.se_disser_nao_tenho_tempo} />
+                  <Bloco titulo='Se disser "tá caro"' texto={lead.playbook.se_disser_ta_caro} />
+                  <Bloco titulo='Se disser "vou ter que digitar tudo de novo?"' texto={lead.playbook.se_disser_vou_ter_que_digitar_tudo} />
+                  <Bloco titulo="Se perguntar do WhatsApp (é semi-automático)" texto={lead.playbook.se_perguntar_whatsapp_automatico} />
+                  <Bloco titulo="Se perguntar de nota fiscal (não temos)" texto={lead.playbook.se_perguntar_nota_fiscal} />
+                  <Bloco titulo="Como fechar" texto={lead.playbook.como_fechar} cor="#10B981" />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </main>
+          </div>
+        )
+      )}
+
+      {/* ── FOLLOW-UP ─────────────────────────────────────────────── */}
+      {aba === 'followup' && (
+        d.followups.length === 0 ? (
+          <Vazio texto="Ninguém devendo follow-up. (Entra aqui quem foi abordado há 3+ dias e não respondeu.)" />
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <p style={{ fontSize: 12, color: '#6B7280', margin: 0 }}>
+              42% das respostas vêm no follow-up — e quase metade dos vendedores nunca manda o segundo toque.
+            </p>
+            {d.followups.map((f) => (
+              <div key={f.id} style={{ border: '1px solid #27272A', borderRadius: 12, background: '#0F1117', padding: 14 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
+                  <div>
+                    <strong style={{ fontSize: 14, color: '#F9FAFB' }}>{f.nome}</strong>
+                    <p style={{ fontSize: 11, color: '#6B7280', margin: '2px 0 0' }}>
+                      abordado há {f.dias} dia{f.dias > 1 ? 's' : ''}, sem resposta
+                    </p>
+                  </div>
+                  <Etiqueta cor={f.qual === 'd7' ? '#F87171' : '#F59E0B'}>
+                    {f.qual === 'd7' ? 'D+7 · breakup' : 'D+3'}
+                  </Etiqueta>
+                </div>
+                {f.mensagem && (
+                  <div style={{ marginTop: 10, padding: 12, background: '#000', border: '1px solid #1F2937', borderRadius: 8 }}>
+                    <p style={{ fontSize: 12, color: '#D1D5DB', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{f.mensagem}</p>
+                  </div>
+                )}
+                <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+                  <button onClick={() => enviarFollowup(f)} disabled={ocupado || !f.link || !hoje.dentroDaJanela}
+                    style={{ ...btnSec, background: '#065F46', color: '#D1FAE5', border: '1px solid #047857' }}>
+                    📲 mandar o {f.qual === 'd7' ? 'breakup' : 'follow-up'}
+                  </button>
+                  <button onClick={async () => { if (await marcar(f.id, 'respondeu')) carregar() }}
+                    disabled={ocupado} style={btnSec}>
+                    ✅ ele respondeu
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )
+      )}
+
+      {/* ── RESPONDERAM ───────────────────────────────────────────── */}
+      {aba === 'respondeu' && (
+        d.respondidos.length === 0 ? (
+          <Vazio texto="Ninguém respondeu ainda. Marque aqui quando alguém responder — é o que mede a taxa de resposta." />
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {d.respondidos.map((rq) => (
+              <div key={rq.id} style={{ border: '1px solid #27272A', borderRadius: 12, background: '#0F1117', padding: 14 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
+                  <div>
+                    <strong style={{ fontSize: 14, color: '#F9FAFB' }}>{rq.nome}</strong>
+                    <p style={{ fontSize: 11, color: '#6B7280', margin: '2px 0 0' }}>respondeu em {rq.respondeu_em}</p>
+                  </div>
+                  <Link href={`/abordar/${rq.id}`} style={{ fontSize: 11, color: '#60A5FA', textDecoration: 'none' }}>
+                    abrir conversa →
+                  </Link>
+                </div>
+                {rq.playbook && (
+                  <details style={{ marginTop: 8 }}>
+                    <summary style={{ fontSize: 11, color: '#9CA3AF', cursor: 'pointer' }}>as respostas de objeção dele</summary>
+                    <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <Bloco titulo='"já tenho sistema"' texto={rq.playbook.se_disser_ja_tenho_sistema} />
+                      <Bloco titulo='"tá caro"' texto={rq.playbook.se_disser_ta_caro} />
+                      <Bloco titulo="como fechar" texto={rq.playbook.como_fechar} cor="#10B981" />
+                    </div>
+                  </details>
+                )}
+                <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+                  <button onClick={async () => { if (await marcar(rq.id, 'fechou')) carregar() }}
+                    style={{ ...btnSec, background: '#065F46', color: '#D1FAE5', border: '1px solid #047857' }}>
+                    💰 fechou
+                  </button>
+                  <button onClick={async () => { if (await marcar(rq.id, 'perdido')) carregar() }}
+                    style={{ ...btnSec, color: '#F87171' }}>
+                    ✕ perdeu
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )
+      )}
+    </Tela>
+  )
+}
+
+/* ── peças ─────────────────────────────────────────────────────────── */
+
+const btnSec: React.CSSProperties = {
+  padding: '11px 14px', borderRadius: 10, border: '1px solid #27272A',
+  background: '#18181B', color: '#D1D5DB', fontSize: 12, fontWeight: 700,
+  cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6,
+}
+
+function Tela({ children }: { children: React.ReactNode }) {
+  return (
+    <main style={{ minHeight: '100vh', background: '#09090B' }}>
+      <HeaderRadarPRO />
+      <div style={{ maxWidth: 780, margin: '0 auto', padding: '24px 16px' }}>{children}</div>
+    </main>
+  )
+}
+
+function Rotulo({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{ fontSize: 10, color: '#4B5563', margin: '0 0 6px', fontWeight: 800, letterSpacing: 0.5 }}>
+      {children}
+    </p>
+  )
+}
+
+function Placar({ rotulo, valor, sub, cor }: { rotulo: string; valor: string; sub?: string; cor: string }) {
+  return (
+    <div style={{ flex: '1 1 120px', padding: '10px 14px', border: '1px solid #27272A', borderRadius: 10, background: '#0F1117' }}>
+      <p style={{ fontSize: 10, color: '#6B7280', margin: 0, fontWeight: 700, letterSpacing: 0.3 }}>{rotulo}</p>
+      <p style={{ fontSize: 20, color: cor, margin: '2px 0 0', fontWeight: 800 }}>
+        {valor}{sub && <span style={{ fontSize: 11, color: '#4B5563', fontWeight: 600 }}> {sub}</span>}
+      </p>
     </div>
   )
 }
 
-function Stat({ label, valor, cor }: { label: string; valor: number; cor: string }) {
+function Etiqueta({ children, cor }: { children: React.ReactNode; cor: string }) {
   return (
-    <div style={{ background: card, border: `1px solid ${brd}`, borderRadius: '8px', padding: '10px 14px' }}>
-      <div style={{ fontSize: '20px', fontWeight: 800, color: cor }}>{valor}</div>
-      <div style={{ fontSize: '10px', color: muted, marginTop: '2px' }}>{label}</div>
+    <span style={{ fontSize: 10, fontWeight: 800, color: cor, border: `1px solid ${cor}55`, background: `${cor}12`, padding: '3px 8px', borderRadius: 20 }}>
+      {children}
+    </span>
+  )
+}
+
+function Aviso({ children, cor }: { children: React.ReactNode; cor: string }) {
+  return (
+    <div style={{ padding: '10px 14px', border: `1px solid ${cor}44`, background: `${cor}10`, borderRadius: 10, marginBottom: 14 }}>
+      <p style={{ fontSize: 12, color: cor, margin: 0, lineHeight: 1.6 }}>{children}</p>
     </div>
   )
 }
 
-function Secao({ keyId, titulo, cor, aberta, onToggle, children }: {
-  keyId: string
-  titulo: string
-  cor: string
-  aberta: boolean
-  onToggle: () => void
-  children: React.ReactNode
-}) {
+function Vazio({ texto }: { texto: string }) {
   return (
-    <div style={{ border: `1px solid ${cor}40`, borderRadius: '10px', overflow: 'hidden', background: '#0F1117' }}>
-      <button
-        onClick={onToggle}
-        style={{
-          width: '100%',
-          padding: '10px 14px',
-          background: cor + '15',
-          border: 'none',
-          color: cor,
-          fontSize: '12px',
-          fontWeight: 800,
-          textAlign: 'left',
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <span>{titulo}</span>
-        <span style={{ fontSize: '10px' }}>{aberta ? '▼' : '▶'}</span>
-      </button>
-      {aberta && <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>{children}</div>}
+    <div style={{ padding: 40, textAlign: 'center', border: '1px dashed #27272A', borderRadius: 12 }}>
+      <p style={{ fontSize: 13, color: '#6B7280', margin: 0 }}>{texto}</p>
     </div>
   )
 }
 
-function Msg({ keyId, texto, cor, copiar, copiado }: {
-  keyId: string
-  texto: string
-  cor: string
-  copiar: (key: string, t: string) => void
-  copiado: string | null
-}) {
+function Bloco({ titulo, texto, cor = '#9CA3AF' }: { titulo: string; texto?: string; cor?: string }) {
+  if (!texto) return null
   return (
-    <div style={{ padding: '10px 12px', background: '#000', border: `1px solid ${brd}`, borderRadius: '7px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-      <p style={{ fontSize: '12px', color: '#E5E7EB', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{texto}</p>
-      <button
-        onClick={() => copiar(keyId, texto)}
-        style={{
-          alignSelf: 'flex-start',
-          padding: '3px 10px',
-          background: '#1F2937',
-          border: `1px solid ${brd}`,
-          borderRadius: '5px',
-          color: cor,
-          fontSize: '10px',
-          cursor: 'pointer',
-          fontWeight: 700,
-        }}
-      >
-        {copiado === keyId ? '✅ Copiado' : '📋 Copiar'}
-      </button>
+    <div style={{ border: `1px solid ${cor}33`, borderRadius: 10, overflow: 'hidden' }}>
+      <p style={{ fontSize: 10, fontWeight: 800, color: cor, background: `${cor}12`, margin: 0, padding: '7px 12px' }}>{titulo}</p>
+      <p style={{ fontSize: 12, color: '#D1D5DB', margin: 0, padding: '10px 12px', lineHeight: 1.65, whiteSpace: 'pre-wrap', background: '#000' }}>{texto}</p>
     </div>
   )
 }

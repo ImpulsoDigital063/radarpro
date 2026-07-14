@@ -13,8 +13,32 @@ export async function POST(req: NextRequest) {
   const body = await req.json()
   const { action } = body
 
-  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'cole_sua_chave_aqui') {
-    return NextResponse.json({ error: 'GEMINI_API_KEY não configurada' }, { status: 400 })
+  /**
+   * A checagem da chave do Gemini bloqueava TODA ação — inclusive as que hoje
+   * rodam 100% locais e de graça (playbook, diagnóstico, abordagem, marcar
+   * disparo). Era isso que fazia o botão de playbook estourar 400 sem motivo.
+   *
+   * Agora só exige chave quem realmente vai chamar um modelo.
+   */
+  const SEM_IA = new Set([
+    'marcar_disparo',
+    'decidir_licao',
+    'gerar_abordagem_arsenal',
+    'melhor_horario',
+  ])
+  const localPorPadrao = new Set(['abordagem', 'diagnostico', 'script_completo'])
+
+  const precisaDeModelo =
+    !SEM_IA.has(action) && !(localPorPadrao.has(action) && !body.force)
+
+  // Claude cobre tudo que precisa de modelo; o Gemini é só fallback.
+  const temModelo = !!process.env.ANTHROPIC_API_KEY || !!process.env.GEMINI_API_KEY
+
+  if (precisaDeModelo && !temModelo) {
+    return NextResponse.json(
+      { error: 'sem chave de IA configurada (ANTHROPIC_API_KEY ou GEMINI_API_KEY)' },
+      { status: 400 }
+    )
   }
 
   try {

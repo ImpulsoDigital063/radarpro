@@ -585,6 +585,21 @@ export default function RadarPRO() {
           WhatsApp {waStatus === 'conectado' ? 'online' : waStatus === 'aguardando_qr' ? 'QR' : 'offline'}
         </a>
 
+        {/* A FILA DE HOJE — a tela de trabalho. Antes só dava pra chegar
+            digitando a URL na mão, o que é o mesmo que não existir. */}
+        <a href="/disparo"
+          title="A fila de hoje: um lead por vez, mensagem pronta, 1 toque"
+          style={{
+            display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '5px 12px', borderRadius: '999px',
+            background: '#064E3B',
+            border: '1px solid #10B981',
+            color: '#6EE7B7',
+            fontSize: '11px', fontWeight: 800, textDecoration: 'none',
+          }}>
+          🎯 Fila de hoje
+        </a>
+
         {/* Link pro dashboard Tally — leads vindos da LP Impulso */}
         <a href="/tally"
           title="Leads vindos dos formulários Tally da LP Impulso"

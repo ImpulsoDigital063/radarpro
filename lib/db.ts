@@ -363,15 +363,19 @@ export async function registrarBusca(busca: {
 export async function estatisticas() {
   await ready()
   const db = getClient()
+  // O "Total" do topo contava a tabela INTEIRA (incluindo arquivados), enquanto a
+  // lista embaixo esconde arquivados. Os dois números nunca batiam. Agora todos
+  // os contadores respeitam o mesmo filtro da lista.
+  const ativo = `status != 'arquivado'`
   const r = await db.batch([
-    `SELECT COUNT(*) as n FROM leads`,
-    `SELECT COUNT(*) as n FROM leads WHERE tipo='lp'`,
-    `SELECT COUNT(*) as n FROM leads WHERE tipo='shopify'`,
-    `SELECT COUNT(*) as n FROM leads WHERE tipo='agendapro'`,
-    `SELECT COUNT(*) as n FROM leads WHERE status='novo'`,
-    `SELECT COUNT(*) as n FROM leads WHERE status='abordado'`,
-    `SELECT COUNT(*) as n FROM leads WHERE status='consultoria_marcada'`,
-    `SELECT COUNT(*) as n FROM leads WHERE status='fechado'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo}`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND tipo='lp'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND tipo='shopify'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND tipo='agendapro'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND status='novo'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND status='abordado'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND status='consultoria_marcada'`,
+    `SELECT COUNT(*) as n FROM leads WHERE ${ativo} AND status='fechado'`,
   ], 'read')
 
   return {

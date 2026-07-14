@@ -1,13 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { listarLeads, atualizarStatus, atualizarNotas, atualizarFollowup, atualizarMensagem, estatisticas, toggleSelecionado } from '@/lib/db'
+import { listarLeads, atualizarStatus, atualizarNotas, atualizarFollowup, atualizarMensagem, estatisticas, toggleSelecionado, getClient } from '@/lib/db'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const tipo   = searchParams.get('tipo') as any
   const status = searchParams.get('status') as any
   const stats  = searchParams.get('stats')
+  const id     = searchParams.get('id')
 
   if (stats) return NextResponse.json(await estatisticas())
+
+  /**
+   * BUG QUE ISSO CONSERTA: /abordar/[id] chamava `/api/leads?id=X` e pegava
+   * data[0] — mas esta rota NUNCA lia `id`. Devolvia a lista inteira, e a tela
+   * sempre mostrava o PRIMEIRO lead do ranking, fosse qual fosse o id da URL.
+   * Ou seja: /abordar/55 e /abordar/999 abriam o mesmo lead.
+   */
+  if (id) {
+    const db = getClient()
+    const r = await db.execute({
+      sql: `SELECT * FROM leads WHERE id = ?`,
+      args: [Number(id)],
+    })
+    return NextResponse.json(r.rows)
+  }
 
   const leads = await listarLeads({
     ...(tipo   && { tipo }),
