@@ -216,15 +216,39 @@ export async function inserirLead(lead: {
 export async function listarLeads(filtros?: {
   tipo?: string
   status?: string
+  /** true = mostra também os 857 leads fora do nicho (loja, tatuagem, pet shop) */
+  incluirArquivados?: boolean
 }): Promise<any[]> {
   await ready()
   const db = getClient()
-  let sql = 'SELECT * FROM leads WHERE 1=1'
+
+  // Por padrão ESCONDE os arquivados. Sem isso o painel mistura joalheria e
+  // pet shop com salão — eram 857 leads fora do nicho poluindo a tela.
+  let sql = filtros?.incluirArquivados
+    ? 'SELECT * FROM leads WHERE 1=1'
+    : `SELECT * FROM leads WHERE (status IS NULL OR status != 'arquivado')`
+
   const args: any[] = []
 
   if (filtros?.tipo)   { sql += ' AND tipo = ?';   args.push(filtros.tipo) }
   if (filtros?.status) { sql += ' AND status = ?'; args.push(filtros.status) }
-  sql += ' ORDER BY criado_em DESC'
+
+  // Ordem de ATAQUE, não de cadastro:
+  //   1º quem JÁ USA sistema (os furiosos — dor nº1 é trava/desloga)
+  //   2º movimento alto e controle na mão (o lead mais quente do caderno)
+  //   3º dentro de cada grupo, quem tem mais avaliações (negócio maior)
+  sql += `
+    ORDER BY
+      CASE nivel_consciencia
+        WHEN 'JA_USA_SISTEMA'        THEN 1
+        WHEN 'MOVIMENTO_ALTO_MANUAL' THEN 2
+        WHEN 'AGENDA_PELA_DM'        THEN 3
+        WHEN 'TEM_SITE_PROPRIO'      THEN 4
+        ELSE 5
+      END,
+      (telefone IS NULL OR telefone = ''),
+      num_avaliacoes DESC
+  `
 
   const result = await db.execute({ sql, args })
   return result.rows as any[]

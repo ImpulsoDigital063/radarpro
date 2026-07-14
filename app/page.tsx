@@ -47,6 +47,20 @@ type Analise = {
   diagnostico: string[]; mensagem_lp: string; mensagem_shopify: string; mensagem_agendapro: string
 }
 
+/**
+ * NÍVEL DE CONSCIÊNCIA (Schwartz) — o campo que DECIDE a mensagem.
+ * Vem do scraper v2, que abre a ficha do negócio no Maps e detecta se ela já
+ * usa sistema, se agenda pela DM, e o tamanho do movimento.
+ * Errar o nível = mensagem morta, por melhor que esteja escrita.
+ */
+const NIVEL: Record<string, { label: string; cor: string }> = {
+  JA_USA_SISTEMA:        { label: 'já usa sistema',   cor: '#F87171' }, // a dor é o SISTEMA
+  MOVIMENTO_ALTO_MANUAL: { label: '🔥 movimento alto', cor: '#FBBF24' }, // o mais quente do caderno
+  AGENDA_PELA_DM:        { label: 'agenda na DM',     cor: '#60A5FA' }, // está no manual
+  TEM_SITE_PROPRIO:      { label: 'tem site',         cor: '#A78BFA' },
+  FRIO:                  { label: 'frio',             cor: '#64748B' },
+}
+
 const STATUS: Record<string, { label: string; cor: string }> = {
   novo:                { label: 'Novo',               cor: '#6B7280' },
   abordado:            { label: 'Abordado',            cor: '#2563EB' },
@@ -1255,15 +1269,17 @@ export default function RadarPRO() {
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <p style={{ fontSize: '11px', color: muted, marginBottom: '8px' }}>
-                  {leads.length} lead{leads.length !== 1 ? 's' : ''} · ordenado por score
+                  {leads.length} lead{leads.length !== 1 ? 's' : ''} · ordenado por ATAQUE (quem já usa sistema primeiro, depois movimento alto)
                 </p>
 
-                {[...leads].sort((a, b) => (b.score ?? 0) - (a.score ?? 0)).map(lead => {
+                {leads.map(lead => {
                   const ti = TIPO[lead.tipo]
                   const si = scoreInfo(lead.score ?? 0)
                   const st = STATUS[lead.status] ?? STATUS.novo
                   const aberto = expandido === lead.id
                   const wLink = lead.telefone && lead.mensagem ? whatsappLink(lead.telefone, lead.mensagem) : null
+                  const nv = NIVEL[(lead as any).nivel_consciencia ?? ''] ?? null
+                  const sistema = (lead as any).sistema_detectado as string | null
 
                   return (
                     <div key={lead.id} style={{ background: card, border: `1px solid ${brd}`, borderRadius: '10px', overflow: 'hidden' }}>
@@ -1285,6 +1301,22 @@ export default function RadarPRO() {
                               {ti.emoji} {ti.label}
                             </span>
                             <span style={{ fontSize: '13px', fontWeight: 700, color: txt }}>{lead.nome}</span>
+
+                            {/* 🔥 JÁ USA SISTEMA — o lead mais quente. A dor dele é o
+                                sistema (trava, desloga, suporte não responde), não a agenda. */}
+                            {sistema && (
+                              <span style={{ fontSize: '10px', fontWeight: 800, color: '#F87171', background: '#F8717118', border: '1px solid #F8717140', padding: '1px 6px', borderRadius: '4px' }}>
+                                🔥 usa {sistema}
+                              </span>
+                            )}
+
+                            {/* Nível de consciência — decide a mensagem */}
+                            {nv && (
+                              <span style={{ fontSize: '10px', fontWeight: 700, color: nv.cor, background: nv.cor + '18', padding: '1px 6px', borderRadius: '4px' }}>
+                                {nv.label}
+                              </span>
+                            )}
+
                             {lead.proximo_followup && (
                               <span style={{ fontSize: '10px', color: '#F59E0B', background: '#F59E0B15', padding: '1px 6px', borderRadius: '4px' }}>
                                 📅 {lead.proximo_followup}
