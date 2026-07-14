@@ -210,6 +210,92 @@ export const ARMA_LOGINS = [
   '    o mês inteiro.',
 ].join('\n')
 
+/**
+ * ARMA UNIVERSAL 3 — O MOTOR DE CRESCIMENTO.
+ * A arma mais forte e a que a gente MENOS estava usando. Não é retenção: é o
+ * sistema TRAZENDO cliente novo.
+ *
+ * ⚠️ HONESTIDADE (λ.não-inventar): a mecânica existe, está construída e roda —
+ * mas a base ainda é pequena e ninguém tirou proveito dela até agora. Então
+ * vende-se O QUE O SISTEMA FAZ. NUNCA diga "meus clientes usam e trouxe X
+ * clientes novos" — isso seria mentira e a gente não faz isso.
+ */
+export const ARMA_CRESCIMENTO = [
+  'O MOTOR DE CRESCIMENTO (o sistema TRAZ cliente novo — não só organiza):',
+  '  · AVALIAÇÃO NO GOOGLE: o cliente avalia o negócio no Google e GANHA PONTOS por',
+  '    isso. Ele informa o nome que usou na avaliação, você aprova, e os pontos caem.',
+  '    Mais estrela no Google = mais gente achando o negócio. O sistema paga o cliente',
+  '    pra te avaliar.',
+  '  · LINK DE INDICAÇÃO: cada cliente tem o código dele. O link sai pronto na tela',
+  '    depois que ele agenda. Quem chega pelo link fica marcado como indicado.',
+  '    Cliente traz cliente.',
+  '  · PONTOS E RESGATE: ele junta ponto atendimento a atendimento e troca por',
+  '    desconto. Motivo pra voltar.',
+  '  · CUPOM DE RETORNO: o sistema acha quem sumiu e monta a mensagem pra você enviar.',
+  '',
+  '  ⚠️ COMO FALAR DISSO SEM MENTIR: fale do que o SISTEMA FAZ ("ele pede a avaliação",',
+  '  "ele gera o link de indicação"). NUNCA invente resultado de cliente, número de',
+  '  avaliações conquistadas ou "fulano cresceu X%". Não temos esse número ainda.',
+].join('\n')
+
+/**
+ * ARMA UNIVERSAL 4 — A AGENDA QUE SE DEFENDE SOZINHA.
+ */
+export const ARMA_AGENDA = [
+  'A AGENDA QUE NÃO DEIXA BURACO:',
+  '  · LISTA DE ESPERA: quando um horário cai (cancelamento), o sistema AVISA A FILA',
+  '    na hora. O buraco na agenda se preenche sozinho — isso é dinheiro que hoje',
+  '    evapora todo dia.',
+  '  · Link de agendamento pra colocar na bio: a cliente marca sozinha, sem DM.',
+  '  · Duração certa por serviço: não deixa marcar procedimento de 2h num buraco de 45min.',
+  '  · Trava anti-overbooking no banco: não marca dois no mesmo horário.',
+  '  · O atendimento passado fecha SOZINHO — ela não precisa dar baixa em nada.',
+].join('\n')
+
+/**
+ * ARMA UNIVERSAL 5 — MATA A OBJEÇÃO MAIS CARA QUE EXISTE.
+ * "Vou ter que digitar meus 400 clientes de novo?" — NÃO.
+ */
+export const ARMA_MIGRACAO = [
+  'A MIGRAÇÃO (mata a objeção mais cara: "vou ter que digitar tudo de novo?"):',
+  '  · IMPORTA A BASE DE CLIENTES de planilha (CSV/XLSX), com uma tela de CONFERÊNCIA',
+  '    antes de gravar — ela vê o que vai entrar e só então confirma.',
+  '  · Importa clientes E agendamentos de sistema concorrente (o importador do Salão365',
+  '    já está pronto). Quem quer SAIR de um sistema tem a ponte.',
+  '  · E o Eduardo monta o resto: serviços, preços, equipe. Ela recebe o login pronto.',
+  '  · Ou seja: ela não digita nada. O trabalho é nosso.',
+].join('\n')
+
+/**
+ * ARMA UNIVERSAL 7 — O FURO. Quem tem sessão longa (nail, lash, estética) perde
+ * 2-3 horas do dia quando a cliente não aparece. Isso é a dor nº1 delas.
+ */
+export const ARMA_NOSHOW = [
+  'O FURO (use MUITO com nail, lash e estética — sessão longa, furo dói fundo):',
+  '  · Quem FURA sem avisar PERDE PONTOS, automaticamente. E o dono pode relevar num',
+  '    toque se a cliente tiver um motivo de verdade.',
+  '  · Quem chega NO HORÁRIO ganha PONTO EXTRA (bônus de pontualidade).',
+  '  · Ou seja: a cliente tem dinheiro em jogo pra aparecer e pra chegar na hora.',
+  '  · Mais a lista de espera: se ela cancelar, o horário não vira buraco.',
+  '  · Mais a confirmação e o lembrete prontos pra você enviar num toque.',
+].join('\n')
+
+/**
+ * ARMA UNIVERSAL 6 — LGPD.
+ * Vale MUITO pra quem guarda ficha (lash, estética, sobrancelha, tranças): elas
+ * coletam DADO DE SAÚDE (alergia, gestação, câncer de pele) numa pasta de papel.
+ */
+export const ARMA_LGPD = [
+  'LGPD (use com quem guarda ficha — lash, estética, sobrancelha, tranças):',
+  '  · A ficha dela coleta DADO DE SAÚDE: alergia, gestação, histórico de câncer de',
+  '    pele, uso de medicamento. Isso é dado sensível pela Lei 13.709.',
+  '  · Numa pasta de papel, em cima do balcão, qualquer um abre. Não tem controle de',
+  '    acesso, não tem registro de quem viu, e se pegar fogo ou molhar, acabou.',
+  '  · No sistema: acesso controlado por login, e o cliente pode pedir a exclusão dos',
+  '    dados dele (o sistema tem a rota pra isso).',
+  '  · NÃO faça terrorismo jurídico e NÃO cite multa nem valor. Só mostre o risco real.',
+].join('\n')
+
 /** Descobre o nicho pela categoria e pelo nome do negócio. */
 export function detectarNicho(categoria: string, nome: string): keyof typeof NICHOS | null {
   const t = `${categoria} ${nome}`.toLowerCase()
@@ -235,6 +321,12 @@ export function contextoDoNicho(categoria: string, nome: string): string {
       ARMA_WHATSAPP,
       '',
       ARMA_LOGINS,
+      '',
+      ARMA_CRESCIMENTO,
+      '',
+      ARMA_AGENDA,
+      '',
+      ARMA_MIGRACAO,
     ].join('\n')
   }
 
@@ -252,6 +344,18 @@ export function contextoDoNicho(categoria: string, nome: string): string {
     ARMA_WHATSAPP,
     '',
     ARMA_LOGINS,
+    '',
+    ARMA_CRESCIMENTO,
+    '',
+    ARMA_AGENDA,
+    '',
+    ARMA_MIGRACAO,
+    // o furo dói fundo em quem tem sessão longa
+    ...(['nail', 'lash', 'estetica', 'sobrancelha', 'trancas'].includes(chave)
+      ? ['', ARMA_NOSHOW]
+      : []),
+    // LGPD só pra quem guarda dado de saúde na ficha
+    ...(['lash', 'estetica', 'sobrancelha', 'trancas'].includes(chave) ? ['', ARMA_LGPD] : []),
     ...(n.naoServe.length
       ? ['', 'NÃO OFEREÇA (não serve pra esse nicho):', ...n.naoServe.map((x) => `  ✗ ${x}`)]
       : []),

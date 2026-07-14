@@ -1463,76 +1463,46 @@ export default function RadarPRO() {
                                   </button>
                                 </div>
                               )
-                              const caseUrl = s.prova_social?.case_sugerido === 'ev_suplementos' ? 'evsuplementosinjetaveis.com' : 'criativosdoceu.com'
                               return (
                                 <div style={{ marginTop: '10px' }}>
-                                  <Secao keyId="abordagem" titulo="📍 1. Abordagem (Msg 1)" cor="#60A5FA">
-                                    <Msg keyId="abordagem" texto={s.abordagem} cor="#60A5FA" />
+                                  <Secao keyId="msg1" titulo="📍 1. Msg 1 — a abertura" cor="#60A5FA">
+                                    <Msg keyId="msg1" texto={s.msg1} cor="#60A5FA" />
                                   </Secao>
-                                  <Secao keyId="diag" titulo="💬 2. Diagnóstico (Msg 2, após resposta)" cor="#818CF8">
-                                    <Msg keyId="diag" texto={s.diagnostico_msg} cor="#818CF8" />
+                                  <Secao keyId="curioso" titulo="💬 2. Se responder com interesse" cor="#818CF8">
+                                    <Msg keyId="curioso" texto={s.se_responder_curioso} cor="#818CF8" />
                                   </Secao>
-                                  <Secao keyId="apres" titulo="🎯 3. Apresentação (árvore 3-vias)" cor="#A78BFA">
-                                    <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "só Instagram/indicação":</p>
-                                    <Msg keyId="a1" texto={s.apresentacao.se_so_instagram} cor="#A78BFA" />
-                                    <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "tenho site":</p>
-                                    <Msg keyId="a2" texto={s.apresentacao.se_tem_site} cor="#A78BFA" />
-                                    <p style={{ fontSize: '10px', color: '#A78BFA', margin: 0, fontWeight: 700 }}>→ SE ele disser "já tenho sistema":</p>
-                                    <Msg keyId="a3" texto={s.apresentacao.se_tem_sistema} cor="#A78BFA" />
+                                  <Secao keyId="crescimento" titulo="🚀 3. O motor de crescimento (traz cliente novo)" cor="#34D399">
+                                    <Msg keyId="crescimento" texto={s.o_motor_de_crescimento} cor="#34D399" />
                                   </Secao>
-                                  <Secao keyId="dor" titulo="💥 4. Dor específica desse negócio" cor="#EF4444">
-                                    <div style={{ padding: '10px 12px', background: '#1A0A0A', border: '1px solid #2D1515', borderRadius: '7px' }}>
-                                      <p style={{ fontSize: '13px', color: '#FCA5A5', margin: '0 0 6px', fontWeight: 700, lineHeight: 1.4 }}>{s.dor.titulo}</p>
-                                      <p style={{ fontSize: '11px', color: '#D1D5DB', margin: 0, lineHeight: 1.5 }}>{s.dor.detalhes}</p>
-                                    </div>
+                                  <Secao keyId="obj" titulo="🛡️ 4. Objeções" cor="#F59E0B">
+                                    <p style={{ fontSize: '10px', color: muted, margin: '0 0 2px', fontWeight: 800 }}>"JÁ TENHO SISTEMA"</p>
+                                    <Msg keyId="o1" texto={s.se_disser_ja_tenho_sistema} cor="#F59E0B" />
+                                    <p style={{ fontSize: '10px', color: muted, margin: '6px 0 2px', fontWeight: 800 }}>"NÃO TENHO TEMPO"</p>
+                                    <Msg keyId="o2" texto={s.se_disser_nao_tenho_tempo} cor="#F59E0B" />
+                                    <p style={{ fontSize: '10px', color: muted, margin: '6px 0 2px', fontWeight: 800 }}>"TÁ CARO"</p>
+                                    <Msg keyId="o3" texto={s.se_disser_ta_caro} cor="#F59E0B" />
+                                    <p style={{ fontSize: '10px', color: muted, margin: '6px 0 2px', fontWeight: 800 }}>"VOU TER QUE DIGITAR TUDO DE NOVO?"</p>
+                                    <Msg keyId="o4" texto={s.se_disser_vou_ter_que_digitar_tudo} cor="#F59E0B" />
+                                    <p style={{ fontSize: '10px', color: muted, margin: '6px 0 2px', fontWeight: 800 }}>"MANDA NO WHATSAPP?" (semi-automático)</p>
+                                    <Msg keyId="o5" texto={s.se_perguntar_whatsapp_automatico} cor="#F59E0B" />
+                                    <p style={{ fontSize: '10px', color: muted, margin: '6px 0 2px', fontWeight: 800 }}>"EMITE NOTA FISCAL?" (não emite)</p>
+                                    <Msg keyId="o6" texto={s.se_perguntar_nota_fiscal} cor="#F59E0B" />
                                   </Secao>
-                                  <Secao keyId="res" titulo="🔨 5. Resolução (como nosso produto mata a dor)" cor="#10B981">
-                                    <Msg keyId="res" texto={s.resolucao} cor="#10B981" />
+                                  <Secao keyId="fup" titulo="⏱️ 5. Follow-up (se sumir)" cor="#A78BFA">
+                                    <p style={{ fontSize: '10px', color: muted, margin: '0 0 2px', fontWeight: 800 }}>DIA 3 — reabre com argumento novo</p>
+                                    <Msg keyId="f3" texto={s.se_sumir_d3} cor="#A78BFA" />
+                                    <p style={{ fontSize: '10px', color: muted, margin: '6px 0 2px', fontWeight: 800 }}>DIA 7 — breakup, devolve o controle</p>
+                                    <Msg keyId="f7" texto={s.se_sumir_d7} cor="#A78BFA" />
                                   </Secao>
-                                  <Secao keyId="arma" titulo="⚡ 6. Arma de vendas — diferencial letal" cor="#F59E0B">
-                                    <div style={{ padding: '10px 12px', background: '#1A1500', border: '1px solid #D9770640', borderRadius: '7px' }}>
-                                      <p style={{ fontSize: '13px', color: '#FDE68A', margin: '0 0 6px', fontWeight: 800 }}>⚡ {s.arma_de_vendas.titulo}</p>
-                                      <p style={{ fontSize: '11px', color: '#FCD34D', margin: 0, lineHeight: 1.5 }}>{s.arma_de_vendas.argumento}</p>
-                                    </div>
+                                  <Secao keyId="fechar" titulo="🎯 6. Como fechar" cor="#10B981">
+                                    <Msg keyId="fechar" texto={s.como_fechar} cor="#10B981" />
                                   </Secao>
-                                  <Secao keyId="anc" titulo="💰 7. Ancoragem de preço (ANTES de revelar)" cor="#22D3EE">
-                                    <div style={{ padding: '10px 12px', background: '#0A1A1F', border: '1px solid #0891B240', borderRadius: '7px' }}>
-                                      <p style={{ fontSize: '11px', color: '#9CA3AF', margin: '0 0 4px' }}><span style={{ color: '#22D3EE', fontWeight: 700 }}>Concorrência:</span> {s.ancoragem_preco.concorrencia}</p>
-                                      <p style={{ fontSize: '11px', color: '#22D3EE', margin: '0 0 8px', fontWeight: 700 }}><span style={{ color: '#9CA3AF', fontWeight: 400 }}>Nosso preço:</span> {s.ancoragem_preco.nosso_preco}</p>
-                                    </div>
-                                    <Msg keyId="anc-frase" texto={s.ancoragem_preco.frase_pronta} cor="#22D3EE" />
-                                  </Secao>
-                                  <Secao keyId="prova" titulo="🎬 8. Prova social — case segmentado" cor="#EC4899">
-                                    <div style={{ padding: '10px 12px', background: '#1A0A14', border: '1px solid #EC489940', borderRadius: '7px' }}>
-                                      <p style={{ fontSize: '10px', color: '#F9A8D4', margin: '0 0 4px', fontWeight: 700 }}>CASE SUGERIDO: {caseUrl}</p>
-                                      <p style={{ fontSize: '10px', color: muted, margin: 0 }}>⚠ Nunca mandar link no 1º contato. Só na consultoria ou quando pedirem.</p>
-                                    </div>
-                                    <Msg keyId="prova-intro" texto={s.prova_social.frase_intro} cor="#EC4899" />
-                                  </Secao>
-                                  <Secao keyId="obj" titulo="🛡 9. Quebra de 4 objeções" cor="#DC2626">
-                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Já tenho Instagram":</p>
-                                    <Msg keyId="obj1" texto={s.objecoes.ja_tenho_instagram} cor="#DC2626" />
-                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Quanto custa?":</p>
-                                    <Msg keyId="obj2" texto={s.objecoes.quanto_custa} cor="#DC2626" />
-                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Vou pensar":</p>
-                                    <Msg keyId="obj3" texto={s.objecoes.vou_pensar} cor="#DC2626" />
-                                    <p style={{ fontSize: '10px', color: '#FCA5A5', margin: 0, fontWeight: 700 }}>💬 "Sem dinheiro agora":</p>
-                                    <Msg keyId="obj4" texto={s.objecoes.sem_dinheiro} cor="#DC2626" />
-                                  </Secao>
-                                  <Secao keyId="fech" titulo="🎣 10. Fechamento (3 horários concretos)" cor="#16A34A">
-                                    <Msg keyId="fech" texto={s.fechamento} cor="#16A34A" />
-                                  </Secao>
-                                  <Secao keyId="fup" titulo="🔁 11. Follow-up pós-consultoria" cor="#D97706">
-                                    {(s.followup_timeline ?? []).map((f: any, i: number) => (
-                                      <div key={i}>
-                                        <p style={{ fontSize: '10px', color: '#FCD34D', margin: '0 0 4px', fontWeight: 700 }}>📅 Dia {f.dia}:</p>
-                                        <Msg keyId={`fup-${i}`} texto={f.mensagem} cor="#D97706" />
-                                      </div>
-                                    ))}
-                                  </Secao>
+                                  <p style={{ fontSize: '10px', color: muted, margin: '8px 0 0', textAlign: 'center' }}>
+                                    {s.modelo?.startsWith('local:') ? `✅ playbook local (${s.modelo.replace('local:', '')}) — custo R$ 0,00` : `🤖 ${s.modelo}`}
+                                  </p>
                                   <button onClick={() => gerarPlaybook(lead, true)}
-                                    style={{ marginTop: '10px', width: '100%', padding: '6px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '7px', color: muted, fontSize: '11px', cursor: 'pointer' }}>
-                                    🔄 Regerar playbook (custo Gemini ~$0.0005)
+                                    style={{ marginTop: '6px', width: '100%', padding: '6px 12px', background: '#1F2937', border: `1px solid ${brd}`, borderRadius: '7px', color: muted, fontSize: '11px', cursor: 'pointer' }}>
+                                    🔄 Regerar com IA (custo ~R$ 0,40 — só se o local não servir)
                                   </button>
                                 </div>
                               )

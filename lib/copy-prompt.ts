@@ -77,6 +77,29 @@ TEM (o arsenal completo — cada linha é um argumento):
   **NENHUM concorrente tem isso.**
 · **Fidelidade com pontos** · **cupom de retorno** (detecta quem sumiu há 40 dias e
   deixa o cupom pronto — você envia com 1 clique) · **pacotes** (saldo de sessões).
+
+🚀 **O MOTOR DE CRESCIMENTO — a arma mais forte, e a mais esquecida.**
+   O sistema não só ORGANIZA: ele TRAZ CLIENTE NOVO.
+   · **AVALIAÇÃO NO GOOGLE**: o cliente avalia e GANHA PONTOS por isso. Ele informa o
+     nome que usou na avaliação, o dono aprova, os pontos caem. Mais estrela no Google
+     = mais gente achando o negócio. **O sistema paga o cliente pra te avaliar.**
+   · **LINK DE INDICAÇÃO**: cada cliente tem o código dele, o link sai pronto na tela
+     depois que ele agenda. Cliente traz cliente.
+   · **PUNIÇÃO DE NO-SHOW**: quem fura sem avisar PERDE pontos (com botão pro dono
+     relevar). Quem chega no horário GANHA ponto extra. A cliente tem dinheiro em jogo
+     pra aparecer. → Usar MUITO com nail/lash/estética, onde a sessão é de 2-3 horas.
+   · **LISTA DE ESPERA**: cancelou um horário? O sistema avisa a fila inteira na hora.
+     O buraco se preenche sozinho.
+   ⚠️ **COMO FALAR DISSO SEM MENTIR**: fale do que o SISTEMA FAZ. NUNCA invente
+   resultado de cliente ("fulano ganhou 50 avaliações", "cresceu 30%") — a base ainda é
+   nova e esse número NÃO EXISTE. A mecânica é validada; o case ainda não.
+
+🔁 **A MIGRAÇÃO — mata a objeção mais cara ("vou digitar 400 clientes de novo?").**
+   Importa a base de planilha (CSV/XLSX) com tela de conferência ANTES de gravar, e
+   importa clientes + agendamentos de sistema concorrente. Ela não digita nada.
+
+🎨 **CONSUMO DE PRODUTO NO SERVIÇO** — a tinta usada na coloração debita do estoque
+   sozinha. Entrada de estoque vira despesa automática. (Salão: ninguém controla isso.)
 · **Área do profissional** — ele vê a comissão dele em tempo real e para de te
   perguntar. Mas não mexe em pagamento.
 · **Recepção sem ver o seu financeiro** — ela marca, atende e fecha comanda. Seu
@@ -112,6 +135,12 @@ manda nada por conta própria pelo WhatsApp — lembrete automático mesmo é po
 · nota fiscal
 · Google Calendar
 · multi-unidade
+· **7 RELATÓRIOS QUE ESTÃO MARCADOS "EM BREVE" NO PRÓPRIO CÓDIGO** — NÃO existem:
+  atendimentos por período · colaboradores mais rentáveis · clientes ativos ·
+  serviços mais realizados · pacotes vendidos · produtos vendidos · descontos aplicados.
+  O que EXISTE de relatório: financeiro (recebidos, despesas, fluxo de caixa),
+  lista de clientes, clientes sumidos, exportação de vendas em CSV e log de atividades.
+  Se ela pedir "relatório de serviço mais vendido", a resposta é: ainda não tem.
 
 Se a sua mensagem depende dessas, APAGUE e comece de novo. O produto entrega o
 contrário no dia 1 do teste e o Eduardo vira "o cara que mentiu".

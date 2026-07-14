@@ -35,6 +35,10 @@ export type PlaybookLocal = {
   se_disser_ta_caro: string
   se_perguntar_whatsapp_automatico: string
   se_perguntar_nota_fiscal: string
+  /** "vou ter que digitar meus 400 clientes de novo?" — a objeção mais cara que existe */
+  se_disser_vou_ter_que_digitar_tudo: string
+  /** o motor de crescimento: o sistema TRAZ cliente novo. É o argumento mais forte. */
+  o_motor_de_crescimento: string
   se_sumir_d3: string
   se_sumir_d7: string
   como_fechar: string
@@ -62,6 +66,24 @@ const NAO_TENHO_TEMPO =
   'É justamente por isso que eu não te entrego um sistema vazio pra você configurar. Você me ' +
   'manda a lista de serviços com preço e quem trabalha com você — EU deixo tudo montado e te ' +
   'mando o login já funcionando. Você abre e usa. O trabalho de montar é meu.'
+
+const MIGRACAO =
+  'Não digita nada, não. Você me manda a lista dos seus clientes — planilha, exportação do ' +
+  'sistema que você usa, o que tiver — e o sistema importa. Tem uma tela onde você CONFERE ' +
+  'tudo antes de gravar, então você vê o que vai entrar e só depois confirma. E os serviços, ' +
+  'os preços e a equipe quem monta sou eu. Você recebe o login com a sua casa já dentro.'
+
+// ⚠️ λ.não-inventar: a mecânica existe e roda. O RESULTADO em cliente ainda não —
+// a base é nova e ninguém tirou proveito dela até hoje. Então falamos do que o
+// SISTEMA FAZ. Nunca "fulano ganhou 50 avaliações".
+const CRESCIMENTO =
+  'Tem uma parte que quase ninguém repara e é a que mais importa: o sistema não só organiza, ' +
+  'ele TRAZ cliente novo. Duas coisas. Primeira: o cliente avalia você no Google e GANHA PONTOS ' +
+  'por isso — ele diz o nome que usou na avaliação, você aprova, e o ponto cai na conta dele. ' +
+  'Ou seja, o sistema paga o seu cliente pra te avaliar no Google, e mais estrela no Google é ' +
+  'mais gente te achando. Segunda: cada cliente tem um link de indicação próprio, que aparece ' +
+  'pronto pra ele depois que agenda. Quem chega por aquele link fica marcado. Cliente trazendo ' +
+  'cliente, sem você gastar um real em anúncio.'
 
 const LOGINS =
   'Cada um tem o login dele. A recepção marca, atende, fecha comanda e vende produto — sem ver ' +
@@ -110,9 +132,10 @@ const COPY: Record<string, PerfilCopy> = {
       'sobre o líquido, você está pagando a mais TODO MÊS sem ver. O sistema não é despesa, é o ' +
       'que para o vazamento. E não tem fidelidade — se em um mês não fizer sentido, você cancela.',
     d3:
-      'Passando aqui de novo, sem pressão. Uma coisa que eu esqueci de te falar: a venda de pomada ' +
-      'e óleo entra na MESMA comanda do corte, e o estoque baixa sozinho. Se você vende no balcão e ' +
-      'não controla, é aí que some dinheiro. Quer que eu te mostre em 10 minutos?',
+      'Passando de novo, sem pressão. Tem uma parte do sistema que quase ninguém repara: o cliente ' +
+      'avalia a barbearia no Google e GANHA PONTOS por isso — ele diz o nome que usou na avaliação, ' +
+      'você aprova, e o ponto cai. Mais estrela no Google é mais gente te achando. O sistema paga o ' +
+      'cliente pra te avaliar. E cada um ainda tem um link de indicação próprio. Quer ver em 10 minutos?',
     d7:
       'Vou parar de te escrever pra não encher. Se um dia quiser conferir se a comissão está saindo ' +
       'certa, ou botar ordem na venda de pomada e óleo, é só me chamar aqui. Sucesso com a barbearia.',
@@ -145,9 +168,10 @@ const COPY: Record<string, PerfilCopy> = {
       'ficha e sem termo assinado, quem paga é você. O sistema custa menos que um almoço por semana e ' +
       'é o que te dá a prova. E não tem fidelidade — cancela quando quiser.',
     d3:
-      'Voltando aqui, sem pressão. Só pra te mostrar uma coisa: o mapping você desenha com o dedo na ' +
-      'tela, igual você faz no caderno — dois olhos, você risca em cima. Fica salvo na ficha da cliente ' +
-      'com a foto de antes e depois. Quer ver funcionando em 10 minutos?',
+      'Voltando, sem pressão. Uma coisa que costuma pegar no seu caso: quem FURA o horário sem avisar ' +
+      'PERDE pontos automaticamente, e quem chega na hora ganha ponto extra. Numa aplicação de 2 horas, ' +
+      'um furo custa o seu dia — aqui a cliente tem dinheiro em jogo pra aparecer. E se ela cancelar, o ' +
+      'sistema avisa a fila de espera na hora. Quer ver funcionando em 10 minutos?',
     d7:
       'Vou parar por aqui pra não ficar insistindo. Se um dia você quiser tirar as fichas da pasta de ' +
       'papel e ter o termo assinado guardado, me chama. Sucesso com o studio.',
@@ -181,9 +205,10 @@ const COPY: Record<string, PerfilCopy> = {
       'a mais por engano já paga o mês do sistema. E o pacote aqui baixa sozinho no atendimento, não tem ' +
       'como errar. Sem fidelidade — cancela quando quiser.',
     d3:
-      'Voltando, sem pressão. Uma coisa que costuma pegar: o pacote de sessões baixa SOZINHO quando você ' +
-      'atende. Some o risco de dar uma sessão de graça sem perceber, e a cliente vê o saldo dela. Quer que ' +
-      'eu te mostre rodando em 10 minutos?',
+      'Voltando, sem pressão. Duas coisas que costumam pegar. O pacote de sessões baixa SOZINHO no ' +
+      'atendimento — some o risco de dar uma sessão de graça sem perceber. E quem fura sem avisar perde ' +
+      'pontos, com você podendo relevar num toque se a cliente tiver motivo. Numa sessão longa, furo é ' +
+      'prejuízo direto. Quer que eu te mostre rodando em 10 minutos?',
     d7:
       'Vou parar de te escrever pra não encher. Se um dia quiser tirar as fichas e os termos do papel, ou ' +
       'botar controle no saldo dos pacotes, me chama aqui. Sucesso com a clínica.',
@@ -216,9 +241,9 @@ const COPY: Record<string, PerfilCopy> = {
       'estão saindo do SEU bolso, todo mês. O sistema não é gasto, é o que fecha esse buraco. E sem ' +
       'fidelidade: se em um mês não servir, você cancela.',
     d3:
-      'Passando de novo, sem pressão. Uma coisa que talvez te interesse: venda de produto (finalizador, ' +
-      'máscara, coloração) entra na mesma comanda do serviço e o estoque baixa junto. Uma cliente minha ' +
-      'tem 164 produtos cadastrados e é por isso que ela fica. Quer ver em 10 minutos?',
+      'Passando de novo, sem pressão. Duas coisas. A tinta que você usa numa coloração DEBITA DO ESTOQUE ' +
+      'sozinha, junto com o serviço — você não lança nada. E a cliente avalia o salão no Google e ganha ' +
+      'pontos por isso, o que te traz gente nova sem gastar um real em anúncio. Quer ver em 10 minutos?',
     d7:
       'Vou parar por aqui pra não insistir. Se um dia quiser conferir se a comissão está saindo certa, ou ' +
       'parar de ver produto sumindo da prateleira, me chama. Sucesso com o salão.',
@@ -249,9 +274,10 @@ const COPY: Record<string, PerfilCopy> = {
       'custa mais que o mês do sistema. Com a confirmação e o lembrete prontos pra você mandar, isso cai. ' +
       'E não tem fidelidade — cancela quando quiser.',
     d3:
-      'Voltando aqui rapidinho. Uma coisa que ajuda muito no seu caso: cada serviço tem a duração certa ' +
-      'cadastrada, então a cliente não consegue marcar uma fibra num buraco de 45 minutos. Acaba o ' +
-      'encavalamento. Quer que eu te mostre em 10 minutos?',
+      'Voltando rapidinho. Isso aqui é pro seu caso: quem FURA sem avisar PERDE pontos, automático — e ' +
+      'você pode relevar num toque se a cliente tiver motivo de verdade. Quem chega no horário ganha ' +
+      'ponto extra. Numa fibra de 2 horas, um furo é o seu dia inteiro. E se ela cancelar, o sistema ' +
+      'avisa a fila de espera na hora e o buraco se preenche sozinho. Quer ver em 10 minutos?',
     d7:
       'Vou parar de escrever pra não encher. Se um dia quiser sair da DM e ter a agenda funcionando ' +
       'sozinha, me chama aqui. Sucesso com o studio.',
@@ -284,9 +310,9 @@ const COPY: Record<string, PerfilCopy> = {
       'reação, quem prova o quê? O sistema custa menos que uma sessão sua e é o que te dá a prova. Sem ' +
       'fidelidade, cancela quando quiser.',
     d3:
-      'Voltando, sem pressão. Uma coisa que costuma chamar atenção: a cliente assina o termo NA TELA, com ' +
-      'o dedo, e vira PDF que vai pro WhatsApp dela num toque. Não some, não molha, não precisa de pasta. ' +
-      'Quer ver em 10 minutos?',
+      'Voltando, sem pressão. Duas coisas: a cliente assina o termo NA TELA, com o dedo, e vira PDF que ' +
+      'vai pro WhatsApp dela num toque — não some, não molha, não precisa de pasta. E o sistema ainda ' +
+      'pede pra ela te avaliar no Google em troca de pontos, o que traz cliente novo. Quer ver em 10 minutos?',
     d7:
       'Vou parar por aqui pra não insistir. Se um dia quiser tirar a ficha e o termo do papel, me chama. ' +
       'Sucesso com o studio.',
@@ -317,9 +343,9 @@ const COPY: Record<string, PerfilCopy> = {
       'cobrar de você já custa mais que um ano de sistema. O termo assinado é o que te protege. E sem ' +
       'fidelidade — cancela quando quiser.',
     d3:
-      'Voltando rapidinho. Uma coisa importante pro seu caso: o termo de tranças deixa por escrito o tempo ' +
-      'de uso e a manutenção, assinado pela cliente na tela. Se ela passar do prazo e der problema, você ' +
-      'tem a prova. Quer ver funcionando em 10 minutos?',
+      'Voltando rapidinho. O termo de tranças deixa por escrito o tempo de uso e a manutenção, assinado ' +
+      'pela cliente na tela — se ela passar do prazo e der problema, você tem a prova. E o sistema ainda ' +
+      'pede pra ela te avaliar no Google em troca de pontos, o que traz cliente novo. Quer ver em 10 minutos?',
     d7:
       'Vou parar de escrever pra não encher. Se um dia quiser ter a ficha capilar e o termo assinado ' +
       'guardados de verdade, me chama. Sucesso com o studio.',
@@ -347,8 +373,9 @@ const COPY: Record<string, PerfilCopy> = {
       'Sem fidelidade e sem taxa de setup: se em um mês não fizer sentido pra você, cancela e pronto. O que ' +
       'eu peço é uma semana de teste antes de você decidir.',
     d3:
-      'Passando de novo, sem pressão. Se fizer sentido, eu te mostro rodando em 10 minutos — com o seu ' +
-      'negócio dentro, não uma demonstração genérica. Quer?',
+      'Passando de novo, sem pressão. Uma coisa que quase ninguém repara: o sistema não só organiza, ele ' +
+      'TRAZ cliente novo — o cliente avalia você no Google e ganha pontos por isso, e cada um tem um link ' +
+      'de indicação próprio. Se fizer sentido, te mostro rodando em 10 minutos, com o seu negócio dentro. Quer?',
     d7:
       'Vou parar de te escrever pra não encher. Se um dia quiser botar a agenda e o financeiro em ordem, ' +
       'é só me chamar aqui. Sucesso.',
@@ -449,6 +476,8 @@ export function gerarPlaybookLocal(lead: {
     se_disser_ta_caro: c.caro,
     se_perguntar_whatsapp_automatico: WHATSAPP,
     se_perguntar_nota_fiscal: NOTA_FISCAL,
+    se_disser_vou_ter_que_digitar_tudo: MIGRACAO,
+    o_motor_de_crescimento: CRESCIMENTO,
     se_sumir_d3: c.d3,
     se_sumir_d7: c.d7,
     como_fechar: c.fechar,
