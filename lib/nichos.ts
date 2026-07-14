@@ -193,6 +193,23 @@ export const ARMA_WHATSAPP = [
   '  · O que NÃO existe: envio sozinho, sem clique. NUNCA prometa isso.',
 ].join('\n')
 
+/**
+ * ARMA UNIVERSAL 2 — CADA UM COM SEU LOGIN.
+ * Vale pra todo negócio que tem mais de uma pessoa. Resolve duas dores de uma vez:
+ * o dono não quer a recepção vendo o faturamento dele, e o profissional não quer
+ * depender do dono pra saber quanto ganhou.
+ */
+export const ARMA_LOGINS = [
+  'CADA UM COM SEU LOGIN (pra quem tem equipe):',
+  '  · A RECEPÇÃO tem o login dela: marca, atende, fecha comanda e vende produto —',
+  '    SEM ver o seu faturamento nem a comissão dos outros.',
+  '  · CADA PROFISSIONAL tem o login dele: abre no celular e vê a AGENDA DELE e',
+  '    QUANTO JÁ GANHOU DE COMISSÃO, em tempo real. Para de perguntar pra você.',
+  '  · Você vê tudo. Eles veem só o que é deles.',
+  '  · Isso mata a briga do fim do mês: a conta não aparece do nada, ele acompanhou',
+  '    o mês inteiro.',
+].join('\n')
+
 /** Descobre o nicho pela categoria e pelo nome do negócio. */
 export function detectarNicho(categoria: string, nome: string): keyof typeof NICHOS | null {
   const t = `${categoria} ${nome}`.toLowerCase()
@@ -216,6 +233,8 @@ export function contextoDoNicho(categoria: string, nome: string): string {
       'NICHO: não identificado com precisão. Use a pergunta de diagnóstico e NÃO chute a dor dela.',
       '',
       ARMA_WHATSAPP,
+      '',
+      ARMA_LOGINS,
     ].join('\n')
   }
 
@@ -231,6 +250,8 @@ export function contextoDoNicho(categoria: string, nome: string): string {
     ...n.armas.map((a) => `  · ${a}`),
     '',
     ARMA_WHATSAPP,
+    '',
+    ARMA_LOGINS,
     ...(n.naoServe.length
       ? ['', 'NÃO OFEREÇA (não serve pra esse nicho):', ...n.naoServe.map((x) => `  ✗ ${x}`)]
       : []),

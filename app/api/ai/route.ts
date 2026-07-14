@@ -1,4 +1,5 @@
 import { diagnosticarComClaude, playbookComClaude } from '@/lib/claude-playbook'
+import { gerarPlaybookLocal, gerarDiagnosticoLocal } from '@/lib/playbook-local'
 import { gerarMensagemComArsenal } from '@/lib/claude-copy'
 import { NextRequest, NextResponse } from 'next/server'
 import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio, gerarScriptCompleto, classificarTermometro, analisarConversa, type MensagemConversa } from '@/lib/gemini'
@@ -33,7 +34,7 @@ export async function POST(req: NextRequest) {
      * não estiver configurada.
      */
     if (action === 'abordagem') {
-      const { lead } = body
+      const { lead, force } = body
       if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
 
       // busca o lead COMPLETO no banco — o payload do painel pode não trazer
@@ -42,6 +43,22 @@ export async function POST(req: NextRequest) {
       if (lead.id) {
         const r = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
         if (r.rows[0]) completo = { ...lead, ...(r.rows[0] as any) }
+      }
+
+      // LOCAL por padrão (custo zero): a msg 1 do playbook já é escrita à mão
+      // por nicho × situação. force=true chama o Claude.
+      if (!force) {
+        const pb = gerarPlaybookLocal(completo)
+        if (lead.id) await atualizarMensagem(lead.id, pb.msg1)
+        return NextResponse.json({
+          mensagem: pb.msg1,
+          argumento: gerarDiagnosticoLocal(completo).arma_certa,
+          diagnostico: completo.sistema_detectado
+            ? `Já usa ${completo.sistema_detectado} — a dor dele é o SISTEMA (trava/desloga), não a agenda.`
+            : `Nível: ${completo.nivel_consciencia ?? 'desconhecido'}`,
+          modelo: pb.modelo,
+          custo_usd: 0,
+        })
       }
 
       if (process.env.ANTHROPIC_API_KEY) {
@@ -138,10 +155,42 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(analise)
     }
 
-    // Diagnóstico do negócio — CLAUDE + ARSENAL + MAPA DE NICHO
+    // Diagnóstico do negócio — LOCAL por padrão (custo zero).
+    // A API só entra se pedirem force=true explicitamente no painel.
     if (action === 'diagnostico') {
-      const { lead } = body
+      const { lead, force } = body
       if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
+
+      if (!force) {
+        const rl = lead.id
+          ? await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
+          : null
+        const completo = { ...lead, ...((rl?.rows[0] as any) ?? {}) }
+        const d = gerarDiagnosticoLocal(completo)
+
+        if (lead.id) {
+          const notas = [
+            `[Diagnóstico — local, sem API]`,
+            `Dor: ${d.dor_central}`,
+            `Arma certa: ${d.arma_certa}`,
+            `NÃO oferecer: ${d.o_que_nao_oferecer}`,
+          ].join('\n')
+          await db.execute({
+            sql: `UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+            args: [notas, lead.id],
+          })
+        }
+
+        return NextResponse.json({
+          dor_central: d.dor_central,
+          custo_da_dor: d.custo_da_dor,
+          produto_ideal: d.arma_certa,
+          o_que_nao_oferecer: d.o_que_nao_oferecer,
+          mensagem_impacto: d.mensagem_impacto,
+          modelo: d.modelo,
+          custo_usd: 0,
+        })
+      }
 
       if (process.env.ANTHROPIC_API_KEY && lead.id) {
         const rl = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
@@ -217,12 +266,17 @@ export async function POST(req: NextRequest) {
       const rl = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
       const completo = { ...lead, ...((rl.rows[0] as any) ?? {}) }
 
-      // CLAUDE + ARSENAL + MAPA DE NICHO. O Gemini caía com 503 e o prompt de
-      // abril não sabia a dor específica de cada nicho — falava "gestão pra
-      // beleza", que é o mesmo que não dizer nada.
-      const script = process.env.ANTHROPIC_API_KEY
-        ? await playbookComClaude(completo)
-        : await gerarScriptCompleto(lead)
+      // LOCAL por padrão — custo zero. A conversa muda por NICHO e por SITUAÇÃO,
+      // não de lead pra lead: duas barbearias que já usam sistema recebem a mesma
+      // abertura, só muda o nome. Não faz sentido pagar API por isso.
+      //
+      // force=true chama o Claude (arsenal + mapa de nicho) — usar só quando o
+      // playbook local não servir pra aquele caso específico.
+      const script = force
+        ? process.env.ANTHROPIC_API_KEY
+          ? await playbookComClaude(completo)
+          : await gerarScriptCompleto(lead)
+        : gerarPlaybookLocal(completo)
 
       await db.execute({
         sql: `UPDATE leads SET script_json = ?, script_gerado_em = datetime('now','localtime'), atualizado_em = datetime('now','localtime') WHERE id = ?`,
