@@ -47,6 +47,112 @@ export type PlaybookLocal = {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
+   COMO CHAMAR O NEGÓCIO NA SAUDAÇÃO
+   ═══════════════════════════════════════════════════════════════════════
+
+   O nome que vem do Google Maps é um cartaz de SEO, não um nome:
+     "Makedamaay | Salão de Beleza"
+     "Iara Leite - Especialista em Depilação a Laser em Palmas"
+     "Barbearia Toledo - Palmas Brasil Sul"
+     "Espaço Bella - Beleza & Bem-Estar ✅ em Palmas."
+
+   Jogar isso cru na saudação ("Boa tarde, Makedamaay | Salão de Beleza.")
+   é a coisa mais robô que existe — e sai logo na PRIMEIRA LINHA, que é onde
+   a pessoa decide se lê ou bloqueia. 179 dos 695 leads têm nome assim.
+
+   Regra: limpa o nome. Se sobrar coisa boa, usa. Se ficar duvidoso, NÃO USA
+   NOME NENHUM — "Boa tarde, tudo bem?" nunca soa errado; nome mutilado sempre.
+*/
+
+/** Palavras que denunciam cartaz de SEO no fim do nome. */
+const LIXO_NO_NOME =
+  /\b(em\s+palmas|palmas\s*[-–]?\s*to\b|palmas\s+brasil.*|palmas|brasil|tocantins|\bto\b)\b/gi
+
+export function nomeDeTratamento(bruto: string): string | null {
+  let n = (bruto ?? '').trim()
+  if (!n) return null
+
+  // 1. fora emoji, selo e afins
+  n = n.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{2705}]/gu, ' ')
+
+  // 2. o que vem depois da barra é sempre categoria/SEO
+  n = n.split('|')[0]
+
+  // 3. o que vem depois do travessão idem ("Taylor e Thedy - Salão e Barbearia")
+  n = n.split(/\s[-–—]\s/)[0]
+
+  // 4. fora parênteses
+  n = n.replace(/\([^)]*\)/g, ' ')
+
+  // 5. fora a lista de serviços que alguns colam no nome (vírgula em série)
+  if ((n.match(/,/g) ?? []).length >= 2) n = n.split(',')[0]
+
+  // 6. fora cidade/estado
+  n = n.replace(LIXO_NO_NOME, ' ')
+
+  // 7. arruma espaço e pontuação solta
+  n = n.replace(/\s+/g, ' ').replace(/[\s.,;:&\-–—]+$/g, '').trim()
+
+  if (n.length < 3) return null
+
+  const palavras = n.split(' ').filter(Boolean)
+
+  // 8. sobrou um cartaz genérico ("Salão De Beleza", "Salã De Beleza")? não usa
+  //    nome. Se o nome é SÓ categoria, chamar por ele soa como mala direta.
+  //    (o \w* no fim tolera o nome digitado errado — "Salã", "Saloes")
+  const soCategoria =
+    /^(sal[ãaáo]\w*|barbearia|studio|est[úu]dio|cl[íi]nica|espa[çc]o|centro|instituto)\s+(de\s+)?(beleza|est[ée]tica|cabelos?|cabeleireiros?)$/i
+  if (soCategoria.test(n)) return null
+
+  /**
+   * 9. Comprido demais vira parágrafo na saudação. Corta — mas PARE ANTES da
+   *    palavra de categoria, senão sai "Studio Melissa Salão", que é pior que
+   *    "Studio Melissa".
+   */
+  if (palavras.length > 3) {
+    const corte: string[] = []
+    for (const p of palavras.slice(0, 3)) {
+      if (corte.length >= 2 && CATEGORIA_NO_NOME.test(p)) break
+      corte.push(p)
+    }
+    // não deixe conjunção/preposição pendurada no fim ("Dion Estética e.")
+    while (corte.length > 1 && /^(e|&|de|da|do|dos|das|com|em|-)$/i.test(corte[corte.length - 1])) {
+      corte.pop()
+    }
+    return corte.join(' ')
+  }
+
+  return n
+}
+
+/** Palavras que são categoria, não nome próprio. */
+const CATEGORIA_NO_NOME =
+  /^(sal[ãa]o|barbearia|est[ée]tica|beleza|cabeleireiros?|esmalteria|clinica|cl[íi]nica|spa|nails?|hair)$/i
+
+/**
+ * É nome de PESSOA (e não de negócio)? Então chama pelo primeiro nome —
+ * "Oi Amanda" em vez de "Oi Amanda Bronze".
+ */
+const PALAVRA_DE_NEGOCIO =
+  /barbearia|barber|sal[ãa]o|studio|est[úu]dio|est[ée]tica|espa[çc]o|cl[íi]nica|centro|beauty|beleza|hair|nails?|lash|spa|instituto|casa|atelier|boutique|esmalteria|c[íi]lios|sobrancelhas?|depila/i
+
+export function comoChamar(bruto: string): string | null {
+  const n = nomeDeTratamento(bruto)
+  if (!n) return null
+
+  // negócio → chama pelo nome do negócio, inteiro
+  if (PALAVRA_DE_NEGOCIO.test(n)) return n
+
+  // "Taylor e Thedy", "Ana & Bia" — são dois sócios, é o nome DA CASA.
+  // Cortar no primeiro ("Boa tarde, Taylor") apaga o sócio e soa errado.
+  if (/\s(e|&)\s/i.test(n)) return n
+
+  // pessoa → primeiro nome ("Amanda Bronze" → "Amanda")
+  const p = n.split(' ')
+  return p.length >= 2 ? p[0] : n
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
    RESPOSTAS UNIVERSAIS — iguais pra todo nicho
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -395,8 +501,12 @@ const COPY: Record<string, PerfilCopy> = {
    O QUE MUDA POR SITUAÇÃO — só a abertura (msg1)
    ═══════════════════════════════════════════════════════════════════════ */
 
-function abertura(sit: SituacaoLead, c: PerfilCopy, nome: string, sistema?: string | null): string {
-  const oi = `Boa tarde, ${nome}. Já aviso que é mensagem de vendedor, sou de Palmas mesmo.`
+function abertura(sit: SituacaoLead, c: PerfilCopy, nomeBruto: string, sistema?: string | null): string {
+  // Nunca o nome cru do Maps. Ver nomeDeTratamento() lá em cima.
+  const nome = comoChamar(nomeBruto)
+  const oi = nome
+    ? `Boa tarde, ${nome}. Já aviso que é mensagem de vendedor, sou de Palmas mesmo.`
+    : `Boa tarde, tudo bem? Já aviso que é mensagem de vendedor, sou de Palmas mesmo.`
 
   switch (sit) {
     case 'USA_SISTEMA':
