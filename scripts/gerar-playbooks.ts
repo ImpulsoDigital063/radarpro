@@ -18,6 +18,9 @@ async function main() {
     SELECT id, nome, categoria, sistema_detectado, nivel_consciencia
     FROM leads
     WHERE status != 'arquivado' AND telefone IS NOT NULL
+      -- SÓ AgendaPRO. Rodar isso em lead de LP/Shopify entrega playbook de
+      -- salão pra escritório de arquitetura. Já aconteceu.
+      AND tipo = 'agendapro'
   `)
 
   console.log(`gerando playbook pra ${r.rows.length} leads...\n`)

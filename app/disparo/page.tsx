@@ -59,6 +59,7 @@ type Respondido = {
 
 type Dados = {
   hoje: { enviadas: number; teto: number; restam: number; janela: string; dentroDaJanela: boolean }
+  whatsapp: { conectado: boolean; numero: string | null; status: string }
   fila: LeadFila[]
   followups: Followup[]
   respondidos: Respondido[]
@@ -124,10 +125,48 @@ export default function FilaPage() {
     }
   }
 
-  /** O botão principal: abre o WhatsApp com a msg pronta E marca o disparo. */
+  /**
+   * O botão principal. Dois caminhos:
+   *
+   * CONECTADO (rodando local, WhatsApp Business vinculado por QR) → envia
+   *   direto pelo seu número via /api/whatsapp/send, que passa pelo guard
+   *   (teto do dia, janela de horário, anti-duplicata). Você não toca em nada.
+   *
+   * DESCONECTADO (ou rodando na Vercel) → abre o wa.me com o texto pronto e
+   *   você aperta enviar. Marca o disparo do mesmo jeito.
+   */
   async function enviar(lead: LeadFila) {
+    if (!lead.telefone) { setErro('lead sem telefone'); return }
+
+    if (d?.whatsapp.conectado) {
+      setOcupado(true)
+      try {
+        const r = await fetch('/api/whatsapp/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            telefone: lead.telefone,
+            mensagem: lead.mensagem,
+            leadId: lead.id,
+          }),
+        })
+        const j = await r.json()
+        if (!r.ok) throw new Error(j.error ?? 'falha ao enviar')
+      } catch (e: any) {
+        setErro(e.message)
+        setOcupado(false)
+        return
+      }
+      setOcupado(false)
+      await marcar(lead.id, 'disparado')
+      setVerPlaybook(false)
+      await carregar()
+      setI(0)
+      return
+    }
+
+    // fallback: wa.me. Abre ANTES do await — senão o navegador bloqueia o popup.
     if (!lead.link) { setErro('lead sem telefone'); return }
-    // abre ANTES do await — senão o navegador bloqueia o popup
     window.open(lead.link, '_blank', 'noopener,noreferrer')
     if (await marcar(lead.id, 'disparado')) {
       setVerPlaybook(false)
@@ -156,12 +195,42 @@ export default function FilaPage() {
 
   return (
     <Tela>
-      <div style={{ marginBottom: 16 }}>
-        <h1 style={{ fontSize: 22, fontWeight: 800, margin: 0, color: '#F9FAFB' }}>Fila de hoje</h1>
-        <p style={{ fontSize: 12, color: '#6B7280', margin: '4px 0 0' }}>
-          Um lead por vez. A mensagem já está escrita. Um toque abre o WhatsApp e marca o disparo.
-        </p>
+      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
+        <div>
+          <h1 style={{ fontSize: 22, fontWeight: 800, margin: 0, color: '#F9FAFB' }}>Fila de hoje</h1>
+          <p style={{ fontSize: 12, color: '#6B7280', margin: '4px 0 0' }}>
+            {d.whatsapp.conectado
+              ? 'Um lead por vez. A mensagem sai direto do seu WhatsApp, no ritmo do guard.'
+              : 'Um lead por vez. A mensagem já está escrita. Um toque abre o WhatsApp e marca o disparo.'}
+          </p>
+        </div>
+
+        <a href="/integracao/whatsapp"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 7, textDecoration: 'none',
+            padding: '7px 12px', borderRadius: 999,
+            border: `1px solid ${d.whatsapp.conectado ? '#10B981' : '#3F3F46'}`,
+            background: d.whatsapp.conectado ? '#064E3B' : '#18181B',
+            color: d.whatsapp.conectado ? '#6EE7B7' : '#9CA3AF',
+            fontSize: 11, fontWeight: 800, whiteSpace: 'nowrap',
+          }}>
+          <span style={{
+            width: 7, height: 7, borderRadius: 999,
+            background: d.whatsapp.conectado ? '#10B981' : '#6B7280',
+          }} />
+          {d.whatsapp.conectado
+            ? `WhatsApp conectado${d.whatsapp.numero ? ` · ${d.whatsapp.numero}` : ''}`
+            : 'WhatsApp desconectado — conectar'}
+        </a>
       </div>
+
+      {!d.whatsapp.conectado && (
+        <Aviso cor="#6B7280">
+          O envio automático só funciona com o projeto rodando na sua máquina — a Vercel não segura
+          a sessão do WhatsApp. Sem conexão, o botão abre o wa.me com o texto pronto e você aperta
+          enviar. Funciona igual, só custa um toque.
+        </Aviso>
+      )}
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
         <Placar rotulo="enviadas hoje" valor={`${hoje.enviadas}`} sub={`de ${hoje.teto}`} cor="#10B981" />
@@ -273,7 +342,11 @@ export default function FilaPage() {
                     fontSize: 14, fontWeight: 800,
                     cursor: (ocupado || travado) ? 'not-allowed' : 'pointer',
                   }}>
-                  {ocupado ? 'marcando…' : '📲 Abrir o WhatsApp e marcar como enviado'}
+                  {ocupado
+                    ? 'enviando…'
+                    : d.whatsapp.conectado
+                      ? '🚀 Enviar agora pelo meu WhatsApp'
+                      : '📲 Abrir o WhatsApp e marcar como enviado'}
                 </button>
 
                 <button onClick={() => {

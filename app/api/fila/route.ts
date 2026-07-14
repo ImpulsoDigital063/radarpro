@@ -29,6 +29,13 @@ type Fila = {
     janela: string
     dentroDaJanela: boolean
   }
+  /**
+   * Estado da conexão com o WhatsApp Business (Baileys, dispositivo vinculado).
+   * Só existe rodando LOCAL — na Vercel o processo morre entre requisições e a
+   * sessão do WhatsApp cai junto. Quando desconectado, a fila cai no wa.me
+   * (abre o app com o texto pronto, você aperta enviar).
+   */
+  whatsapp: { conectado: boolean; numero: string | null; status: string }
   fila: any[]
   followups: any[]
   respondidos: any[]
@@ -61,6 +68,10 @@ export async function GET(_req: NextRequest) {
      WHERE status != 'arquivado'
        AND telefone IS NOT NULL
        AND disparado_em IS NULL
+       -- SÓ AgendaPRO. Sem isso, escritório de arquitetura e loja de cosmético
+       -- (leads de LP/Shopify) caíam na fila e recebiam mensagem sobre comissão
+       -- de barbeiro. Loja não tem agenda, nem comissão, nem ficha.
+       AND tipo = 'agendapro'
      ORDER BY
        CASE WHEN script_json LIKE '%manual:estudado%' THEN 0 ELSE 1 END,
        CASE WHEN sistema_detectado IS NOT NULL THEN 0 ELSE 1 END,
@@ -119,6 +130,21 @@ export async function GET(_req: NextRequest) {
     playbook: parse(l.script_json),
   }))
 
+  // Estado do WhatsApp. NÃO chama conectar() — só lê. Se conectasse aqui, cada
+  // refresh da fila tentaria subir socket, e na Vercel isso estoura.
+  let whatsapp = { conectado: false, numero: null as string | null, status: 'indisponivel' }
+  try {
+    const { statusAtual } = await import('@/lib/whatsapp')
+    const s = statusAtual()
+    whatsapp = {
+      conectado: s.status === 'conectado',
+      numero: s.numero ?? null,
+      status: s.status,
+    }
+  } catch {
+    // sem Baileys no ambiente (Vercel) — segue no wa.me
+  }
+
   const out: Fila = {
     hoje: {
       enviadas,
@@ -127,6 +153,7 @@ export async function GET(_req: NextRequest) {
       janela: `${GUARD_PADRAO.horaInicio}h–${GUARD_PADRAO.horaFim}h`,
       dentroDaJanela,
     },
+    whatsapp,
     fila,
     followups,
     respondidos,

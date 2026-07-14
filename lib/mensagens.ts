@@ -399,6 +399,25 @@ export function nomeIndicaBeleza(nome: string): boolean {
  * O lead é do nicho? Olha CATEGORIA e, se ela falhar, olha o NOME.
  * É esta função que a limpeza da base e o disparo devem usar.
  */
+/**
+ * Categorias que o Google Maps devolve sem dizer nada — é AQUI, e só aqui, que
+ * o nome do negócio tem direito de decidir.
+ */
+const CATEGORIA_GENERICA = [
+  'serviço com agenda',
+  'servico com agenda',
+  'patrocinado',
+  'estabelecimento',
+  'empresa',
+  'loja',            // "Loja" seco, sem dizer de quê — ambíguo
+]
+
+function categoriaEhGenerica(categoria: string): boolean {
+  const c = (categoria ?? '').trim().toLowerCase()
+  if (!c) return true
+  return CATEGORIA_GENERICA.some((x) => c === x || c === x + 's')
+}
+
 export function ehLeadDoNicho(categoria: string, nome: string): boolean {
   // 1) tatuagem/piercing/academia → FORA, mesmo que tenha "studio" no nome
   if (ehTatuagemOuPiercing(categoria, nome)) return false
@@ -408,7 +427,23 @@ export function ehLeadDoNicho(categoria: string, nome: string): boolean {
   // 2) categoria de beleza → dentro
   if (detectarTipoOferta(categoria ?? '') === 'agendapro-solo') return true
 
-  // 3) categoria genérica ("Serviço com agenda", "Patrocinado") → o NOME decide
+  /**
+   * 3) O nome só decide quando a CATEGORIA NÃO DISSE NADA.
+   *
+   * BUG QUE ISSO CONSERTA: antes o nome decidia SEMPRE que a categoria não fosse
+   * beleza — e como "studio", "make" e "unhas" estão na lista de nomes que
+   * entregam beleza, entraram na base:
+   *   · "Studio Milhomem l Arquitetura"  (Escritório de Arquitetura)
+   *   · "Universo das Makes & Unhas"     (Loja de cosmético)
+   *   · "A&M Make up Boutique"           (Loja de produtos de beleza)
+   *
+   * Quando a categoria diz "Escritório de Arquitetura" ou "Loja de cosmético",
+   * ela JÁ DECIDIU. O nome não tem que opinar. Esses são leads de LP e Shopify —
+   * produtos que a Impulso vende, mas NÃO são AgendaPRO: loja não tem agenda,
+   * nem comissão, nem ficha de anamnese.
+   */
+  if (!categoriaEhGenerica(categoria)) return false
+
   return nomeIndicaBeleza(nome ?? '')
 }
 
