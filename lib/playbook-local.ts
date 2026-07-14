@@ -18,6 +18,7 @@
  */
 
 import { detectarNicho } from './nichos'
+import { detectarPorte, type Porte, type ReviewLite } from './porte'
 
 export type SituacaoLead =
   | 'USA_SISTEMA'
@@ -29,6 +30,10 @@ export type SituacaoLead =
 
 export type PlaybookLocal = {
   msg1: string
+  /** solo ou equipe — decide QUAIS armas entram na msg 1 */
+  porte: Porte
+  /** por que decidimos esse porte (uso interno, nunca vai pra mensagem) */
+  porte_motivo: string
   se_responder_curioso: string
   se_disser_ja_tenho_sistema: string
   se_disser_nao_tenho_tempo: string
@@ -204,6 +209,20 @@ const LOGINS =
 type PerfilCopy = {
   /** como ELA chama o negócio (usar na fala) */
   trato: string
+  /**
+   * AS ARMAS DA MSG 1, POR PORTE. (Eduardo, 14/07/2026)
+   *
+   * Antes eu mandava "a recepção marca sem ver o seu faturamento" pra todo mundo.
+   * Uma lash designer que trabalha SOZINHA lê isso e conclui: "não é pra mim" —
+   * e some, antes de chegar na ficha, que é o que ia fechar a venda dela.
+   *
+   * solo   → agenda, ficha, furo, financeiro. ZERO menção a recepção ou equipe.
+   * equipe → comissão, recepção com login próprio, agenda por profissional.
+   *
+   * O padrão é SOLO. Só vira equipe com PROVA nas avaliações (lib/porte.ts).
+   */
+  armasSolo: string
+  armasEquipe: string
   /** a pergunta de abertura — é o que faz ela responder */
   pergunta: string
   /** a arma principal, em 1 frase de venda */
@@ -226,13 +245,19 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── BARBEARIA */
   barbearia: {
     trato: 'barbearia',
+    armasSolo:
+      'A agenda tem link: o cliente marca sozinho, sem te mandar mensagem. O corte e a pomada que ele levar entram na mesma comanda, e o estoque baixa sozinho. E o financeiro te mostra o que SOBROU no fim do mês — já fora a taxa do cartão —, não só o que entrou.',
+    armasEquipe:
+      'A comissão calcula sobre o que o cliente pagou DE VERDADE: se você deu desconto, ela acompanha o desconto, não sai da tabela. E só conta depois que ele pagou. Cada barbeiro vê a dele no celular e para de te perguntar. A recepção marca e fecha comanda sem enxergar o seu faturamento. E a venda de pomada entra na mesma comanda do corte, com o estoque baixando junto.',
     pergunta:
-      'a comissão do seu barbeiro sai em cima da tabela do corte, ou em cima do que entrou de ' +
-      'verdade na maquininha, já descontando cupom e taxa?',
+      'quando você dá um desconto no corte, a comissão do barbeiro sai em cima da tabela ou em ' +
+      'cima do que o cliente pagou de verdade?',
     arma:
-      'O sistema calcula a comissão sobre o LÍQUIDO — o que entrou de verdade, já fora o cupom e ' +
-      'a taxa do cartão, e só depois que o cliente pagou. Num cliente meu ele descobriu que vinha ' +
-      'pagando comissão a mais havia meses, porque calculava em cima do bruto.',
+      // ⚠️ CUPOM sim, taxa de maquininha NÃO. Conferido no código (14/07/2026).
+      'A comissão calcula sobre o que o cliente pagou DE VERDADE: se você deu desconto, ela sai ' +
+      'sobre o valor com desconto, não sobre a tabela. E só conta depois que ele pagou. Num ' +
+      'cliente meu o sistema mostrou que ele vinha pagando comissão a mais havia meses, porque ' +
+      'calculava em cima do valor cheio.',
     caro:
       'Entendo. Mas olha o outro lado da conta: se a comissão está saindo sobre a tabela e não ' +
       'sobre o líquido, você está pagando a mais TODO MÊS sem ver. O sistema não é despesa, é o ' +
@@ -262,6 +287,10 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── LASH */
   lash: {
     trato: 'studio',
+    armasSolo:
+      'A ficha de anamnese fica digital: as perguntas de saúde, o mapping que você desenha com o dedo na tela, e a MARCA, O LOTE E A VALIDADE DA COLA. A cliente assina o termo ali mesmo, com o dedo, e vira PDF que vai pro WhatsApp dela. A agenda tem link, então ela marca sozinha sem passar pela sua DM. E quem fura o horário perde ponto — você releva se quiser.',
+    armasEquipe:
+      'A ficha de anamnese fica digital: perguntas de saúde, o mapping desenhado com o dedo, e a marca, o lote e a validade da cola. A cliente assina o termo na tela e vira PDF. Cada profissional tem o login dela, vê a agenda dela e a comissão dela no celular — que calcula sobre o que a cliente pagou de verdade, já com o desconto que você deu. E a recepção marca e fecha comanda sem ver o seu faturamento.',
     pergunta:
       'se uma cliente tiver reação à cola daqui a 3 meses, em quanto tempo você acha o termo que ' +
       'ela assinou — e o lote da cola que você usou nela?',
@@ -298,6 +327,10 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── ESTÉTICA */
   estetica: {
     trato: 'clínica',
+    armasSolo:
+      'A ficha de anamnese fica digital — ácido, gestante, histórico de pele — com o termo assinado pela cliente na tela, e vira PDF. Os PACOTES têm saldo: quantas sessões ela comprou, quantas usou, quantas faltam — e a sessão baixa sozinha no atendimento, sem risco de você dar uma de graça. A agenda tem link, e o financeiro mostra o que sobrou de verdade.',
+    armasEquipe:
+      'A ficha de anamnese fica digital, com o termo assinado na tela, e os PACOTES têm saldo de sessões que baixa sozinho no atendimento. A comissão calcula sobre o que a cliente pagou de verdade — se você deu desconto, ela acompanha. Cada profissional vê a dela no celular. E a recepção marca e fecha comanda sem enxergar o seu faturamento.',
     pergunta:
       'a ficha da cliente e o termo de consentimento você guarda impresso ou digital? Se for papel, ' +
       'você acha a ficha de uma cliente de dois anos atrás em quanto tempo?',
@@ -335,17 +368,22 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── SALÃO */
   salao: {
     trato: 'salão',
+    armasSolo:
+      'A agenda tem link: a cliente marca sozinha, sem passar pela sua DM, e cada serviço já entra com a duração certa. A venda de produto entra na mesma comanda do serviço e o estoque baixa sozinho. E o financeiro te mostra o que SOBROU no fim do mês — já fora a taxa do cartão —, não só o faturamento.',
+    armasEquipe:
+      'A comissão calcula sobre o que a cliente pagou DE VERDADE: se você deu desconto, ela acompanha o desconto, não sai da tabela. E só conta depois que ela pagou. Cada profissional vê a dela no celular e para de te perguntar. A recepção marca e fecha comanda sem enxergar o seu faturamento. E a venda de produto entra na mesma comanda, com o estoque baixando junto.',
     pergunta:
-      'a comissão da sua equipe sai em cima da tabela, ou em cima do que entrou de verdade depois do ' +
-      'desconto e da taxa da maquininha?',
+      'quando você dá um desconto pra cliente, a comissão da profissional sai em cima da tabela ou ' +
+      'em cima do que a cliente pagou de verdade?',
     arma:
-      'Comissão sobre o LÍQUIDO — descontando cupom e taxa do cartão, e só depois que a cliente pagou. ' +
-      'Cada profissional vê a dela em tempo real no celular e para de te perguntar. E a recepção opera ' +
-      'sem enxergar o seu faturamento.',
+      // ⚠️ CUPOM sim, taxa de maquininha NÃO.
+      'A comissão sai sobre o que a cliente pagou DE VERDADE: deu desconto, a comissão acompanha o ' +
+      'desconto — não sai da tabela. E só conta depois que ela pagou. Cada profissional vê a dela em ' +
+      'tempo real no celular e para de te perguntar. E a recepção opera sem enxergar o seu faturamento.',
     caro:
-      'Se a comissão está saindo sobre a tabela e não sobre o líquido, o desconto e a taxa da maquininha ' +
-      'estão saindo do SEU bolso, todo mês. O sistema não é gasto, é o que fecha esse buraco. E sem ' +
-      'fidelidade: se em um mês não servir, você cancela.',
+      'Se a comissão está saindo sobre a tabela e não sobre o que a cliente pagou, cada desconto que ' +
+      'você dá sai do SEU bolso — a profissional recebe sobre um valor que não entrou. O sistema não ' +
+      'é gasto, é o que fecha esse buraco. E sem fidelidade: se em um mês não servir, você cancela.',
     d3:
       'Passando de novo, sem pressão. Duas coisas. A tinta que você usa numa coloração DEBITA DO ESTOQUE ' +
       'sozinha, junto com o serviço — você não lança nada. E a cliente avalia o salão no Google e ganha ' +
@@ -358,9 +396,9 @@ const COPY: Record<string, PerfilCopy> = {
       'sua equipe — e te mando o login pronto. Você roda uma semana de verdade. Me manda a lista de ' +
       'serviços com preço e quem trabalha com você?',
     jaTem:
-      'Boa. Duas perguntas então: ele calcula comissão sobre o líquido (já fora cupom e maquininha), e a ' +
-      'sua recepcionista consegue ver o seu faturamento quando entra? São os dois pontos onde eu mais ' +
-      'vejo dono incomodado com o sistema que já tem.',
+      'Boa. Duas perguntas então: quando você dá desconto, ele recalcula a comissão em cima do valor ' +
+      'que a cliente pagou, ou continua na tabela? E a sua recepcionista consegue ver o seu faturamento ' +
+      'quando entra? São os dois pontos onde eu mais vejo dono incomodado com o sistema que já tem.',
     curioso:
       'Show. Resumo: agenda por profissional, comanda que junta serviço + produto, comissão sobre o ' +
       'líquido com cada uma vendo a dela no celular, e a recepção operando sem ver seu financeiro. ' +
@@ -370,6 +408,10 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── NAIL */
   nail: {
     trato: 'studio',
+    armasSolo:
+      'A agenda tem link: a cliente marca sozinha, sem passar pela sua DM, e cada serviço entra com a duração certa — ela não consegue marcar uma fibra num buraco de 45 minutos. Quem fura o horário perde ponto, e você releva se ela tiver motivo. Se cancelar, o sistema avisa a fila de espera e o horário não vira buraco.',
+    armasEquipe:
+      'A agenda tem link e cada serviço entra com a duração certa, por profissional. Quem fura perde ponto. A comissão calcula sobre o que a cliente pagou de verdade — se você deu desconto, ela acompanha — e cada uma vê a dela no celular. E a recepção marca e fecha comanda sem ver o seu faturamento.',
     pergunta: 'sua agenda hoje tá na DM do Instagram, ou você já usa alguma coisa pra marcar?',
     arma:
       'Agenda com link: a cliente marca sozinha, sem passar pela sua DM. E cada serviço com a duração ' +
@@ -404,6 +446,10 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── SOBRANCELHA */
   sobrancelha: {
     trato: 'studio',
+    armasSolo:
+      'A ficha de anamnese fica digital, com o TERMO assinado pela cliente na tela, com o dedo — e vira PDF que vai pro WhatsApp dela. O pigmento fica registrado: marca, lote e validade. A agenda tem link, então ela marca sozinha sem passar pela sua DM. E a foto de antes e depois fica salva com data.',
+    armasEquipe:
+      'A ficha fica digital, com o termo assinado na tela e o registro do pigmento (marca, lote e validade). A agenda tem link, por profissional. A comissão calcula sobre o que a cliente pagou de verdade, e cada uma vê a dela no celular. E a recepção marca e fecha comanda sem ver o seu faturamento.',
     pergunta:
       'a ficha e o termo das clientes de micropigmentação: você guarda no papel ou digital? E o pigmento ' +
       'que usou (marca e lote), fica registrado em algum lugar?',
@@ -438,6 +484,10 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── TRANÇAS */
   trancas: {
     trato: 'studio',
+    armasSolo:
+      'A ficha capilar fica digital — química anterior, reação alérgica, couro cabeludo — e a cliente assina o TERMO DE TRANÇAS na tela: tempo de uso recomendado e manutenção. Se ela passar do prazo e der problema, você tem a prova. Vira PDF e vai pro WhatsApp dela. A agenda tem link, e a venda de produto entra na comanda.',
+    armasEquipe:
+      'A ficha capilar fica digital e a cliente assina o termo de tranças na tela — tempo de uso e manutenção, com a sua isenção se ela passar do prazo. A comissão calcula sobre o que a cliente pagou de verdade, e cada profissional vê a dela no celular. E a recepção marca e fecha comanda sem ver o seu faturamento.',
     pergunta:
       'a cliente assina algum termo sobre o tempo de uso das tranças, ou fica tudo no combinado de boca?',
     arma:
@@ -471,6 +521,10 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── OUTRO (nicho não identificado) */
   OUTRO: {
     trato: 'seu negócio',
+    armasSolo:
+      'A agenda tem link: o cliente marca sozinho, sem te mandar mensagem, e cada serviço já entra com a duração certa. A comanda fecha o atendimento e a venda no mesmo lugar. E o financeiro te mostra o que SOBROU no fim do mês — já fora a taxa do cartão —, não só o que entrou.',
+    armasEquipe:
+      'A agenda tem link, por profissional. A comissão calcula sobre o que o cliente pagou DE VERDADE: se você deu desconto, ela acompanha, e só conta depois que ele pagou — cada um vê a dele no celular. E a recepção marca e fecha comanda sem enxergar o seu faturamento.',
     pergunta: 'hoje você controla os horários no caderno, no WhatsApp, ou já usa algum sistema?',
     arma:
       'Agenda com link (a cliente marca sozinha), comanda, controle do que entrou e do que saiu, e o ' +
@@ -501,48 +555,72 @@ const COPY: Record<string, PerfilCopy> = {
    O QUE MUDA POR SITUAÇÃO — só a abertura (msg1)
    ═══════════════════════════════════════════════════════════════════════ */
 
-function abertura(sit: SituacaoLead, c: PerfilCopy, nomeBruto: string, sistema?: string | null): string {
-  // Nunca o nome cru do Maps. Ver nomeDeTratamento() lá em cima.
+/**
+ * A MSG 1 (reescrita 14/07/2026, decisão do Eduardo).
+ *
+ * O QUE MUDOU E POR QUÊ:
+ *
+ * 1. CAIU o "já aviso que é mensagem de vendedor". Eu tinha essa regra no arsenal
+ *    ("robô nunca se entrega") — e TRÊS LINHAS ABAIXO a regra oposta, da Gong:
+ *    "abrir se desculpando derruba a conversão em 40%; no começo vira pedido de
+ *    desculpa por existir". As duas se contradiziam e eu não confrontei. Pior: a
+ *    frase que existia pra não parecer robô virou A ASSINATURA do robô, idêntica
+ *    em 695 mensagens.
+ *
+ * 2. ENTROU a apresentação real: nome, empresa, cidade e — o que mais importa —
+ *    "criei o AgendaPRO". Não é revendedor mandando mensagem: é o cara que fez o
+ *    sistema. Trinks e Booksy têm 40 mil clientes e suporte robô; NENHUM deles
+ *    pode dizer isso, nem "eu passo aí amanhã".
+ *
+ * 3. A msg 1 agora APRESENTA O PRODUTO e o que ele resolve. A versão anterior era
+ *    só uma pergunta de diagnóstico — e um estranho fazendo pergunta não ganha
+ *    resposta. Ela precisa ver, na primeira mensagem, que existe solução.
+ *
+ * 4. AS ARMAS MUDAM POR PORTE. Ver lib/porte.ts: falar de recepção e comissão de
+ *    equipe pra quem trabalha sozinha faz ela se desqualificar ("não é pra mim").
+ *
+ * 5. O FECHAMENTO OFERECE A VISITA. As duas saídas são "sim" — ela escolhe entre
+ *    WhatsApp e visita, não entre responder e ignorar.
+ */
+function abertura(
+  sit: SituacaoLead,
+  c: PerfilCopy,
+  nomeBruto: string,
+  porte: Porte,
+  _sistema?: string | null,
+): string {
   const nome = comoChamar(nomeBruto)
-  const oi = nome
-    ? `Boa tarde, ${nome}. Já aviso que é mensagem de vendedor, sou de Palmas mesmo.`
-    : `Boa tarde, tudo bem? Já aviso que é mensagem de vendedor, sou de Palmas mesmo.`
+  const chamamento = nome ? `Olá, ${nome}.` : 'Olá, tudo bem?'
 
-  switch (sit) {
-    case 'USA_SISTEMA':
-      // Ela JÁ resolveu o problema da agenda. A dor dela é o SISTEMA, não a agenda.
-      // Não vender "agenda" pra quem já tem — vender o que o sistema dela não faz.
-      return [
-        oi,
-        `Vi que vocês já usam sistema${sistema ? '' : ''}, então não vou te oferecer agenda — você já tem.`,
-        `Minha pergunta é outra: ${c.pergunta}`,
-        `É onde eu mais vejo dono já com sistema perdendo dinheiro sem perceber.`,
-      ].join(' ')
+  const euSou =
+    `Me chamo Eduardo Barros, sou desenvolvedor da Impulso Digital, aqui de Palmas. ` +
+    `Criei o AgendaPRO, um sistema feito pra ${c.trato}.`
 
-    case 'MOVIMENTO_ALTO_MANUAL':
-      return [
-        oi,
-        `Dá pra ver que o movimento aí é alto, e é justamente por isso que eu te escrevi.`,
-        `Uma pergunta rápida: ${c.pergunta}`,
-      ].join(' ')
+  // quem JÁ USA sistema não pode ouvir "criei uma agenda" — ele já tem agenda.
+  // A conversa com ele é sobre o que o sistema dele NÃO faz.
+  const ponte =
+    sit === 'USA_SISTEMA'
+      ? `Sei que vocês já usam um sistema, então não vim te oferecer agenda. Vim te mostrar o que costuma faltar nos outros:`
+      : null
 
-    case 'AGENDA_PELA_DM':
-      return [
-        oi,
-        `Reparei que o agendamento aí passa pela DM do Instagram.`,
-        `Antes de te oferecer qualquer coisa: ${c.pergunta}`,
-      ].join(' ')
+  const armas = porte === 'equipe' ? c.armasEquipe : c.armasSolo
 
-    case 'TEM_SITE_PROPRIO':
-      return [
-        oi,
-        `Vi que vocês já têm site — então já entenderam que organização importa, não vou te explicar o óbvio.`,
-        `Só uma pergunta: ${c.pergunta}`,
-      ].join(' ')
+  const oferta =
+    porte === 'equipe'
+      ? `São 7 dias grátis, sem taxa de setup e sem fidelidade. Eu mesmo monto tudo com seus serviços, seus preços e a sua equipe — você recebe o login pronto.`
+      : `São 7 dias grátis, sem taxa de setup e sem fidelidade. Eu mesmo monto tudo com os seus serviços e preços — você recebe o login pronto.`
 
-    default:
-      return [oi, `Uma pergunta rápida, e se não fizer sentido eu não te incomodo mais: ${c.pergunta}`].join(' ')
-  }
+  const convite = `Quer que eu te explique melhor por aqui, ou prefere que eu passe aí pra te mostrar funcionando?`
+
+  return [
+    `${chamamento} ${euSou}`,
+    ponte,
+    armas,
+    oferta,
+    convite,
+  ]
+    .filter(Boolean)
+    .join('\n\n')
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -567,10 +645,18 @@ export function gerarPlaybookLocal(lead: {
   categoria?: string | null
   sistema_detectado?: string | null
   nivel_consciencia?: string | null
+  /** JSON das avaliações do Google — é o que prova se ela tem equipe */
+  reviews_texto?: string | null
 }): PlaybookLocal {
   const nicho = detectarNicho(lead.categoria ?? '', lead.nome ?? '') ?? 'OUTRO'
   const c = COPY[nicho] ?? COPY.OUTRO
   const sit = situacaoDoLead(lead)
+
+  // PORTE: padrão é SOLO. Só vira equipe com PROVA nas avaliações. Ver lib/porte.ts.
+  let reviews: ReviewLite[] = []
+  try { reviews = JSON.parse(String(lead.reviews_texto ?? '[]')) } catch { reviews = [] }
+  const ev = detectarPorte({ nome: lead.nome, categoria: lead.categoria ?? '', reviews })
+  const porte = ev.porte
 
   // quem já usa sistema tem uma resposta de objeção diferente: a dor é o sistema dela
   const jaTem =
@@ -579,7 +665,9 @@ export function gerarPlaybookLocal(lead: {
       : c.jaTem
 
   return {
-    msg1: abertura(sit, c, lead.nome, lead.sistema_detectado),
+    msg1: abertura(sit, c, lead.nome, porte, lead.sistema_detectado),
+    porte,
+    porte_motivo: ev.motivo,
     se_responder_curioso: c.curioso,
     se_disser_ja_tenho_sistema: jaTem,
     se_disser_nao_tenho_tempo: NAO_TENHO_TEMPO,
@@ -591,7 +679,7 @@ export function gerarPlaybookLocal(lead: {
     se_sumir_d3: c.d3,
     se_sumir_d7: c.d7,
     como_fechar: c.fechar,
-    modelo: `local:${nicho}/${sit}`,
+    modelo: `local:${nicho}/${sit}/${porte}`,
     custoUSD: 0,
   }
 }

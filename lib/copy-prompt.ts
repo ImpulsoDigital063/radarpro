@@ -68,9 +68,21 @@ TEM (o arsenal completo — cada linha é um argumento):
   Entrada de mercadoria vira despesa automática. Vende no atendimento OU avulso.
 · **Financeiro de verdade** — fluxo de caixa, 7 categorias de despesa, lucro REAL
   (não só faturamento), taxa da maquininha descontada.
-· **COMISSÃO SOBRE O LÍQUIDO** — calculada sobre o que ENTROU, já descontando o
-  cupom e a taxa do cartão. E só depois que o cliente PAGOU. Num cliente real o
-  sistema descobriu que ele pagava comissão a mais há meses.
+· **COMISSÃO SOBRE O LÍQUIDO** — ⚠️ ATENÇÃO AO QUE ISSO SIGNIFICA DE VERDADE
+  (conferido no código do AgendaPRO em 14/07/2026 — lib/commission-discount.ts):
+
+  ✅ A comissão desconta o **CUPOM / DESCONTO DA COMANDA**. Se o dono deu 20% de
+     desconto, a comissão sai sobre o valor COM desconto, não sobre a tabela.
+     E só conta depois que o cliente PAGOU.
+     Num cliente real o sistema descobriu que ele pagava comissão a mais há meses.
+
+  ❌ A comissão **NÃO desconta a taxa da maquininha**. NUNCA PROMETA ISSO.
+     Quem prometer, o cliente descobre no dia 1 do teste e o Eduardo vira o cara
+     que mentiu — justamente na conta mais sensível que existe num salão.
+
+  ℹ️ A taxa do cartão É descontada, mas em outro lugar: no **FINANCEIRO**, que
+     mostra o lucro REAL do dono (não o faturamento cheio). São duas coisas
+     diferentes. Não misture as duas na mesma frase.
 · **Ficha de anamnese digital** (cílios/capilar/estética) — perguntas de saúde,
   mapping desenhado com o dedo na tela, marca/lote/validade da cola, termo de
   responsabilidade, assinatura da cliente, PDF que vai pro WhatsApp dela.

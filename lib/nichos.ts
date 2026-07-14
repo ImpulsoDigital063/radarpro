@@ -30,13 +30,17 @@ export const NICHOS: Record<string, PerfilNicho> = {
     comoSeChama: 'barbearia',
     dores: [
       'comissão do barbeiro calculada na mão no fim do mês — e dá briga',
-      'paga comissão sobre o valor de tabela, mas o cupom e a taxa do cartão saem do bolso DELE',
+      'paga comissão sobre o valor de tabela, mas o cupom que ELE deu sai do bolso dele',
       'vende pomada, óleo e shampoo no balcão e não tem controle nenhum',
       'barbeiro sai e leva a clientela',
       'não sabe quanto sobrou no fim do mês',
     ],
     armas: [
-      'COMISSÃO SOBRE O LÍQUIDO: calcula sobre o que entrou de verdade, já descontando o cupom e a taxa da maquininha. E só depois que o cliente pagou.',
+      // ⚠️ VERDADE DO SISTEMA (conferida no código, 14/07): a comissão desconta o
+      // CUPOM/DESCONTO da comanda. NÃO desconta taxa de maquininha. A taxa do
+      // cartão é descontada no FINANCEIRO (o lucro do dono), não na comissão.
+      // Prometer taxa na comissão = o cliente descobre no dia 1 do teste.
+      'COMISSÃO SOBRE O LÍQUIDO: calcula sobre o que o cliente pagou DE VERDADE — se você deu desconto ou cupom, a comissão sai já em cima do valor com desconto, não da tabela. E só conta depois que ele pagou.',
       'Num cliente real o sistema DESCOBRIU que ele pagava comissão a mais há meses — sobre o bruto, em comanda com cupom.',
       'Cada barbeiro vê a comissão dele em tempo real no celular e para de perguntar.',
       'Venda de pomada/óleo entra na MESMA comanda do corte. Estoque baixa sozinho.',
@@ -44,7 +48,7 @@ export const NICHOS: Record<string, PerfilNicho> = {
       'Fidelidade com pontos e cupom de retorno pra quem sumiu há 40 dias.',
     ],
     naoServe: ['ficha de anamnese (barbearia não usa)'],
-    perguntaChave: 'A comissão do seu barbeiro sai em cima da tabela do corte, ou em cima do que entrou de verdade na maquininha?',
+    perguntaChave: 'Quando você dá um desconto no corte, a comissão do barbeiro sai em cima da tabela ou em cima do que o cliente pagou de verdade?',
   },
 
   /* ─────────────────────────────────────────────────────────── */
@@ -106,7 +110,8 @@ export const NICHOS: Record<string, PerfilNicho> = {
       'não sabe quanto sobrou (só 45% dos donos sabem o lucro do mês)',
     ],
     armas: [
-      'COMISSÃO SOBRE O LÍQUIDO — desconta cupom e taxa da maquininha, e só conta depois que a cliente pagou.',
+      // ⚠️ cupom SIM, taxa de maquininha NÃO. Ver comentário em barbearia.
+      'COMISSÃO SOBRE O LÍQUIDO — se você deu desconto ou cupom, a comissão sai sobre o valor que a cliente pagou de verdade, não sobre a tabela. E só conta depois que ela pagou.',
       'Cada profissional vê a comissão dela em tempo real e PARA DE PERGUNTAR.',
       'RECEPÇÃO OPERA SEM VER O SEU FINANCEIRO: ela marca, atende, fecha comanda e vende produto. Seu faturamento e a comissão dos outros ficam fora do alcance dela.',
       'ESTOQUE E VENDA DE PRODUTO na mesma comanda do serviço. (A Izanara, do Studio MOOD, tem 164 produtos cadastrados e paga o plano Equipe por causa disso.)',
@@ -115,7 +120,7 @@ export const NICHOS: Record<string, PerfilNicho> = {
       'FICHA CAPILAR (se faz química/tranças): química anterior, reação alérgica, couro cabeludo, termo assinado.',
     ],
     naoServe: [],
-    perguntaChave: 'A comissão da sua equipe sai em cima da tabela, ou em cima do que entrou de verdade depois do desconto e da maquininha?',
+    perguntaChave: 'Quando você dá um desconto pra cliente, a comissão da profissional sai em cima da tabela ou em cima do que a cliente pagou de verdade?',
   },
 
   /* ─────────────────────────────────────────────────────────── */

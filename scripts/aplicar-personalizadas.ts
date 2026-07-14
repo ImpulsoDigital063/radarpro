@@ -23,12 +23,40 @@ async function main() {
   const db = getClient()
   const itens: Item[] = JSON.parse(readFileSync(ENTRADA as string, 'utf8'))
 
-  // trava λ.não-inventar: a mensagem NÃO pode citar nota nem nº de avaliações
-  const PROIBIDO = /\b\d{2,}\s*(avalia|review|estrela)/i
-  const suspeitos = itens.filter((i) => PROIBIDO.test(i.msg1) || (i.d3 && PROIBIDO.test(i.d3)))
-  if (suspeitos.length) {
-    console.log('🚫 BLOQUEADO — mensagem citando nº de avaliações (só vendedor lê isso):')
-    for (const s of suspeitos) console.log(`   id ${s.id}: ${s.msg1.slice(0, 90)}`)
+  /**
+   * TRAVAS. Cada uma nasceu de um erro real que quase foi pro WhatsApp.
+   */
+  const TRAVAS: [RegExp, string][] = [
+    // só vendedor lê contagem de review — entrega o robô na primeira linha
+    [/\b\d{2,}\s*(avalia|review|estrela)|nota\s*[45][,.]\d/i,
+      'cita nota ou nº de avaliações do Google'],
+
+    // a comissão desconta CUPOM, não taxa de maquininha (conferido no código)
+    [/comiss[ãa]o[^.!?]{0,120}(maquininha|taxa do cart)|(maquininha|taxa do cart)[^.!?]{0,80}comiss[ãa]o/i,
+      'promete comissão descontando taxa de maquininha — O SISTEMA NÃO FAZ ISSO'],
+
+    // anunciar-se vendedor na linha 1 é dar permissão pra ser descartado
+    [/mensagem de vendedor|sou vendedor|aviso que (é|e) (uma )?venda/i,
+      'anuncia que é vendedor (tiro no pé — caiu na v2)'],
+
+    // não existe
+    [/nota fiscal|emitir nota|disparo autom[áa]tico|lembrete autom[áa]tico no whats/i,
+      'promete o que não existe (nota fiscal / disparo automático)'],
+  ]
+
+  let bloqueou = false
+  for (const it of itens) {
+    const texto = `${it.msg1}\n${it.d3 ?? ''}`
+    for (const [re, motivo] of TRAVAS) {
+      if (re.test(texto)) {
+        console.log(`🚫 id ${it.id} — ${motivo}`)
+        console.log(`   "${texto.replace(/\n/g, ' ').slice(0, 110)}…"`)
+        bloqueou = true
+      }
+    }
+  }
+  if (bloqueou) {
+    console.log('\nNADA foi gravado. Corrija as mensagens acima.')
     process.exit(1)
   }
 

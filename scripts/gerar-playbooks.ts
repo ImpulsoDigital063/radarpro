@@ -15,7 +15,7 @@ async function main() {
   const db = getClient()
 
   const r = await db.execute(`
-    SELECT id, nome, categoria, sistema_detectado, nivel_consciencia
+    SELECT id, nome, categoria, sistema_detectado, nivel_consciencia, reviews_texto
     FROM leads
     WHERE status != 'arquivado' AND telefone IS NOT NULL
       -- SÓ AgendaPRO. Rodar isso em lead de LP/Shopify entrega playbook de
@@ -46,7 +46,7 @@ async function main() {
       args: [JSON.stringify(pb), notas, row.id],
     })
 
-    const k = `${detectarNicho(row.categoria ?? '', row.nome ?? '') ?? 'OUTRO'} × ${situacaoDoLead(row)}`
+    const k = `${detectarNicho(row.categoria ?? '', row.nome ?? '') ?? 'OUTRO'} × ${situacaoDoLead(row)} × ${pb.porte}`
     porCombo.set(k, (porCombo.get(k) ?? 0) + 1)
   }
 
