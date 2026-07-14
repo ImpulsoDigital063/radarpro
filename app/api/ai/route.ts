@@ -1,3 +1,4 @@
+import { diagnosticarComClaude, playbookComClaude } from '@/lib/claude-playbook'
 import { gerarMensagemComArsenal } from '@/lib/claude-copy'
 import { NextRequest, NextResponse } from 'next/server'
 import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio, gerarScriptCompleto, classificarTermometro, analisarConversa, type MensagemConversa } from '@/lib/gemini'
@@ -137,14 +138,43 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(analise)
     }
 
-    // Diagnóstico profundo do negócio
+    // Diagnóstico do negócio — CLAUDE + ARSENAL + MAPA DE NICHO
     if (action === 'diagnostico') {
       const { lead } = body
       if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
 
-      const resultado = await diagnosticarNegocio(lead)
+      if (process.env.ANTHROPIC_API_KEY && lead.id) {
+        const rl = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
+        const completo = { ...lead, ...((rl.rows[0] as any) ?? {}) }
 
-      // Salva mensagem de impacto e notas no banco
+        const d = await diagnosticarComClaude(completo)
+
+        const notas = [
+          `[Diagnóstico — ${new Date().toLocaleDateString('pt-BR')}]`,
+          `Dor: ${d.dor_central}`,
+          `Custo: ${d.custo_da_dor}`,
+          `Arma certa: ${d.arma_certa}`,
+          `NÃO oferecer: ${d.o_que_nao_oferecer}`,
+        ].join('\n')
+
+        await db.execute({
+          sql: `UPDATE leads SET notas = ?, atualizado_em = datetime('now','localtime') WHERE id = ?`,
+          args: [notas, lead.id],
+        })
+
+        return NextResponse.json({
+          dor_central: d.dor_central,
+          custo_da_dor: d.custo_da_dor,
+          produto_ideal: d.arma_certa,
+          o_que_nao_oferecer: d.o_que_nao_oferecer,
+          mensagem_impacto: d.mensagem_impacto,
+          modelo: d.modelo,
+          custo_usd: Number(d.custoUSD.toFixed(4)),
+        })
+      }
+
+      // fallback Gemini
+      const resultado = await diagnosticarNegocio(lead)
       if (lead.id) {
         const notas = `[Diagnóstico — ${new Date().toLocaleDateString('pt-BR')}]\nDor: ${resultado.dor_central}\nCusto: ${resultado.custo_da_dor}\nProduto ideal: ${resultado.produto_ideal}`
         await db.execute({
@@ -152,7 +182,6 @@ export async function POST(req: NextRequest) {
           args: [resultado.mensagem_impacto, notas, lead.id],
         })
       }
-
       return NextResponse.json(resultado)
     }
 
@@ -184,7 +213,17 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      const script = await gerarScriptCompleto(lead)
+      // busca o lead COMPLETO (sistema_detectado / nivel_consciencia / notas)
+      const rl = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
+      const completo = { ...lead, ...((rl.rows[0] as any) ?? {}) }
+
+      // CLAUDE + ARSENAL + MAPA DE NICHO. O Gemini caía com 503 e o prompt de
+      // abril não sabia a dor específica de cada nicho — falava "gestão pra
+      // beleza", que é o mesmo que não dizer nada.
+      const script = process.env.ANTHROPIC_API_KEY
+        ? await playbookComClaude(completo)
+        : await gerarScriptCompleto(lead)
+
       await db.execute({
         sql: `UPDATE leads SET script_json = ?, script_gerado_em = datetime('now','localtime'), atualizado_em = datetime('now','localtime') WHERE id = ?`,
         args: [JSON.stringify(script), lead.id],
