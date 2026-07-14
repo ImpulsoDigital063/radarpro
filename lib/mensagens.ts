@@ -301,31 +301,129 @@ const CATEGORIAS_NAO_FIT = [
  *                        de anamnese do sistema é a ficha de papel dela)
  *   · química/tranças  — o caso da Izanara (Studio MOOD, R$97/mês)
  */
+/**
+ * ⛔ EXCLUSÕES — checadas ANTES de qualquer match.
+ *
+ * Sem isso, "Loja de produtos de beleza" e "Fornecedor de produtos de beleza"
+ * entravam no nicho só porque tinham a palavra "beleza". São LOJAS: não têm
+ * agenda, não têm comissionado, não têm ficha. Não são ICP.
+ */
+const NAO_E_SERVICO = [
+  'loja', 'fornecedor', 'comércio', 'comercio', 'distribuidora',
+  'atacado', 'perfumaria', 'farmácia', 'farmacia', 'drogaria',
+]
+
+/**
+ * NICHO OFICIAL do AgendaPRO — cravado por Eduardo em 13/07/2026.
+ *
+ * DENTRO: barbearia · salão · nail/manicure · lash/cílios · sobrancelha · estética · tranças.
+ * São os 3 trilhos com PAGANTE provando (Olímpio, Studio MOOD, Rosy, K'F Beauty, Guia Lopes).
+ *
+ * FORA (decisão do Eduardo, 13/07):
+ *   · TATUAGEM — "não trabalhamos, por enquanto"
+ *   · MASSOTERAPIA / SPA / MASSAGEM — não vende produto no balcão, não tem ficha de
+ *     cílios, raramente tem comissionado. Diluiria o foco e a mensagem.
+ *   · LOJA de qualquer tipo (ver NAO_E_SERVICO acima)
+ */
 const NICHO_BELEZA_AGENDAPRO = [
   // balcão de beleza
   'barbearia', 'barbeiro', 'salão de beleza', 'salao de beleza', 'cabeleireiro',
-  'salão', 'salao', 'beleza',
+  'salão', 'salao', 'centro de saúde e beleza', 'centro de saude e beleza',
   // unhas
   'nail designer', 'nail', 'manicure', 'pedicure', 'esmalteria',
   // beleza técnica (onde a ficha de anamnese é a arma)
   'lash', 'cílios', 'cilios', 'extensão de cílios', 'extensao de cilios',
+  'designer de cílios', 'designer de cilios',
   'sobrancelha', 'designer de sobrancelhas', 'micropigmentação', 'micropigmentacao',
   'clínica estética', 'clinica estetica', 'estética', 'estetica', 'esteticista',
-  'spa', 'depilação', 'depilacao',
+  'depilação', 'depilacao',
   // tranças / química
   'trança', 'tranca', 'braids', 'cacheados',
-  // afins que operam igual (agenda + comissão + produto no balcão)
-  'massoterapeuta', 'massagem', 'maquiadora', 'centro de saúde e beleza',
+  // maquiagem
+  'maquiadora', 'maquiagem',
 ]
+
+/**
+ * O NOME do negócio entrega o nicho quando a CATEGORIA falha.
+ *
+ * O Google Maps joga muito lead de beleza em categoria genérica ("Serviço com
+ * agenda", "Profissional liberal", "Patrocinado"). Filtrar só por categoria
+ * jogaria fora Studio Diana Oliver, DN Beauty Salon, D'SALON, Barbearia Toledo,
+ * Amanda Bronze, Clínica Pelle... — todos beleza, todos perdidos.
+ */
+const NOME_ENTREGA_BELEZA = [
+  'studio', 'stúdio', 'estúdio de beleza', 'salon', 'salão', 'salao',
+  'beauty', 'beleza', 'barbearia', 'barber', 'bronze', 'bronzeamento',
+  'nail', 'unha', 'esmalteria', 'lash', 'cílios', 'cilios', 'sobrancelha',
+  'estética', 'estetica', 'depilação', 'depilacao', 'cabelo', 'hair',
+  'make', 'maquiagem', 'trança', 'tranca', 'harmonização facial',
+]
+
+/**
+ * ⛔ TATUAGEM E PIERCING — FORA (decisão do Eduardo, 13/07: "não trabalhamos, por enquanto").
+ *
+ * Cuidado: a palavra "studio" é usada por lash, nail E tatuador. Filtrar só pelo
+ * nome jogaria fora "Studio Diana Oliver" (nail) ou traria "JORJÃO TATTOO ESTUDIO".
+ *
+ * A regra: corta se a CATEGORIA for tatuagem/piercing, OU se o NOME gritar tattoo
+ * E a categoria não for de beleza. Assim o "STUDIO JAN FOCCO — Remoção de tatuagem,
+ * Micropigmentação, Sobrancelha, Salão" (categoria = Salão de beleza) CONTINUA DENTRO:
+ * ele REMOVE tatuagem, não faz. É salão.
+ */
+const CAT_TATUAGEM = ['tatuagem', 'tatuador', 'tattoo', 'piercing', 'body piercing']
+const NOME_TATUAGEM = ['tattoo', 'tatuagem', 'tatuador', 'piercing', ' ink ', 'ink ']
+const CAT_NAO_BELEZA = ['fitness', 'fisioterapia', 'personal', 'academia']
+
+function ehTatuagemOuPiercing(categoria: string, nome: string): boolean {
+  const c = (categoria ?? '').toLowerCase()
+  const n = (nome ?? '').toLowerCase()
+
+  // categoria explícita de tatuagem/piercing → fora, sem discussão
+  if (CAT_TATUAGEM.some((t) => c.includes(t))) return true
+
+  // nome grita tattoo, MAS a categoria é de beleza → é salão que remove tatuagem. FICA.
+  const catEhBeleza = NICHO_BELEZA_AGENDAPRO.some((b) => c.includes(b))
+  if (NOME_TATUAGEM.some((t) => n.includes(t)) && !catEhBeleza) return true
+
+  return false
+}
+
+/** O nome do negócio indica beleza? (usado quando a categoria é genérica) */
+export function nomeIndicaBeleza(nome: string): boolean {
+  const n = (nome ?? '').toLowerCase()
+  if (NAO_E_SERVICO.some((c) => n.includes(c))) return false
+  return NOME_ENTREGA_BELEZA.some((c) => n.includes(c))
+}
+
+/**
+ * O lead é do nicho? Olha CATEGORIA e, se ela falhar, olha o NOME.
+ * É esta função que a limpeza da base e o disparo devem usar.
+ */
+export function ehLeadDoNicho(categoria: string, nome: string): boolean {
+  // 1) tatuagem/piercing/academia → FORA, mesmo que tenha "studio" no nome
+  if (ehTatuagemOuPiercing(categoria, nome)) return false
+  const c = (categoria ?? '').toLowerCase()
+  if (CAT_NAO_BELEZA.some((x) => c.includes(x))) return false
+
+  // 2) categoria de beleza → dentro
+  if (detectarTipoOferta(categoria ?? '') === 'agendapro-solo') return true
+
+  // 3) categoria genérica ("Serviço com agenda", "Patrocinado") → o NOME decide
+  return nomeIndicaBeleza(nome ?? '')
+}
 
 export function detectarTipoOferta(categoria: string): TipoOferta {
   const cat = categoria.toLowerCase()
 
+  // 0) É LOJA? Então NUNCA é AgendaPRO, mesmo que tenha "beleza" no nome.
+  //    ("Loja de produtos de beleza" não tem agenda, comissão nem ficha.)
+  const ehLoja = NAO_E_SERVICO.some(c => cat.includes(c))
+
   // 1) Loja / produto físico → Shopify (oferta de e-commerce)
   if (CATEGORIAS_SHOPIFY_MATCH.some(c => cat.includes(c))) return 'shopify-solo'
 
-  // 2) BELEZA → AgendaPRO. É o foco da prospecção desde 13/07/2026.
-  if (NICHO_BELEZA_AGENDAPRO.some(c => cat.includes(c))) return 'agendapro-solo'
+  // 2) BELEZA (e não-loja) → AgendaPRO. É o foco da prospecção desde 13/07/2026.
+  if (!ehLoja && NICHO_BELEZA_AGENDAPRO.some(c => cat.includes(c))) return 'agendapro-solo'
 
   // 3) Resto (advogado, dentista, psicólogo, pet, etc): não é nosso ICP hoje.
   //    Cai em LP como fallback técnico — mas não deveria ser prospectado.
