@@ -1,3 +1,4 @@
+import { gerarMensagemComArsenal } from '@/lib/claude-copy'
 import { NextRequest, NextResponse } from 'next/server'
 import { gerarAbordagem, calcularScoreIA, chat, gerarFollowup, gerarPlanoHoje, diagnosticarNegocio, gerarScriptCompleto, classificarTermometro, analisarConversa, type MensagemConversa } from '@/lib/gemini'
 import { melhorHorarioPara } from '@/lib/horarios'
@@ -17,17 +18,48 @@ export async function POST(req: NextRequest) {
   try {
     const db = getClient()
 
-    // Gera abordagem personalizada para um lead
+    /**
+     * Gera a Msg 1 do lead — CLAUDE + ARSENAL (13/07/2026).
+     *
+     * Antes rodava no Gemini 2.5-flash com o SYSTEM_PROMPT de abril, e:
+     *   · caía com 503 "high demand" (o erro que o Eduardo viu no painel);
+     *   · não sabia NADA do que o scraper v2 descobre. Gerava "você tem sistema
+     *     ou organiza na mão?" pra uma barbearia que o scraper JÁ SABIA que
+     *     usa Trinks. Perguntar o que você já sabe é o oposto de personalizar.
+     *
+     * Agora usa o ARSENAL_COPY (7 frentes de pesquisa) + o sistema detectado +
+     * o nível de consciência. Cai de volta no Gemini só se a chave do Claude
+     * não estiver configurada.
+     */
     if (action === 'abordagem') {
       const { lead } = body
       if (!lead) return NextResponse.json({ error: 'lead obrigatório' }, { status: 400 })
 
-      const resposta = await gerarAbordagem(lead)
-
-      if (lead.id && resposta.mensagem) {
-        await atualizarMensagem(lead.id, resposta.mensagem)
+      // busca o lead COMPLETO no banco — o payload do painel pode não trazer
+      // sistema_detectado / nivel_consciencia, que são o que decide a mensagem
+      let completo = lead
+      if (lead.id) {
+        const r = await db.execute({ sql: `SELECT * FROM leads WHERE id = ?`, args: [lead.id] })
+        if (r.rows[0]) completo = { ...lead, ...(r.rows[0] as any) }
       }
 
+      if (process.env.ANTHROPIC_API_KEY) {
+        const g = await gerarMensagemComArsenal(completo)
+        if (lead.id && g.mensagem) await atualizarMensagem(lead.id, g.mensagem)
+        return NextResponse.json({
+          mensagem: g.mensagem,
+          argumento: g.angulo,
+          diagnostico: completo.sistema_detectado
+            ? `Já usa ${completo.sistema_detectado} — a dor dele é o SISTEMA (trava/desloga), não a agenda.`
+            : `Nível: ${completo.nivel_consciencia ?? 'desconhecido'}`,
+          modelo: g.modelo,
+          custo_usd: Number(g.custoUSD.toFixed(4)),
+        })
+      }
+
+      // fallback: sem chave do Claude, usa o gerador antigo (Gemini)
+      const resposta = await gerarAbordagem(completo)
+      if (lead.id && resposta.mensagem) await atualizarMensagem(lead.id, resposta.mensagem)
       return NextResponse.json(resposta)
     }
 
