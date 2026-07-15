@@ -174,15 +174,15 @@ const NOTA_FISCAL =
   'na semana que vem. O que ele faz é a agenda, a comanda, a comissão e o financeiro.'
 
 const NAO_TENHO_TEMPO =
-  'É justamente por isso que eu não te entrego um sistema vazio pra você configurar. Você me ' +
-  'manda a lista de serviços com preço e quem trabalha com você — EU deixo tudo montado e te ' +
-  'mando o login já funcionando. Você abre e usa. O trabalho de montar é meu.'
+  'Entendo — e por isso o começo é rápido. Quem monta o negócio no sistema é você, mas leva ' +
+  'minutos: cadastra os serviços e os preços direto do celular. É seu de verdade, ninguém mexe na ' +
+  'sua casa. E o que travar, me chama que eu te ajudo na hora — não te largo perdida.'
 
 const MIGRACAO =
-  'Não digita nada, não. Você me manda a lista dos seus clientes — planilha, exportação do ' +
-  'sistema que você usa, o que tiver — e o sistema importa. Tem uma tela onde você CONFERE ' +
-  'tudo antes de gravar, então você vê o que vai entrar e só depois confirma. E os serviços, ' +
-  'os preços e a equipe quem monta sou eu. Você recebe o login com a sua casa já dentro.'
+  'Vou ser reto contigo: importação de lista em massa ainda não tem. Mas você não precisa parar ' +
+  'pra digitar 400 clientes de uma vez — cada cliente entra na hora do atendimento, então a sua ' +
+  'base vai se formando sozinha conforme você usa. Serviço e preço quem cadastra é você, e leva ' +
+  'minutos. O que travar, me chama que eu te ajudo.'
 
 // ⚠️ λ.não-inventar: a mecânica existe e roda. O RESULTADO em cliente ainda não —
 // a base é nova e ninguém tirou proveito dela até hoje. Então falamos do que o
@@ -201,6 +201,54 @@ const LOGINS =
   'o seu faturamento nem a comissão dos outros. E cada profissional abre no celular e vê a agenda ' +
   'dele e quanto já ganhou de comissão, em tempo real — para de te perguntar. Você vê tudo, eles ' +
   'veem só o que é deles.'
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MSG 1 — O OPENER (reescrito 15/07/2026, decisão do Eduardo)
+   ═══════════════════════════════════════════════════════════════════════
+
+   O QUE MUDOU: sai o pitch de comissão/ficha e a MENTIRA "eu monto tudo pra
+   você". Entra o eixo CRESCIMENTO (o sistema TRAZ cliente) + o dia a dia
+   organizado. É self-service, multi-tenant — o cliente monta o negócio dele.
+   Nada de "eu monto", nada de import (não existe ainda), nada de "7 dias
+   grátis" no opener (a oferta vem só quando ela perguntar).
+
+   λ.não-inventar: fala do que o SISTEMA FAZ (pede avaliação, gera link de
+   indicação, acha quem sumiu). NUNCA resultado de cliente — a base é nova. */
+const CRESCIMENTO_MSG1 =
+  'Ele não é só agenda: tem as ferramentas pra trazer cliente de volta e atrair cliente novo. ' +
+  'O cliente te avalia no Google e ganha pontos por isso — e mais estrela no Google é mais gente ' +
+  'te achando. Cada cliente tem um link de indicação próprio, então é cliente trazendo cliente. ' +
+  'E o sistema ainda acha quem sumiu e deixa a mensagem pronta pra você chamar de volta com um toque.'
+
+/** A linha do "dia a dia no lugar", por nicho — o gancho de gestão SEM a palavra "gestão". */
+const GESTAO_MSG1: Record<string, string> = {
+  barbearia:
+    'Por baixo disso, o dia a dia no lugar: agenda com link pro cliente marcar sozinho, comanda que ' +
+    'junta o corte e a venda de pomada, a comissão dos barbeiros certa, e o financeiro te mostrando ' +
+    'o que sobrou no fim do mês — não só o que entrou.',
+  salao:
+    'Por baixo disso, o dia a dia no lugar: agenda com link, comanda com a venda de produto junto, ' +
+    'a comissão da equipe certa, e o financeiro te mostrando o que sobrou no fim do mês — não só o ' +
+    'que entrou.',
+  nail:
+    'Por baixo disso, a agenda no lugar: link pra cliente marcar sozinha, com a duração certa de ' +
+    'cada serviço travada, e o financeiro te mostrando o lucro real do mês.',
+  lash:
+    'Por baixo disso, a agenda com link pra cliente marcar sem passar pela sua DM — e a ficha de ' +
+    'anamnese fora do papel: a cliente assina o termo na tela e o lote da cola fica registrado.',
+  estetica:
+    'Por baixo disso, o dia a dia no lugar: agenda com link, a ficha e o termo fora do papel, e os ' +
+    'pacotes com saldo de sessões que baixa sozinho no atendimento.',
+  sobrancelha:
+    'Por baixo disso, a agenda com link pra cliente marcar sem passar pela sua DM — e a ficha com o ' +
+    'termo fora do papel: a cliente assina na tela e o pigmento (marca e lote) fica registrado.',
+  trancas:
+    'Por baixo disso, a agenda com link — e a ficha capilar fora do papel, com o termo de tranças ' +
+    'que a cliente assina na tela (tempo de uso e manutenção).',
+  OUTRO:
+    'Por baixo disso, o dia a dia no lugar: agenda com link, comanda, e o financeiro te mostrando o ' +
+    'que sobrou de verdade no fim do mês — não só o que entrou.',
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    O QUE MUDA POR NICHO
@@ -286,17 +334,17 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar de te escrever pra não encher. Se um dia quiser conferir se a comissão está saindo ' +
       'certa, ou botar ordem na venda de pomada e óleo, é só me chamar aqui. Sucesso com a barbearia.',
     fechar:
-      'Faz o seguinte: são 7 dias de teste, sem taxa de setup e sem cartão. Eu monto a sua barbearia ' +
-      'dentro — serviços, preços e os barbeiros — e te mando o login pronto. Você usa uma semana. Se ' +
-      'não fizer sentido, some e não me deve nada. Me manda a lista dos serviços com preço?',
+      'Faz o seguinte: são 7 dias de teste, sem taxa de setup e sem cartão. Você cria a sua barbearia ' +
+      'dentro — serviços, preços e os barbeiros — em poucos minutos, e eu fico do seu lado pra qualquer ' +
+      'dúvida. Você usa uma semana. Se não fizer sentido, some e não me deve nada. Bora montar a sua agora?',
     jaTem:
       'Boa. Então deixa eu te perguntar uma coisa: ele calcula a comissão em cima do que entrou de ' +
       'verdade, ou em cima da tabela? E ele desloga no meio do expediente, com cliente na cadeira? ' +
       'São as duas reclamações que eu mais escuto de quem já usa sistema.',
     curioso:
       'Show. Em resumo: agenda por barbeiro, comanda que junta corte + pomada, comissão calculada ' +
-      'sobre o líquido e cada barbeiro vendo a dele no celular. São 7 dias de teste e eu monto tudo ' +
-      'pra você. Me manda a lista de serviços com preço que eu deixo pronto hoje.',
+      'sobre o líquido e cada barbeiro vendo a dele no celular. São 7 dias de teste, sem cartão — você ' +
+      'monta em minutos e eu te ajudo no que travar. Me manda a lista de serviços com preço que a gente já começa.',
   },
 
   /* ─────────────────────────────────────────────── LASH */
@@ -328,9 +376,9 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar por aqui pra não ficar insistindo. Se um dia você quiser tirar as fichas da pasta de ' +
       'papel e ter o termo assinado guardado, me chama. Sucesso com o studio.',
     fechar:
-      'São 7 dias de teste, sem setup e sem cartão. Eu monto seu studio dentro — seus serviços, seus ' +
-      'preços — e já deixo a ficha de cílios pronta. Você atende uma cliente com ela essa semana e vê ' +
-      'se muda alguma coisa. Me manda a lista dos seus serviços com preço?',
+      'São 7 dias de teste, sem setup e sem cartão. Você cria seu studio dentro — seus serviços e ' +
+      'preços — em minutos, e a ficha de cílios já vem pronta no sistema. Você atende uma cliente com ela ' +
+      'essa semana e vê se muda alguma coisa. Qualquer dúvida eu te ajudo. Me manda a lista dos seus serviços com preço?',
     jaTem:
       'Boa. Ele tem ficha de anamnese de cílios com mapping desenhado, registro do lote da cola e termo ' +
       'assinado pela cliente? Pergunto porque a maioria dos sistemas de agenda não tem — eles marcam ' +
@@ -338,7 +386,7 @@ const COPY: Record<string, PerfilCopy> = {
     curioso:
       'Show. O centro é a ficha: perguntas de saúde, mapping desenhado com o dedo, curvatura, espessura, ' +
       'lote da cola e o termo assinado na tela — vira PDF e vai pro WhatsApp da cliente. Mais a agenda ' +
-      'com link, pra você sair da DM. 7 dias de teste e eu monto tudo. Me manda seus serviços com preço?',
+      'com link, pra você sair da DM. 7 dias de teste, sem cartão — você monta em minutos e eu te ajudo no que travar. Me manda seus serviços com preço?',
   },
 
   /* ─────────────────────────────────────────────── ESTÉTICA */
@@ -371,9 +419,9 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar de te escrever pra não encher. Se um dia quiser tirar as fichas e os termos do papel, ou ' +
       'botar controle no saldo dos pacotes, me chama aqui. Sucesso com a clínica.',
     fechar:
-      'São 7 dias de teste, sem setup, sem cartão. Eu monto sua clínica dentro — procedimentos, preços, ' +
-      'pacotes — e te mando o login pronto. Você usa uma semana de verdade. Me manda a lista de ' +
-      'procedimentos com preço que eu deixo montado?',
+      'São 7 dias de teste, sem setup, sem cartão. Você cria sua clínica dentro — procedimentos, preços, ' +
+      'pacotes — em poucos minutos, e eu fico do seu lado pra qualquer dúvida. Você usa uma semana de ' +
+      'verdade. Me manda a lista de procedimentos com preço que a gente começa?',
     jaTem:
       'Boa. Ele tem ficha de anamnese facial de verdade — ácido, gestante, histórico de câncer de pele — ' +
       'com termo assinado pela cliente? E controla saldo de pacote de sessões? A maioria dos sistemas de ' +
@@ -381,7 +429,7 @@ const COPY: Record<string, PerfilCopy> = {
     curioso:
       'Show. O centro é a ficha de anamnese com termo assinado e o pacote com saldo de sessões, que baixa ' +
       'sozinho no atendimento. Mais agenda, comanda e o financeiro mostrando o que sobrou de verdade. ' +
-      '7 dias de teste e eu monto tudo. Me passa seus procedimentos com preço?',
+      '7 dias de teste, sem cartão — você monta em minutos e eu te ajudo no que travar. Me passa seus procedimentos com preço?',
   },
 
   /* ─────────────────────────────────────────────── SALÃO */
@@ -413,9 +461,9 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar por aqui pra não insistir. Se um dia quiser conferir se a comissão está saindo certa, ou ' +
       'parar de ver produto sumindo da prateleira, me chama. Sucesso com o salão.',
     fechar:
-      'São 7 dias de teste, sem taxa de setup e sem cartão. Eu monto o salão dentro — serviços, preços, ' +
-      'sua equipe — e te mando o login pronto. Você roda uma semana de verdade. Me manda a lista de ' +
-      'serviços com preço e quem trabalha com você?',
+      'São 7 dias de teste, sem taxa de setup e sem cartão. Você cria o salão dentro — serviços, preços, ' +
+      'sua equipe — em poucos minutos, e eu fico do seu lado pra qualquer dúvida. Você roda uma semana de ' +
+      'verdade. Me manda a lista de serviços com preço e quem trabalha com você que a gente começa?',
     jaTem:
       'Boa. Duas perguntas então: quando você dá desconto, ele recalcula a comissão em cima do valor ' +
       'que a cliente pagou, ou continua na tabela? E a sua recepcionista consegue ver o seu faturamento ' +
@@ -423,7 +471,7 @@ const COPY: Record<string, PerfilCopy> = {
     curioso:
       'Show. Resumo: agenda por profissional, comanda que junta serviço + produto, comissão sobre o ' +
       'líquido com cada uma vendo a dela no celular, e a recepção operando sem ver seu financeiro. ' +
-      '7 dias de teste e eu monto tudo. Me manda os serviços com preço e a equipe?',
+      '7 dias de teste, sem cartão — você monta em minutos e eu te ajudo no que travar. Me manda os serviços com preço e a equipe?',
   },
 
   /* ─────────────────────────────────────────────── NAIL */
@@ -453,9 +501,9 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar de escrever pra não encher. Se um dia quiser sair da DM e ter a agenda funcionando ' +
       'sozinha, me chama aqui. Sucesso com o studio.',
     fechar:
-      'São 7 dias de teste, sem setup e sem cartão. Eu monto seu studio dentro — seus serviços com a ' +
-      'duração e o preço de cada um — e te mando o link da sua agenda pronto pra colocar na bio. Me ' +
-      'manda a lista de serviços com preço e quanto tempo leva cada um?',
+      'São 7 dias de teste, sem setup e sem cartão. Você cria seu studio dentro — seus serviços com a ' +
+      'duração e o preço de cada um — em minutos, e já sai com o link da sua agenda pronto pra colocar na ' +
+      'bio. Qualquer dúvida eu te ajudo. Me manda a lista de serviços com preço e quanto tempo leva cada um?',
     jaTem:
       'Boa. Ele tem link de agendamento pra você botar na bio do Instagram, e trava a duração certa de ' +
       'cada serviço? Pergunto porque a maioria deixa a cliente marcar fibra num buraco de 45 minutos, e ' +
@@ -463,7 +511,7 @@ const COPY: Record<string, PerfilCopy> = {
     curioso:
       'Show. O centro é o link da agenda na bio: a cliente marca sozinha, com a duração certa de cada ' +
       'serviço travada. Mais a venda de esmalte e óleo entrando na comanda, e o financeiro com o lucro ' +
-      'real. 7 dias de teste e eu monto tudo. Me manda seus serviços com preço e duração?',
+      'real. 7 dias de teste, sem cartão — você monta em minutos e eu te ajudo no que travar. Me manda seus serviços com preço e duração?',
   },
 
   /* ─────────────────────────────────────────────── SOBRANCELHA */
@@ -494,16 +542,16 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar por aqui pra não insistir. Se um dia quiser tirar a ficha e o termo do papel, me chama. ' +
       'Sucesso com o studio.',
     fechar:
-      'São 7 dias de teste, sem setup e sem cartão. Eu monto seu studio — serviços e preços — e já deixo ' +
-      'a ficha com o termo pronta. Você atende uma cliente com ela essa semana. Me manda a lista de ' +
-      'serviços com preço?',
+      'São 7 dias de teste, sem setup e sem cartão. Você cria seu studio — serviços e preços — em minutos, ' +
+      'e a ficha com o termo já vem pronta no sistema. Você atende uma cliente com ela essa semana. ' +
+      'Qualquer dúvida eu te ajudo. Me manda a lista de serviços com preço?',
     jaTem:
       'Boa. Ele tem ficha de anamnese com termo assinado pela cliente e registro do lote do pigmento? ' +
       'A maioria dos sistemas de agenda só marca horário — a parte que te protege legalmente eles não têm.',
     curioso:
       'Show. O centro é a ficha com o termo assinado na tela e o registro do pigmento (marca e lote). ' +
-      'Mais a agenda com link, pra você sair da DM, e a foto de antes e depois com data. 7 dias de teste ' +
-      'e eu monto tudo. Me manda seus serviços com preço?',
+      'Mais a agenda com link, pra você sair da DM, e a foto de antes e depois com data. 7 dias de teste, ' +
+      'sem cartão — você monta em minutos e eu te ajudo no que travar. Me manda seus serviços com preço?',
   },
 
   /* ─────────────────────────────────────────────── TRANÇAS */
@@ -533,16 +581,16 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar de escrever pra não encher. Se um dia quiser ter a ficha capilar e o termo assinado ' +
       'guardados de verdade, me chama. Sucesso com o studio.',
     fechar:
-      'São 7 dias de teste, sem setup e sem cartão. Eu monto seu studio e já deixo a ficha capilar e o ' +
-      'termo de tranças prontos. Você atende uma cliente com eles essa semana. Me manda seus serviços com ' +
-      'preço?',
+      'São 7 dias de teste, sem setup e sem cartão. Você cria seu studio em minutos, e a ficha capilar e o ' +
+      'termo de tranças já vêm prontos no sistema. Você atende uma cliente com eles essa semana. ' +
+      'Qualquer dúvida eu te ajudo. Me manda seus serviços com preço?',
     jaTem:
       'Boa. Ele tem ficha capilar (química anterior, reação alérgica, couro cabeludo) e termo de tranças ' +
       'assinado pela cliente? Sistema de agenda comum não tem — eles marcam horário e param aí.',
     curioso:
       'Show. O centro é a ficha capilar e o termo de tranças assinado na tela — vira PDF e vai pro ' +
       'WhatsApp da cliente. Mais a agenda com link e a venda de produto entrando na comanda. 7 dias de ' +
-      'teste e eu monto tudo. Me manda seus serviços com preço?',
+      'teste, sem cartão — você monta em minutos e eu te ajudo no que travar. Me manda seus serviços com preço?',
   },
 
   /* ─────────────────────────────────────────────── OUTRO (nicho não identificado) */
@@ -569,14 +617,14 @@ const COPY: Record<string, PerfilCopy> = {
       'Vou parar de te escrever pra não encher. Se um dia quiser botar a agenda e o financeiro em ordem, ' +
       'é só me chamar aqui. Sucesso.',
     fechar:
-      'São 7 dias de teste, sem taxa de setup e sem cartão. Eu monto o seu negócio dentro e te mando o ' +
-      'login pronto. Me manda a lista de serviços com preço que eu deixo montado hoje?',
+      'São 7 dias de teste, sem taxa de setup e sem cartão. Você cria o seu negócio dentro em poucos ' +
+      'minutos, e eu fico do seu lado pra qualquer dúvida. Me manda a lista de serviços com preço que a gente começa?',
     jaTem:
       'Boa. Deixa eu te perguntar: ele desloga no meio do atendimento, com cliente esperando? E te mostra ' +
       'quanto SOBROU no fim do mês, ou só quanto entrou? São as duas reclamações que eu mais escuto.',
     curioso:
       'Show. Agenda com link pra cliente marcar sozinha, comanda, e o financeiro mostrando o lucro real. ' +
-      '7 dias de teste, sem setup, e eu monto tudo pra você. Me manda seus serviços com preço?',
+      '7 dias de teste, sem setup — você monta em minutos e eu te ajudo no que travar. Me manda seus serviços com preço?',
   },
 }
 
@@ -613,19 +661,18 @@ const COPY: Record<string, PerfilCopy> = {
  * 5. O FECHAMENTO OFERECE A VISITA. As duas saídas são "sim" — ele escolhe entre
  *    WhatsApp e visita, não entre responder e ignorar.
  */
-function abertura(c: PerfilCopy, nomeBruto: string): string {
+function abertura(c: PerfilCopy, nomeBruto: string, nicho: string): string {
   const nome = comoChamar(nomeBruto)
   const oi = nome ? `Olá, ${nome}!` : 'Olá, tudo bem?'
 
   const euSou =
-    `Sou o Eduardo, desenvolvedor aqui de Palmas — criei o AgendaPRO, um sistema pra ${c.trato}.`
+    `Sou o Eduardo, da Impulso Digital, aqui de Palmas. Desenvolvi o AgendaPRO, um sistema pra ${c.trato}.`
 
-  const oferta =
-    `7 dias grátis, sem fidelidade — e eu mesmo monto tudo com seus serviços e preços, você só usa.`
+  const gestao = GESTAO_MSG1[nicho] ?? GESTAO_MSG1.OUTRO
 
-  const convite = `Te mostro funcionando em 10 minutos por aqui, ou prefere que eu passe aí?`
+  const convite = `Te mostro rodando em 10 minutos por aqui, ou prefere que eu passe aí?`
 
-  return [`${oi} ${euSou}`, c.pitch, oferta, convite].join('\n\n')
+  return [`${oi} ${euSou}`, CRESCIMENTO_MSG1, gestao, convite].join('\n\n')
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -670,7 +717,7 @@ export function gerarPlaybookLocal(lead: {
       : c.jaTem
 
   return {
-    msg1: abertura(c, lead.nome),
+    msg1: abertura(c, lead.nome, nicho),
     porte,
     porte_motivo: ev.motivo,
     se_responder_curioso: c.curioso,
