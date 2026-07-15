@@ -676,6 +676,37 @@ function abertura(c: PerfilCopy, nomeBruto: string, nicho: string): string {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
+   DEMO POR NICHO — a PROVA que entra na copy quando a lead engaja
+   ═══════════════════════════════════════════════════════════════════════
+
+   Negócios demo montados no AgendaPRO (1 por nicho, fictícios). O link entra
+   SÓ no curioso e no d3 — NUNCA na msg 1 (link em mensagem fria = flag de spam).
+
+   λ.não-inventar: os demos têm agenda e avaliações FABRICADAS. Então a copy diz
+   "montei um exemplo pra você ver como fica" — NUNCA "um cliente meu". */
+const DEMOS: Record<string, { url: string; oque: string }> = {
+  barbearia:   { url: 'agendapro.net.br/imperio-barbershop', oque: 'de barbearia' },
+  lash:        { url: 'agendapro.net.br/demo-lash',          oque: 'de studio de cílios' },
+  sobrancelha: { url: 'agendapro.net.br/demo-lash',          oque: 'de studio' },
+  salao:       { url: 'agendapro.net.br/studio-marcela',     oque: 'de salão' },
+  trancas:     { url: 'agendapro.net.br/studio-marcela',     oque: 'de salão' },
+  nail:        { url: 'agendapro.net.br/studio-larissa',     oque: 'de studio de unhas' },
+  // estetica e OUTRO: sem demo que case — não injeta link (mismatch é pior que nada)
+}
+
+function demoCurioso(nicho: string): string {
+  const d = DEMOS[nicho]
+  if (!d) return ''
+  return `\n\nQuer ver como fica antes de decidir? Montei um exemplo ${d.oque} no sistema — repara na agenda, no programa de pontos e nas avaliações do Google rodando: ${d.url}`
+}
+
+function demoD3(nicho: string): string {
+  const d = DEMOS[nicho]
+  if (!d) return ''
+  return ` Aliás, montei um exemplo ${d.oque} pra você ver funcionando agora: ${d.url}`
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
    MONTAGEM
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -720,7 +751,7 @@ export function gerarPlaybookLocal(lead: {
     msg1: abertura(c, lead.nome, nicho),
     porte,
     porte_motivo: ev.motivo,
-    se_responder_curioso: c.curioso,
+    se_responder_curioso: c.curioso + demoCurioso(nicho),
     se_disser_ja_tenho_sistema: jaTem,
     se_disser_nao_tenho_tempo: NAO_TENHO_TEMPO,
     se_disser_ta_caro: c.caro,
@@ -728,7 +759,7 @@ export function gerarPlaybookLocal(lead: {
     se_perguntar_nota_fiscal: NOTA_FISCAL,
     se_disser_vou_ter_que_digitar_tudo: MIGRACAO,
     o_motor_de_crescimento: CRESCIMENTO,
-    se_sumir_d3: c.d3,
+    se_sumir_d3: c.d3 + demoD3(nicho),
     se_sumir_d7: c.d7,
     como_fechar: c.fechar,
     modelo: `local:${nicho}/${sit}/${porte}`,
