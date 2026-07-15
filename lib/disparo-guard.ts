@@ -40,15 +40,25 @@ export const GUARD_PADRAO: GuardConfig = {
   diasUteisApenas: false,
 }
 
-/** Aquecimento: número novo não sai mandando 40/dia. Sobe devagar. */
+/**
+ * Aquecimento. A rampa lenta (10→15→20…) é pra número NOVO.
+ *
+ * O número do Eduardo NÃO é novo — ele aqueceu por 3 meses. Então o dia 1 dele
+ * pode ser bem maior que 10, e é o que permite os 35 do lote de 5-por-nicho.
+ *
+ * ⚠️ Mas NÃO passe de ~40 no dia 1. O que derruba número em prospecção fria não
+ * é o aquecimento (isso ele já tem) — é a taxa de BLOQUEIO de gente que não pediu
+ * a mensagem. E essa taxa a gente só descobre depois do 1º lote. 40 é o teto de
+ * segurança até saber como as mensagens caem.
+ */
 export const RAMPA_AQUECIMENTO: Record<number, number> = {
-  1: 10, // dia 1  — 10 mensagens
-  2: 15,
-  3: 20,
-  4: 25,
-  5: 30,
-  6: 35,
-  7: 40, // a partir do dia 7, teto normal
+  1: 40, // número aquecido 3 meses → dia 1 aguenta os 35 do lote (teto 40)
+  2: 40,
+  3: 40,
+  4: 40,
+  5: 40,
+  6: 40,
+  7: 40,
 }
 
 export type GuardVeredito =

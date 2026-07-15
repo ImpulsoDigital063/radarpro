@@ -73,6 +73,9 @@ export async function GET(_req: NextRequest) {
        -- de barbeiro. Loja não tem agenda, nem comissão, nem ficha.
        AND tipo = 'agendapro'
      ORDER BY
+       -- LOTE CURADO DO DIA primeiro (marcado com selecionado=1). É como a gente
+       -- garante "5 de cada nicho" em vez de a fila encher de um nicho só.
+       CASE WHEN selecionado = 1 THEN 0 ELSE 1 END,
        CASE WHEN script_json LIKE '%manual:estudado%' THEN 0 ELSE 1 END,
        CASE WHEN sistema_detectado IS NOT NULL THEN 0 ELSE 1 END,
        COALESCE(num_avaliacoes, 0) DESC
