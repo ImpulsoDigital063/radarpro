@@ -210,6 +210,19 @@ type PerfilCopy = {
   /** como ELA chama o negócio (usar na fala) */
   trato: string
   /**
+   * O PITCH DA MSG 1 (reescrito 15/07/2026 — bronca do Eduardo).
+   *
+   * REGRA DE OURO: a msg 1 VENDE O AGENDAPRO. Ela NÃO faz afirmação sobre o
+   * negócio do cliente. Nada de "sei que você usa sistema", "vi que você tem
+   * site", "sua cliente reclamou de X". Eu não fui lá, não vi, não agendei —
+   * então não finjo que sei. Chute sobre a vida do cliente = robô exposto na
+   * primeira linha.
+   *
+   * Este campo descreve o que O PRODUTO FAZ, relevante pro nicho, verdadeiro
+   * pra qualquer tamanho de negócio. Curto. Uma força principal, não catálogo.
+   */
+  pitch: string
+  /**
    * AS ARMAS DA MSG 1, POR PORTE. (Eduardo, 14/07/2026)
    *
    * Antes eu mandava "a recepção marca sem ver o seu faturamento" pra todo mundo.
@@ -245,6 +258,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── BARBEARIA */
   barbearia: {
     trato: 'barbearia',
+    pitch:
+      'Ele calcula a comissão do barbeiro certinha: sobre o que o cliente pagou de verdade, já com o desconto abatido e só depois que ele paga. Acaba planilha e discussão no fim do mês. Fora agenda com link pro cliente marcar sozinho, comanda e controle de produto.',
     armasSolo:
       'A agenda tem link: o cliente marca sozinho, sem te mandar mensagem. O corte e a pomada que ele levar entram na mesma comanda, e o estoque baixa sozinho. E o financeiro te mostra o que SOBROU no fim do mês — já fora a taxa do cartão —, não só o que entrou.',
     armasEquipe:
@@ -287,6 +302,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── LASH */
   lash: {
     trato: 'studio',
+    pitch:
+      'Ele tira a ficha de anamnese do papel: as perguntas de saúde, o mapping que você desenha na tela, e a marca, o lote e a validade da cola registrados. A cliente assina o termo ali mesmo e vira PDF. Fora a agenda com link, pra cliente marcar sozinha sem passar pela sua DM.',
     armasSolo:
       'A ficha de anamnese fica digital: as perguntas de saúde, o mapping que você desenha com o dedo na tela, e a MARCA, O LOTE E A VALIDADE DA COLA. A cliente assina o termo ali mesmo, com o dedo, e vira PDF que vai pro WhatsApp dela. A agenda tem link, então ela marca sozinha sem passar pela sua DM. E quem fura o horário perde ponto — você releva se quiser.',
     armasEquipe:
@@ -327,6 +344,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── ESTÉTICA */
   estetica: {
     trato: 'clínica',
+    pitch:
+      'Ele tira a ficha e o termo do papel, e controla os pacotes: quantas sessões a cliente comprou, usou e faltam — a sessão baixa sozinha no atendimento, sem risco de dar uma de graça. Fora a agenda com link e o financeiro que te mostra o lucro real.',
     armasSolo:
       'A ficha de anamnese fica digital — ácido, gestante, histórico de pele — com o termo assinado pela cliente na tela, e vira PDF. Os PACOTES têm saldo: quantas sessões ela comprou, quantas usou, quantas faltam — e a sessão baixa sozinha no atendimento, sem risco de você dar uma de graça. A agenda tem link, e o financeiro mostra o que sobrou de verdade.',
     armasEquipe:
@@ -368,6 +387,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── SALÃO */
   salao: {
     trato: 'salão',
+    pitch:
+      'Ele organiza a agenda (com link pra cliente marcar sozinha), a comanda que já registra a venda de produto, e o financeiro que te mostra o que sobrou de verdade no fim do mês — não só o que entrou. E calcula a comissão da equipe sobre o que a cliente pagou, já com o desconto abatido.',
     armasSolo:
       'A agenda tem link: a cliente marca sozinha, sem passar pela sua DM, e cada serviço já entra com a duração certa. A venda de produto entra na mesma comanda do serviço e o estoque baixa sozinho. E o financeiro te mostra o que SOBROU no fim do mês — já fora a taxa do cartão —, não só o faturamento.',
     armasEquipe:
@@ -408,6 +429,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── NAIL */
   nail: {
     trato: 'studio',
+    pitch:
+      'Ele te dá agenda com link pra cliente marcar sozinha, com a duração certa de cada serviço travada — nada de encaixe furando o seu dia. E quem desmarca em cima da hora não deixa buraco: o sistema chama a próxima da fila de espera na hora.',
     armasSolo:
       'A agenda tem link: a cliente marca sozinha, sem passar pela sua DM, e cada serviço entra com a duração certa — ela não consegue marcar uma fibra num buraco de 45 minutos. Quem fura o horário perde ponto, e você releva se ela tiver motivo. Se cancelar, o sistema avisa a fila de espera e o horário não vira buraco.',
     armasEquipe:
@@ -446,6 +469,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── SOBRANCELHA */
   sobrancelha: {
     trato: 'studio',
+    pitch:
+      'Ele tira a ficha e o termo do papel — a cliente assina na tela e vira PDF — e registra o pigmento usado: marca, lote e validade, a sua garantia se der reação. Fora a agenda com link, pra cliente marcar sozinha sem passar pela sua DM.',
     armasSolo:
       'A ficha de anamnese fica digital, com o TERMO assinado pela cliente na tela, com o dedo — e vira PDF que vai pro WhatsApp dela. O pigmento fica registrado: marca, lote e validade. A agenda tem link, então ela marca sozinha sem passar pela sua DM. E a foto de antes e depois fica salva com data.',
     armasEquipe:
@@ -484,6 +509,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── TRANÇAS */
   trancas: {
     trato: 'studio',
+    pitch:
+      'Ele tira a ficha capilar do papel e registra o termo de tranças que a cliente assina — tempo de uso e manutenção, a sua garantia se ela passar do prazo e der problema. Fora a agenda com link e o controle da venda de produto.',
     armasSolo:
       'A ficha capilar fica digital — química anterior, reação alérgica, couro cabeludo — e a cliente assina o TERMO DE TRANÇAS na tela: tempo de uso recomendado e manutenção. Se ela passar do prazo e der problema, você tem a prova. Vira PDF e vai pro WhatsApp dela. A agenda tem link, e a venda de produto entra na comanda.',
     armasEquipe:
@@ -521,6 +548,8 @@ const COPY: Record<string, PerfilCopy> = {
   /* ─────────────────────────────────────────────── OUTRO (nicho não identificado) */
   OUTRO: {
     trato: 'seu negócio',
+    pitch:
+      'Ele organiza a agenda (com link pro cliente marcar sozinho), a comanda e o financeiro que te mostra o que sobrou de verdade no fim do mês, não só o que entrou. E ainda ajuda a trazer cliente novo: quem te avalia no Google ganha ponto, e cada cliente tem um link de indicação.',
     armasSolo:
       'A agenda tem link: o cliente marca sozinho, sem te mandar mensagem, e cada serviço já entra com a duração certa. A comanda fecha o atendimento e a venda no mesmo lugar. E o financeiro te mostra o que SOBROU no fim do mês — já fora a taxa do cartão —, não só o que entrou.',
     armasEquipe:
@@ -576,51 +605,27 @@ const COPY: Record<string, PerfilCopy> = {
  *    só uma pergunta de diagnóstico — e um estranho fazendo pergunta não ganha
  *    resposta. Ela precisa ver, na primeira mensagem, que existe solução.
  *
- * 4. AS ARMAS MUDAM POR PORTE. Ver lib/porte.ts: falar de recepção e comissão de
- *    equipe pra quem trabalha sozinha faz ela se desqualificar ("não é pra mim").
+ * 4. ⚠️ NÃO FAZ AFIRMAÇÃO SOBRE O NEGÓCIO DO CLIENTE (bronca do Eduardo, 15/07).
+ *    Fora "sei que você usa sistema", "vi que você tem site", situação e porte na
+ *    abertura. Eu não fui lá, não vi, não agendei — não finjo que sei. A msg 1
+ *    VENDE O AGENDAPRO: o que o produto faz, verdadeiro pra qualquer tamanho.
  *
- * 5. O FECHAMENTO OFERECE A VISITA. As duas saídas são "sim" — ela escolhe entre
+ * 5. O FECHAMENTO OFERECE A VISITA. As duas saídas são "sim" — ele escolhe entre
  *    WhatsApp e visita, não entre responder e ignorar.
  */
-function abertura(
-  sit: SituacaoLead,
-  c: PerfilCopy,
-  nomeBruto: string,
-  porte: Porte,
-  _sistema?: string | null,
-): string {
+function abertura(c: PerfilCopy, nomeBruto: string): string {
   const nome = comoChamar(nomeBruto)
-  const chamamento = nome ? `Olá, ${nome}.` : 'Olá, tudo bem?'
+  const oi = nome ? `Olá, ${nome}!` : 'Olá, tudo bem?'
 
   const euSou =
-    `Me chamo Eduardo Barros, sou desenvolvedor da Impulso Digital, aqui de Palmas. ` +
-    `Criei o AgendaPRO, um sistema feito pra ${c.trato}.`
-
-  // quem JÁ USA sistema não pode ouvir "criei uma agenda" — ele já tem agenda.
-  // A conversa com ele é sobre o que o sistema dele NÃO faz.
-  const ponte =
-    sit === 'USA_SISTEMA'
-      ? `Sei que vocês já usam um sistema, então não vim te oferecer agenda. Vim te mostrar o que costuma faltar nos outros:`
-      : null
-
-  const armas = porte === 'equipe' ? c.armasEquipe : c.armasSolo
+    `Sou o Eduardo, desenvolvedor aqui de Palmas — criei o AgendaPRO, um sistema pra ${c.trato}.`
 
   const oferta =
-    porte === 'equipe'
-      ? `São 7 dias grátis, sem taxa de setup e sem fidelidade. Eu mesmo monto tudo com seus serviços, seus preços e a sua equipe — você recebe o login pronto.`
-      : `São 7 dias grátis, sem taxa de setup e sem fidelidade. Eu mesmo monto tudo com os seus serviços e preços — você recebe o login pronto.`
+    `7 dias grátis, sem fidelidade — e eu mesmo monto tudo com seus serviços e preços, você só usa.`
 
-  const convite = `Quer que eu te explique melhor por aqui, ou prefere que eu passe aí pra te mostrar funcionando?`
+  const convite = `Te mostro funcionando em 10 minutos por aqui, ou prefere que eu passe aí?`
 
-  return [
-    `${chamamento} ${euSou}`,
-    ponte,
-    armas,
-    oferta,
-    convite,
-  ]
-    .filter(Boolean)
-    .join('\n\n')
+  return [`${oi} ${euSou}`, c.pitch, oferta, convite].join('\n\n')
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -665,7 +670,7 @@ export function gerarPlaybookLocal(lead: {
       : c.jaTem
 
   return {
-    msg1: abertura(sit, c, lead.nome, porte, lead.sistema_detectado),
+    msg1: abertura(c, lead.nome),
     porte,
     porte_motivo: ev.motivo,
     se_responder_curioso: c.curioso,
