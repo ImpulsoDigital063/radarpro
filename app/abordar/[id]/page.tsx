@@ -281,9 +281,16 @@ export default function AbordarPage() {
               ))}
 
             <footer className="pt-4 border-t border-zinc-800 flex gap-3 text-sm">
-              <a href="/disparo" className="text-zinc-400 hover:text-zinc-200">
-                ← Fila de hoje
+              <a
+                href={`/licoes`}
+                className="text-zinc-400 hover:text-zinc-200"
+              >
+                Ver lições aprendidas →
               </a>
+              <span className="text-zinc-600">·</span>
+              <span className="text-zinc-500">
+                Quando esta conversa fechar (ganho/perdido), volte e rode <code className="text-zinc-300">analisar_conversa</code> pra alimentar a máquina.
+              </span>
             </footer>
           </section>
         )}
